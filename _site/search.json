@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/2025-05-21-intervalos-de-confianca/index.html",
+    "href": "posts/2025-05-21-intervalos-de-confianca/index.html",
+    "title": "Intervalos de Confiança",
+    "section": "",
+    "text": "Vamos explorar como construir intervalos de confiança com menor comprimento possível, mantendo a taxa de cobertura desejada.\n\\[\n\\bar{X} \\pm z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]"
+  },
+  {
+    "objectID": "posts/2025-05-21-intervalos-de-confianca/index.html#introdução",
+    "href": "posts/2025-05-21-intervalos-de-confianca/index.html#introdução",
+    "title": "Intervalos de Confiança",
+    "section": "",
+    "text": "Vamos explorar como construir intervalos de confiança com menor comprimento possível, mantendo a taxa de cobertura desejada.\n\\[\n\\bar{X} \\pm z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]"
+  },
+  {
+    "objectID": "posts/2025-05-21-intervalos-de-confianca/index.html#métodos-alternativos",
+    "href": "posts/2025-05-21-intervalos-de-confianca/index.html#métodos-alternativos",
+    "title": "Intervalos de Confiança",
+    "section": "Métodos Alternativos",
+    "text": "Métodos Alternativos\n…"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "L-Stats Blog",
+    "section": "",
+    "text": "Uma propriedade interessante envolvendo números transcendentais\n\n\n\nMatemática\n\n\n\nComo mostrar que e^pi &gt; pi^e ?\n\n\n\n\n\nMay 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntervalos de Confiança\n\n\n\nestatística\n\ninferência\n\nIC\n\n\n\nComo são construídos e o que não te falam sobre\n\n\n\n\n\nMay 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 21, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMay 18, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/2025-05-21-curiosidade-matematica-euler-pi/index.html",
+    "href": "posts/2025-05-21-curiosidade-matematica-euler-pi/index.html",
+    "title": "Uma propriedade interessante envolvendo números transcendentais",
+    "section": "",
+    "text": "Como podemos mostrar que \\(e^\\pi &gt; \\pi^e ?\\)\nEsses dias eu estava com um pouco de tempo livre e vendo algumas atualizações no instagram. Eu curto muito páginas que dedicam publicações relacionadas à matemática e estatística. Vi uma afirmação bem intrigante: será que \\(e^\\pi &gt; \\pi^e\\) ?\nExistem algumas maneiras de provar isso, e a que mais me pareceu razoável e mais tranquila de resolver foi considerar a expensão em série de Taylor da função \\(\\exp(x)\\) que é bastante conhecida:\n\\[\ne^x = 1 + \\frac{x}{1!} + \\frac{x^2}{2!} + \\frac{x^3}{3!} + \\ldots\n\\]\nAqui temos que a exponencial é decomposta em soma de infinitos termos e podemos certamente afirmar que se \\(\\exp(x) = 1 + x + (\\text{infinitos termos})\\), claramente vale que\n\\[\ne^x &gt; 1 + x\n\\]\nEntão, se fizermos especificamente (finja que tirei esse valor por puro talento matemático rsrs) \\(x = \\frac{\\pi}{e} - 1\\), então pela relação acima temos:\n\\[\ne^{\\pi/e - 1} &gt; 1 + \\frac{\\pi}{e} - 1\n\\]\nIsso implica que:\n\\[\ne^{\\pi/e - 1} &gt; \\frac{\\pi}{e}\n\\]\nAqui parece meio confuso, mas vamos reorganizar isso tudo:\n\\[\ne^{\\pi/e} e^{-1} &gt; \\pi e^{-1} \\implies e^{\\pi/e} &gt; \\pi\n\\]\nAqui vem o “pulo do gato”: elevar ambos os lados pelo número de euler (\\(e\\)):\n\\[\n(e^{\\pi/e})^e &gt; \\pi^e \\implies e^\\pi &gt; \\pi^e\n+\\]\nO que conclui a demonstração !\nEsse resultado é muito bonito, pois envolve desigualdade de números transcendentais como \\(\\pi\\) e \\(e\\). Provamos então que a desigualdade é válida.\n\n\nOutras considerações\nPoderíamos partir da análise da seguinte função:\n\\[\nf(x) = \\frac{x}{e} - \\ln(x).\n\\]\nPodemos estudar algumas propriedades através da primeira derivada da função:\n\\[\nf'(x) = \\frac{1}{e} - \\frac{1}{x}\n\\]\n\nLembre-se que a derivada da função \\(\\ln(x) = 1/x\\).\n\nPara \\(x = e\\) temos que \\(f'(x) = 0\\). Para saber se esse ponto é ponto de máximo local (ou mínimo local) calculamos a segunda derivada da função:\n\\[\nf''(x) = 1/x^2\n\\]\ne para \\(x = e\\) , \\(f''(e) = 1/e &gt; 0\\) (mínimo local). Logo, temos que \\(x = e\\) é ponto de mínimo local. Agora analisemos o caso em que \\(x &gt; e\\). Para esse caso temos \\(f'(x) &gt; 0\\) (\\(1/e &gt; 1/x\\)). Concluímos que\n\n\\(f(e) = 0\\)\n\\(f(x) &gt; 0, \\forall x &gt; e\\)\n\nComo \\(\\pi &gt; e\\), segue que\n\\[\nf(\\pi)  = \\frac{\\pi}{e} - \\ln(\\pi) &gt; 0\n\\]\ne isto nos traz que \\(\\pi / e &gt; \\ln(\\pi)\\). A partir daqui podemos fazer:\n\\[\n\\begin{align*}\n\\pi &&gt; e \\ln(\\pi) \\\\\ne^\\pi &&gt; e^{e \\ln(\\pi)} \\\\\ne^\\pi &&gt; e^{\\ln(\\pi^e)} \\\\\ne^\\pi &&gt; \\pi^e\n\\end{align*}\n\\]\no que prova o resultado !"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code."
+  }
+]

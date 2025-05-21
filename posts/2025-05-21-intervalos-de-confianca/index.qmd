@@ -1,0 +1,22 @@
+---
+title: "Intervalos de Confiança"
+description: "Como são construídos e o que não te falam sobre"
+date: 2025-05-21
+categories: [estatística, inferência, IC]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Introdução
+
+Vamos explorar como construir intervalos de confiança com menor comprimento possível, mantendo a taxa de cobertura desejada.
+
+$$
+\bar{X} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+$$
+
+## Métodos Alternativos
+
+...

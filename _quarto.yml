@@ -1,0 +1,19 @@
+project:
+  type: website
+
+website:
+  title: "O que vou aprendendo em estatística e ciência de dados"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/lasilva0
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+
+
+
