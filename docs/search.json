@@ -9,21 +9,21 @@
   {
     "objectID": "posts/2025-05-21-intervalos-de-confianca/index.html",
     "href": "posts/2025-05-21-intervalos-de-confianca/index.html",
-    "title": "Intervalos de Confiança",
+    "title": "Alguns truques com senos e cossenos",
     "section": "",
-    "text": "Vamos explorar como construir intervalos de confiança com menor comprimento possível, mantendo a taxa de cobertura desejada.\n\\[\n\\bar{X} \\pm z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]"
+    "text": "Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do \\(\\cos{x^2}\\) e \\(\\sin{x^2}\\), que no caso é a diferença entre esses caras.\n\\[\n\\bar{X} \\pm z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]"
   },
   {
     "objectID": "posts/2025-05-21-intervalos-de-confianca/index.html#introdução",
     "href": "posts/2025-05-21-intervalos-de-confianca/index.html#introdução",
-    "title": "Intervalos de Confiança",
+    "title": "Alguns truques com senos e cossenos",
     "section": "",
-    "text": "Vamos explorar como construir intervalos de confiança com menor comprimento possível, mantendo a taxa de cobertura desejada.\n\\[\n\\bar{X} \\pm z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]"
+    "text": "Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do \\(\\cos{x^2}\\) e \\(\\sin{x^2}\\), que no caso é a diferença entre esses caras.\n\\[\n\\bar{X} \\pm z_{\\alpha/2} \\cdot \\frac{\\sigma}{\\sqrt{n}}\n\\]"
   },
   {
     "objectID": "posts/2025-05-21-intervalos-de-confianca/index.html#métodos-alternativos",
     "href": "posts/2025-05-21-intervalos-de-confianca/index.html#métodos-alternativos",
-    "title": "Intervalos de Confiança",
+    "title": "Alguns truques com senos e cossenos",
     "section": "Métodos Alternativos",
     "text": "Métodos Alternativos\n…"
   },
@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "L-Stats Blog",
     "section": "",
-    "text": "Uma propriedade interessante envolvendo números transcendentais\n\n\n\nMatemática\n\n\n\nComo mostrar que e^pi &gt; pi^e ?\n\n\n\n\n\nMay 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nIntervalos de Confiança\n\n\n\nestatística\n\ninferência\n\nIC\n\n\n\nComo são construídos e o que não te falam sobre\n\n\n\n\n\nMay 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 21, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMay 18, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
+    "text": "Alguns truques com senos e cossenos\n\n\n\nmatemática\n\n\n\nProriedades bem legais\n\n\n\n\n\nFeb 10, 2026\n\n\n\n\n\n\n\n\n\n\n\n\nUma propriedade interessante envolvendo números transcendentais\n\n\n\nMatemática\n\n\n\nComo mostrar que e^pi &gt; pi^e ?\n\n\n\n\n\nMay 21, 2025\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nMay 21, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMay 18, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

@@ -49,7 +49,7 @@ Aqui vem o "pulo do gato": elevar ambos os lados pelo número de euler ($e$):
 
 $$
 (e^{\pi/e})^e > \pi^e \implies e^\pi > \pi^e 
-+$$
+$$
 
 O que conclui a demonstração !
 
@@ -77,7 +77,7 @@ $$
 f''(x) = 1/x^2
 $$
 
-e para $x = e$ , $f''(e) = 1/e > 0$ (mínimo local). Logo, temos que $x = e$ é ponto de mínimo local. Agora analisemos o caso em que $x > e$. Para esse caso 
+e para $x = e$ , $f''(e) = 1/e^2 > 0$ (mínimo local). Logo, temos que $x = e$ é ponto de mínimo local. Agora analisemos o caso em que $x > e$. Para esse caso 
 temos $f'(x) > 0$ ($1/e > 1/x$). Concluímos que 
 
 1. $f(e) = 0$

@@ -1,8 +1,8 @@
 ---
-title: "Intervalos de Confiança"
-description: "Como são construídos e o que não te falam sobre"
-date: 2025-05-21
-categories: [estatística, inferência, IC]
+title: "Alguns truques com senos e cossenos"
+description: "Proriedades bem legais"
+date: 2026-02-10
+categories: [matemática]
 format:
   html:
     toc: true
@@ -11,12 +11,12 @@ format:
 
 ## Introdução
 
-Vamos explorar como construir intervalos de confiança com menor comprimento possível, mantendo a taxa de cobertura desejada.
+Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do $\cos{x^2}$ e $\sin{x^2}$, 
+que no caso é a diferença entre esses caras. 
 
 $$
 \bar{X} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
 $$
 
 ## Métodos Alternativos
-
 ...
