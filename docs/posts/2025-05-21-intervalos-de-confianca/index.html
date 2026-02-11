@@ -175,8 +175,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
-  <li><a href="#métodos-alternativos" id="toc-métodos-alternativos" class="nav-link" data-scroll-target="#métodos-alternativos">Métodos Alternativos</a></li>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <ul class="collapse">
+  <li><a href="#outra-propriedade-interessante-que-acabei-descobrindo" id="toc-outra-propriedade-interessante-que-acabei-descobrindo" class="nav-link" data-scroll-target="#outra-propriedade-interessante-que-acabei-descobrindo">Outra propriedade interessante que acabei descobrindo</a></li>
+  <li><a href="#como-obter-expressões-fechadas-para-cosnx-e-sinnx" id="toc-como-obter-expressões-fechadas-para-cosnx-e-sinnx" class="nav-link" data-scroll-target="#como-obter-expressões-fechadas-para-cosnx-e-sinnx">Como obter expressões fechadas para <span class="math inline">\(\cos(nx)\)</span> e <span class="math inline">\(\sin(nx)\)</span> ?</a></li>
+  <li><a href="#exemplos" id="toc-exemplos" class="nav-link" data-scroll-target="#exemplos">Exemplos:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -189,16 +193,202 @@ window.Quarto = {
 
 <section id="introdução" class="level2">
 <h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
-<p>Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do <span class="math inline">\(\cos{x^2}\)</span> e <span class="math inline">\(\sin{x^2}\)</span>, que no caso é a diferença entre esses caras.</p>
+<p>Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do <span class="math inline">\(\cos(x^2)\)</span> e <span class="math inline">\(\sin(x^2)\)</span>, que no caso é a diferença entre esses caras. Precisávamos então achar ali os pontos em que as funções se intersectam. Pra isso partimos do seguinte fato:</p>
 <p><span class="math display">\[
-\bar{X} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+\cos(y) = \sin(y) = 1, \,\, \text{se} \,\, \frac{\sin(y)}{\cos(y)} = 1.
+\]</span></p>
+<p>ou seja, se <span class="math inline">\(\tan(y) = 1\)</span>. Para que isso ocorra, temos que avaliar a função tangente. Sabe-se que <span class="math inline">\(\tan(y) = \frac{\sin(y)}{\cos(y)}\)</span>.</p>
+<p>Sabemos também que</p>
+<p>Vamos analisar o seguinte:</p>
+<p><span class="math display">\[\begin{align}
+\sin(y + \pi) = -\sin(y) \\
+\cos(y + \pi) = -\cos(y)
+\end{align}\]</span></p>
+<p>Então, temos</p>
+<p><span class="math display">\[
+\tan(y + \pi) = \frac{-\sin(y)}{-\cos(y)} = \frac{\sin(y)}{\cos(y)} = \tan(y).
+\]</span></p>
+<p>A função tangente também se repete ao somar <span class="math inline">\(\pi\)</span>. Agora o que acontece para que <span class="math inline">\(\tan(y) = 1\)</span> ? Isso ocorre quando <span class="math inline">\(\sin(y) / \cos(y) = 1\)</span> o que é exatamente se <span class="math inline">\(y= \pi / 4 + \pi\)</span>. Assim, <span class="math inline">\(\sin(\pi/4) = \cos(\pi / 4) = 1\)</span> pois <span class="math inline">\(\sin(\pi/4) = \cos(\pi/4) = \sqrt{2}/2\)</span>. Deste modo temos</p>
+<p><span class="math display">\[\tan(y+ k\pi) = \tan(y)\]</span></p>
+<p>para <span class="math inline">\(k \in \mathbb{R}\)</span>. Particulamente, para <span class="math inline">\(y = x^2\)</span> tem-se:</p>
+<p><span class="math display">\[
+x^2 = \frac{\pi}{4} + k\pi, \,\, k \in \mathbb{Z}.
+\]</span></p>
+<p>Portanto, se escolhermos <span class="math inline">\(k = 0\)</span>, temos que</p>
+<p><span class="math display">\[\begin{align}
+x &amp;= \sqrt{\frac{\pi}{4}} \\
+x &amp;= \pm \frac{\sqrt{\pi}}{2}
+\end{align}\]</span></p>
+<p>Esses pontos seriam os que as funções <span class="math inline">\(\sin(x^2)\)</span> e <span class="math inline">\(\cos(x^2)\)</span> se intersectam. Bastaria agora calcular a integral nesse intervalo. Neste ponto pensei que seriam fácil calcular essa integral:</p>
+<p><span class="math display">\[
+\int_{-\sqrt{\pi}/2}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx,
+\]</span></p>
+<p>porém essa integral não possui resolução analítica pois não há nenhuma substituição que se possa fazer aí. Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis ? Surgiu então a ideia usar a expansão dessas funções em série de Taylor, que são bastante conhecidas. As expansões são:</p>
+<p><span class="math display">\[\begin{align}
+\sin(x) &amp;= x - \frac{x^3}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} + \frac{x^{9}}{9!} - \ldots \\
+\cos(x) &amp;= 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \frac{x^{8}}{8!} - \ldots
+\end{align}\]</span></p>
+<p>Com essas mesmas séries basta agora obter para <span class="math inline">\(x^2\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\sin(x^2) &amp;= x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!} + \frac{x^{18}}{9!} - \ldots \\
+\cos(x^2) &amp;= 1 - \frac{x^{4}}{2!} + \frac{x^{8}}{4!} - \frac{x^{12}}{6!} + \frac{x^{16}}{8!} - \ldots
+\end{align}\]</span></p>
+<p>Agora obter a diferença <span class="math inline">\(\cos(x^2) - \sin(x^2)\)</span> (aqui vamos expandir até o quarto termo para obter uma boa aproximação):</p>
+<p><span class="math display">\[
+\cos(x^2) - \sin(x^2) = \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big)
+\]</span></p>
+<p>Agora podemos considerar o seguinte fato: seja <span class="math inline">\(g(x) = \cos(x^2) - \sin(x^2)\)</span>. Temos que <span class="math inline">\(\cos(x^2)\)</span> é uma função par assim como a função <span class="math inline">\(\sin(x^2)\)</span>, logo a diferença que denotamos por <span class="math inline">\(g(x)\)</span> também será uma função par. Isso implica que</p>
+<p><span class="math display">\[
+\int_{-a}^{a} g(x) dx = 2 \int_{0}^{a} g(x) dx
+\]</span></p>
+<p>Assim, podemos fazer:</p>
+<p><span class="math display">\[
+\int_{-\sqrt{\pi}/2}^{-\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx = 2 \int_{0}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx,
+\]</span></p>
+<p>e substituindo pelas expansões temos</p>
+<p><span class="math display">\[
+2 \times \int_{0}^{\sqrt{\pi}/2}  \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big)  dx
+\]</span></p>
+<p>Isso é bem mais fácil de calcular do que a expressão original. Aqui a integral fica legalzinha:</p>
+<p><span class="math display">\[
+I = 2 \times \Bigg[x - \frac{x^5}{5\times 2!} + \frac{x^9}{9\times 4!} - \frac{x^{13}}{13\times 6!} - \frac{x^3}{3} + \frac{x^7}{7\times 3!} - \frac{x^{11}}{11\times 5!} + \frac{x^{15}}{15\times 7!}\Bigg]_{0}^{\sqrt{\pi}/2}
+\]</span></p>
+<p>Calculando os fatoriais</p>
+<p><span class="math display">\[
+I = 2\times \left[
+x
+- \frac{x^5}{10}
++ \frac{x^9}{216}
+- \frac{x^{13}}{9360}
+- \frac{x^3}{3}
++ \frac{x^7}{42}
+- \frac{x^{11}}{1320}
++ \frac{x^{15}}{75600}
+\right]_{0}^{\sqrt{\pi/2}} \approx 1,222219
+\]</span></p>
+<p>Você pode fazer as continhas aplicando no ponto <span class="math inline">\(x = \sqrt{\pi}/2\)</span> e verá que a integral é aproximadamente o valor que foi calculado acima. Isso é uma forma de fazer. Me perguntei se existia uma expressão mais simples pra essa diferença. Encontrei o seguinte partindo das somas do coesseno. Sabe-se que</p>
+<p><span class="math display">\[
+\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha)\sin(\beta).
+\]</span></p>
+<p>Considere <span class="math inline">\(\beta = \pi / 4\)</span> e disso temos que <span class="math inline">\(\sin(\pi /4) = \cos(\pi / 4) = \sqrt{\pi}/2\)</span>. substituindo na expressão acima temos:</p>
+<p><span class="math display">\[
+\cos(\alpha + \pi/4) = \frac{\sqrt{\pi}}{2}(\cos(\alpha) - \sin(\alpha))
+\]</span></p>
+<p>Multiplicando por <span class="math inline">\(\sqrt{2}\)</span> em ambos os lados da equação obtemos a seguinte relação:</p>
+<p><span class="math display">\[
+\cos(\alpha) - \sin(\alpha) = \sqrt{2} \cos(\alpha + \pi/4).
+\]</span></p>
+<p>Se <span class="math inline">\(\alpha = x^n\)</span>, então</p>
+<p><span class="math display">\[
+\cos(x^n) - \sin(x^n) = \sqrt{2} \cos(x^n + \pi/4),
+\]</span></p>
+<p>válida quando <span class="math inline">\(x^n\)</span> é um valor nos reais, ou seja, quando <span class="math inline">\(n\)</span> for inteiro e <span class="math inline">\(x\)</span> é real; <span class="math inline">\(x &gt; 0\)</span> com <span class="math inline">\(n\)</span> real ou <span class="math inline">\(n\)</span> racional com denominador ímpar.</p>
+<section id="outra-propriedade-interessante-que-acabei-descobrindo" class="level3">
+<h3 class="anchored" data-anchor-id="outra-propriedade-interessante-que-acabei-descobrindo">Outra propriedade interessante que acabei descobrindo</h3>
+<p>Pesquisando um pouco mais sobre essas expressões envolvendo soma de cossenos, vi uma forma de obter resultados para esse tipo de expressão:</p>
+<p><span class="math display">\[
+a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
+\]</span></p>
+<p>Como que prova isso ? Bem, podemos partir da diferença entre ângulos do cosseno:</p>
+<p><span class="math display">\[\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha)\]</span>.</p>
+<p>Vamos multiplicar ambos os lados da equação por uma constante <span class="math inline">\(R\)</span>:</p>
+<p><span class="math display">\[R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha)\]</span>.</p>
+<p>Agora podemos fazer o seguinte:</p>
+<p><span class="math display">\[\begin{align}
+R \sin(\alpha) &amp;= b \\
+R \cos(\alpha) &amp;= a,
+\end{align}\]</span></p>
+<p>de onde podemos tirar diretamente que</p>
+<p><span class="math display">\[
+\frac{R \sin(\alpha)}{R \cos(\alpha)} = \frac{\sin(\alpha)}{\cos(\alpha)} = \tan(\alpha) = \frac{b}{a}.
+\]</span></p>
+<p>Logo, podemos concluir disso que <span class="math inline">\(\alpha = \arctan(b/a)\)</span>. Aqui já achamos o valor de <span class="math inline">\(\alpha\)</span>. Agora vamos tentar obter o que seria <span class="math inline">\(R\)</span> em termos das constantes <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>. Veja:</p>
+<p><span class="math display">\[\begin{align}
+a^2 + b^2 = R^2 (\sin^2(\alpha) + \cos^2(\alpha)) = R^2,
+\end{align}\]</span></p>
+<p>logo</p>
+<p><span class="math display">\[
+R = \sqrt{a^2 + b^2}.
+\]</span></p>
+<p>Da relação <span class="math inline">\(a\cos(x) + b\sin(x) = R \cos(x - \alpha)\)</span> temos que substituindo <span class="math inline">\(R\)</span> e <span class="math inline">\(\alpha\)</span> temos</p>
+<p><span class="math display">\[
+a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
 \]</span></p>
 </section>
-<section id="métodos-alternativos" class="level2">
-<h2 class="anchored" data-anchor-id="métodos-alternativos">Métodos Alternativos</h2>
-<p>…</p>
+<section id="como-obter-expressões-fechadas-para-cosnx-e-sinnx" class="level3">
+<h3 class="anchored" data-anchor-id="como-obter-expressões-fechadas-para-cosnx-e-sinnx">Como obter expressões fechadas para <span class="math inline">\(\cos(nx)\)</span> e <span class="math inline">\(\sin(nx)\)</span> ?</h3>
+<p>Aqui entra a parte mais interessante das descobertas. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. Também podemos manipular expressões para obter coisas do tipo <span class="math inline">\(\cos(3x) = \cos(x + 2x)\)</span> e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc. Mas como obter uma expressão geral para qualquer <span class="math inline">\(n\)</span> inteiro maior que zero ?</p>
+<p>A resposta entra no mundo dos números complexos, especificamente através da seguinte relação:</p>
+<p><span class="math display">\[
+e^{ix} = \cos(x) + i \sin(x)
+\]</span></p>
+<p>Essa equação pode ser obtida via série de Taylor para a função exponencial no ponto <span class="math inline">\(ix\)</span> em que <span class="math inline">\(i\)</span> é a unidade imaginária <span class="math inline">\(i = \sqrt{-1}\)</span>. Você pode expandir e vai perceber que ela se decompõe em uma parte real (a que envolve todos os termos dos cossenos) e uma parte imaginária (que elvolve todos os termos dos senos). Sabendo disso, podemos ter a seguinte relação:</p>
+<p><span class="math display">\[
+(\cos(x) + i \sin(x))^n = e^{inx} = \cos(nx) + i \sin(nx).
+\]</span></p>
+<p>A ideia chave é expandir <span class="math inline">\((\cos(x) + i \sin(x))^n\)</span> como um binômio de Newton ! Veja:</p>
+<p><span class="math display">\[
+(\cos(x) + i \sin(x))^n = \sum_{k=0}^{n} \binom{n}{k} (i\sin(x))^k (\cos(x))^{n-k}.
+\]</span></p>
+<p>Veja que temos uma parte real que contribui com os termos do cosseno e uma parte imaginária que carrega os temos do seno. Sabe-se que qualquer número complexo pode ser escrito na forma</p>
+<p><span class="math display">\[
+z = a + bi, \,\, \text{com} \,\, a,b \in \mathbb{R}.
+\]</span></p>
+<p>Quando expandimos <span class="math inline">\((\cos(x) + i \sin(x))^n\)</span> temos uma soma de termos desse jeitão aqui:</p>
+<p><span class="math display">\[
+(\text{soma de reais}) + i (\text{soma de reais}) = A + iB = \cos(nx) + i\sin(nx),
+\]</span></p>
+<p>e pela unicidade</p>
+<p><span class="math display">\[\begin{align}
+A &amp;= \cos(nx) \\
+B &amp;= \sin(nx)
+\end{align}\]</span></p>
+<p>Aqui temos que analisar o que seria <span class="math inline">\(i^k\)</span> para valores pares de <span class="math inline">\(k\)</span> e valores ímpares de <span class="math inline">\(k\)</span>.</p>
+<section id="caso-1-ik-com-k-par" class="level4">
+<h4 class="anchored" data-anchor-id="caso-1-ik-com-k-par">Caso 1: <span class="math inline">\(i^k\)</span> com <span class="math inline">\(k\)</span> par</h4>
+<p>Aqui temos <span class="math inline">\(k\)</span> na forma <span class="math inline">\(k = 2m\)</span>. Assim temos <span class="math inline">\(i^k = i^{2m} = (i^2)^m = (-1)^m\)</span>. Se <span class="math inline">\(k = 2m\)</span> então <span class="math inline">\(m = k/2\)</span>. Logo</p>
+<p><span class="math display">\[
+\cos(nx) = \sum_{k \,\, \text{par}} \binom{n}{k} (-1)^{k/2} \sin^{k}(x) \cos^{n-k}(x).
+\]</span></p>
+</section>
+<section id="caso-2-ik-com-k-ímpar" class="level4">
+<h4 class="anchored" data-anchor-id="caso-2-ik-com-k-ímpar">Caso 2: <span class="math inline">\(i^k\)</span> com <span class="math inline">\(k\)</span> ímpar</h4>
+<p>Aqui temos <span class="math inline">\(k\)</span> na forma <span class="math inline">\(k = 2m+1\)</span>. Assim temos <span class="math inline">\(i^k = i^{2m+1} = i(i^2m) = i(i^2)^m = i(-1)^m\)</span>. Se <span class="math inline">\(k = 2m+1\)</span> então <span class="math inline">\(m = (k-1)/2\)</span>. Logo</p>
+<p><span class="math display">\[
+\sin(nx) = \sum_{k \,\, \text{ímpar}} \binom{n}{k} (-1)^{(k-1)/2} \sin^{k}(x) \cos^{n-k}(x).
+\]</span></p>
+</section>
+</section>
+<section id="exemplos" class="level3">
+<h3 class="anchored" data-anchor-id="exemplos">Exemplos:</h3>
+<p>Cosseno com <span class="math inline">\(n=3\)</span></p>
+<p><span class="math display">\[
+\cos(3x)=
+\binom{3}{0}\cos^3x
+-\binom{3}{2}\cos x\sin^2x = \cos^3x - 3 \cos(x) \sin^2(x)
+\]</span></p>
+<p>Seno com <span class="math inline">\(n=3\)</span>:</p>
+<p><span class="math display">\[
+\sin(3x)=
+\binom{3}{1}\cos^2x\sin x
+-\binom{3}{3}\sin^3x = 3\cos^2(x) \sin(x) - \sin^3(x)
+\]</span></p>
+<p>Cosseno com <span class="math inline">\(n = 4\)</span>:</p>
+<p><span class="math display">\[
+\cos(4x)=
+\binom{4}{0}\cos^4x
+-\binom{4}{2}\cos^2x\sin^2x
++\binom{4}{4}\sin^4x = \cos^4(x) - 6\cos^2(x) \sin^2(x) + \sin^4(x)
+\]</span></p>
+<p>Seno com <span class="math inline">\(n = 4\)</span>:</p>
+<p><span class="math display">\[
+\sin(4x)=
+\binom{4}{1}\cos^3x\sin x
+-\binom{4}{3}\cos x\sin^3x = 4\cos^3(x) \sin(x) - 4\cos(x) \sin^3(x)
+\]</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

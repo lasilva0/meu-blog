@@ -11,12 +11,289 @@ format:
 
 ## Introdução
 
-Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do $\cos{x^2}$ e $\sin{x^2}$, 
-que no caso é a diferença entre esses caras. 
+Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do $\cos(x^2)$ e $\sin(x^2)$, 
+que no caso é a diferença entre esses caras. Precisávamos então achar ali os pontos em que as funções se intersectam. Pra isso partimos do seguinte fato: 
 
 $$
-\bar{X} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}
+\cos(y) = \sin(y) = 1, \,\, \text{se} \,\, \frac{\sin(y)}{\cos(y)} = 1. 
 $$
 
-## Métodos Alternativos
-...
+ou seja, se $\tan(y) = 1$. Para que isso ocorra, temos que avaliar a função tangente. Sabe-se que $\tan(y) = \frac{\sin(y)}{\cos(y)}$. 
+
+Sabemos também que
+
+\begin{itemize}
+\item $\sin(y)$ tem período $2\pi$
+\item $\cos(y)$ tem período $2\pi$
+\end{itemize}
+
+Vamos analisar o seguinte: 
+
+\begin{align}
+\sin(y + \pi) = -\sin(y) \\
+\cos(y + \pi) = -\cos(y) 
+\end{align}
+
+Então, temos
+
+$$
+\tan(y + \pi) = \frac{-\sin(y)}{-\cos(y)} = \frac{\sin(y)}{\cos(y)} = \tan(y). 
+$$
+
+A função tangente também se repete ao somar $\pi$. Agora o que acontece para que $\tan(y) = 1$ ? Isso ocorre quando $\sin(y) / \cos(y) = 1$ o que é exatamente 
+se $y= \pi / 4 + \pi$. Assim, $\sin(\pi/4) = \cos(\pi / 4) = 1$ pois $\sin(\pi/4) = \cos(\pi/4) = \sqrt{2}/2$. Deste modo temos 
+
+$$\tan(y+ k\pi) = \tan(y)$$ 
+
+para $k \in \mathbb{R}$. Particulamente, para $y = x^2$ tem-se: 
+
+$$
+x^2 = \frac{\pi}{4} + k\pi, \,\, k \in \mathbb{Z}. 
+$$
+
+Portanto, se escolhermos $k = 0$, temos que 
+
+\begin{align}
+x &= \sqrt{\frac{\pi}{4}} \\
+x &= \pm \frac{\sqrt{\pi}}{2}
+\end{align}
+
+Esses pontos seriam os que as funções $\sin(x^2)$ e $\cos(x^2)$ se intersectam. Bastaria agora calcular a integral nesse intervalo. Neste ponto pensei que seriam fácil calcular essa integral:
+
+$$
+\int_{-\sqrt{\pi}/2}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx, 
+$$
+
+porém essa integral não possui resolução analítica pois não há nenhuma substituição que se possa fazer aí. Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis ?
+Surgiu então a ideia usar a expansão dessas funções em série de Taylor, que são bastante conhecidas. As expansões são: 
+
+\begin{align}
+\sin(x) &= x - \frac{x^3}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} + \frac{x^{9}}{9!} - \ldots \\ 
+\cos(x) &= 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \frac{x^{8}}{8!} - \ldots
+\end{align}
+
+Com essas mesmas séries basta agora obter para $x^2$: 
+
+\begin{align}
+\sin(x^2) &= x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!} + \frac{x^{18}}{9!} - \ldots \\ 
+\cos(x^2) &= 1 - \frac{x^{4}}{2!} + \frac{x^{8}}{4!} - \frac{x^{12}}{6!} + \frac{x^{16}}{8!} - \ldots
+\end{align}
+
+Agora obter a diferença $\cos(x^2) - \sin(x^2)$ (aqui vamos expandir até o quarto termo para obter uma boa aproximação): 
+
+$$
+\cos(x^2) - \sin(x^2) = \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big) 
+$$
+
+Agora podemos considerar o seguinte fato: seja $g(x) = \cos(x^2) - \sin(x^2)$. Temos que $\cos(x^2)$ é uma função par assim como a função $\sin(x^2)$, logo a diferença 
+que denotamos por $g(x)$ também será uma função par. Isso implica que 
+
+$$
+\int_{-a}^{a} g(x) dx = 2 \int_{0}^{a} g(x) dx
+$$
+
+Assim, podemos fazer: 
+
+$$
+\int_{-\sqrt{\pi}/2}^{-\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx = 2 \int_{0}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx, 
+$$
+
+e substituindo pelas expansões temos
+
+$$
+2 \times \int_{0}^{\sqrt{\pi}/2}  \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big)  dx 
+$$
+
+Isso é bem mais fácil de calcular do que a expressão original. Aqui a integral fica legalzinha: 
+
+$$
+I = 2 \times \Bigg[x - \frac{x^5}{5\times 2!} + \frac{x^9}{9\times 4!} - \frac{x^{13}}{13\times 6!} - \frac{x^3}{3} + \frac{x^7}{7\times 3!} - \frac{x^{11}}{11\times 5!} + \frac{x^{15}}{15\times 7!}\Bigg]_{0}^{\sqrt{\pi}/2}
+$$
+
+Calculando os fatoriais
+
+$$
+I = 2\times \left[
+x
+- \frac{x^5}{10}
++ \frac{x^9}{216}
+- \frac{x^{13}}{9360}
+- \frac{x^3}{3}
++ \frac{x^7}{42}
+- \frac{x^{11}}{1320}
++ \frac{x^{15}}{75600}
+\right]_{0}^{\sqrt{\pi/2}} \approx 1,222219
+$$
+
+Você pode fazer as continhas aplicando no ponto $x = \sqrt{\pi}/2$ e verá que a integral é aproximadamente o valor que foi calculado acima. Isso é uma forma de fazer. 
+Me perguntei se existia uma expressão mais simples pra essa diferença. Encontrei o seguinte partindo das somas do coesseno. Sabe-se que
+
+$$
+\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha)\sin(\beta). 
+$$
+
+Considere $\beta = \pi / 4$ e disso temos que $\sin(\pi /4) = \cos(\pi / 4) = \sqrt{\pi}/2$. substituindo na expressão acima temos: 
+
+$$
+\cos(\alpha + \pi/4) = \frac{\sqrt{\pi}}{2}(\cos(\alpha) - \sin(\alpha)) 
+$$
+
+Multiplicando por $\sqrt{2}$ em ambos os lados da equação obtemos a seguinte relação: 
+
+$$
+\cos(\alpha) - \sin(\alpha) = \sqrt{2} \cos(\alpha + \pi/4). 
+$$
+
+Se $\alpha = x^n$, então 
+
+$$
+\cos(x^n) - \sin(x^n) = \sqrt{2} \cos(x^n + \pi/4), 
+$$
+
+válida quando $x^n$ é um valor nos reais, ou seja, quando $n$ for inteiro e $x$ é real; $x > 0$ com $n$ real ou $n$ racional com denominador ímpar. 
+
+### Outra propriedade interessante que acabei descobrindo 
+
+Pesquisando um pouco mais sobre essas expressões envolvendo soma de cossenos, vi uma forma de obter resultados para esse tipo de expressão: 
+
+$$
+a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)). 
+$$
+
+Como que prova isso ? Bem, podemos partir da diferença entre ângulos do cosseno:
+
+$$\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha)$$. 
+
+Vamos multiplicar ambos os lados da equação por uma constante $R$: 
+
+$$R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha)$$. 
+
+Agora podemos fazer o seguinte: 
+
+\begin{align}
+R \sin(\alpha) &= b \\
+R \cos(\alpha) &= a, 
+\end{align}
+
+de onde podemos tirar diretamente que 
+
+$$
+\frac{R \sin(\alpha)}{R \cos(\alpha)} = \frac{\sin(\alpha)}{\cos(\alpha)} = \tan(\alpha) = \frac{b}{a}. 
+$$
+
+Logo, podemos concluir disso que $\alpha = \arctan(b/a)$. Aqui já achamos o valor de $\alpha$. Agora vamos tentar obter o que seria $R$ em termos das constantes $a$ e $b$. 
+Veja: 
+
+\begin{align}
+a^2 + b^2 = R^2 (\sin^2(\alpha) + \cos^2(\alpha)) = R^2, 
+\end{align}
+
+logo 
+
+$$
+R = \sqrt{a^2 + b^2}. 
+$$
+
+Da relação $a\cos(x) + b\sin(x) = R \cos(x - \alpha)$ temos que substituindo $R$ e $\alpha$ temos 
+
+$$
+a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
+$$
+
+### Como obter expressões fechadas para $\cos(nx)$ e $\sin(nx)$ ? 
+
+Aqui entra a parte mais interessante das descobertas. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. Também podemos manipular expressões
+para obter coisas do tipo $\cos(3x) = \cos(x + 2x)$ e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc. Mas como obter uma expressão geral para qualquer $n$ inteiro maior que zero ? 
+
+A resposta entra no mundo dos números complexos, especificamente através da seguinte relação: 
+
+$$
+e^{ix} = \cos(x) + i \sin(x)
+$$
+
+Essa equação pode ser obtida via série de Taylor para a função exponencial no ponto $ix$ em que $i$ é a unidade imaginária $i = \sqrt{-1}$. Você pode expandir e vai perceber
+que ela se decompõe em uma parte real (a que envolve todos os termos dos cossenos) e uma parte imaginária (que elvolve todos os termos dos senos). Sabendo disso, podemos
+ter a seguinte relação: 
+
+$$
+(\cos(x) + i \sin(x))^n = e^{inx} = \cos(nx) + i \sin(nx). 
+$$
+
+A ideia chave é expandir $(\cos(x) + i \sin(x))^n$ como um binômio de Newton ! Veja: 
+
+$$
+(\cos(x) + i \sin(x))^n = \sum_{k=0}^{n} \binom{n}{k} (i\sin(x))^k (\cos(x))^{n-k}. 
+$$
+
+Veja que temos uma parte real que contribui com os termos do cosseno e uma parte imaginária que carrega os temos do seno. Sabe-se que qualquer número complexo 
+pode ser escrito na forma 
+
+$$
+z = a + bi, \,\, \text{com} \,\, a,b \in \mathbb{R}. 
+$$
+
+Quando expandimos $(\cos(x) + i \sin(x))^n$ temos uma soma de termos desse jeitão aqui: 
+
+$$
+(\text{soma de reais}) + i (\text{soma de reais}) = A + iB = \cos(nx) + i\sin(nx), 
+$$
+
+e pela unicidade
+
+\begin{align}
+A &= \cos(nx) \\
+B &= \sin(nx) 
+\end{align}
+
+Aqui temos que analisar o que seria $i^k$ para valores pares de $k$ e valores ímpares de $k$. 
+
+#### Caso 1: $i^k$ com $k$ par
+
+Aqui temos $k$ na forma $k = 2m$. Assim temos $i^k = i^{2m} = (i^2)^m = (-1)^m$. Se $k = 2m$ então $m = k/2$. Logo 
+
+$$
+\cos(nx) = \sum_{k \,\, \text{par}} \binom{n}{k} (-1)^{k/2} \sin^{k}(x) \cos^{n-k}(x). 
+$$
+
+#### Caso 2: $i^k$ com $k$ ímpar
+
+Aqui temos $k$ na forma $k = 2m+1$. Assim temos $i^k = i^{2m+1} = i(i^2m) = i(i^2)^m = i(-1)^m$. Se $k = 2m+1$ então $m = (k-1)/2$. Logo 
+
+$$
+\sin(nx) = \sum_{k \,\, \text{ímpar}} \binom{n}{k} (-1)^{(k-1)/2} \sin^{k}(x) \cos^{n-k}(x). 
+$$
+
+### Exemplos: 
+
+Cosseno com $n=3$
+
+$$
+\cos(3x)=
+\binom{3}{0}\cos^3x
+-\binom{3}{2}\cos x\sin^2x = \cos^3x - 3 \cos(x) \sin^2(x) 
+$$
+
+Seno com $n=3$: 
+
+$$
+\sin(3x)=
+\binom{3}{1}\cos^2x\sin x
+-\binom{3}{3}\sin^3x = 3\cos^2(x) \sin(x) - \sin^3(x)
+$$
+
+Cosseno com $n = 4$:
+
+$$
+\cos(4x)=
+\binom{4}{0}\cos^4x
+-\binom{4}{2}\cos^2x\sin^2x
++\binom{4}{4}\sin^4x = \cos^4(x) - 6\cos^2(x) \sin^2(x) + \sin^4(x)
+$$
+
+Seno com $n = 4$: 
+
+$$
+\sin(4x)=
+\binom{4}{1}\cos^3x\sin x
+-\binom{4}{3}\cos x\sin^3x = 4\cos^3(x) \sin(x) - 4\cos(x) \sin^3(x)
+$$
