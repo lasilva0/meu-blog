@@ -3,7 +3,7 @@ project:
   output-dir: docs 
 
 website:
-  title: "O que vou aprendendo em estatística e ciência de dados"
+  title: "O que vou descobrindo em estatística, ciência de dados e matemática"
   navbar:
     right:
       - about.qmd

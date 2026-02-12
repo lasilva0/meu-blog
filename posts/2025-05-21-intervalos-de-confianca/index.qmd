@@ -1,5 +1,5 @@
 ---
-title: "Alguns truques com senos e cossenos"
+title: "Brincando um pouco com senos e cossenos 😁"
 description: "Proriedades bem legais"
 date: 2026-02-10
 categories: [matemática]
@@ -11,8 +11,10 @@ format:
 
 ## Introdução
 
-Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do $\cos(x^2)$ e $\sin(x^2)$, 
-que no caso é a diferença entre esses caras. Precisávamos então achar ali os pontos em que as funções se intersectam. Pra isso partimos do seguinte fato: 
+Ultimamente vi em um grupo de matemática uma questão que pedia para calcular a integral sobre as curvas do $\cos(x^2)$ e $\sin(x^2)$, 
+que no caso é a diferença entre esses caras (essencialmente um problema de áreas sob sob curvas). 
+Precisávamos então achar ali os pontos em que as funções se intersectam. 
+Pra isso partimos do seguinte fato: 
 
 $$
 \cos(y) = \sin(y) = 1, \,\, \text{se} \,\, \frac{\sin(y)}{\cos(y)} = 1. 
@@ -58,13 +60,15 @@ x &= \sqrt{\frac{\pi}{4}} \\
 x &= \pm \frac{\sqrt{\pi}}{2}
 \end{align}
 
-Esses pontos seriam os que as funções $\sin(x^2)$ e $\cos(x^2)$ se intersectam. Bastaria agora calcular a integral nesse intervalo. Neste ponto pensei que seriam fácil calcular essa integral:
+Esses pontos seriam os que as funções $\sin(x^2)$ e $\cos(x^2)$ se intersectam. Bastaria agora calcular a integral nesse intervalo. 
+Neste ponto pensei que seriam fácil calcular essa integral:
 
 $$
 \int_{-\sqrt{\pi}/2}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx, 
 $$
 
-porém essa integral não possui resolução analítica pois não há nenhuma substituição que se possa fazer aí. Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis ?
+porém essa integral não possui resolução analítica pois não há nenhuma substituição que se possa fazer aí. 
+Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis ?
 Surgiu então a ideia usar a expansão dessas funções em série de Taylor, que são bastante conhecidas. As expansões são: 
 
 \begin{align}
@@ -162,11 +166,11 @@ $$
 
 Como que prova isso ? Bem, podemos partir da diferença entre ângulos do cosseno:
 
-$$\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha)$$. 
+$$\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha).$$
 
 Vamos multiplicar ambos os lados da equação por uma constante $R$: 
 
-$$R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha)$$. 
+$$R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha).$$
 
 Agora podemos fazer o seguinte: 
 
@@ -181,7 +185,8 @@ $$
 \frac{R \sin(\alpha)}{R \cos(\alpha)} = \frac{\sin(\alpha)}{\cos(\alpha)} = \tan(\alpha) = \frac{b}{a}. 
 $$
 
-Logo, podemos concluir disso que $\alpha = \arctan(b/a)$. Aqui já achamos o valor de $\alpha$. Agora vamos tentar obter o que seria $R$ em termos das constantes $a$ e $b$. 
+Logo, podemos concluir disso que $\alpha = \arctan(b/a)$. Aqui já achamos o valor de $\alpha$. 
+Agora vamos tentar obter o que seria $R$ em termos das constantes $a$ e $b$. 
 Veja: 
 
 \begin{align}
@@ -194,7 +199,7 @@ $$
 R = \sqrt{a^2 + b^2}. 
 $$
 
-Da relação $a\cos(x) + b\sin(x) = R \cos(x - \alpha)$ temos que substituindo $R$ e $\alpha$ temos 
+Da relação $a\cos(x) + b\sin(x) = R \cos(x - \alpha)$, substituindo $R$ e $\alpha$ temos 
 
 $$
 a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
@@ -202,8 +207,9 @@ $$
 
 ### Como obter expressões fechadas para $\cos(nx)$ e $\sin(nx)$ ? 
 
-Aqui entra a parte mais interessante das descobertas. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. Também podemos manipular expressões
-para obter coisas do tipo $\cos(3x) = \cos(x + 2x)$ e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc. Mas como obter uma expressão geral para qualquer $n$ inteiro maior que zero ? 
+Aqui entra a parte mais interessante do que aprendi. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. 
+Também podemos manipular expressões para obter coisas do tipo $\cos(3x) = \cos(x + 2x)$ e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc.
+Mas como obter uma expressão geral para qualquer $n$ inteiro maior que zero ? 
 
 A resposta entra no mundo dos números complexos, especificamente através da seguinte relação: 
 

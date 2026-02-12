@@ -9,7 +9,7 @@
 <meta name="dcterms.date" content="2026-02-10">
 <meta name="description" content="Proriedades bem legais">
 
-<title>Alguns truques com senos e cossenos – O que vou aprendendo em estatística e ciência de dados</title>
+<title>Brincando um pouco com senos e cossenos 😁 – O que vou descobrindo em estatística, ciência de dados e matemática</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">O que vou aprendendo em estatística e ciência de dados</span>
+    <span class="navbar-title">O que vou descobrindo em estatística, ciência de dados e matemática</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -140,7 +140,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Alguns truques com senos e cossenos</h1>
+      <h1 class="title">Brincando um pouco com senos e cossenos 😁</h1>
                   <div>
         <div class="description">
           Proriedades bem legais
@@ -193,7 +193,7 @@ window.Quarto = {
 
 <section id="introdução" class="level2">
 <h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
-<p>Ultimamente vi em um grupo de matemática no meu Facebook que pedia para se calcular a integral sobre as curvas do <span class="math inline">\(\cos(x^2)\)</span> e <span class="math inline">\(\sin(x^2)\)</span>, que no caso é a diferença entre esses caras. Precisávamos então achar ali os pontos em que as funções se intersectam. Pra isso partimos do seguinte fato:</p>
+<p>Ultimamente vi em um grupo de matemática uma questão que pedia para calcular a integral sobre as curvas do <span class="math inline">\(\cos(x^2)\)</span> e <span class="math inline">\(\sin(x^2)\)</span>, que no caso é a diferença entre esses caras (essencialmente um problema de áreas sob sob curvas). Precisávamos então achar ali os pontos em que as funções se intersectam. Pra isso partimos do seguinte fato:</p>
 <p><span class="math display">\[
 \cos(y) = \sin(y) = 1, \,\, \text{se} \,\, \frac{\sin(y)}{\cos(y)} = 1.
 \]</span></p>
@@ -290,9 +290,9 @@ x
 a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
 \]</span></p>
 <p>Como que prova isso ? Bem, podemos partir da diferença entre ângulos do cosseno:</p>
-<p><span class="math display">\[\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha)\]</span>.</p>
+<p><span class="math display">\[\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha).\]</span></p>
 <p>Vamos multiplicar ambos os lados da equação por uma constante <span class="math inline">\(R\)</span>:</p>
-<p><span class="math display">\[R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha)\]</span>.</p>
+<p><span class="math display">\[R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha).\]</span></p>
 <p>Agora podemos fazer o seguinte:</p>
 <p><span class="math display">\[\begin{align}
 R \sin(\alpha) &amp;= b \\
@@ -310,14 +310,14 @@ a^2 + b^2 = R^2 (\sin^2(\alpha) + \cos^2(\alpha)) = R^2,
 <p><span class="math display">\[
 R = \sqrt{a^2 + b^2}.
 \]</span></p>
-<p>Da relação <span class="math inline">\(a\cos(x) + b\sin(x) = R \cos(x - \alpha)\)</span> temos que substituindo <span class="math inline">\(R\)</span> e <span class="math inline">\(\alpha\)</span> temos</p>
+<p>Da relação <span class="math inline">\(a\cos(x) + b\sin(x) = R \cos(x - \alpha)\)</span>, substituindo <span class="math inline">\(R\)</span> e <span class="math inline">\(\alpha\)</span> temos</p>
 <p><span class="math display">\[
 a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
 \]</span></p>
 </section>
 <section id="como-obter-expressões-fechadas-para-cosnx-e-sinnx" class="level3">
 <h3 class="anchored" data-anchor-id="como-obter-expressões-fechadas-para-cosnx-e-sinnx">Como obter expressões fechadas para <span class="math inline">\(\cos(nx)\)</span> e <span class="math inline">\(\sin(nx)\)</span> ?</h3>
-<p>Aqui entra a parte mais interessante das descobertas. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. Também podemos manipular expressões para obter coisas do tipo <span class="math inline">\(\cos(3x) = \cos(x + 2x)\)</span> e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc. Mas como obter uma expressão geral para qualquer <span class="math inline">\(n\)</span> inteiro maior que zero ?</p>
+<p>Aqui entra a parte mais interessante do que aprendi. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. Também podemos manipular expressões para obter coisas do tipo <span class="math inline">\(\cos(3x) = \cos(x + 2x)\)</span> e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc. Mas como obter uma expressão geral para qualquer <span class="math inline">\(n\)</span> inteiro maior que zero ?</p>
 <p>A resposta entra no mundo dos números complexos, especificamente através da seguinte relação:</p>
 <p><span class="math display">\[
 e^{ix} = \cos(x) + i \sin(x)

@@ -102,3 +102,112 @@ e^\pi &> \pi^e
 $$
 
 o que prova o resultado ! 
+
+### Outra maneira bastante elegante
+
+Considere o teorema do valor médio para integrais: 
+
+**Teorema**: se $f:[a,b] \rightarrow \mathbb{R}$ é contínua, existe $c$ tal que: 
+
+$$
+f(c) = \int_{a}^{b} f(x) dx = f(c)(b-a). 
+$$
+
+Utilizando o teorema, vamos considerar $f(x) = 1/x$, $a=e$ e $b=\pi$. Pelo teorema acima temos que existe $c$ tal que 
+
+$$
+f(c) = \int_{e}^{\pi} \frac{1}{x} dx = \frac{1}{c}(\pi-e), 
+$$
+
+e particularmente para $c > e$ temos 
+
+$$
+\frac{1}{c}(\pi-e) < \frac{1}{e}(\pi-e)
+$$
+
+Assim calculamos a integral 
+
+$$
+\int_{e}^{\pi} \frac{1}{x} dx = \ln(\pi) - \ln(e) < \frac{1}{e}(\pi - e)
+$$
+
+Veja que $ln(e) = 1$ então temos
+
+\begin{align}
+\ln(\pi) - 1 &< \frac{\pi}{e} - 1 \\ 
+\ln(\pi) &< \frac{\pi}{e} \\ 
+e^{\ln(\pi)} &< e^{\pi/e} \\ 
+\pi &< e^{\pi/e} \\ 
+\pi^{e} &< e^{\pi}
+\end{align}
+
+provando assim o resultado desejado. Elegante, não ? 
+
+### Como prova o teorema do valor médio para integrais ? 
+
+Aqui usamos dois teoremas: 
+
+1. Teorema do Valor Extremo 
+2. Teorema do Valor Intermediário
+
+**Teorema do Valor Extremo**: Seja $f$ contínua em um intervalo fechado e limitado $[a,b]$, então: 
+
+- $f$ atinge um **mínimo absoluto**
+- $f$ atinge um **máximo absoluto**
+
+Ou seja, existem pontos $x_m$ e $x_M$ $\in [a,b]$ tais que 
+
+$$
+f(x_m) \leq f(x) \leq f(x_M)
+$$
+
+para todo $x \in [a,b]$. 
+
+**Teorema do Valor Intermediário (TVI)**: Se $f$ é contínua em $[a,b]$ e $y$ é um ponto entre $f(a)$ e $f(b)$ então existe 
+$c \in [a,b]$ tal que $f(c) = y$.  
+
+---
+
+Agora vamos demonstrar o teorema do valor médio para integrais. Pelo Teorema do Valor Extremo existem $m = \text{min}_{[a,b]} f(x)$ e $M = \text{max}_{[a,b]} f(x)$. 
+Para todo $x \in [a,b]$ vale que 
+
+$$
+m \leq f(x) \leq M. 
+$$
+
+Integrando todos os membros dessa desigualdade no intervalo $[a,b]$ temos 
+
+$$
+\int_{a}^{b} m \, dx \leq \int_{a}^{b} f(x) dx \leq \int_{a}^{b} M \, dx 
+$$
+
+Como $m$ e $M$ são constantes, temos 
+
+$$
+m(b-a) \leq \int_{a}^{b} f(x) dx \leq M(b-a) 
+$$
+
+Dividindo todos os mebros por $b-a > 0$ temos 
+
+$$
+m \leq \frac{1}{b-a}\int_{a}^{b} f(x) dx \leq M 
+$$
+
+Seja 
+
+$$
+A = \frac{1}{b-a}\int_{a}^{b} f(x) dx, 
+$$
+
+temos que $A \in [m,M]$. Usando o fato de $f$ ser contínua, quando aplicamos a função a qualquer valor em $[a,b]$ temos valores entre $[m,M]$, isto é,
+a imagem de $f$ é todo o intervalo $[m,M]$. Aqui podemos afirmar que se $A \in [m,M]$ então existe $c \in [a,b]$ tal que $f(c) = A$ (pelo TVI), ou seja, 
+
+$$
+f(c) = \frac{1}{b-a}\int_{a}^{b} f(x) dx. 
+$$
+
+Multilicando por $b-a$: 
+
+$$
+\int_{a}^{b} f(x) dx = f(c)(b-a).   
+$$

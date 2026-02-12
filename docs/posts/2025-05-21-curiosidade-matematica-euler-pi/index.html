@@ -9,7 +9,7 @@
 <meta name="dcterms.date" content="2025-05-21">
 <meta name="description" content="Como mostrar que e^pi > pi^e ?">
 
-<title>Uma propriedade interessante envolvendo números transcendentais – O que vou aprendendo em estatística e ciência de dados</title>
+<title>Uma propriedade interessante envolvendo números transcendentais – O que vou descobrindo em estatística, ciência de dados e matemática</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -111,7 +111,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">O que vou aprendendo em estatística e ciência de dados</span>
+    <span class="navbar-title">O que vou descobrindo em estatística, ciência de dados e matemática</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -177,6 +177,8 @@ window.Quarto = {
   <ul>
   <li><a href="#como-podemos-mostrar-que-epi-pie" id="toc-como-podemos-mostrar-que-epi-pie" class="nav-link active" data-scroll-target="#como-podemos-mostrar-que-epi-pie">Como podemos mostrar que <span class="math inline">\(e^\pi &gt; \pi^e ?\)</span></a></li>
   <li><a href="#outras-considerações" id="toc-outras-considerações" class="nav-link" data-scroll-target="#outras-considerações">Outras considerações</a></li>
+  <li><a href="#outra-maneira-bastante-elegante" id="toc-outra-maneira-bastante-elegante" class="nav-link" data-scroll-target="#outra-maneira-bastante-elegante">Outra maneira bastante elegante</a></li>
+  <li><a href="#como-prova-o-teorema-do-valor-médio-para-integrais" id="toc-como-prova-o-teorema-do-valor-médio-para-integrais" class="nav-link" data-scroll-target="#como-prova-o-teorema-do-valor-médio-para-integrais">Como prova o teorema do valor médio para integrais ?</a></li>
   </ul>
 </nav>
     </div>
@@ -253,6 +255,83 @@ e^\pi &amp;&gt; \pi^e
 \end{align*}
 \]</span></p>
 <p>o que prova o resultado !</p>
+</section>
+<section id="outra-maneira-bastante-elegante" class="level3">
+<h3 class="anchored" data-anchor-id="outra-maneira-bastante-elegante">Outra maneira bastante elegante</h3>
+<p>Considere o teorema do valor médio para integrais:</p>
+<p><strong>Teorema</strong>: se <span class="math inline">\(f:[a,b] \rightarrow \mathbb{R}\)</span> é contínua, existe <span class="math inline">\(c\)</span> tal que:</p>
+<p><span class="math display">\[
+f(c) = \int_{a}^{b} f(x) dx = f(c)(b-a).
+\]</span></p>
+<p>Utilizando o teorema, vamos considerar <span class="math inline">\(f(x) = 1/x\)</span>, <span class="math inline">\(a=e\)</span> e <span class="math inline">\(b=\pi\)</span>. Pelo teorema acima temos que existe <span class="math inline">\(c\)</span> tal que</p>
+<p><span class="math display">\[
+f(c) = \int_{e}^{\pi} \frac{1}{x} dx = \frac{1}{c}(\pi-e),
+\]</span></p>
+<p>e particularmente para <span class="math inline">\(c &gt; e\)</span> temos</p>
+<p><span class="math display">\[
+\frac{1}{c}(\pi-e) &lt; \frac{1}{e}(\pi-e)
+\]</span></p>
+<p>Assim calculamos a integral</p>
+<p><span class="math display">\[
+\int_{e}^{\pi} \frac{1}{x} dx = \ln(\pi) - \ln(e) &lt; \frac{1}{e}(\pi - e)
+\]</span></p>
+<p>Veja que <span class="math inline">\(ln(e) = 1\)</span> então temos</p>
+<p><span class="math display">\[\begin{align}
+\ln(\pi) - 1 &amp;&lt; \frac{\pi}{e} - 1 \\
+\ln(\pi) &amp;&lt; \frac{\pi}{e} \\
+e^{\ln(\pi)} &amp;&lt; e^{\pi/e} \\
+\pi &amp;&lt; e^{\pi/e} \\
+\pi^{e} &amp;&lt; e^{\pi}
+\end{align}\]</span></p>
+<p>provando assim o resultado desejado. Elegante, não ?</p>
+</section>
+<section id="como-prova-o-teorema-do-valor-médio-para-integrais" class="level3">
+<h3 class="anchored" data-anchor-id="como-prova-o-teorema-do-valor-médio-para-integrais">Como prova o teorema do valor médio para integrais ?</h3>
+<p>Aqui usamos dois teoremas:</p>
+<ol type="1">
+<li>Teorema do Valor Extremo</li>
+<li>Teorema do Valor Intermediário</li>
+</ol>
+<p><strong>Teorema do Valor Extremo</strong>: Seja <span class="math inline">\(f\)</span> contínua em um intervalo fechado e limitado <span class="math inline">\([a,b]\)</span>, então:</p>
+<ul>
+<li><span class="math inline">\(f\)</span> atinge um <strong>mínimo absoluto</strong></li>
+<li><span class="math inline">\(f\)</span> atinge um <strong>máximo absoluto</strong></li>
+</ul>
+<p>Ou seja, existem pontos <span class="math inline">\(x_m\)</span> e <span class="math inline">\(x_M\)</span> <span class="math inline">\(\in [a,b]\)</span> tais que</p>
+<p><span class="math display">\[
+f(x_m) \leq f(x) \leq f(x_M)
+\]</span></p>
+<p>para todo <span class="math inline">\(x \in [a,b]\)</span>.</p>
+<p><strong>Teorema do Valor Intermediário (TVI)</strong>: Se <span class="math inline">\(f\)</span> é contínua em <span class="math inline">\([a,b]\)</span> e <span class="math inline">\(y\)</span> é um ponto entre <span class="math inline">\(f(a)\)</span> e <span class="math inline">\(f(b)\)</span> então existe <span class="math inline">\(c \in [a,b]\)</span> tal que <span class="math inline">\(f(c) = y\)</span>.</p>
+<hr>
+<p>Agora vamos demonstrar o teorema do valor médio para integrais. Pelo Teorema do Valor Extremo existem <span class="math inline">\(m = \text{min}_{[a,b]} f(x)\)</span> e <span class="math inline">\(M = \text{max}_{[a,b]} f(x)\)</span>. Para todo <span class="math inline">\(x \in [a,b]\)</span> vale que</p>
+<p><span class="math display">\[
+m \leq f(x) \leq M.
+\]</span></p>
+<p>Integrando todos os membros dessa desigualdade no intervalo <span class="math inline">\([a,b]\)</span> temos</p>
+<p><span class="math display">\[
+\int_{a}^{b} m \, dx \leq \int_{a}^{b} f(x) dx \leq \int_{a}^{b} M \, dx
+\]</span></p>
+<p>Como <span class="math inline">\(m\)</span> e <span class="math inline">\(M\)</span> são constantes, temos</p>
+<p><span class="math display">\[
+m(b-a) \leq \int_{a}^{b} f(x) dx \leq M(b-a)
+\]</span></p>
+<p>Dividindo todos os mebros por <span class="math inline">\(b-a &gt; 0\)</span> temos</p>
+<p><span class="math display">\[
+m \leq \frac{1}{b-a}\int_{a}^{b} f(x) dx \leq M
+\]</span></p>
+<p>Seja</p>
+<p><span class="math display">\[
+A = \frac{1}{b-a}\int_{a}^{b} f(x) dx,
+\]</span></p>
+<p>temos que <span class="math inline">\(A \in [m,M]\)</span>. Usando o fato de <span class="math inline">\(f\)</span> ser contínua, quando aplicamos a função a qualquer valor em <span class="math inline">\([a,b]\)</span> temos valores entre <span class="math inline">\([m,M]\)</span>, isto é, a imagem de <span class="math inline">\(f\)</span> é todo o intervalo <span class="math inline">\([m,M]\)</span>. Aqui podemos afirmar que se <span class="math inline">\(A \in [m,M]\)</span> então existe <span class="math inline">\(c \in [a,b]\)</span> tal que <span class="math inline">\(f(c) = A\)</span> (pelo TVI), ou seja,</p>
+<p><span class="math display">\[
+f(c) = \frac{1}{b-a}\int_{a}^{b} f(x) dx.
+\]</span></p>
+<p>Multilicando por <span class="math inline">\(b-a\)</span>:</p>
+<p><span class="math display">\[
+\int_{a}^{b} f(x) dx = f(c)(b-a).   
+\]</span></p>
 
 
 </section>
