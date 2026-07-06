@@ -1,0 +1,26 @@
+---
+title: "Alguns tópicos sobre redes neurais e o que eu fui descobrindo"
+description: "Alguns truques interessantes e uma forma matricial de representação"
+date: 2026-07-06
+categories: [redes neurais]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Introdução
+
+Redes neurais sempre me pareceram um daqueles temas que a gente visita várias vezes (forward pass, funções de ativação, neurônios, backpropagation) mas que só "clicam" de verdade quando paramos pra entender *por que* as coisas são feitas daquele jeito. No meu caso, o ponto que mais resistia era o backpropagation: por que derivadas parciais da função custo? Por que aquela cadeia toda de regras de derivação?
+
+Decidi então construir o entendimento do zero, de forma incremental:
+
+1. Primeiro, o conceito básico: o que é uma rede neural, sem formalismos pesados.
+2. Depois, como minimizar uma função custo (a intuição por trás do gradiente).
+3. Por fim, a forma matricial completa: forward pass, backpropagation e atualização de pesos.
+
+Vou começar com uma rede de uma camada oculta para manter a didática simples, mas o objetivo é generalizar para um número qualquer de camadas e neurônios.
+
+> **Pré-requisito:** alguma familiaridade com derivadas na forma matricial, já que vamos trabalhar diretamente com a representação matricial da rede.
+
+## O que é uma rede neural: entradas, saídas, neurônios, camadas ocultas e funções de ativação

@@ -19,5 +19,14 @@
   },
   "teste.ipynb": {
     "teste.html": "cc3dfa92"
+  },
+  "posts/2026-07-06-redes-neurais/index.qmd": {
+    "index.html": "85395aba"
+  },
+  "posts/2026-07-06-gradiente-descendente/index.qmd": {
+    "index.html": "6949473b"
+  },
+  "posts/2026-07-06-perceptron/index.qmd": {
+    "index.html": "ba9f27f4"
   }
 }

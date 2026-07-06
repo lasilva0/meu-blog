@@ -1,5 +1,6 @@
 ---
 title: "L-Stats Blog"
+subtitle: "O que vou descobrindo em estatística, ciência de dados e matemática"
 listing:
   contents: posts
   sort: "date desc"
@@ -7,8 +8,7 @@ listing:
   categories: true
   sort-ui: false
   filter-ui: false
+  fields: [date, title, description, categories]
 page-layout: full
 title-block-banner: true
 ---
-
-

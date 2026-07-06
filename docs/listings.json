@@ -2,6 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2026-07-06-gradiente-descendente/index.html",
+      "/posts/2026-07-06-perceptron/index.html",
+      "/posts/2026-07-06-redes-neurais/index.html",
       "/posts/2025-05-21-intervalos-de-confianca/index.html",
       "/posts/2025-05-21-curiosidade-matematica-euler-pi/index.html"
     ]

@@ -1,19 +1,31 @@
 project:
   type: website
-  output-dir: docs 
+  output-dir: docs
 
 website:
-  title: "O que vou descobrindo em estatística, ciência de dados e matemática"
+  title: "L-Stats Blog"
+  description: "O que vou descobrindo em estatística, ciência de dados e matemática"
   navbar:
+    background: "#0d9488"
+    foreground: "#ffffff"
+    title: "L-Stats Blog"
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: Sobre
     right:
-      - about.qmd
       - icon: github
         href: https://github.com/lasilva0
+  page-footer:
+    center: "© 2025 L-Stats Blog — Feito com [Quarto](https://quarto.org)"
+    background: "#0d9488"
+    foreground: "#ffffff"
+
 format:
   html:
     theme:
-      - cosmo
-      - brand
+      light: cosmo
     css: styles.css
-
-
+    mainfont: "Ubuntu, sans-serif"
+    monofont: "JetBrains Mono, Fira Code, monospace"

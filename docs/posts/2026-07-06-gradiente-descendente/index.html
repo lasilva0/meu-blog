@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-02-10">
-<meta name="description" content="Proriedades bem legais">
+<meta name="dcterms.date" content="2026-07-06">
+<meta name="description" content="Explorando como minimizar funções com e sem iterações">
 
-<title>Brincando um pouco com senos e cossenos 😁 – O que vou descobrindo em estatística, ciência de dados e matemática</title>
+<title>Otimização de funções via gradiente descendente – L-Stats Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -44,7 +44,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,7 +114,7 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">O que vou descobrindo em estatística, ciência de dados e matemática</span>
+    <span class="navbar-title">L-Stats Blog</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -122,11 +122,17 @@ window.Quarto = {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../about.html"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">Sobre</span></a>
   </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/lasilva0"> <i class="bi bi-github" role="img">
 </i> 
@@ -143,13 +149,15 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Brincando um pouco com senos e cossenos 😁</h1>
+      <h1 class="title">Otimização de funções via gradiente descendente</h1>
+            <p class="subtitle lead">Método não iterativo e iterativo</p>
                   <div>
         <div class="description">
-          Proriedades bem legais
+          Explorando como minimizar funções com e sem iterações
         </div>
       </div>
                           <div class="quarto-categories">
+                <div class="quarto-category">otimização</div>
                 <div class="quarto-category">matemática</div>
               </div>
                   </div>
@@ -162,7 +170,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">February 10, 2026</p>
+        <p class="date">July 6, 2026</p>
       </div>
     </div>
     
@@ -178,11 +186,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#método-não-iterativo" id="toc-método-não-iterativo" class="nav-link" data-scroll-target="#método-não-iterativo">Método Não-Iterativo</a>
   <ul class="collapse">
-  <li><a href="#outra-propriedade-interessante-que-acabei-descobrindo" id="toc-outra-propriedade-interessante-que-acabei-descobrindo" class="nav-link" data-scroll-target="#outra-propriedade-interessante-que-acabei-descobrindo">Outra propriedade interessante que acabei descobrindo</a></li>
-  <li><a href="#como-obter-expressões-fechadas-para-cosnx-e-sinnx" id="toc-como-obter-expressões-fechadas-para-cosnx-e-sinnx" class="nav-link" data-scroll-target="#como-obter-expressões-fechadas-para-cosnx-e-sinnx">Como obter expressões fechadas para <span class="math inline">\(\cos(nx)\)</span> e <span class="math inline">\(\sin(nx)\)</span> ?</a></li>
-  <li><a href="#exemplos" id="toc-exemplos" class="nav-link" data-scroll-target="#exemplos">Exemplos:</a></li>
+  <li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo">Exemplo</a></li>
+  </ul></li>
+  <li><a href="#método-iterativo-gradiente-descendente" id="toc-método-iterativo-gradiente-descendente" class="nav-link" data-scroll-target="#método-iterativo-gradiente-descendente">Método Iterativo: Gradiente Descendente</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-1" id="toc-exemplo-1" class="nav-link" data-scroll-target="#exemplo-1">Exemplo</a></li>
+  <li><a href="#funções-convexas-vs.-não-convexas" id="toc-funções-convexas-vs.-não-convexas" class="nav-link" data-scroll-target="#funções-convexas-vs.-não-convexas">Funções convexas vs.&nbsp;não-convexas</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -196,199 +208,104 @@ window.Quarto = {
 
 <section id="introdução" class="level2">
 <h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
-<p>Ultimamente vi em um grupo de matemática uma questão que pedia para calcular a integral sobre as curvas do <span class="math inline">\(\cos(x^2)\)</span> e <span class="math inline">\(\sin(x^2)\)</span>, que no caso é a diferença entre esses caras (essencialmente um problema de áreas sob sob curvas). Precisávamos então achar ali os pontos em que as funções se intersectam. Pra isso partimos do seguinte fato:</p>
+<p>Vamos começar com alguns exemplos de funções, particularmente uma função quadrática no plano cartesiano e uma função em três dimensões, que são dadas respectivamente por</p>
 <p><span class="math display">\[
-\cos(y) = \sin(y) = 1, \,\, \text{se} \,\, \frac{\sin(y)}{\cos(y)} = 1.
+f(x) = (x - 5)^2 + 10
 \]</span></p>
-<p>ou seja, se <span class="math inline">\(\tan(y) = 1\)</span>. Para que isso ocorra, temos que avaliar a função tangente. Sabe-se que <span class="math inline">\(\tan(y) = \frac{\sin(y)}{\cos(y)}\)</span>.</p>
-<p>Sabemos também que</p>
-<p>Vamos analisar o seguinte:</p>
-<p><span class="math display">\[\begin{align}
-\sin(y + \pi) = -\sin(y) \\
-\cos(y + \pi) = -\cos(y)
-\end{align}\]</span></p>
-<p>Então, temos</p>
+<p>e</p>
 <p><span class="math display">\[
-\tan(y + \pi) = \frac{-\sin(y)}{-\cos(y)} = \frac{\sin(y)}{\cos(y)} = \tan(y).
+z = (x - 20)^2 + (y-20)^2 + 50
 \]</span></p>
-<p>A função tangente também se repete ao somar <span class="math inline">\(\pi\)</span>. Agora o que acontece para que <span class="math inline">\(\tan(y) = 1\)</span> ? Isso ocorre quando <span class="math inline">\(\sin(y) / \cos(y) = 1\)</span> o que é exatamente se <span class="math inline">\(y= \pi / 4 + \pi\)</span>. Assim, <span class="math inline">\(\sin(\pi/4) = \cos(\pi / 4) = 1\)</span> pois <span class="math inline">\(\sin(\pi/4) = \cos(\pi/4) = \sqrt{2}/2\)</span>. Deste modo temos</p>
-<p><span class="math display">\[\tan(y+ k\pi) = \tan(y)\]</span></p>
-<p>para <span class="math inline">\(k \in \mathbb{R}\)</span>. Particulamente, para <span class="math inline">\(y = x^2\)</span> tem-se:</p>
+<p>Abaixo temos os gráficos dessas funções:</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-2d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="funcao_2d.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Função quadrática em 2D
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-3d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="funcao_3d.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-3d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Superfície em 3D
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Note que ambas são contínuas, suaves e convexas, ou seja, possuem um único mínimo global. O objetivo de um problema de otimização é encontrar o vetor <span class="math inline">\(\mathbf{x}_{opt}\)</span> que minimiza a função:</p>
 <p><span class="math display">\[
-x^2 = \frac{\pi}{4} + k\pi, \,\, k \in \mathbb{Z}.
+\mathbf{x}_{opt} = \arg \min_{\mathbf{x}} f(\mathbf{x})
 \]</span></p>
-<p>Portanto, se escolhermos <span class="math inline">\(k = 0\)</span>, temos que</p>
-<p><span class="math display">\[\begin{align}
-x &amp;= \sqrt{\frac{\pi}{4}} \\
-x &amp;= \pm \frac{\sqrt{\pi}}{2}
-\end{align}\]</span></p>
-<p>Esses pontos seriam os que as funções <span class="math inline">\(\sin(x^2)\)</span> e <span class="math inline">\(\cos(x^2)\)</span> se intersectam. Bastaria agora calcular a integral nesse intervalo. Neste ponto pensei que seriam fácil calcular essa integral:</p>
-<p><span class="math display">\[
-\int_{-\sqrt{\pi}/2}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx,
-\]</span></p>
-<p>porém essa integral não possui resolução analítica pois não há nenhuma substituição que se possa fazer aí. Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis ? Surgiu então a ideia usar a expansão dessas funções em série de Taylor, que são bastante conhecidas. As expansões são:</p>
-<p><span class="math display">\[\begin{align}
-\sin(x) &amp;= x - \frac{x^3}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} + \frac{x^{9}}{9!} - \ldots \\
-\cos(x) &amp;= 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - \frac{x^{6}}{6!} + \frac{x^{8}}{8!} - \ldots
-\end{align}\]</span></p>
-<p>Com essas mesmas séries basta agora obter para <span class="math inline">\(x^2\)</span>:</p>
-<p><span class="math display">\[\begin{align}
-\sin(x^2) &amp;= x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!} + \frac{x^{18}}{9!} - \ldots \\
-\cos(x^2) &amp;= 1 - \frac{x^{4}}{2!} + \frac{x^{8}}{4!} - \frac{x^{12}}{6!} + \frac{x^{16}}{8!} - \ldots
-\end{align}\]</span></p>
-<p>Agora obter a diferença <span class="math inline">\(\cos(x^2) - \sin(x^2)\)</span> (aqui vamos expandir até o quarto termo para obter uma boa aproximação):</p>
-<p><span class="math display">\[
-\cos(x^2) - \sin(x^2) = \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big)
-\]</span></p>
-<p>Agora podemos considerar o seguinte fato: seja <span class="math inline">\(g(x) = \cos(x^2) - \sin(x^2)\)</span>. Temos que <span class="math inline">\(\cos(x^2)\)</span> é uma função par assim como a função <span class="math inline">\(\sin(x^2)\)</span>, logo a diferença que denotamos por <span class="math inline">\(g(x)\)</span> também será uma função par. Isso implica que</p>
-<p><span class="math display">\[
-\int_{-a}^{a} g(x) dx = 2 \int_{0}^{a} g(x) dx
-\]</span></p>
-<p>Assim, podemos fazer:</p>
-<p><span class="math display">\[
-\int_{-\sqrt{\pi}/2}^{-\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx = 2 \int_{0}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx,
-\]</span></p>
-<p>e substituindo pelas expansões temos</p>
-<p><span class="math display">\[
-2 \times \int_{0}^{\sqrt{\pi}/2}  \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big)  dx
-\]</span></p>
-<p>Isso é bem mais fácil de calcular do que a expressão original. Aqui a integral fica legalzinha:</p>
-<p><span class="math display">\[
-I = 2 \times \Bigg[x - \frac{x^5}{5\times 2!} + \frac{x^9}{9\times 4!} - \frac{x^{13}}{13\times 6!} - \frac{x^3}{3} + \frac{x^7}{7\times 3!} - \frac{x^{11}}{11\times 5!} + \frac{x^{15}}{15\times 7!}\Bigg]_{0}^{\sqrt{\pi}/2}
-\]</span></p>
-<p>Calculando os fatoriais</p>
-<p><span class="math display">\[
-I = 2\times \left[
-x
-- \frac{x^5}{10}
-+ \frac{x^9}{216}
-- \frac{x^{13}}{9360}
-- \frac{x^3}{3}
-+ \frac{x^7}{42}
-- \frac{x^{11}}{1320}
-+ \frac{x^{15}}{75600}
-\right]_{0}^{\sqrt{\pi/2}} \approx 1,222219
-\]</span></p>
-<p>Você pode fazer as continhas aplicando no ponto <span class="math inline">\(x = \sqrt{\pi}/2\)</span> e verá que a integral é aproximadamente o valor que foi calculado acima. Isso é uma forma de fazer. Me perguntei se existia uma expressão mais simples pra essa diferença. Encontrei o seguinte partindo das somas do coesseno. Sabe-se que</p>
-<p><span class="math display">\[
-\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha)\sin(\beta).
-\]</span></p>
-<p>Considere <span class="math inline">\(\beta = \pi / 4\)</span> e disso temos que <span class="math inline">\(\sin(\pi /4) = \cos(\pi / 4) = \sqrt{\pi}/2\)</span>. substituindo na expressão acima temos:</p>
-<p><span class="math display">\[
-\cos(\alpha + \pi/4) = \frac{\sqrt{\pi}}{2}(\cos(\alpha) - \sin(\alpha))
-\]</span></p>
-<p>Multiplicando por <span class="math inline">\(\sqrt{2}\)</span> em ambos os lados da equação obtemos a seguinte relação:</p>
-<p><span class="math display">\[
-\cos(\alpha) - \sin(\alpha) = \sqrt{2} \cos(\alpha + \pi/4).
-\]</span></p>
-<p>Se <span class="math inline">\(\alpha = x^n\)</span>, então</p>
-<p><span class="math display">\[
-\cos(x^n) - \sin(x^n) = \sqrt{2} \cos(x^n + \pi/4),
-\]</span></p>
-<p>válida quando <span class="math inline">\(x^n\)</span> é um valor nos reais, ou seja, quando <span class="math inline">\(n\)</span> for inteiro e <span class="math inline">\(x\)</span> é real; <span class="math inline">\(x &gt; 0\)</span> com <span class="math inline">\(n\)</span> real ou <span class="math inline">\(n\)</span> racional com denominador ímpar.</p>
-<section id="outra-propriedade-interessante-que-acabei-descobrindo" class="level3">
-<h3 class="anchored" data-anchor-id="outra-propriedade-interessante-que-acabei-descobrindo">Outra propriedade interessante que acabei descobrindo</h3>
-<p>Pesquisando um pouco mais sobre essas expressões envolvendo soma de cossenos, vi uma forma de obter resultados para esse tipo de expressão:</p>
-<p><span class="math display">\[
-a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
-\]</span></p>
-<p>Como que prova isso ? Bem, podemos partir da diferença entre ângulos do cosseno:</p>
-<p><span class="math display">\[\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha).\]</span></p>
-<p>Vamos multiplicar ambos os lados da equação por uma constante <span class="math inline">\(R\)</span>:</p>
-<p><span class="math display">\[R\cos(x - \alpha) = R\cos(x) \cos(\alpha) + R\sin(x)\sin(\alpha).\]</span></p>
-<p>Agora podemos fazer o seguinte:</p>
-<p><span class="math display">\[\begin{align}
-R \sin(\alpha) &amp;= b \\
-R \cos(\alpha) &amp;= a,
-\end{align}\]</span></p>
-<p>de onde podemos tirar diretamente que</p>
-<p><span class="math display">\[
-\frac{R \sin(\alpha)}{R \cos(\alpha)} = \frac{\sin(\alpha)}{\cos(\alpha)} = \tan(\alpha) = \frac{b}{a}.
-\]</span></p>
-<p>Logo, podemos concluir disso que <span class="math inline">\(\alpha = \arctan(b/a)\)</span>. Aqui já achamos o valor de <span class="math inline">\(\alpha\)</span>. Agora vamos tentar obter o que seria <span class="math inline">\(R\)</span> em termos das constantes <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>. Veja:</p>
-<p><span class="math display">\[\begin{align}
-a^2 + b^2 = R^2 (\sin^2(\alpha) + \cos^2(\alpha)) = R^2,
-\end{align}\]</span></p>
-<p>logo</p>
-<p><span class="math display">\[
-R = \sqrt{a^2 + b^2}.
-\]</span></p>
-<p>Da relação <span class="math inline">\(a\cos(x) + b\sin(x) = R \cos(x - \alpha)\)</span>, substituindo <span class="math inline">\(R\)</span> e <span class="math inline">\(\alpha\)</span> temos</p>
-<p><span class="math display">\[
-a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
-\]</span></p>
+<p>Nas próximas seções vamos explorar duas formas de resolver esse problema: uma direta (analítica) e outra iterativa.</p>
 </section>
-<section id="como-obter-expressões-fechadas-para-cosnx-e-sinnx" class="level3">
-<h3 class="anchored" data-anchor-id="como-obter-expressões-fechadas-para-cosnx-e-sinnx">Como obter expressões fechadas para <span class="math inline">\(\cos(nx)\)</span> e <span class="math inline">\(\sin(nx)\)</span> ?</h3>
-<p>Aqui entra a parte mais interessante do que aprendi. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. Também podemos manipular expressões para obter coisas do tipo <span class="math inline">\(\cos(3x) = \cos(x + 2x)\)</span> e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc. Mas como obter uma expressão geral para qualquer <span class="math inline">\(n\)</span> inteiro maior que zero ?</p>
-<p>A resposta entra no mundo dos números complexos, especificamente através da seguinte relação:</p>
+<section id="método-não-iterativo" class="level2">
+<h2 class="anchored" data-anchor-id="método-não-iterativo">Método Não-Iterativo</h2>
+<p>Quando a função é convexa, contínua e diferenciável, podemos encontrar o mínimo de forma direta: basta calcular o gradiente da função e igualá-lo a zero.</p>
 <p><span class="math display">\[
-e^{ix} = \cos(x) + i \sin(x)
+\frac{\partial f(\mathbf{x})}{\partial \mathbf{x}} = \mathbf{0}
 \]</span></p>
-<p>Essa equação pode ser obtida via série de Taylor para a função exponencial no ponto <span class="math inline">\(ix\)</span> em que <span class="math inline">\(i\)</span> é a unidade imaginária <span class="math inline">\(i = \sqrt{-1}\)</span>. Você pode expandir e vai perceber que ela se decompõe em uma parte real (a que envolve todos os termos dos cossenos) e uma parte imaginária (que elvolve todos os termos dos senos). Sabendo disso, podemos ter a seguinte relação:</p>
+<p>Escrevendo em termos das componentes:</p>
 <p><span class="math display">\[
-(\cos(x) + i \sin(x))^n = e^{inx} = \cos(nx) + i \sin(nx).
+\begin{bmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \\ \vdots \\ \frac{\partial f}{\partial x_p} \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
 \]</span></p>
-<p>A ideia chave é expandir <span class="math inline">\((\cos(x) + i \sin(x))^n\)</span> como um binômio de Newton ! Veja:</p>
+<section id="exemplo" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo">Exemplo</h3>
+<p>Considerando o parabolóide <span class="math inline">\(z = f(x,y) = (x-a)^2 + (y-b)^2 + c\)</span>, o vetor-gradiente é:</p>
 <p><span class="math display">\[
-(\cos(x) + i \sin(x))^n = \sum_{k=0}^{n} \binom{n}{k} (i\sin(x))^k (\cos(x))^{n-k}.
+\begin{bmatrix} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{bmatrix} = \begin{bmatrix} 2(x-a) \\ 2(y-b) \end{bmatrix}
 \]</span></p>
-<p>Veja que temos uma parte real que contribui com os termos do cosseno e uma parte imaginária que carrega os temos do seno. Sabe-se que qualquer número complexo pode ser escrito na forma</p>
+<p>Igualando a zero:</p>
 <p><span class="math display">\[
-z = a + bi, \,\, \text{com} \,\, a,b \in \mathbb{R}.
+\begin{bmatrix} 2(x-a) \\ 2(y-b) \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 \]</span></p>
-<p>Quando expandimos <span class="math inline">\((\cos(x) + i \sin(x))^n\)</span> temos uma soma de termos desse jeitão aqui:</p>
-<p><span class="math display">\[
-(\text{soma de reais}) + i (\text{soma de reais}) = A + iB = \cos(nx) + i\sin(nx),
-\]</span></p>
-<p>e pela unicidade</p>
-<p><span class="math display">\[\begin{align}
-A &amp;= \cos(nx) \\
-B &amp;= \sin(nx)
-\end{align}\]</span></p>
-<p>Aqui temos que analisar o que seria <span class="math inline">\(i^k\)</span> para valores pares de <span class="math inline">\(k\)</span> e valores ímpares de <span class="math inline">\(k\)</span>.</p>
-<section id="caso-1-ik-com-k-par" class="level4">
-<h4 class="anchored" data-anchor-id="caso-1-ik-com-k-par">Caso 1: <span class="math inline">\(i^k\)</span> com <span class="math inline">\(k\)</span> par</h4>
-<p>Aqui temos <span class="math inline">\(k\)</span> na forma <span class="math inline">\(k = 2m\)</span>. Assim temos <span class="math inline">\(i^k = i^{2m} = (i^2)^m = (-1)^m\)</span>. Se <span class="math inline">\(k = 2m\)</span> então <span class="math inline">\(m = k/2\)</span>. Logo</p>
-<p><span class="math display">\[
-\cos(nx) = \sum_{k \,\, \text{par}} \binom{n}{k} (-1)^{k/2} \sin^{k}(x) \cos^{n-k}(x).
-\]</span></p>
-</section>
-<section id="caso-2-ik-com-k-ímpar" class="level4">
-<h4 class="anchored" data-anchor-id="caso-2-ik-com-k-ímpar">Caso 2: <span class="math inline">\(i^k\)</span> com <span class="math inline">\(k\)</span> ímpar</h4>
-<p>Aqui temos <span class="math inline">\(k\)</span> na forma <span class="math inline">\(k = 2m+1\)</span>. Assim temos <span class="math inline">\(i^k = i^{2m+1} = i(i^2m) = i(i^2)^m = i(-1)^m\)</span>. Se <span class="math inline">\(k = 2m+1\)</span> então <span class="math inline">\(m = (k-1)/2\)</span>. Logo</p>
-<p><span class="math display">\[
-\sin(nx) = \sum_{k \,\, \text{ímpar}} \binom{n}{k} (-1)^{(k-1)/2} \sin^{k}(x) \cos^{n-k}(x).
-\]</span></p>
+<p>De onde obtemos diretamente <span class="math inline">\(\mathbf{x}_{opt} = [a \;\; b]^T\)</span>. Simples e direto, mas isso só funciona quando conseguimos resolver o sistema analiticamente.</p>
 </section>
 </section>
-<section id="exemplos" class="level3">
-<h3 class="anchored" data-anchor-id="exemplos">Exemplos:</h3>
-<p>Cosseno com <span class="math inline">\(n=3\)</span></p>
+<section id="método-iterativo-gradiente-descendente" class="level2">
+<h2 class="anchored" data-anchor-id="método-iterativo-gradiente-descendente">Método Iterativo: Gradiente Descendente</h2>
+<p>Em muitos problemas práticos não é possível obter uma solução fechada igualando o gradiente a zero. Nesses casos, usamos uma abordagem iterativa: o <strong>gradiente descendente</strong>.</p>
+<p>A ideia central é simples: partimos de um ponto inicial qualquer e vamos “caminhando” na direção oposta ao gradiente (direção de maior decrescimento da função), dando passos proporcionais a uma taxa de aprendizagem <span class="math inline">\(\alpha\)</span>.</p>
+<p>A equação recursiva é:</p>
 <p><span class="math display">\[
-\cos(3x)=
-\binom{3}{0}\cos^3x
--\binom{3}{2}\cos x\sin^2x = \cos^3x - 3 \cos(x) \sin^2(x)
+\mathbf{x}(n+1) = \mathbf{x}(n) - \alpha \frac{\partial f(\mathbf{x}(n))}{\partial \mathbf{x}(n)}
 \]</span></p>
-<p>Seno com <span class="math inline">\(n=3\)</span>:</p>
+<p>onde:</p>
+<ul>
+<li><span class="math inline">\(\mathbf{x}(n)\)</span> é o vetor-solução na iteração <span class="math inline">\(n\)</span></li>
+<li><span class="math inline">\(\alpha\)</span> é o passo de adaptação (taxa de aprendizagem), com <span class="math inline">\(0 &lt; \alpha \ll 1\)</span></li>
+<li>O sinal negativo garante que caminhamos na direção de <strong>descida</strong> da função</li>
+</ul>
+<p>A interpretação é direta: a cada passo, o vetor-solução é ajustado na direção de máxima variação da função, com sinal negativo pois queremos minimizar. À medida que iteramos, a diferença <span class="math inline">\(\|\mathbf{x}(n+1) - \mathbf{x}(n)\|\)</span> vai diminuindo até que o gradiente se aproxima de zero, que é a condição de mínimo.</p>
+<section id="exemplo-1" class="level3">
+<h3 class="anchored" data-anchor-id="exemplo-1">Exemplo</h3>
+<p>Para a mesma função <span class="math inline">\(z = (x-a)^2 + (y-b)^2 + c\)</span>, a regra de atualização fica:</p>
 <p><span class="math display">\[
-\sin(3x)=
-\binom{3}{1}\cos^2x\sin x
--\binom{3}{3}\sin^3x = 3\cos^2(x) \sin(x) - \sin^3(x)
+\begin{bmatrix} x(n+1) \\ y(n+1) \end{bmatrix} = \begin{bmatrix} x(n) \\ y(n) \end{bmatrix} - 2\alpha \begin{bmatrix} x(n) - a \\ y(n) - b \end{bmatrix}
 \]</span></p>
-<p>Cosseno com <span class="math inline">\(n = 4\)</span>:</p>
-<p><span class="math display">\[
-\cos(4x)=
-\binom{4}{0}\cos^4x
--\binom{4}{2}\cos^2x\sin^2x
-+\binom{4}{4}\sin^4x = \cos^4(x) - 6\cos^2(x) \sin^2(x) + \sin^4(x)
-\]</span></p>
-<p>Seno com <span class="math inline">\(n = 4\)</span>:</p>
-<p><span class="math display">\[
-\sin(4x)=
-\binom{4}{1}\cos^3x\sin x
--\binom{4}{3}\cos x\sin^3x = 4\cos^3(x) \sin(x) - 4\cos(x) \sin^3(x)
-\]</span></p>
+<p>Com <span class="math inline">\(a = b = 20\)</span>, <span class="math inline">\(c = 50\)</span>, <span class="math inline">\(\alpha = 0.1\)</span>, <span class="math inline">\(x(0) = 2\)</span> e <span class="math inline">\(y(0) = 25\)</span>, as trajetórias convergem para os valores ótimos <span class="math inline">\(x_{opt} = y_{opt} = 20\)</span> após algumas iterações. Valores maiores de <span class="math inline">\(\alpha\)</span> aceleram a convergência, mas podem causar instabilidade se forem grandes demais.</p>
+</section>
+<section id="funções-convexas-vs.-não-convexas" class="level3">
+<h3 class="anchored" data-anchor-id="funções-convexas-vs.-não-convexas">Funções convexas vs.&nbsp;não-convexas</h3>
+<ul>
+<li><strong>Função convexa:</strong> possui um único mínimo (global). O gradiente descendente converge para ele independente do ponto inicial.</li>
+<li><strong>Função não-convexa:</strong> possui vários mínimos locais. O algoritmo converge para o mínimo mais próximo do ponto inicial <span class="math inline">\(\mathbf{x}(0)\)</span>, que pode não ser o global.</li>
+</ul>
+<blockquote class="blockquote">
+<p>Essa limitação é uma das razões pelas quais a inicialização dos pesos em redes neurais é tão importante: a função custo de uma rede é altamente não-convexa.</p>
+</blockquote>
 
 
 </section>
@@ -796,6 +713,19 @@ B &amp;= \sin(nx)
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2025 L-Stats Blog — Feito com <a href="https://quarto.org">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

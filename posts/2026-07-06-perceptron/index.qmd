@@ -1,0 +1,137 @@
+---
+title: "Perceptron Simples: o classificador linear mais básico que existe"
+description: "Entendendo o neurônio artificial, sua regra de aprendizado e como ele classifica padrões"
+date: 2026-07-06
+categories: [redes neurais, matemática]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## A ideia geral
+
+Imagine que existe uma relação matemática $\mathbf{F}(\cdot)$ que associa um vetor de entrada $\mathbf{x} \in \mathbb{R}^{p+1}$ a um vetor de saída $\mathbf{d} \in \mathbb{R}^q$:
+
+$$
+\mathbf{d} = \mathbf{F}[\mathbf{x}]
+$$
+
+O problema é que essa relação é totalmente desconhecida. A gente não sabe qual fórmula está por trás. Tudo que temos é um conjunto finito de $N$ pares entrada-saída observados:
+
+$$
+\{\mathbf{x}_\mu, \mathbf{d}_\mu\}, \quad \mu = 1, 2, \ldots, N
+$$
+
+A proposta é usar um modelo adaptativo (no caso, o Perceptron) para construir uma aproximação $\hat{\mathbf{F}}(\cdot)$ tal que
+
+$$
+\mathbf{y} = \hat{\mathbf{F}}[\mathbf{x}]
+$$
+
+onde $\mathbf{y}$ é a saída gerada pelo modelo, que esperamos ser próxima de $\mathbf{d}$. Esse processo de obter $\hat{\mathbf{F}}$ a partir dos pares disponíveis é o que chamamos de aprendizado indutivo.
+
+## O neurônio artificial
+
+O Perceptron Simples foi proposto por Rosenblatt em 1958 e é considerado a primeira arquitetura neural inventada. Seu bloco fundamental é o neurônio de McCulloch & Pitts (1943), que funciona assim:
+
+Dado um vetor de entrada $\mathbf{x}(t)$ no instante $t$, a ativação $u_i(t)$ do $i$-ésimo neurônio é calculada como o produto escalar entre o vetor de entrada e o vetor de pesos $\mathbf{w}_i(t)$:
+
+$$
+u_i(t) = \sum_{j=0}^{p} w_{ij}(t) x_j(t) = \mathbf{w}_i^T(t) \mathbf{x}(t)
+$$
+
+onde fazemos $x_0(t) = -1$ e $w_{i0}(t) = \theta_i(t)$ (o limiar/bias do neurônio).
+
+A saída é então dada pela função sinal:
+
+$$
+y_i(t) = \text{sinal}(u_i(t)) = \begin{cases} +1, & u_i(t) \geq 0 \\ -1, & u_i(t) < 0 \end{cases}
+$$
+
+A saída é binária. Isso significa que o Perceptron é um classificador: ele decide se o vetor de entrada pertence a uma classe ou outra. Geometricamente, o que acontece é uma verificação de similaridade entre $\mathbf{x}(t)$ e $\mathbf{w}_i(t)$ via produto escalar. Se o ângulo entre eles for menor que 90°, a ativação é positiva e o neurônio "dispara" ($y_i = +1$).
+
+> O Perceptron só funciona para dados linearmente separáveis. Se as classes não puderem ser divididas por um hiperplano, ele não converge. Um exemplo clássico é a função XOR.
+
+## Função-objetivo
+
+Para que o Perceptron aprenda, precisamos definir o que ele deve minimizar. Considerando apenas um neurônio (duas classes, $\omega_1$ e $\omega_2$), definimos:
+
+$$
+\mathbf{z} = \begin{cases} \mathbf{x}, & \text{se } \mathbf{x} \in \omega_1 \\ -\mathbf{x}, & \text{se } \mathbf{x} \in \omega_2 \end{cases}
+$$
+
+Essa redefinição faz com que $\mathbf{w}^T \mathbf{z}$ deva ser positivo para todo vetor corretamente classificado. A função-objetivo fica:
+
+$$
+J[\mathbf{w}] = \sum_{\mathbf{z}_k \in \mathcal{Z}} (-\mathbf{w}^T \mathbf{z}_k)
+$$
+
+onde $\mathcal{Z}$ é o conjunto dos vetores mal-classificados. Queremos minimizar isso.
+
+## Regra de aprendizado
+
+Como $J[\mathbf{w}]$ é contínua, podemos usar o gradiente descendente para encontrar o vetor de pesos ótimo. Calculando o gradiente:
+
+$$
+\frac{\partial J[\mathbf{w}]}{\partial \mathbf{w}} = \sum_{\mathbf{z}_k \in \mathcal{Z}} (-\mathbf{z}_k)
+$$
+
+E aplicando a regra de atualização iterativa:
+
+$$
+\mathbf{w}^{novo} = \mathbf{w}^{atual} - \alpha \frac{\partial J[\mathbf{w}]}{\partial \mathbf{w}}
+$$
+
+Substituindo o gradiente, temos a forma em lote (batch):
+
+$$
+\mathbf{w}^{novo} = \mathbf{w}^{atual} + \alpha \sum_{\mathbf{z}_k \in \mathcal{Z}} \mathbf{z}_k
+$$
+
+Mas na prática é mais comum atualizar os pesos a cada padrão apresentado (treinamento sequencial). Nesse caso a regra fica bem simples:
+
+$$
+\mathbf{w}(t+1) = \mathbf{w}(t) + \alpha \, e(t) \, \mathbf{x}(t)
+$$
+
+onde $e(t) = d(t) - y(t)$ é o erro de classificação. Note algo interessante: quando a classificação está correta, $e(t) = 0$ e os pesos não mudam. O ajuste só acontece quando o Perceptron erra.
+
+Para o caso com $q$ neurônios de saída, a regra para o $i$-ésimo neurônio fica:
+
+$$
+\mathbf{w}_i(t+1) = \mathbf{w}_i(t) + \alpha \, e_i(t) \, \mathbf{x}(t)
+$$
+
+com $e_i(t) = d_i(t) - y_i(t)$.
+
+## Forma matricial
+
+Aqui fica elegante. Se organizarmos os vetores $\mathbf{w}_i^T$ como linhas de uma matriz $\mathbf{W}$ de dimensão $q \times (p+1)$, e os erros num vetor $\mathbf{e}(t) = [e_1(t) \; e_2(t) \; \cdots \; e_q(t)]^T$, a regra de aprendizado pode ser escrita como:
+
+$$
+\mathbf{W}(t+1) = \mathbf{W}(t) + \alpha \, \mathbf{e}(t) \, \mathbf{x}^T(t)
+$$
+
+Essa expressão atualiza toda a matriz de pesos de uma vez. O termo $\mathbf{e}(t)\mathbf{x}^T(t)$ é o produto externo entre o vetor de erros e o vetor de entrada (por isso $\mathbf{x}$ aparece transposto). Isso só funciona porque cada neurônio opera de forma independente.
+
+## Treinamento e avaliação
+
+O processo funciona assim:
+
+1. Separamos os dados em conjunto de treinamento ($\approx$ 75-80% dos pares) e conjunto de teste (o restante).
+2. Apresentamos os vetores de treinamento um a um, aplicando a regra de atualização dos pesos.
+3. Cada passagem completa pelo conjunto de treinamento é chamada de época. Em geral precisamos de várias épocas, embaralhando a ordem a cada uma.
+4. Paramos quando os pesos param de variar significativamente: $\|\mathbf{W}(n) - \mathbf{W}(n-1)\|_{frob} \approx 0$, ou quando atingimos um número máximo de épocas.
+
+Na fase de teste, apresentamos dados que o modelo nunca viu e medimos a taxa de acerto:
+
+$$
+P_{epoca} = \frac{\text{vetores classificados corretamente}}{\text{total de vetores de teste}}
+$$
+
+Esse valor nos diz a capacidade de generalização do modelo, ou seja, o quão bem ele "extrapola" o conhecimento adquirido durante o treinamento.
+
+## Considerações finais
+
+O Perceptron é limitado (só resolve problemas linearmente separáveis), mas entender como ele funciona é fundamental para compreender modelos mais complexos. A regra de aprendizado dele é basicamente um caso particular do gradiente descendente aplicado a uma função-objetivo específica. E a forma matricial nos dá uma base para entender como redes com múltiplas camadas atualizam seus pesos de forma eficiente.
