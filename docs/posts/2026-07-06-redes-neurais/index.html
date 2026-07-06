@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -156,7 +185,44 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
-  <li><a href="#o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação" id="toc-o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação" class="nav-link" data-scroll-target="#o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação">O que é uma rede neural: entradas, saídas, neurônios, camadas ocultas e funções de ativação</a></li>
+  <li><a href="#o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação" id="toc-o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação" class="nav-link" data-scroll-target="#o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação">O que é uma rede neural: entradas, saídas, neurônios, camadas ocultas e funções de ativação</a>
+  <ul class="collapse">
+  <li><a href="#neurônio" id="toc-neurônio" class="nav-link" data-scroll-target="#neurônio">Neurônio</a></li>
+  <li><a href="#camadas" id="toc-camadas" class="nav-link" data-scroll-target="#camadas">Camadas</a></li>
+  <li><a href="#funções-de-ativação" id="toc-funções-de-ativação" class="nav-link" data-scroll-target="#funções-de-ativação">Funções de ativação</a></li>
+  <li><a href="#por-que-funciona" id="toc-por-que-funciona" class="nav-link" data-scroll-target="#por-que-funciona">Por que funciona?</a></li>
+  </ul></li>
+  <li><a href="#exemplo-rede-com-1-camada-oculta" id="toc-exemplo-rede-com-1-camada-oculta" class="nav-link" data-scroll-target="#exemplo-rede-com-1-camada-oculta">Exemplo: rede com 1 camada oculta</a>
+  <ul class="collapse">
+  <li><a href="#forma-matricial-camada-oculta" id="toc-forma-matricial-camada-oculta" class="nav-link" data-scroll-target="#forma-matricial-camada-oculta">Forma matricial: camada oculta</a></li>
+  <li><a href="#forma-matricial-camada-de-saída" id="toc-forma-matricial-camada-de-saída" class="nav-link" data-scroll-target="#forma-matricial-camada-de-saída">Forma matricial: camada de saída</a></li>
+  <li><a href="#resumo-do-forward-pass" id="toc-resumo-do-forward-pass" class="nav-link" data-scroll-target="#resumo-do-forward-pass">Resumo do forward pass</a></li>
+  </ul></li>
+  <li><a href="#dimensões-das-matrizes-de-pesos" id="toc-dimensões-das-matrizes-de-pesos" class="nav-link" data-scroll-target="#dimensões-das-matrizes-de-pesos">Dimensões das matrizes de pesos</a>
+  <ul class="collapse">
+  <li><a href="#no-nosso-exemplo" id="toc-no-nosso-exemplo" class="nav-link" data-scroll-target="#no-nosso-exemplo">No nosso exemplo</a></li>
+  <li><a href="#regra-geral-para-l-camadas" id="toc-regra-geral-para-l-camadas" class="nav-link" data-scroll-target="#regra-geral-para-l-camadas">Regra geral para <span class="math inline">\(L\)</span> camadas</a></li>
+  </ul></li>
+  <li><a href="#forward-pass" id="toc-forward-pass" class="nav-link" data-scroll-target="#forward-pass">Forward pass</a>
+  <ul class="collapse">
+  <li><a href="#no-nosso-exemplo-l-2" id="toc-no-nosso-exemplo-l-2" class="nav-link" data-scroll-target="#no-nosso-exemplo-l-2">No nosso exemplo (<span class="math inline">\(L = 2\)</span>)</a></li>
+  <li><a href="#função-custo" id="toc-função-custo" class="nav-link" data-scroll-target="#função-custo">Função custo</a></li>
+  </ul></li>
+  <li><a href="#funções-de-ativação-e-suas-derivadas" id="toc-funções-de-ativação-e-suas-derivadas" class="nav-link" data-scroll-target="#funções-de-ativação-e-suas-derivadas">Funções de ativação e suas derivadas</a>
+  <ul class="collapse">
+  <li><a href="#sigmoide" id="toc-sigmoide" class="nav-link" data-scroll-target="#sigmoide">Sigmoide</a></li>
+  <li><a href="#tanh" id="toc-tanh" class="nav-link" data-scroll-target="#tanh">Tanh</a></li>
+  <li><a href="#relu" id="toc-relu" class="nav-link" data-scroll-target="#relu">ReLU</a></li>
+  <li><a href="#por-que-as-derivadas-importam-no-backpropagation" id="toc-por-que-as-derivadas-importam-no-backpropagation" class="nav-link" data-scroll-target="#por-que-as-derivadas-importam-no-backpropagation">Por que as derivadas importam no backpropagation</a></li>
+  </ul></li>
+  <li><a href="#funções-de-saída" id="toc-funções-de-saída" class="nav-link" data-scroll-target="#funções-de-saída">Funções de saída</a>
+  <ul class="collapse">
+  <li><a href="#identidade-regressão" id="toc-identidade-regressão" class="nav-link" data-scroll-target="#identidade-regressão">Identidade (regressão)</a></li>
+  <li><a href="#sigmoide-classificação-binária" id="toc-sigmoide-classificação-binária" class="nav-link" data-scroll-target="#sigmoide-classificação-binária">Sigmoide (classificação binária)</a></li>
+  <li><a href="#softmax-classificação-multiclasse" id="toc-softmax-classificação-multiclasse" class="nav-link" data-scroll-target="#softmax-classificação-multiclasse">Softmax (classificação multiclasse)</a></li>
+  <li><a href="#resumo-qual-função-usar-na-saída" id="toc-resumo-qual-função-usar-na-saída" class="nav-link" data-scroll-target="#resumo-qual-função-usar-na-saída">Resumo: qual função usar na saída?</a></li>
+  </ul></li>
+  <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation">Backpropagation</a></li>
   </ul>
 </nav>
     </div>
@@ -172,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Redes neurais sempre me pareceram um daqueles temas que a gente visita várias vezes (forward pass, funções de ativação, neurônios, backpropagation) mas que só “clicam” de verdade quando paramos pra entender <em>por que</em> as coisas são feitas daquele jeito. No meu caso, o ponto que mais resistia era o backpropagation: por que derivadas parciais da função custo? Por que aquela cadeia toda de regras de derivação?</p>
 <p>Decidi então construir o entendimento do zero, de forma incremental:</p>
 <ol type="1">
-<li>Primeiro, o conceito básico — o que é uma rede neural, sem formalismos pesados.</li>
+<li>Primeiro, o conceito básico: o que é uma rede neural, sem formalismos pesados.</li>
 <li>Depois, como minimizar uma função custo (a intuição por trás do gradiente).</li>
 <li>Por fim, a forma matricial completa: forward pass, backpropagation e atualização de pesos.</li>
 </ol>
@@ -183,6 +249,332 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação">O que é uma rede neural: entradas, saídas, neurônios, camadas ocultas e funções de ativação</h2>
+<p>Uma rede neural é basicamente um modelo matemático que recebe um vetor de entrada <span class="math inline">\(\mathbf{x} \in \mathbb{R}^p\)</span> e produz um vetor de saída <span class="math inline">\(\mathbf{y} \in \mathbb{R}^q\)</span>. Entre a entrada e a saída existem transformações sucessivas que envolvem operações lineares (multiplicação por matrizes de pesos) seguidas de funções não-lineares. É essa combinação que dá à rede a capacidade de aproximar relações complexas.</p>
+<section id="neurônio" class="level3">
+<h3 class="anchored" data-anchor-id="neurônio">Neurônio</h3>
+<p>O neurônio é a unidade fundamental. Ele recebe <span class="math inline">\(p\)</span> entradas, multiplica cada uma por um peso <span class="math inline">\(w_j\)</span>, soma tudo (incluindo um termo de bias <span class="math inline">\(b\)</span>) e aplica uma função de ativação <span class="math inline">\(\varphi(\cdot)\)</span>:</p>
+<p><span class="math display">\[
+y = \varphi\left(\sum_{j=1}^{p} w_j x_j + b\right) = \varphi(\mathbf{w}^T \mathbf{x} + b)
+\]</span></p>
+<p>A parte <span class="math inline">\(\mathbf{w}^T \mathbf{x} + b\)</span> é chamada de ativação (ou pré-ativação). A função <span class="math inline">\(\varphi\)</span> introduz a não-linearidade que permite à rede modelar relações que vão além de combinações lineares.</p>
+</section>
+<section id="camadas" class="level3">
+<h3 class="anchored" data-anchor-id="camadas">Camadas</h3>
+<p>Quando agrupamos vários neurônios que recebem as mesmas entradas, temos uma <strong>camada</strong>. Uma rede neural típica é organizada em:</p>
+<ul>
+<li><strong>Camada de entrada:</strong> não faz processamento, apenas repassa os dados. Se temos <span class="math inline">\(p\)</span> variáveis de entrada, essa camada tem <span class="math inline">\(p\)</span> nós.</li>
+<li><strong>Camadas ocultas:</strong> aqui acontece o processamento. Cada camada oculta tem <span class="math inline">\(n_h\)</span> neurônios que recebem as saídas da camada anterior, aplicam pesos + bias + ativação, e passam o resultado pra frente.</li>
+<li><strong>Camada de saída:</strong> produz a resposta final da rede. Se queremos classificar em <span class="math inline">\(q\)</span> classes, teremos <span class="math inline">\(q\)</span> neurônios nessa camada.</li>
+</ul>
+<p>Para uma rede com uma camada oculta de <span class="math inline">\(n_h\)</span> neurônios, as operações são:</p>
+<p><span class="math display">\[
+\mathbf{h} = \varphi(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)})
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{y} = \psi(\mathbf{W}^{(2)} \mathbf{h} + \mathbf{b}^{(2)})
+\]</span></p>
+<p>onde <span class="math inline">\(\mathbf{W}^{(1)}\)</span> é a matriz de pesos da primeira camada (dimensão <span class="math inline">\(n_h \times p\)</span>), <span class="math inline">\(\mathbf{W}^{(2)}\)</span> é a da segunda (dimensão <span class="math inline">\(q \times n_h\)</span>), e <span class="math inline">\(\varphi\)</span>, <span class="math inline">\(\psi\)</span> são as funções de ativação de cada camada.</p>
+</section>
+<section id="funções-de-ativação" class="level3">
+<h3 class="anchored" data-anchor-id="funções-de-ativação">Funções de ativação</h3>
+<p>A escolha da função de ativação importa bastante. As mais comuns são:</p>
+<ul>
+<li><strong>Sigmoide:</strong> <span class="math inline">\(\sigma(z) = \frac{1}{1 + e^{-z}}\)</span>, saída entre 0 e 1. Historicamente popular, mas sofre de gradientes que “somem” nas extremidades.</li>
+<li><strong>Tanh:</strong> <span class="math inline">\(\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}\)</span>, saída entre -1 e 1. Centrada em zero, o que ajuda no treinamento.</li>
+<li><strong>ReLU:</strong> <span class="math inline">\(\text{ReLU}(z) = \max(0, z)\)</span>. Simples, computacionalmente barata e resolve em parte o problema do gradiente que desaparece. É a mais usada em redes profundas hoje.</li>
+<li><strong>Softmax:</strong> usada na camada de saída para problemas de classificação multiclasse. Transforma o vetor de ativações em probabilidades que somam 1.</li>
+</ul>
+</section>
+<section id="por-que-funciona" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-funciona">Por que funciona?</h3>
+<p>A intuição é a seguinte: cada camada da rede aplica uma transformação nos dados. A primeira camada pode aprender a detectar padrões simples (fronteiras lineares). A segunda combina esses padrões pra formar representações mais abstratas. E assim por diante. Existe inclusive um teorema (Universal Approximation Theorem) que garante que uma rede com pelo menos uma camada oculta e um número suficiente de neurônios pode aproximar qualquer função contínua num domínio compacto, dado que os pesos sejam ajustados corretamente.</p>
+<p>O problema todo se resume a: como ajustar esses pesos? É aí que entram a função custo, o gradiente descendente e o backpropagation, que veremos nas próximas seções.</p>
+</section>
+</section>
+<section id="exemplo-rede-com-1-camada-oculta" class="level2">
+<h2 class="anchored" data-anchor-id="exemplo-rede-com-1-camada-oculta">Exemplo: rede com 1 camada oculta</h2>
+<p>Vamos tornar isso concreto. Considere uma rede com 2 entradas (<span class="math inline">\(x_1, x_2\)</span>), 3 neurônios na camada oculta (<span class="math inline">\(h_1, h_2, h_3\)</span>) e 2 saídas (<span class="math inline">\(y_1, y_2\)</span>). A arquitetura fica assim:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rede_neural.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<figcaption>Arquitetura da rede neural com 1 camada oculta</figcaption>
+</figure>
+</div>
+<section id="forma-matricial-camada-oculta" class="level3">
+<h3 class="anchored" data-anchor-id="forma-matricial-camada-oculta">Forma matricial: camada oculta</h3>
+<p>O vetor de entrada é <span class="math inline">\(\mathbf{x} = [x_1, x_2]^T\)</span>. A matriz de pesos da primeira camada <span class="math inline">\(\mathbf{W}^{(1)}\)</span> tem dimensão <span class="math inline">\(3 \times 2\)</span> (3 neurônios, 2 entradas) e o vetor de bias <span class="math inline">\(\mathbf{b}^{(1)} \in \mathbb{R}^3\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{W}^{(1)} = \begin{bmatrix} w_{11}^{(1)} &amp; w_{12}^{(1)} \\ w_{21}^{(1)} &amp; w_{22}^{(1)} \\ w_{31}^{(1)} &amp; w_{32}^{(1)} \end{bmatrix}, \qquad \mathbf{b}^{(1)} = \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)} \end{bmatrix}
+\]</span></p>
+<p>A pré-ativação da camada oculta é:</p>
+<p><span class="math display">\[
+\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)} = \begin{bmatrix} w_{11}^{(1)} &amp; w_{12}^{(1)} \\ w_{21}^{(1)} &amp; w_{22}^{(1)} \\ w_{31}^{(1)} &amp; w_{32}^{(1)} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2 + b_1^{(1)} \\ w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} \\ w_{31}^{(1)}x_1 + w_{32}^{(1)}x_2 + b_3^{(1)} \end{bmatrix}
+\]</span></p>
+<p>Aplicando a função de ativação <span class="math inline">\(\varphi\)</span> elemento a elemento:</p>
+<p><span class="math display">\[
+\mathbf{h} = \varphi\!\left(\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}\right) = \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix}
+\]</span></p>
+</section>
+<section id="forma-matricial-camada-de-saída" class="level3">
+<h3 class="anchored" data-anchor-id="forma-matricial-camada-de-saída">Forma matricial: camada de saída</h3>
+<p>Agora <span class="math inline">\(\mathbf{h} \in \mathbb{R}^3\)</span> é a entrada da segunda camada. A matriz de pesos <span class="math inline">\(\mathbf{W}^{(2)}\)</span> tem dimensão <span class="math inline">\(2 \times 3\)</span> e o bias <span class="math inline">\(\mathbf{b}^{(2)} \in \mathbb{R}^2\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{W}^{(2)} = \begin{bmatrix} w_{11}^{(2)} &amp; w_{12}^{(2)} &amp; w_{13}^{(2)} \\ w_{21}^{(2)} &amp; w_{22}^{(2)} &amp; w_{23}^{(2)} \end{bmatrix}, \qquad \mathbf{b}^{(2)} = \begin{bmatrix} b_1^{(2)} \\ b_2^{(2)} \end{bmatrix}
+\]</span></p>
+<p>A pré-ativação da camada de saída é:</p>
+<p><span class="math display">\[
+\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)} = \begin{bmatrix} w_{11}^{(2)} &amp; w_{12}^{(2)} &amp; w_{13}^{(2)} \\ w_{21}^{(2)} &amp; w_{22}^{(2)} &amp; w_{23}^{(2)} \end{bmatrix} \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix} + \begin{bmatrix} b_1^{(2)} \\ b_2^{(2)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(2)}h_1 + w_{12}^{(2)}h_2 + w_{13}^{(2)}h_3 + b_1^{(2)} \\ w_{21}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{23}^{(2)}h_3 + b_2^{(2)} \end{bmatrix}
+\]</span></p>
+<p>Aplicando a função de ativação de saída <span class="math inline">\(\psi\)</span>:</p>
+<p><span class="math display">\[
+\mathbf{y} = \psi\!\left(\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}\right) = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix}
+\]</span></p>
+</section>
+<section id="resumo-do-forward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="resumo-do-forward-pass">Resumo do forward pass</h3>
+<p>Juntando tudo, o fluxo completo de cálculo (forward pass) fica:</p>
+<p><span class="math display">\[
+\mathbf{x} \xrightarrow{\mathbf{W}^{(1)},\, \mathbf{b}^{(1)}} \mathbf{h} = \varphi\!\left(\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}\right) \xrightarrow{\mathbf{W}^{(2)},\, \mathbf{b}^{(2)}} \mathbf{y} = \psi\!\left(\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}\right)
+\]</span></p>
+<p>O total de parâmetros ajustáveis nessa rede é: <span class="math inline">\(3 \times 2 + 3 + 2 \times 3 + 2 = 6 + 3 + 6 + 2 = 17\)</span>. Em redes profundas esse número cresce rapidamente, e é exatamente por isso que o backpropagation precisa ser eficiente.</p>
+</section>
+</section>
+<section id="dimensões-das-matrizes-de-pesos" class="level2">
+<h2 class="anchored" data-anchor-id="dimensões-das-matrizes-de-pesos">Dimensões das matrizes de pesos</h2>
+<p>Entender as dimensões é provavelmente a parte mais prática para quem vai implementar uma rede. Um erro de dimensão mata o código antes mesmo de começar a treinar, então vale fixar a regra geral.</p>
+<p>Para uma camada <span class="math inline">\(\ell\)</span> qualquer, a regra é:</p>
+<p><span class="math display">\[
+\mathbf{W}^{(\ell)} \in \mathbb{R}^{n_\ell \times n_{\ell-1}}
+\]</span></p>
+<p>onde <span class="math inline">\(n_{\ell-1}\)</span> é o número de neurônios (ou entradas) da camada anterior e <span class="math inline">\(n_\ell\)</span> é o número de neurônios da camada atual. O bias sempre acompanha: <span class="math inline">\(\mathbf{b}^{(\ell)} \in \mathbb{R}^{n_\ell}\)</span>.</p>
+<p>A intuição é direta: cada linha de <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span> contém os pesos de um neurônio da camada <span class="math inline">\(\ell\)</span>, e esse neurônio precisa de um peso para cada entrada que recebe. Por isso o número de colunas é <span class="math inline">\(n_{\ell-1}\)</span>.</p>
+<section id="no-nosso-exemplo" class="level3">
+<h3 class="anchored" data-anchor-id="no-nosso-exemplo">No nosso exemplo</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 32%">
+<col style="width: 32%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Camada</th>
+<th>Operação</th>
+<th>Dimensão de <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span></th>
+<th>Dimensão de <span class="math inline">\(\mathbf{b}^{(\ell)}\)</span></th>
+<th>Dimensão da saída</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 (oculta)</td>
+<td><span class="math inline">\(\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}\)</span></td>
+<td><span class="math inline">\(3 \times 2\)</span></td>
+<td><span class="math inline">\(3 \times 1\)</span></td>
+<td><span class="math inline">\(\mathbf{h} \in \mathbb{R}^3\)</span></td>
+</tr>
+<tr class="even">
+<td>2 (saída)</td>
+<td><span class="math inline">\(\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}\)</span></td>
+<td><span class="math inline">\(2 \times 3\)</span></td>
+<td><span class="math inline">\(2 \times 1\)</span></td>
+<td><span class="math inline">\(\mathbf{y} \in \mathbb{R}^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Note que as dimensões se encaixam: o número de colunas de <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span> tem que ser igual ao tamanho do vetor que entra. Se isso não bater, a multiplicação simplesmente não existe.</p>
+</section>
+<section id="regra-geral-para-l-camadas" class="level3">
+<h3 class="anchored" data-anchor-id="regra-geral-para-l-camadas">Regra geral para <span class="math inline">\(L\)</span> camadas</h3>
+<p>Numa rede com <span class="math inline">\(L\)</span> camadas e arquitetura <span class="math inline">\([n_0, n_1, n_2, \ldots, n_L]\)</span> (onde <span class="math inline">\(n_0\)</span> é o número de entradas e <span class="math inline">\(n_L\)</span> é o número de saídas), as dimensões ficam:</p>
+<p><span class="math display">\[
+\mathbf{W}^{(\ell)} \in \mathbb{R}^{n_\ell \times n_{\ell-1}}, \quad \mathbf{b}^{(\ell)} \in \mathbb{R}^{n_\ell}, \quad \ell = 1, 2, \ldots, L
+\]</span></p>
+<p>O total de parâmetros da rede é:</p>
+<p><span class="math display">\[
+\sum_{\ell=1}^{L} n_\ell \cdot (n_{\ell-1} + 1)
+\]</span></p>
+<p>O <span class="math inline">\(+1\)</span> vem do bias de cada camada. No nosso exemplo: <span class="math inline">\(3 \cdot (2+1) + 2 \cdot (3+1) = 9 + 8 = 17\)</span>, que bate com o que calculamos antes.</p>
+<p>Quando formos derivar o backpropagation, essas dimensões vão aparecer o tempo todo. O gradiente da função custo em relação a <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span> precisa ter exatamente a mesma dimensão que <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span>, caso contrário a atualização dos pesos não faz sentido.</p>
+</section>
+</section>
+<section id="forward-pass" class="level2">
+<h2 class="anchored" data-anchor-id="forward-pass">Forward pass</h2>
+<p>O forward pass é simplesmente o caminho dos dados da entrada até a saída. Dado um vetor de entrada <span class="math inline">\(\mathbf{x}\)</span>, calculamos a saída de cada camada em sequência, usando os pesos e biases atuais. Nenhum ajuste acontece aqui: é só propagar.</p>
+<p>Para uma rede com <span class="math inline">\(L\)</span> camadas, o cálculo em cada camada <span class="math inline">\(\ell\)</span> segue dois passos:</p>
+<p><strong>Passo 1 — pré-ativação:</strong> combina linearmente as entradas com os pesos</p>
+<p><span class="math display">\[
+\mathbf{z}^{(\ell)} = \mathbf{W}^{(\ell)} \mathbf{a}^{(\ell-1)} + \mathbf{b}^{(\ell)}
+\]</span></p>
+<p><strong>Passo 2 — ativação:</strong> aplica a função não-linear</p>
+<p><span class="math display">\[
+\mathbf{a}^{(\ell)} = \varphi^{(\ell)}\!\left(\mathbf{z}^{(\ell)}\right)
+\]</span></p>
+<p>onde adotamos <span class="math inline">\(\mathbf{a}^{(0)} = \mathbf{x}\)</span> (a entrada da rede). A saída final é <span class="math inline">\(\hat{\mathbf{y}} = \mathbf{a}^{(L)}\)</span>.</p>
+<p>Vale guardar explicitamente tanto <span class="math inline">\(\mathbf{z}^{(\ell)}\)</span> quanto <span class="math inline">\(\mathbf{a}^{(\ell)}\)</span> para cada camada durante esse passo. O motivo ficará claro no backpropagation: esses valores intermediários são necessários para calcular os gradientes.</p>
+<section id="no-nosso-exemplo-l-2" class="level3">
+<h3 class="anchored" data-anchor-id="no-nosso-exemplo-l-2">No nosso exemplo (<span class="math inline">\(L = 2\)</span>)</h3>
+<p>Partindo de <span class="math inline">\(\mathbf{a}^{(0)} = \mathbf{x} = [x_1,\, x_2]^T\)</span>:</p>
+<p><strong>Camada 1 (oculta):</strong></p>
+<p><span class="math display">\[
+\mathbf{z}^{(1)} = \mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)} =
+\begin{bmatrix}
+w_{11}^{(1)} x_1 + w_{12}^{(1)} x_2 + b_1^{(1)} \\
+w_{21}^{(1)} x_1 + w_{22}^{(1)} x_2 + b_2^{(1)} \\
+w_{31}^{(1)} x_1 + w_{32}^{(1)} x_2 + b_3^{(1)}
+\end{bmatrix}
+\in \mathbb{R}^3
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{a}^{(1)} = \varphi\!\left(\mathbf{z}^{(1)}\right) =
+\begin{bmatrix} \varphi(z_1^{(1)}) \\ \varphi(z_2^{(1)}) \\ \varphi(z_3^{(1)}) \end{bmatrix} = \mathbf{h} \in \mathbb{R}^3
+\]</span></p>
+<p><strong>Camada 2 (saída):</strong></p>
+<p><span class="math display">\[
+\mathbf{z}^{(2)} = \mathbf{W}^{(2)} \mathbf{a}^{(1)} + \mathbf{b}^{(2)} =
+\begin{bmatrix}
+w_{11}^{(2)} h_1 + w_{12}^{(2)} h_2 + w_{13}^{(2)} h_3 + b_1^{(2)} \\
+w_{21}^{(2)} h_1 + w_{22}^{(2)} h_2 + w_{23}^{(2)} h_3 + b_2^{(2)}
+\end{bmatrix}
+\in \mathbb{R}^2
+\]</span></p>
+<p><span class="math display">\[
+\hat{\mathbf{y}} = \mathbf{a}^{(2)} = \psi\!\left(\mathbf{z}^{(2)}\right) =
+\begin{bmatrix} \psi(z_1^{(2)}) \\ \psi(z_2^{(2)}) \end{bmatrix} \in \mathbb{R}^2
+\]</span></p>
+</section>
+<section id="função-custo" class="level3">
+<h3 class="anchored" data-anchor-id="função-custo">Função custo</h3>
+<p>Com a saída <span class="math inline">\(\hat{\mathbf{y}}\)</span> em mãos, podemos medir o quão longe estamos da saída desejada <span class="math inline">\(\mathbf{y}\)</span>. A função custo mais comum para regressão é o erro quadrático médio:</p>
+<p><span class="math display">\[
+\mathcal{L}(\mathbf{W}, \mathbf{b}) = \frac{1}{2} \|\hat{\mathbf{y}} - \mathbf{y}\|^2 = \frac{1}{2} \sum_{k=1}^{n_L} (\hat{y}_k - y_k)^2
+\]</span></p>
+<p>O fator <span class="math inline">\(\frac{1}{2}\)</span> é apenas conveniência: ele cancela o expoente 2 quando derivamos, deixando as expressões mais limpas. Para classificação multiclasse usa-se a entropia cruzada, mas o mecanismo do backpropagation é o mesmo.</p>
+<p>O objetivo do treinamento é encontrar os pesos <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span> e biases <span class="math inline">\(\mathbf{b}^{(\ell)}\)</span> que minimizam <span class="math inline">\(\mathcal{L}\)</span>. Para isso precisamos calcular os gradientes de <span class="math inline">\(\mathcal{L}\)</span> em relação a cada parâmetro da rede, o que é exatamente o papel do backpropagation.</p>
+</section>
+</section>
+<section id="funções-de-ativação-e-suas-derivadas" class="level2">
+<h2 class="anchored" data-anchor-id="funções-de-ativação-e-suas-derivadas">Funções de ativação e suas derivadas</h2>
+<p>Antes de entrar no backpropagation, vale fixar as derivadas das principais funções de ativação. O motivo é direto: o backpropagation usa a regra da cadeia para propagar gradientes da saída para a entrada, e em cada camada essa derivação passa pela derivada de <span class="math inline">\(\varphi^{(\ell)}\)</span> em relação à pré-ativação <span class="math inline">\(\mathbf{z}^{(\ell)}\)</span>. Se a derivada for zero em boa parte do domínio, o gradiente “some” e os pesos das primeiras camadas param de ser atualizados. Esse problema tem nome: <em>vanishing gradient</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ativacoes.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Funções de ativação (linha contínua) e suas derivadas (linha tracejada)</figcaption>
+</figure>
+</div>
+<section id="sigmoide" class="level3">
+<h3 class="anchored" data-anchor-id="sigmoide">Sigmoide</h3>
+<p><span class="math display">\[
+\sigma(z) = \frac{1}{1 + e^{-z}}, \qquad \sigma'(z) = \sigma(z)\left(1 - \sigma(z)\right)
+\]</span></p>
+<p>Saída entre 0 e 1. A derivada é um resultado elegante: se você já calculou <span class="math inline">\(\sigma(z)\)</span> no forward pass, a derivada sai de graça. O problema é que <span class="math inline">\(\sigma'(z)\)</span> é pequena em quase todo o domínio, máxima em <span class="math inline">\(z = 0\)</span> com valor <span class="math inline">\(0.25\)</span>. Em redes profundas, multiplicar muitos valores <span class="math inline">\(\leq 0.25\)</span> ao longo das camadas faz o gradiente cair exponencialmente, o que praticamente inviabiliza o treinamento das primeiras camadas.</p>
+</section>
+<section id="tanh" class="level3">
+<h3 class="anchored" data-anchor-id="tanh">Tanh</h3>
+<p><span class="math display">\[
+\tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}}, \qquad \tanh'(z) = 1 - \tanh^2(z)
+\]</span></p>
+<p>Saída entre <span class="math inline">\(-1\)</span> e <span class="math inline">\(+1\)</span>, centrada em zero (o que ajuda a estabilizar o treinamento em relação à sigmoide). A derivada máxima é 1 em <span class="math inline">\(z = 0\)</span>. Ainda sofre de vanishing gradient nas saturações, mas em geral converge melhor que a sigmoide em redes rasas.</p>
+</section>
+<section id="relu" class="level3">
+<h3 class="anchored" data-anchor-id="relu">ReLU</h3>
+<p><span class="math display">\[
+\text{ReLU}(z) = \max(0, z), \qquad \text{ReLU}'(z) = \begin{cases} 1, &amp; z &gt; 0 \\ 0, &amp; z \leq 0 \end{cases}
+\]</span></p>
+<p>A mais usada em redes profundas hoje. A derivada é 1 para entradas positivas, o que evita o vanishing gradient nessa região. O lado negativo: neurônios com <span class="math inline">\(z \leq 0\)</span> têm gradiente zero e param de contribuir para o aprendizado (o chamado <em>dying ReLU</em>). Variantes como Leaky ReLU e ELU tentam contornar isso mantendo um pequeno gradiente para <span class="math inline">\(z &lt; 0\)</span>.</p>
+</section>
+<section id="por-que-as-derivadas-importam-no-backpropagation" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-as-derivadas-importam-no-backpropagation">Por que as derivadas importam no backpropagation</h3>
+<p>Quando calcularmos o gradiente de <span class="math inline">\(\mathcal{L}\)</span> em relação a <span class="math inline">\(\mathbf{W}^{(\ell)}\)</span>, o resultado vai envolver o termo:</p>
+<p><span class="math display">\[
+\varphi'^{(\ell)}\!\left(\mathbf{z}^{(\ell)}\right)
+\]</span></p>
+<p>ou seja, a derivada da função de ativação avaliada nas pré-ativações que já calculamos no forward pass. É por isso que guardamos <span class="math inline">\(\mathbf{z}^{(\ell)}\)</span> durante o forward: precisamos dele exatamente aqui. A escolha da função de ativação muda diretamente a magnitude desse termo e, portanto, a velocidade e estabilidade do treinamento.</p>
+</section>
+</section>
+<section id="funções-de-saída" class="level2">
+<h2 class="anchored" data-anchor-id="funções-de-saída">Funções de saída</h2>
+<p>As funções de ativação discutidas acima são usadas nas camadas ocultas. A camada de saída é diferente: a função <span class="math inline">\(\psi\)</span> aplicada em <span class="math inline">\(\mathbf{z}^{(L)}\)</span> depende do tipo de problema que a rede resolve. A escolha errada aqui compromete tudo.</p>
+<section id="identidade-regressão" class="level3">
+<h3 class="anchored" data-anchor-id="identidade-regressão">Identidade (regressão)</h3>
+<p><span class="math display">\[
+\psi(z) = z
+\]</span></p>
+<p>Quando a saída da rede é um valor real sem restrição de intervalo (prever temperatura, preço, etc.), a camada de saída não aplica nenhuma não-linearidade. A derivada é simplesmente 1, o que não interfere no gradiente.</p>
+</section>
+<section id="sigmoide-classificação-binária" class="level3">
+<h3 class="anchored" data-anchor-id="sigmoide-classificação-binária">Sigmoide (classificação binária)</h3>
+<p><span class="math display">\[
+\psi(z) = \sigma(z) = \frac{1}{1+e^{-z}}
+\]</span></p>
+<p>Usada quando a saída representa uma probabilidade de pertencer a uma de duas classes. A saída fica em <span class="math inline">\((0, 1)\)</span> e é interpretada diretamente como <span class="math inline">\(P(\text{classe} = 1 \mid \mathbf{x})\)</span>. Nesse caso a função custo natural é a entropia cruzada binária:</p>
+<p><span class="math display">\[
+\mathcal{L} = -\left[y \log \hat{y} + (1-y)\log(1-\hat{y})\right]
+\]</span></p>
+</section>
+<section id="softmax-classificação-multiclasse" class="level3">
+<h3 class="anchored" data-anchor-id="softmax-classificação-multiclasse">Softmax (classificação multiclasse)</h3>
+<p>Para <span class="math inline">\(K\)</span> classes, a softmax transforma o vetor de pré-ativações <span class="math inline">\(\mathbf{z}^{(L)} \in \mathbb{R}^K\)</span> num vetor de probabilidades que somam 1:</p>
+<p><span class="math display">\[
+\text{softmax}(\mathbf{z})_k = \frac{e^{z_k}}{\displaystyle\sum_{j=1}^{K} e^{z_j}}, \qquad k = 1, 2, \ldots, K
+\]</span></p>
+<p>A saída <span class="math inline">\(\hat{y}_k\)</span> representa a probabilidade estimada de a entrada pertencer à classe <span class="math inline">\(k\)</span>. Duas propriedades importantes:</p>
+<ul>
+<li><span class="math inline">\(\hat{y}_k \in (0, 1)\)</span> para todo <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\sum_{k=1}^{K} \hat{y}_k = 1\)</span></li>
+</ul>
+<p>A função custo natural para esse caso é a entropia cruzada categórica. Para um único exemplo com rótulo <span class="math inline">\(y_k \in \{0, 1\}\)</span> (codificação one-hot):</p>
+<p><span class="math display">\[
+\mathcal{L} = -\sum_{k=1}^{K} y_k \log \hat{y}_k
+\]</span></p>
+<p>Como <span class="math inline">\(y_k = 1\)</span> apenas para a classe correta e 0 para as demais, isso se reduz a <span class="math inline">\(\mathcal{L} = -\log \hat{y}_{k^*}\)</span>, onde <span class="math inline">\(k^*\)</span> é a classe verdadeira. Minimizar <span class="math inline">\(\mathcal{L}\)</span> equivale a maximizar a probabilidade atribuída à classe correta.</p>
+<p>Vale notar também um truque numérico importante: na prática, subtrai-se o máximo do vetor antes de exponenciar para evitar overflow:</p>
+<p><span class="math display">\[
+\text{softmax}(\mathbf{z})_k = \frac{e^{z_k - \max_j z_j}}{\displaystyle\sum_{j=1}^{K} e^{z_j - \max_j z_j}}
+\]</span></p>
+<p>O resultado matemático é idêntico, mas numericamente estável.</p>
+<section id="derivada-da-softmax" class="level4">
+<h4 class="anchored" data-anchor-id="derivada-da-softmax">Derivada da softmax</h4>
+<p>A derivada da softmax é um pouco mais delicada que as anteriores porque a saída <span class="math inline">\(\hat{y}_k\)</span> depende de todas as componentes de <span class="math inline">\(\mathbf{z}\)</span>, não só de <span class="math inline">\(z_k\)</span>. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Vou deixar esse subtópico para você desenvolver.</p>
+<blockquote class="blockquote">
+<p><em>Derivação em breve…</em></p>
+</blockquote>
+</section>
+</section>
+<section id="resumo-qual-função-usar-na-saída" class="level3">
+<h3 class="anchored" data-anchor-id="resumo-qual-função-usar-na-saída">Resumo: qual função usar na saída?</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Problema</th>
+<th>Função de saída</th>
+<th>Função custo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Regressão</td>
+<td>Identidade</td>
+<td>Erro quadrático médio</td>
+</tr>
+<tr class="even">
+<td>Classificação binária</td>
+<td>Sigmoide</td>
+<td>Entropia cruzada binária</td>
+</tr>
+<tr class="odd">
+<td>Classificação multiclasse</td>
+<td>Softmax</td>
+<td>Entropia cruzada categórica</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="backpropagation" class="level2">
+<h2 class="anchored" data-anchor-id="backpropagation">Backpropagation</h2>
 
 
 </section>
