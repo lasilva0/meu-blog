@@ -537,10 +537,53 @@ w_{21}^{(2)} h_1 + w_{22}^{(2)} h_2 + w_{23}^{(2)} h_3 + b_2^{(2)}
 <p>O resultado matemático é idêntico, mas numericamente estável.</p>
 <section id="derivada-da-softmax" class="level4">
 <h4 class="anchored" data-anchor-id="derivada-da-softmax">Derivada da softmax</h4>
-<p>A derivada da softmax é um pouco mais delicada que as anteriores porque a saída <span class="math inline">\(\hat{y}_k\)</span> depende de todas as componentes de <span class="math inline">\(\mathbf{z}\)</span>, não só de <span class="math inline">\(z_k\)</span>. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Vou deixar esse subtópico para você desenvolver.</p>
+<p>A derivada da softmax é um pouco mais delicada que as anteriores porque a saída <span class="math inline">\(\hat{y}_k\)</span> depende de todas as componentes de <span class="math inline">\(\mathbf{z}\)</span>, não só de <span class="math inline">\(z_k\)</span>. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Seja então a função</p>
+<p><span class="math display">\[
+\text{softmax}(\mathbf{z})_k = \frac{e^{z_k}}{\sum_{j=1}^{n} e^{z_j}}, \quad \text{com } \text{softmax}: \mathbb{R}^n \to \mathbb{R}^n,
+\]</span></p>
+<p>isto é, uma função que recebe um vetor nos reais e retorna outro vetor nos reais. Vamos chamar de <span class="math inline">\(D\)</span> o somatório no denominador e abri-lo:</p>
+<p><span class="math display">\[
+D = \sum_{j=1}^{n} e^{z_j} = e^{z_1} + e^{z_2} + \ldots + e^{z_j} + \ldots + e^{z_n}.
+\]</span></p>
+<p>Desta maneira, temos que</p>
+<p><span class="math display">\[
+s_k = \frac{e^{z_k}}{D}.
+\]</span></p>
+<p>Para derivar podemos utilizar a regra da derivada quociente.</p>
 <blockquote class="blockquote">
-<p><em>Derivação em breve…</em></p>
+<p><strong>Relembre:</strong> se <span class="math inline">\(f\)</span> e <span class="math inline">\(g\)</span> são funções contínuas e diferenciáveis, vale que <span class="math display">\[\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}\]</span></p>
 </blockquote>
+<p>Queremos calcular <span class="math inline">\(\dfrac{\partial s_k}{\partial z_j}\)</span>, ou seja, como a <span class="math inline">\(k\)</span>-ésima saída varia quando mudamos a <span class="math inline">\(j\)</span>-ésima entrada. Seja <span class="math inline">\(f = e^{z_k}\)</span> e <span class="math inline">\(g = D\)</span>. Como estamos derivando em relação a <span class="math inline">\(z_j\)</span>, temos dois casos:</p>
+<p><strong>Caso 1: <span class="math inline">\(j = k\)</span></strong> — o numerador depende de <span class="math inline">\(z_j\)</span>, então <span class="math inline">\(f' = e^{z_k}\)</span>. O denominador também depende, com <span class="math inline">\(g' = e^{z_j} = e^{z_k}\)</span>.</p>
+<p><strong>Caso 2: <span class="math inline">\(j \neq k\)</span></strong> — o numerador não depende de <span class="math inline">\(z_j\)</span>, então <span class="math inline">\(f' = 0\)</span>. Apenas o denominador contribui, com <span class="math inline">\(g' = e^{z_j}\)</span>.</p>
+<p>Assim para o caso 1 (<span class="math inline">\(j = k\)</span>) temos:</p>
+<p><span class="math display">\[
+\frac{\partial s_k}{\partial z_k} = \frac{e^{z_k} D - (e^{z_k})^2}{D^2} = \frac{e^{z_k}}{D} - \Bigg(\frac{e^{z_k}}{D}\Bigg)^2
+\]</span></p>
+<p>Lembre que <span class="math inline">\(s_k = e^{z_k} / D\)</span> e portanto a derivada para o caso 1 é simplesmente <span class="math inline">\(s_k(1 - s_k)\)</span>.</p>
+<p>Para o caso 2 (j k) temos:</p>
+<p><span class="math display">\[
+\frac{\partial s_k}{\partial z_j} = \frac{0 \times D - e^{z_k} e^{z_j}}{D^2} = -\frac{e^{z_k}}{D} \frac{e^{z_j}}{D} = -s_k \times s_j.
+\]</span></p>
+<p>Podemos unir os dois casos de forma compacta</p>
+<p><span class="math display">\[
+\frac{\partial s_k}{\partial z_j} = \begin{cases} s_k(1 - s_k), \,\, &amp;j = k  \\
+-s_k \times s_j, \,\, &amp;j \neq k\end{cases}
+\]</span></p>
+<p>que pode ser reescrita em termos da funççao delta de Kronecker (<span class="math inline">\(\delta_{kj} = 1\)</span> se <span class="math inline">\(k=j\)</span>, 0 caso contrário):</p>
+<p><span class="math display">\[
+\frac{\partial s_k}{ \partial z_j} = s_k(\delta_{kj} - s_j).
+\]</span></p>
+<p>Podemos vizualizar essa derivada como uma matriz jacobiana com derivadas parciais em que os termos da diagonal principal são os termos <span class="math inline">\(j = k\)</span> e os elementos fora da diagonal são os termos <span class="math inline">\(j \neq k\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial \mathbf{s}}{\partial \mathbf{z}} =
+\begin{pmatrix}
+s_1(1-s_1) &amp; -s_1 s_2   &amp; \cdots &amp; -s_1 s_n   \\
+-s_2 s_1   &amp; s_2(1-s_2) &amp; \cdots &amp; -s_2 s_n   \\
+\vdots     &amp; \vdots     &amp; \ddots &amp; \vdots     \\
+-s_n s_1   &amp; -s_n s_2   &amp; \cdots &amp; s_n(1-s_n)
+\end{pmatrix}
+\]</span></p>
 </section>
 </section>
 <section id="resumo-qual-função-usar-na-saída" class="level3">

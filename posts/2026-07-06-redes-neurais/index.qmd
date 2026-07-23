@@ -336,9 +336,77 @@ O resultado matemático é idêntico, mas numericamente estável.
 
 #### Derivada da softmax
 
-A derivada da softmax é um pouco mais delicada que as anteriores porque a saída $\hat{y}_k$ depende de todas as componentes de $\mathbf{z}$, não só de $z_k$. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Vou deixar esse subtópico para você desenvolver.
+A derivada da softmax é um pouco mais delicada que as anteriores porque a saída $\hat{y}_k$ depende de todas as componentes de $\mathbf{z}$, não só de $z_k$. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Seja então a função
 
-> *Derivação em breve...*
+$$
+\text{softmax}(\mathbf{z})_k = \frac{e^{z_k}}{\sum_{j=1}^{n} e^{z_j}}, \quad \text{com } \text{softmax}: \mathbb{R}^n \to \mathbb{R}^n,
+$$
+
+isto é, uma função que recebe um vetor nos reais e retorna outro vetor nos reais. Vamos chamar de $D$ o somatório no denominador e abri-lo:
+
+$$
+D = \sum_{j=1}^{n} e^{z_j} = e^{z_1} + e^{z_2} + \ldots + e^{z_j} + \ldots + e^{z_n}.
+$$
+
+Desta maneira, temos que
+
+$$
+s_k = \frac{e^{z_k}}{D}.
+$$
+
+Para derivar podemos utilizar a regra da derivada quociente.
+
+> **Relembre:** se $f$ e $g$ são funções contínuas e diferenciáveis, vale que
+> $$\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$$
+
+Queremos calcular $\dfrac{\partial s_k}{\partial z_j}$, ou seja, como a $k$-ésima saída varia quando mudamos a $j$-ésima entrada. Seja $f = e^{z_k}$ e $g = D$. Como estamos derivando em relação a $z_j$, temos dois casos:
+
+**Caso 1: $j = k$** — o numerador depende de $z_j$, então $f' = e^{z_k}$. O denominador também depende, com $g' = e^{z_j} = e^{z_k}$.
+
+**Caso 2: $j \neq k$** — o numerador não depende de $z_j$, então $f' = 0$. Apenas o denominador contribui, com $g' = e^{z_j}$.
+
+Assim para o caso 1 ($j = k$) temos: 
+
+$$
+\frac{\partial s_k}{\partial z_k} = \frac{e^{z_k} D - (e^{z_k})^2}{D^2} = \frac{e^{z_k}}{D} - \Bigg(\frac{e^{z_k}}{D}\Bigg)^2
+$$
+
+Lembre que $s_k = e^{z_k} / D$ e portanto a derivada para o caso 1 é simplesmente $s_k(1 - s_k)$. 
+
+Para o caso 2 (j \neq k) temos:
+
+$$
+\frac{\partial s_k}{\partial z_j} = \frac{0 \times D - e^{z_k} e^{z_j}}{D^2} = -\frac{e^{z_k}}{D} \frac{e^{z_j}}{D} = -s_k \times s_j. 
+$$
+
+Podemos unir os dois casos de forma compacta 
+
+$$
+\frac{\partial s_k}{\partial z_j} = \begin{cases} s_k(1 - s_k), \,\, &j = k  \\ 
+-s_k \times s_j, \,\, &j \neq k\end{cases}
+$$
+
+que pode ser reescrita em termos da funççao delta de Kronecker 
+($\delta_{kj} = 1$ se $k=j$, 0 caso contrário):
+
+$$
+\frac{\partial s_k}{ \partial z_j} = s_k(\delta_{kj} - s_j). 
+$$
+
+Podemos vizualizar essa derivada como uma matriz jacobiana com derivadas parciais em que os 
+termos da diagonal principal são os termos $j = k$ e os elementos fora da diagonal são os termos
+$j \neq k$:
+
+$$
+\frac{\partial \mathbf{s}}{\partial \mathbf{z}} = 
+\begin{pmatrix}
+s_1(1-s_1) & -s_1 s_2   & \cdots & -s_1 s_n   \\
+-s_2 s_1   & s_2(1-s_2) & \cdots & -s_2 s_n   \\
+\vdots     & \vdots     & \ddots & \vdots     \\
+-s_n s_1   & -s_n s_2   & \cdots & s_n(1-s_n)
+\end{pmatrix}
+$$
+
 
 ### Resumo: qual função usar na saída?
 
