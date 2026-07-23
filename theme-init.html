@@ -1,0 +1,12 @@
+<script>
+(function() {
+  try {
+    var saved = localStorage.getItem('quarto-color-scheme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = saved === 'dark' || (!saved && prefersDark);
+    if (dark) {
+      document.documentElement.setAttribute('data-bs-theme', 'dark');
+    }
+  } catch(e) {}
+})();
+</script>

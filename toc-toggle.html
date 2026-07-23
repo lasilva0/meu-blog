@@ -1,0 +1,97 @@
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ===== TOC TOGGLE =====
+  var toc = document.getElementById('TOC');
+  if (toc) {
+    var btn = document.createElement('button');
+    btn.id = 'toc-toggle-btn';
+    btn.title = 'Recolher / Expandir sumário';
+    btn.innerHTML = '&#8250;';
+    toc.insertBefore(btn, toc.firstChild);
+
+    function setCollapsed(collapsed) {
+      if (collapsed) {
+        toc.classList.add('toc-collapsed');
+        btn.innerHTML = '&#8249;';
+      } else {
+        toc.classList.remove('toc-collapsed');
+        btn.innerHTML = '&#8250;';
+      }
+      try { localStorage.setItem('toc-collapsed', collapsed); } catch(e) {}
+    }
+
+    try {
+      if (localStorage.getItem('toc-collapsed') === 'true') setCollapsed(true);
+    } catch(e) {}
+
+    btn.addEventListener('click', function () {
+      setCollapsed(!toc.classList.contains('toc-collapsed'));
+    });
+  }
+
+  // ===== DARK MODE TOGGLE NA NAVBAR =====
+  var navbar = document.querySelector('.navbar-nav.ms-auto, .navbar-nav.navbar-right, .navbar .navbar-nav:last-child');
+  if (!navbar) navbar = document.querySelector('.navbar-collapse .navbar-nav');
+
+  if (navbar) {
+    var li = document.createElement('li');
+    li.className = 'nav-item d-flex align-items-center';
+    li.style.cssText = 'padding: 0 0.4rem;';
+
+    li.innerHTML = `
+      <label id="theme-switch-label" title="Alternar modo escuro" style="
+        display:flex;align-items:center;gap:6px;cursor:pointer;margin:0;
+        font-size:0.75rem;color:rgba(255,255,255,0.85);user-select:none;
+      ">
+        <span id="theme-icon" style="font-size:0.9rem;line-height:1;">&#9790;</span>
+        <span style="
+          position:relative;display:inline-block;
+          width:34px;height:18px;
+        ">
+          <input type="checkbox" id="theme-checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+          <span id="theme-slider" style="
+            position:absolute;inset:0;border-radius:18px;
+            background:#ffffff33;border:1px solid rgba(255,255,255,0.4);
+            transition:background 0.3s;cursor:pointer;
+          ">
+            <span id="theme-knob" style="
+              position:absolute;top:2px;left:2px;
+              width:12px;height:12px;border-radius:50%;
+              background:#ffffff;
+              transition:transform 0.3s;
+            "></span>
+          </span>
+        </span>
+      </label>
+    `;
+
+    navbar.appendChild(li);
+
+    var checkbox = document.getElementById('theme-checkbox');
+    var slider   = document.getElementById('theme-slider');
+    var knob     = document.getElementById('theme-knob');
+    var icon     = document.getElementById('theme-icon');
+
+    function applyTheme(dark) {
+      document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+      checkbox.checked = dark;
+      knob.style.transform = dark ? 'translateX(16px)' : 'translateX(0)';
+      slider.style.background = dark ? '#2dd4bf99' : '#ffffff33';
+      icon.innerHTML = dark ? '&#9728;' : '&#9790;';
+      try { localStorage.setItem('quarto-color-scheme', dark ? 'dark' : 'light'); } catch(e) {}
+    }
+
+    var saved = null;
+    try { saved = localStorage.getItem('quarto-color-scheme'); } catch(e) {}
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved === 'dark' || (!saved && prefersDark));
+
+    document.getElementById('theme-switch-label').addEventListener('click', function(e) {
+      e.preventDefault();
+      applyTheme(!checkbox.checked);
+    });
+  }
+
+});
+</script>

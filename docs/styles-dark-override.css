@@ -1,0 +1,197 @@
+/* ===================================================
+   Dark Mode — aplicado pelo Quarto via [data-bs-theme="dark"]
+   =================================================== */
+
+[data-bs-theme="dark"] {
+  --color-primary: #2dd4bf;
+  --color-primary-dark: #14b8a6;
+  --color-secondary: #38bdf8;
+  --color-accent: #a78bfa;
+  --color-accent-light: #c4b5fd;
+  --color-bg: #0f172a;
+  --color-card: #1e293b;
+  --color-text: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-border: #2d3f55;
+}
+
+/* Base */
+[data-bs-theme="dark"] body {
+  background-color: #0f172a;
+  color: #cbd5e1;
+}
+
+/* Headings */
+[data-bs-theme="dark"] h1,
+[data-bs-theme="dark"] h2 {
+  color: #2dd4bf;
+}
+
+[data-bs-theme="dark"] h2 {
+  border-bottom-color: #38bdf8;
+}
+
+[data-bs-theme="dark"] h3 {
+  color: #94a3b8;
+}
+
+/* Navbar */
+[data-bs-theme="dark"] .navbar {
+  background-color: #0f2520 !important;
+  border-bottom: 1px solid #1e3a34;
+}
+
+/* Banner */
+[data-bs-theme="dark"] .quarto-title-banner {
+  background: linear-gradient(135deg, #0f2520 0%, #0c2840 100%) !important;
+}
+
+/* Article */
+[data-bs-theme="dark"] article {
+  background: #1e293b;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Cards listing */
+[data-bs-theme="dark"] div.quarto-post {
+  background: #1e293b;
+  border-color: #2d3f55;
+}
+
+[data-bs-theme="dark"] div.quarto-post .listing-title,
+[data-bs-theme="dark"] div.quarto-post .listing-title a,
+[data-bs-theme="dark"] div.quarto-post a.title {
+  color: #e2e8f0 !important;
+  opacity: 1 !important;
+}
+
+[data-bs-theme="dark"] div.quarto-post .listing-title:hover,
+[data-bs-theme="dark"] div.quarto-post .listing-title a:hover {
+  color: #2dd4bf !important;
+}
+
+[data-bs-theme="dark"] div.quarto-post .listing-description,
+[data-bs-theme="dark"] div.quarto-post .description,
+[data-bs-theme="dark"] div.quarto-post p {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+
+[data-bs-theme="dark"] div.quarto-post .listing-date,
+[data-bs-theme="dark"] div.quarto-post .metadata {
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+
+/* Badges de categoria */
+[data-bs-theme="dark"] .listing-categories .listing-category,
+[data-bs-theme="dark"] .quarto-post .listing-category,
+[data-bs-theme="dark"] .quarto-listing-category .category {
+  background-color: #14b8a6 !important;
+  color: #ffffff !important;
+  opacity: 1;
+}
+
+[data-bs-theme="dark"] .listing-categories .listing-category:hover,
+[data-bs-theme="dark"] .quarto-listing-category .category:hover {
+  background-color: #0d9488 !important;
+  color: #ffffff !important;
+}
+
+/* Code */
+[data-bs-theme="dark"] pre {
+  background: #0d1b2a;
+  border-color: #2d3f55;
+  color: #e2e8f0;
+}
+
+[data-bs-theme="dark"] code {
+  color: #7dd3fc;
+}
+
+/* Blockquotes */
+[data-bs-theme="dark"] blockquote {
+  background: #1a1040;
+  border-left-color: #a78bfa;
+}
+
+[data-bs-theme="dark"] blockquote p {
+  color: #c4b5fd;
+}
+
+/* Links */
+[data-bs-theme="dark"] a {
+  color: #2dd4bf;
+}
+
+[data-bs-theme="dark"] a:hover {
+  color: #a78bfa;
+}
+
+/* Tables */
+[data-bs-theme="dark"] table {
+  color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] thead {
+  background: #1e293b;
+  border-bottom-color: #2d3f55;
+}
+
+[data-bs-theme="dark"] tbody tr:nth-child(even) {
+  background: #172033;
+}
+
+/* TOC */
+[data-bs-theme="dark"] #TOC {
+  border-left-color: #2d3f55;
+}
+
+[data-bs-theme="dark"] #TOC .toc-title {
+  color: #64748b;
+}
+
+[data-bs-theme="dark"] #TOC ul ul {
+  border-left-color: #2d3f55;
+}
+
+[data-bs-theme="dark"] #TOC a {
+  color: #64748b;
+}
+
+[data-bs-theme="dark"] #TOC a:hover {
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.07);
+}
+
+[data-bs-theme="dark"] #TOC a.active {
+  color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.1);
+  border-left-color: #2dd4bf;
+}
+
+/* TOC toggle btn */
+[data-bs-theme="dark"] #toc-toggle-btn {
+  background: #1e293b;
+  border-color: #2d3f55;
+  color: #64748b;
+}
+
+[data-bs-theme="dark"] #toc-toggle-btn:hover {
+  color: #2dd4bf;
+  border-color: #2dd4bf;
+}
+
+/* Footer */
+[data-bs-theme="dark"] .quarto-footer,
+[data-bs-theme="dark"] footer {
+  background-color: #0f2520 !important;
+  color: #94a3b8;
+}
+
+/* Page background */
+[data-bs-theme="dark"] .quarto-container,
+[data-bs-theme="dark"] .page-layout-full,
+[data-bs-theme="dark"] #quarto-content {
+  background-color: #0f172a;
+}

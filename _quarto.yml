@@ -26,6 +26,12 @@ format:
   html:
     theme:
       light: cosmo
-    css: styles.css
+      dark: slate
+    css: [styles.css, styles-dark-override.css]
+    include-after-body: toc-toggle.html
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    toc-title: "Nesta página"
     mainfont: "Ubuntu, sans-serif"
     monofont: "JetBrains Mono, Fira Code, monospace"

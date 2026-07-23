@@ -41,10 +41,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,9 +108,172 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles-dark-override.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -141,6 +308,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -183,7 +351,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Nesta página</h2>
    
   <ul>
   <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
@@ -201,6 +369,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -312,8 +481,215 @@ Figure&nbsp;2: Superfície em 3D
 </section>
 
 </main> <!-- /main -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+
+  // ===== TOC TOGGLE =====
+
+  var toc = document.getElementById('TOC');
+
+  if (toc) {
+
+    var btn = document.createElement('button');
+
+    btn.id = 'toc-toggle-btn';
+
+    btn.title = 'Recolher / Expandir sumário';
+
+    btn.innerHTML = '&#8250;';
+
+    toc.insertBefore(btn, toc.firstChild);
+
+
+
+    function setCollapsed(collapsed) {
+
+      if (collapsed) {
+
+        toc.classList.add('toc-collapsed');
+
+        btn.innerHTML = '&#8249;';
+
+      } else {
+
+        toc.classList.remove('toc-collapsed');
+
+        btn.innerHTML = '&#8250;';
+
+      }
+
+      try { localStorage.setItem('toc-collapsed', collapsed); } catch(e) {}
+
+    }
+
+
+
+    try {
+
+      if (localStorage.getItem('toc-collapsed') === 'true') setCollapsed(true);
+
+    } catch(e) {}
+
+
+
+    btn.addEventListener('click', function () {
+
+      setCollapsed(!toc.classList.contains('toc-collapsed'));
+
+    });
+
+  }
+
+
+
+  // ===== DARK MODE TOGGLE NA NAVBAR =====
+
+  var navbar = document.querySelector('.navbar-nav.ms-auto, .navbar-nav.navbar-right, .navbar .navbar-nav:last-child');
+
+  if (!navbar) navbar = document.querySelector('.navbar-collapse .navbar-nav');
+
+
+
+  if (navbar) {
+
+    var li = document.createElement('li');
+
+    li.className = 'nav-item d-flex align-items-center';
+
+    li.style.cssText = 'padding: 0 0.4rem;';
+
+
+
+    li.innerHTML = `
+
+      <label id="theme-switch-label" title="Alternar modo escuro" style="
+
+        display:flex;align-items:center;gap:6px;cursor:pointer;margin:0;
+
+        font-size:0.75rem;color:rgba(255,255,255,0.85);user-select:none;
+
+      ">
+
+        <span id="theme-icon" style="font-size:0.9rem;line-height:1;">&#9790;</span>
+
+        <span style="
+
+          position:relative;display:inline-block;
+
+          width:34px;height:18px;
+
+        ">
+
+          <input type="checkbox" id="theme-checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+
+          <span id="theme-slider" style="
+
+            position:absolute;inset:0;border-radius:18px;
+
+            background:#ffffff33;border:1px solid rgba(255,255,255,0.4);
+
+            transition:background 0.3s;cursor:pointer;
+
+          ">
+
+            <span id="theme-knob" style="
+
+              position:absolute;top:2px;left:2px;
+
+              width:12px;height:12px;border-radius:50%;
+
+              background:#ffffff;
+
+              transition:transform 0.3s;
+
+            "></span>
+
+          </span>
+
+        </span>
+
+      </label>
+
+    `;
+
+
+
+    navbar.appendChild(li);
+
+
+
+    var checkbox = document.getElementById('theme-checkbox');
+
+    var slider   = document.getElementById('theme-slider');
+
+    var knob     = document.getElementById('theme-knob');
+
+    var icon     = document.getElementById('theme-icon');
+
+
+
+    function applyTheme(dark) {
+
+      document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+
+      checkbox.checked = dark;
+
+      knob.style.transform = dark ? 'translateX(16px)' : 'translateX(0)';
+
+      slider.style.background = dark ? '#2dd4bf99' : '#ffffff33';
+
+      icon.innerHTML = dark ? '&#9728;' : '&#9790;';
+
+      try { localStorage.setItem('quarto-color-scheme', dark ? 'dark' : 'light'); } catch(e) {}
+
+    }
+
+
+
+    var saved = null;
+
+    try { saved = localStorage.getItem('quarto-color-scheme'); } catch(e) {}
+
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    applyTheme(saved === 'dark' || (!saved && prefersDark));
+
+
+
+    document.getElementById('theme-switch-label').addEventListener('click', function(e) {
+
+      e.preventDefault();
+
+      applyTheme(!checkbox.checked);
+
+    });
+
+  }
+
+
+
+});
+
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
