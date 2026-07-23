@@ -388,6 +388,7 @@ window.Quarto = {
   <li><a href="#identidade-regressão" id="toc-identidade-regressão" class="nav-link" data-scroll-target="#identidade-regressão">Identidade (regressão)</a></li>
   <li><a href="#sigmoide-classificação-binária" id="toc-sigmoide-classificação-binária" class="nav-link" data-scroll-target="#sigmoide-classificação-binária">Sigmoide (classificação binária)</a></li>
   <li><a href="#softmax-classificação-multiclasse" id="toc-softmax-classificação-multiclasse" class="nav-link" data-scroll-target="#softmax-classificação-multiclasse">Softmax (classificação multiclasse)</a></li>
+  <li><a href="#derivada-da-softmax" id="toc-derivada-da-softmax" class="nav-link" data-scroll-target="#derivada-da-softmax">Derivada da softmax</a></li>
   <li><a href="#resumo-qual-função-usar-na-saída" id="toc-resumo-qual-função-usar-na-saída" class="nav-link" data-scroll-target="#resumo-qual-função-usar-na-saída">Resumo: qual função usar na saída?</a></li>
   </ul></li>
   <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation">Backpropagation</a></li>
@@ -704,8 +705,9 @@ w_{21}^{(2)} h_1 + w_{22}^{(2)} h_2 + w_{23}^{(2)} h_3 + b_2^{(2)}
 \text{softmax}(\mathbf{z})_k = \frac{e^{z_k - \max_j z_j}}{\displaystyle\sum_{j=1}^{K} e^{z_j - \max_j z_j}}
 \]</span></p>
 <p>O resultado matemático é idêntico, mas numericamente estável.</p>
-<section id="derivada-da-softmax" class="level4">
-<h4 class="anchored" data-anchor-id="derivada-da-softmax">Derivada da softmax</h4>
+</section>
+<section id="derivada-da-softmax" class="level3">
+<h3 class="anchored" data-anchor-id="derivada-da-softmax">Derivada da softmax</h3>
 <p>A derivada da softmax é um pouco mais delicada que as anteriores porque a saída <span class="math inline">\(\hat{y}_k\)</span> depende de todas as componentes de <span class="math inline">\(\mathbf{z}\)</span>, não só de <span class="math inline">\(z_k\)</span>. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Seja então a função</p>
 <p><span class="math display">\[
 \text{softmax}(\mathbf{z})_k = \frac{e^{z_k}}{\sum_{j=1}^{n} e^{z_j}}, \quad \text{com } \text{softmax}: \mathbb{R}^n \to \mathbb{R}^n,
@@ -754,7 +756,6 @@ s_1(1-s_1) &amp; -s_1 s_2   &amp; \cdots &amp; -s_1 s_n   \\
 \end{pmatrix}
 \]</span></p>
 </section>
-</section>
 <section id="resumo-qual-função-usar-na-saída" class="level3">
 <h3 class="anchored" data-anchor-id="resumo-qual-função-usar-na-saída">Resumo: qual função usar na saída?</h3>
 <table class="caption-top table">
@@ -798,64 +799,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-  // ===== TOC TOGGLE =====
-
-  var toc = document.getElementById('TOC');
-
-  if (toc) {
-
-    var btn = document.createElement('button');
-
-    btn.id = 'toc-toggle-btn';
-
-    btn.title = 'Recolher / Expandir sumário';
-
-    btn.innerHTML = '&#8250;';
-
-    toc.insertBefore(btn, toc.firstChild);
-
-
-
-    function setCollapsed(collapsed) {
-
-      if (collapsed) {
-
-        toc.classList.add('toc-collapsed');
-
-        btn.innerHTML = '&#8249;';
-
-      } else {
-
-        toc.classList.remove('toc-collapsed');
-
-        btn.innerHTML = '&#8250;';
-
-      }
-
-      try { localStorage.setItem('toc-collapsed', collapsed); } catch(e) {}
-
-    }
-
-
-
-    try {
-
-      if (localStorage.getItem('toc-collapsed') === 'true') setCollapsed(true);
-
-    } catch(e) {}
-
-
-
-    btn.addEventListener('click', function () {
-
-      setCollapsed(!toc.classList.contains('toc-collapsed'));
-
-    });
-
-  }
-
-
-
   // ===== DARK MODE TOGGLE NA NAVBAR =====
 
   var navbar = document.querySelector('.navbar-nav.ms-auto, .navbar-nav.navbar-right, .navbar .navbar-nav:last-child');
@@ -886,13 +829,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <span id="theme-icon" style="font-size:0.9rem;line-height:1;">&#9790;</span>
 
-        <span style="
-
-          position:relative;display:inline-block;
-
-          width:34px;height:18px;
-
-        ">
+        <span style="position:relative;display:inline-block;width:34px;height:18px;">
 
           <input type="checkbox" id="theme-checkbox" style="opacity:0;width:0;height:0;position:absolute;">
 
@@ -912,9 +849,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               width:12px;height:12px;border-radius:50%;
 
-              background:#ffffff;
-
-              transition:transform 0.3s;
+              background:#ffffff;transition:transform 0.3s;
 
             "></span>
 

@@ -478,64 +478,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-  // ===== TOC TOGGLE =====
-
-  var toc = document.getElementById('TOC');
-
-  if (toc) {
-
-    var btn = document.createElement('button');
-
-    btn.id = 'toc-toggle-btn';
-
-    btn.title = 'Recolher / Expandir sumário';
-
-    btn.innerHTML = '&#8250;';
-
-    toc.insertBefore(btn, toc.firstChild);
-
-
-
-    function setCollapsed(collapsed) {
-
-      if (collapsed) {
-
-        toc.classList.add('toc-collapsed');
-
-        btn.innerHTML = '&#8249;';
-
-      } else {
-
-        toc.classList.remove('toc-collapsed');
-
-        btn.innerHTML = '&#8250;';
-
-      }
-
-      try { localStorage.setItem('toc-collapsed', collapsed); } catch(e) {}
-
-    }
-
-
-
-    try {
-
-      if (localStorage.getItem('toc-collapsed') === 'true') setCollapsed(true);
-
-    } catch(e) {}
-
-
-
-    btn.addEventListener('click', function () {
-
-      setCollapsed(!toc.classList.contains('toc-collapsed'));
-
-    });
-
-  }
-
-
-
   // ===== DARK MODE TOGGLE NA NAVBAR =====
 
   var navbar = document.querySelector('.navbar-nav.ms-auto, .navbar-nav.navbar-right, .navbar .navbar-nav:last-child');
@@ -566,13 +508,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <span id="theme-icon" style="font-size:0.9rem;line-height:1;">&#9790;</span>
 
-        <span style="
-
-          position:relative;display:inline-block;
-
-          width:34px;height:18px;
-
-        ">
+        <span style="position:relative;display:inline-block;width:34px;height:18px;">
 
           <input type="checkbox" id="theme-checkbox" style="opacity:0;width:0;height:0;position:absolute;">
 
@@ -592,9 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               width:12px;height:12px;border-radius:50%;
 
-              background:#ffffff;
-
-              transition:transform 0.3s;
+              background:#ffffff;transition:transform 0.3s;
 
             "></span>
 

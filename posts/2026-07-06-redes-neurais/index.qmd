@@ -334,7 +334,7 @@ $$
 
 O resultado matemático é idêntico, mas numericamente estável.
 
-#### Derivada da softmax
+### Derivada da softmax
 
 A derivada da softmax é um pouco mais delicada que as anteriores porque a saída $\hat{y}_k$ depende de todas as componentes de $\mathbf{z}$, não só de $z_k$. Isso significa que precisamos de uma matriz jacobiana, não um simples escalar. Seja então a função
 
