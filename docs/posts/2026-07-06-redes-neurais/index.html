@@ -389,6 +389,7 @@ window.Quarto = {
   <li><a href="#sigmoide-classificação-binária" id="toc-sigmoide-classificação-binária" class="nav-link" data-scroll-target="#sigmoide-classificação-binária">Sigmoide (classificação binária)</a></li>
   <li><a href="#softmax-classificação-multiclasse" id="toc-softmax-classificação-multiclasse" class="nav-link" data-scroll-target="#softmax-classificação-multiclasse">Softmax (classificação multiclasse)</a></li>
   <li><a href="#derivada-da-softmax" id="toc-derivada-da-softmax" class="nav-link" data-scroll-target="#derivada-da-softmax">Derivada da softmax</a></li>
+  <li><a href="#segunda-maneira-de-obter-a-derivada" id="toc-segunda-maneira-de-obter-a-derivada" class="nav-link" data-scroll-target="#segunda-maneira-de-obter-a-derivada">Segunda maneira de obter a derivada</a></li>
   <li><a href="#resumo-qual-função-usar-na-saída" id="toc-resumo-qual-função-usar-na-saída" class="nav-link" data-scroll-target="#resumo-qual-função-usar-na-saída">Resumo: qual função usar na saída?</a></li>
   </ul></li>
   <li><a href="#backpropagation" id="toc-backpropagation" class="nav-link" data-scroll-target="#backpropagation">Backpropagation</a></li>
@@ -755,6 +756,40 @@ s_1(1-s_1) &amp; -s_1 s_2   &amp; \cdots &amp; -s_1 s_n   \\
 -s_n s_1   &amp; -s_n s_2   &amp; \cdots &amp; s_n(1-s_n)
 \end{pmatrix}
 \]</span></p>
+<hr>
+</section>
+<section id="segunda-maneira-de-obter-a-derivada" class="level3">
+<h3 class="anchored" data-anchor-id="segunda-maneira-de-obter-a-derivada">Segunda maneira de obter a derivada</h3>
+<p>Outra maneira interessante de obter essa derivada seria começar por</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial z_j} \log(s_k) = \frac{1}{s_k} \underbrace{\frac{\partial s_k}{\partial z_j}}_\text{queremos isso} \,\,\,
+\]</span></p>
+<p>Note que apenas aplicamos a definição da derivada da função <span class="math inline">\(\log(x)\)</span> (aqui é o logaritmo natural, só pra gente saber). Multiplicando ambos os lados da igualdade acima por <span class="math inline">\(s_k\)</span> temos</p>
+<p><span id="eq-deriv_logsk"><span class="math display">\[
+\frac{\partial s_k}{\partial z_j} = s_k \frac{\partial}{\partial z_j} \log(s_k),
+\tag{1}\]</span></span></p>
+<p>mas vamos lembrar que <span class="math inline">\(\log(s_k) = \log(\exp(z_k) / D)\)</span> e pela propriedade do logaritmo da divisão temos</p>
+<p><span class="math display">\[\begin{align}
+\log(s_k) &amp;= \log(e^{z_k}) - \log(D) \\
+&amp;= z_k - \log(D).
+\end{align}\]</span></p>
+<p>Então, substituindo esse resultado na Eq. (<a href="#eq-deriv_logsk" class="quarto-xref">1</a>), a derivada desse logaritmo fica da seguinte maneira:</p>
+<p><span id="eq-derivlogzj"><span class="math display">\[
+\frac{\partial}{\partial z_j} \log(s_k) = \frac{\partial z_k}{\partial z_j} - \frac{\partial}{\partial z_j} \log(D).
+\tag{2}\]</span></span></p>
+<p>Note que o primeiro termo da igualdade na Eq. (<a href="#eq-derivlogzj" class="quarto-xref">2</a>) é a derivada de uma constante, que será 1 se <span class="math inline">\(k = j\)</span> e 0 se <span class="math inline">\(k \neq j\)</span> essencialmente, uma função indicadora <span class="math inline">\(\mathbb{I}(.)\)</span>. Já para o segundo termo da igualdade, aplicamos a derivada do logaritmo:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial z_j} \log(D) = \frac{1}{D} \frac{\partial}{\partial z_j} D.  
+\]</span></p>
+<p>Vamos lembrar que essa derivada parcial de <span class="math inline">\(D\)</span> em relação ao termo <span class="math inline">\(z_j\)</span> é exatamente <span class="math inline">\(e^{z_j}\)</span>, pois os outros termos da soma são nulos nas derivadas. Portanto, a Eq. (<a href="#eq-derivlogzj" class="quarto-xref">2</a>) torna-se</p>
+<p><span id="eq-derivadacompleta"><span class="math display">\[
+\frac{\partial}{\partial z_j} \log(s_k) = \mathbb{I}(k=j) - \underbrace{\frac{e^{z_j}}{D}}_{s_j} = \mathbb{I}(k=j) - s_j.
+\tag{3}\]</span></span></p>
+<p>Finalmente, podemos substituir o resultado obtido em (<a href="#eq-derivadacompleta" class="quarto-xref">3</a>) na Eq. (<a href="#eq-deriv_logsk" class="quarto-xref">1</a>), obtendo</p>
+<p><span class="math display">\[
+\frac{\partial s_k}{z_j} = s_k\{\mathbb{I}(k=j) - s_j\}.
+\]</span></p>
+<p>Assim, obtemos os termos <span class="math inline">\(s_k(1-s_k)\)</span> para <span class="math inline">\(k=j\)</span> e os termos <span class="math inline">\(-s_k \times s_j\)</span> para <span class="math inline">\(k \neq j\)</span>, que é exatamente a mesma estrutura da matriz jacobiana de derivadas parciais já obtida.</p>
 </section>
 <section id="resumo-qual-função-usar-na-saída" class="level3">
 <h3 class="anchored" data-anchor-id="resumo-qual-função-usar-na-saída">Resumo: qual função usar na saída?</h3>
