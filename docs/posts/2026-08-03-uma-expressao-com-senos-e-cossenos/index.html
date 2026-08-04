@@ -355,6 +355,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação">Motivação</a></li>
+  <li><a href="#provando-a-fórmula-de-euler" id="toc-provando-a-fórmula-de-euler" class="nav-link" data-scroll-target="#provando-a-fórmula-de-euler">Provando a fórmula de Euler</a></li>
   </ul>
 </nav>
     </div>
@@ -368,19 +369,23 @@ window.Quarto = {
 
 <section id="motivação" class="level3">
 <h3 class="anchored" data-anchor-id="motivação">Motivação</h3>
-<p>Olá, tudo bem ? Hoje eu vim mostrar pra você como podemos obter uma expressão fechada e elegante para</p>
+<p>Existe uma expressão fechada para a soma</p>
 <p><span class="math display">\[
-\sin(x) + \sin(2x) + \ldots + \sin(nx)
+\sin(x) + \sin(2x) + \sin(3x) + \ldots + \sin(nx)
 \]</span></p>
-<p>e</p>
+<p>sem precisar calcular cada termo individualmente? E para</p>
 <p><span class="math display">\[
-\cos(x) + \cos(2x) + \ldots + \cos(nx).
+\cos(x) + \cos(2x) + \cos(3x) + \ldots + \cos(nx)
 \]</span></p>
-<p>Novamente, vamos ter que recorrer ao brilhante matemático Euler. Vamos utilizar fortemente o seguinte resultado:</p>
+<p>também? Essas perguntas parecem inocentes, mas as respostas são surpreendentemente bonitas e envolvem uma ideia que conecta exponenciais, números complexos e séries geométricas num lugar só. O truque central passa pela fórmula de Euler:</p>
 <p><span class="math display">\[
-e^(ix) = \cos(x) + i \sin(x).
+e^{ix} = \cos(x) + i \sin(x).
 \]</span></p>
-<p>Como eu gosto de demonstrar as coisas pra ficar aqui registrado, vamos provar esse resultado. Esse resultado é relativamente simples se você já conhece a exansão em série de Taylor, que no nosso caso, será a de McLaurin:</p>
+<p>A partir dela, transformamos uma soma trigonométrica “difícil” numa soma geométrica de exponenciais complexas, que tem fórmula fechada conhecida. Depois, basta separar parte real e parte imaginária do resultado e temos as duas somas de graça. Mas antes de usar essa fórmula, vale prová-la.</p>
+</section>
+<section id="provando-a-fórmula-de-euler" class="level3">
+<h3 class="anchored" data-anchor-id="provando-a-fórmula-de-euler">Provando a fórmula de Euler</h3>
+<p>A prova é direta se você conhece a expansão em série de Taylor (MacLaurin):</p>
 <p><span class="math display">\[
 e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots
 \]</span></p>

@@ -11,29 +11,29 @@ format:
 
 ### Motivação 
 
-Olá, tudo bem ? Hoje eu vim mostrar pra você como podemos obter uma 
-expressão fechada e elegante para 
+Existe uma expressão fechada para a soma
 
 $$
-\sin(x) + \sin(2x) + \ldots + \sin(nx)
+\sin(x) + \sin(2x) + \sin(3x) + \ldots + \sin(nx)
 $$
 
-e 
+sem precisar calcular cada termo individualmente? E para
 
 $$
-\cos(x) + \cos(2x) + \ldots + \cos(nx). 
+\cos(x) + \cos(2x) + \cos(3x) + \ldots + \cos(nx)
 $$
 
-Novamente, vamos ter que recorrer ao brilhante matemático Euler. Vamos utilizar fortemente o seguinte
-resultado: 
+também? Essas perguntas parecem inocentes, mas as respostas são surpreendentemente bonitas e envolvem uma ideia que conecta exponenciais, números complexos e séries geométricas num lugar só. O truque central passa pela fórmula de Euler:
 
 $$
 e^{ix} = \cos(x) + i \sin(x). 
 $$
 
-Como eu gosto de demonstrar as coisas pra ficar aqui registrado, vamos provar esse resultado.
-Esse resultado é relativamente simples se você já conhece a exansão em série de Taylor, 
-que no nosso caso, será a de McLaurin:
+A partir dela, transformamos uma soma trigonométrica "difícil" numa soma geométrica de exponenciais complexas, que tem fórmula fechada conhecida. Depois, basta separar parte real e parte imaginária do resultado e temos as duas somas de graça. Mas antes de usar essa fórmula, vale prová-la.
+
+### Provando a fórmula de Euler
+
+A prova é direta se você conhece a expansão em série de Taylor (MacLaurin):
 
 $$
 e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots 
