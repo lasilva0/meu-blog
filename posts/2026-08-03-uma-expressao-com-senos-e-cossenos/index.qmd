@@ -28,7 +28,7 @@ Novamente, vamos ter que recorrer ao brilhante matemático Euler. Vamos utilizar
 resultado: 
 
 $$
-e^(ix) = \cos(x) + i \sin(x). 
+e^{ix} = \cos(x) + i \sin(x). 
 $$
 
 Como eu gosto de demonstrar as coisas pra ficar aqui registrado, vamos provar esse resultado.
