@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-04">
+<meta name="description" content="Dois exemplos bem interessantes">
 
-<title>L-Stats Blog</title>
+<title>A beleza das séries geométricas trigonométricas – L-Stats Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +28,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,35 +76,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -136,8 +107,8 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="styles-dark-override.css">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles-dark-override.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -309,7 +280,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">L-Stats Blog</span>
     </a>
   </div>
@@ -320,11 +291,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Sobre</span></a>
   </li>  
 </ul>
@@ -345,220 +316,213 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">L-Stats Blog</h1>
-            <p class="subtitle lead">O que vou descobrindo em estatística, ciência de dados e matemática</p>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">A beleza das séries geométricas trigonométricas</h1>
+                  <div>
+        <div class="description">
+          Dois exemplos bem interessantes
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Matemática</div>
+                <div class="quarto-category">Séries Geométricas</div>
+                <div class="quarto-category">Trigonometria</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 4, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="TWF0ZW0lQzMlQTF0aWNh">Matemática <span class="quarto-category-count">(3)</span></div><div class="category" data-category="bWF0ZW0lQzMlQTF0aWNh">matemática <span class="quarto-category-count">(3)</span></div><div class="category" data-category="b3RpbWl6YSVDMyVBNyVDMyVBM28=">otimização <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmVkZXMlMjBuZXVyYWlz">redes neurais <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UyVDMyVBOXJpZXMlMjBHZW9tJUMzJUE5dHJpY2Fz">Séries Geométricas <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHJpZ29ub21ldHJpYQ==">Trigonometria <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação">Motivação</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
 
+<section id="motivação" class="level3">
+<h3 class="anchored" data-anchor-id="motivação">Motivação</h3>
+<p>Olá, tudo bem ? Hoje eu vim mostrar pra você como podemos obter uma expressão fechada e elegante para</p>
+<p><span class="math display">\[
+\sin(x) + \sin(2x) + \ldots + \sin(nx)
+\]</span></p>
+<p>e</p>
+<p><span class="math display">\[
+\cos(x) + \cos(2x) + \ldots + \cos(nx).
+\]</span></p>
+<p>Novamente, vamos ter que recorrer ao brilhante matemático Euler. Vamos utilizar fortemente o seguinte resultado:</p>
+<p><span class="math display">\[
+e^(ix) = \cos(x) + i \sin(x).
+\]</span></p>
+<p>Como eu gosto de demonstrar as coisas pra ficar aqui registrado, vamos provar esse resultado. Esse resultado é relativamente simples se você já conhece a exansão em série de Taylor, que no nosso caso, será a de McLaurin:</p>
+<p><span class="math display">\[
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots
+\]</span></p>
+<p>que é a expansão em série de Taylor (McLaurin) da função <span class="math inline">\(g(x) = \exp(x)\)</span> em torno de <span class="math inline">\(x = 0\)</span>. Avaliando essa série expandida para <span class="math inline">\(g(ix)\)</span> temos:</p>
+<p><span class="math display">\[
+e^{ix} = 1 + ix + \frac{i^2 x^2}{2!} + \frac{i^3 x^3}{3!} + \frac{i^4 x^4}{4!} + \ldots
+\]</span></p>
+<p>Note que vão aparecendo os termos <span class="math inline">\(i, i^2, i^3, i^4, i^5, \ldots\)</span> de forma circular. Sabe-se da teoria dos números complexos que <span class="math inline">\(i = \sqrt{-1}\)</span> é a unidade imaginária e que <span class="math inline">\(i^2 = -1\)</span>, <span class="math inline">\(i^3 = i \times i^2 = -i\)</span>, <span class="math inline">\(i^4 = i^2 \times i^2 = 1\)</span>, <span class="math inline">\(i^5 = i^4 \times i = i\)</span> e assim sucessivamente. Note que podemos ter duas situações possíveis:</p>
+<ol type="1">
+<li><strong>Caso da potência ser par:</strong> temos <span class="math inline">\(i^{2m} = (i^2)^m = (-1)^m\)</span>, que resulta em <span class="math inline">\(1\)</span> se <span class="math inline">\(m\)</span> é par e <span class="math inline">\(-1\)</span> se <span class="math inline">\(m\)</span> é ímpar, com <span class="math inline">\(m \in \mathbb{Z}^+\)</span>.</li>
+<li><strong>Caso da potência ser ímpar:</strong> temos <span class="math inline">\(i^{2m+1} = i^{2m} \cdot i = i \cdot (-1)^m\)</span>, que resulta em <span class="math inline">\(i\)</span> se <span class="math inline">\(m\)</span> é par e <span class="math inline">\(-i\)</span> se <span class="math inline">\(m\)</span> é ímpar, com <span class="math inline">\(m \in \mathbb{Z}^+\)</span>.</li>
+</ol>
+<p>Para visualizar melhor, seguem as tabelas com os valores:</p>
+<p><strong>Caso par: <span class="math inline">\(k = 2m\)</span>, resultado <span class="math inline">\(i^k = (-1)^m\)</span></strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(m\)</span></th>
+<th><span class="math inline">\(k = 2m\)</span></th>
+<th><span class="math inline">\(i^k = (-1)^m\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(+1\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(-1\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>4</td>
+<td><span class="math inline">\(+1\)</span></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>6</td>
+<td><span class="math inline">\(-1\)</span></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>8</td>
+<td><span class="math inline">\(+1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Caso ímpar: <span class="math inline">\(k = 2m+1\)</span>, resultado <span class="math inline">\(i^k = i \cdot (-1)^m\)</span></strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(m\)</span></th>
+<th><span class="math inline">\(k = 2m+1\)</span></th>
+<th><span class="math inline">\(i^k = i \cdot (-1)^m\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(+i\)</span></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3</td>
+<td><span class="math inline">\(-i\)</span></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>5</td>
+<td><span class="math inline">\(+i\)</span></td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>7</td>
+<td><span class="math inline">\(-i\)</span></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>9</td>
+<td><span class="math inline">\(+i\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Dessa maneira podemos substituir na expansão de <span class="math inline">\(\exp(ix)\)</span>:</p>
+<p><span class="math display">\[
+e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} + \frac{ix^5}{5!} - \frac{x^6}{6!} - \frac{ix^7}{7!} + \ldots
+\]</span></p>
+<p>Agora vem o passo crucial: separar os termos reais (sem <span class="math inline">\(i\)</span>) dos termos imaginários (com <span class="math inline">\(i\)</span>). Colocando <span class="math inline">\(i\)</span> em evidência nos termos imaginários:</p>
+<p><span class="math display">\[
+e^{ix} = \underbrace{\Bigg(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \ldots\Bigg)}_{\text{parte real}} + \; i \underbrace{\Bigg(x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots\Bigg)}_{\text{parte imaginária}}
+\]</span></p>
+<p>Se você lembra das expansões em série de Taylor do cosseno e do seno em torno de zero:</p>
+<p><span class="math display">\[
+\cos(x) = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} + \ldots
+\]</span></p>
+<p><span class="math display">\[
+\sin(x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \ldots
+\]</span></p>
+<p>Comparando termo a termo, identificamos imediatamente que a parte real é <span class="math inline">\(\cos(x)\)</span> e a parte imaginária é <span class="math inline">\(\sin(x)\)</span>. Portanto:</p>
+<p><span class="math display">\[
+e^{ix} = \cos(x) + i\sin(x).
+\]</span></p>
+<p>Isso é a fórmula de Euler. Ela conecta a exponencial complexa com as funções trigonométricas de uma forma elegante e compacta. Aqui podemos notar que os termos ímpares da soma são todos aqueles que se alternam entre -1 ou 1. Note que se fizermos <span class="math inline">\(\exp(inx)\)</span> temos</p>
+<p><span class="math display">\[
+(e^{ix})^n = (e^{inx})= (\cos(x) + i\sin(x))^n = \cos(nx) + i\sin(nx).   
+\]</span></p>
+<p>Esse resultado é conhecido como fórmula de De Moivre (Abraham de Moivre, ~1707), embora ele temha formulado muito bem antes da notação exponencial de Euler. Mas o que muitos consideram de mais lindo na matemática é quando avaliamos a fórmula de Euler no ponto <span class="math inline">\(x = \pi\)</span>:</p>
+<p><span class="math display">\[
+e^{i\pi} = \cos(\pi) + i\sin(\pi) = -1,
+\]</span></p>
+<p>pois <span class="math inline">\(\cos(\pi) = -1\)</span> e <span class="math inline">\(\sin(\pi) = 0\)</span>. Daí surge uma das mais belíssimas identidades de toda a matemática:</p>
+<p><span class="math display">\[
+e^{i\pi} + 1 = 0.
+\]</span></p>
+<p>Ela é bela porque envolve o número de Euler <span class="math inline">\(e\)</span>, o número <span class="math inline">\(\pi\)</span> e a unidade complexa <span class="math inline">\(i\)</span> todas as três juntas.</p>
+<p>Mas nem é sobre isso que queríamos discutir no começo. O que queríamos era obter expressões gerais para aquelas somas envolvendo senos e cossenos. Para isso vamos voltar à formula de Euler e perceber que</p>
+<p><span class="math display">\[
+S = \sin(x) + \sin(2x) + \ldots + \sin(nx)
+\]</span></p>
+<p>é a parte imaginária (termo que envolve o seno), ou seja, se definirmos a soma</p>
+<p><span class="math display">\[
+S_n = e^{ix} + e^{2x} + e^{3x} + \ldots + e^{nx}.   
+\]</span></p>
+<p>Da soma acima, podemos estabelecer que <span class="math inline">\(S\)</span> nada mais é que a parte imaginária de <span class="math inline">\(S_n\)</span>, ou seja, que <span class="math inline">\(S = Im(S_n)\)</span>, pois podemos aplicar a fórmula de Euler para cada termo da série <span class="math inline">\(S_n\)</span> e pegar só o que nos interessa, que é exatamente os senos. Vamos guardar essa informação por enquanto.</p>
+<p>Agora, vamos expandir a série <span class="math inline">\(S_n\)</span> e podemos ver que é claramente uma série geométrica finita com primeiro termo <span class="math inline">\(a_0 = e^{ix}\)</span>, razão <span class="math inline">\(r = e^{ix}\)</span>.</p>
+<blockquote class="blockquote">
+<p><strong>Lembre que</strong>: em uma PG finita, com <span class="math inline">\(a_0\)</span> sendo o primeiro termo e <span class="math inline">\(r\)</span> a razão, temos <span class="math display">\[S_n =a_1 \frac{r^n - 1}{r - 1}, \,\,\, \text{com} \,\,\, |r| &lt; 1.\]</span></p>
+</blockquote>
+<p>Assim, temos que a soma <span class="math inline">\(S_n\)</span> da nossa série é</p>
+<p><span class="math display">\[
+S_n = e^{ix} \frac{e^{inx} - 1}{e^{ix} - 1}.
+\]</span></p>
+<p>A condição de existência para garantir que essa soma exista é <span class="math inline">\(|e^{ix}| &lt; 1\)</span>, mas como se trata de um número complexo, sabemos que se <span class="math inline">\(z\)</span> é um número complexo, <span class="math inline">\(|z| = |a + bi| = \sqrt{a^2 + b^2}\)</span>. Portanto, <span class="math inline">\(|e^{ix}| = \sqrt{\sin^2(x) + \cos^2(x)} = 1\)</span>. Basta então que <span class="math inline">\(e^{ix} \neq 1\)</span>.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1785861416642">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-08-04-limites-teorema-sanduiche-derivadas/index.html" class="no-external"></a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2026-08-04-limites-teorema-sanduiche-derivadas/index.html" class="no-external">
-
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-08-04-limites-teorema-sanduiche-derivadas/index.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="TWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1785812400000" data-listing-file-modified-sort="1785819713341" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2002">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-08-03-um-cara-genial-chamado-euler/index.html" class="no-external">Um cara genial chamado Euler</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ZW0lQzMlQTF0aWNh'); return false;">Matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-08-03-um-cara-genial-chamado-euler/index.html" class="no-external">
-<p>Polinômios, fatorações, séries e muita elegância matemática</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-08-03-um-cara-genial-chamado-euler/index.html" class="no-external">
-<div class="listing-date">
-Aug 4, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="TWF0ZW0lQzMlQTF0aWNhJTJDUyVDMyVBOXJpZXMlMjBHZW9tJUMzJUE5dHJpY2FzJTJDVHJpZ29ub21ldHJpYQ==" data-listing-date-sort="1785812400000" data-listing-file-modified-sort="1785869676616" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1177">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-08-03-uma-expressao-com-senos-e-cossenos/index.html" class="no-external">A beleza das séries geométricas trigonométricas</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ZW0lQzMlQTF0aWNh'); return false;">Matemática</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('UyVDMyVBOXJpZXMlMjBHZW9tJUMzJUE5dHJpY2Fz'); return false;">Séries Geométricas</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VHJpZ29ub21ldHJpYQ=='); return false;">Trigonometria</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-08-03-uma-expressao-com-senos-e-cossenos/index.html" class="no-external">
-<p>Dois exemplos bem interessantes</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-08-03-uma-expressao-com-senos-e-cossenos/index.html" class="no-external">
-<div class="listing-date">
-Aug 4, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="b3RpbWl6YSVDMyVBNyVDMyVBM28lMkNtYXRlbSVDMyVBMXRpY2E=" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1783355730126" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="530">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-07-06-gradiente-descendente/index.html" class="no-external">Otimização de funções via gradiente descendente</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b3RpbWl6YSVDMyVBNyVDMyVBM28='); return false;">otimização</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWF0ZW0lQzMlQTF0aWNh'); return false;">matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-07-06-gradiente-descendente/index.html" class="no-external">
-<p>Explorando como minimizar funções com e sem iterações</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-07-06-gradiente-descendente/index.html" class="no-external">
-<div class="listing-date">
-Jul 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="cmVkZXMlMjBuZXVyYWlzJTJDbWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1783356125009" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="807">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-07-06-perceptron/index.html" class="no-external">Perceptron Simples: o classificador linear mais básico que existe</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cmVkZXMlMjBuZXVyYWlz'); return false;">redes neurais</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWF0ZW0lQzMlQTF0aWNh'); return false;">matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-07-06-perceptron/index.html" class="no-external">
-<p>Entendendo o neurônio artificial, sua regra de aprendizado e como ele classifica padrões</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-07-06-perceptron/index.html" class="no-external">
-<div class="listing-date">
-Jul 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="cmVkZXMlMjBuZXVyYWlz" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1785349662583" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3078">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-07-06-redes-neurais/index.html" class="no-external">Alguns tópicos sobre redes neurais e o que eu fui descobrindo</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cmVkZXMlMjBuZXVyYWlz'); return false;">redes neurais</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-07-06-redes-neurais/index.html" class="no-external">
-<p>Alguns truques interessantes e uma forma matricial de representação</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-07-06-redes-neurais/index.html" class="no-external">
-<div class="listing-date">
-Jul 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="bWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1770692400000" data-listing-file-modified-sort="1783351074906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1292">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-05-21-intervalos-de-confianca/index.html" class="no-external">Brincando um pouco com senos e cossenos 😁</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWF0ZW0lQzMlQTF0aWNh'); return false;">matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2025-05-21-intervalos-de-confianca/index.html" class="no-external">
-<p>Proriedades bem legais</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-05-21-intervalos-de-confianca/index.html" class="no-external">
-<div class="listing-date">
-Feb 10, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="TWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1747796400000" data-listing-file-modified-sort="1783351074905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="780">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-05-21-curiosidade-matematica-euler-pi/index.html" class="no-external">Uma propriedade interessante envolvendo números transcendentais</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ZW0lQzMlQTF0aWNh'); return false;">Matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2025-05-21-curiosidade-matematica-euler-pi/index.html" class="no-external">
-<p>Como mostrar que e^pi &gt; pi^e ?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-05-21-curiosidade-matematica-euler-pi/index.html" class="no-external">
-<div class="listing-date">
-May 21, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
