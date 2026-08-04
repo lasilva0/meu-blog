@@ -1,0 +1,348 @@
+---
+title: "Um cara genial chamado Euler"
+description: "Polinômios, fatorações, séries e muita elegância matemática"
+date: 2026-08-04
+categories: [Matemática]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+### Introdução
+
+Pra começar essa história, precisamos definir algumas coisas para que possamos entender as sacadas geniais desse
+grande e excepcional (se não o melhor de todos) matemático de todos os tempos.
+
+Vamos começar falando sobre o algoritmo da divisão de polinômios, mas de forma breve, sem muitos detalhes rigorosos.
+Esse algoritmo é o mesmo que utilizamos para números reais e se estende também aos polinômios. Conhecemos
+um resultado importantíssimo envolvendo polinômios: o Teorema Fundamental da Álgebra, que diz que todo
+polinômio $P(x)$ com grau $n \geq 1$ possui pelo menos uma raiz nos complexos. Dito isto, podemos prosseguir
+com o que vamos tratar aqui, sem nos inclinar a falar sobre como obter essas raízes. O que nos interessa aqui
+é saber como um polinômio pode ser fatorado em termos das suas raízes e como essa ideia de fatoração
+foi especialmente útil para resolver um dos problemas mais intrigantes da época: o problema da Basileia,
+que pede a soma exata da série infinita dos inversos dos quadrados dos números inteiros positivos:
+
+$$
+\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \ldots = \frac{\pi^2}{6}.
+$$
+
+### Teorema da divisão para polinômios
+
+Dados dois polinômios $P(x)$ (dividendo) e $D(x)$ (divisor) com $D(x)$ não nulo, existe um único par de polinômios
+$Q(x)$ (quociente) e $R(x)$ (resto) que satisfazem a seguinte identidade
+
+$$
+P(x) = D(x) Q(x) + R(x),
+$$
+
+tendo as seguintes condições para o resto $R(x)$:
+
+- Ou $R(x) = 0$ (o polinômio é divisível, resto nulo)
+- Ou o grau de $R(x)$ é estritamente menor que o grau de $D(x)$ (grau $R$ < grau $D$).
+
+### Teorema do Resto
+
+O resto da divisão de um polinômio $P(x)$ por um binômio do primeiro grau $(x-a)$ é igual ao valor numérico
+de $P(x)$ em $x = a$. Ou seja, se $P(x)$ é dividido por $(x-a)$, o resto $R$ é uma constante dada por $R = P(a)$.
+
+### Teorema do Fator
+
+Seja o polinômio $P(x)$ e $(x-r)$ um fator desse polinômio. Ao dividir $P(x)$ por $(x-r)$, o
+resto da divisão é $P(r)$, com $r$ sendo uma raiz de $P(x)$.
+
+Para provar esse teorema, vamos utilizar os teoremas da divisão e do resto como base. Sabe-se pelo Teorema da
+Divisão de Polinômios que se $(x-a)$ é um binômio de grau 1, o resto obrigatoriamente deve ter grau < 1, ou seja,
+$R(x)$ é uma constante, digamos $R$, para todo $x$. Temos então
+
+$$
+P(x) = (x-a)Q(x) + R.
+$$
+
+*Direção 1* ($\implies$): Se $r$ é uma raiz de $P(x)$, então $(x-r)$ é fator de $P(x)$.
+
+- Hipótese: $r$ é raiz de $P(x)$, que por definição significa $P(r) = 0$.
+- Objetivo: Mostrar que $P(x) = (x-r)Q(x)$.
+
+Começamos avaliando $P(x)$ em $x = r$:
+
+$$
+P(r) = (r-r)Q(r) + R,
+$$
+
+e por hipótese, $P(r) = 0$, portanto $R = 0$. Se $R = 0$, temos $P(x) = (x-r)Q(x)$ e portanto $(x-r)$ é
+fator de $P(x)$.
+
+*Direção 2* ($\Leftarrow$): Se $(x-r)$ é fator de $P(x)$, então $r$ é raiz de $P(x)$.
+
+- Hipótese: $(x-r)$ é fator de $P(x)$, ou seja, existe $Q(x)$ tal que $P(x) = (x-r)Q(x)$.
+- Objetivo: Mostrar que $P(r) = 0$.
+
+Avaliando $P(x)$ em $x = r$, temos $P(r) = (r-r)Q(r) = 0$. Como $P(r) = 0$,
+concluímos que $r$ é uma raiz de $P(x)$, o que demonstra o teorema. $\blacksquare$
+
+#### *Por que isso é útil?*
+
+Veja só: se $P(x)$ divide $(x-r)$ com resto zero, como já sabemos, temos $P(x) = Q(x)(x-r)$ em que
+$Q(x)$ tem grau $n-1$. Pelo Teorema Fundamental da Álgebra, todo polinômio com grau $n \geq 1$ possui
+pelo menos uma raiz (nos complexos). Vamos chamar de $r_1$ a primeira dessas raízes. Podemos então fatorar
+o polinômio $P(x)$ em:
+
+$$
+P(x) = (x-r_1)Q_1(x).
+$$
+
+Como $Q_1(x)$ possui grau $n-1$, pelo mesmo teorema, também possui pelo menos uma raiz, que
+denotaremos $r_2$. Assim, pode-se fatorar $P(x)$ como:
+
+$$
+P(x) = (x-r_1)(x-r_2)Q_2(x).
+$$
+
+Aplicando sucessivamente a mesma ideia, obtemos a forma geral
+
+$$
+P(x) = (x-r_1)(x-r_2) \ldots (x-r_n)Q_n(x).
+$$
+
+Como $Q_n(x)$ tem grau $< 1$ (grau 0), ele é constante, e chamaremos essa constante de $k$.
+Portanto o polinômio fatorado é
+
+$$
+P(x) = k(x-r_1)(x-r_2) \ldots (x-r_n).
+$${#eq-polinomio-fatorado}
+
+Precisamos descobrir quem é essa constante $k$. Para isso, comparamos termo a termo
+o polinômio $P(x)$ na forma fatorada com a forma geral. A forma geral de um polinômio é
+
+$$
+P(x) = a_n x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0.
+$${#eq-polinomio-geral}
+
+Observe que se multiplicarmos $k$ por todos os termos $x$ do polinômio fatorado em
+([-@eq-polinomio-fatorado]), encontramos $k x^n$ como primeiro termo que acompanha o maior grau.
+Por comparação, concluímos que $k = a_n$, de modo que o polinômio fatorado fica
+
+$$
+P(x) = a_n(x-r_1)(x-r_2) \ldots (x-r_n).
+$${#eq-polinomio-fatorado-final}
+
+> A expansão completa de ([-@eq-polinomio-geral]) é dada por
+> $$P(x) = x^n - \Big(\sum_{i}^{n} r_i\Big)x^{n-1} + \Big(\sum_{i,j;i<j} r_i r_j\Big)x^{n-2} - \ldots + (-1)^n \Big(\prod_{i=1}^{n} r_i \Big).$$
+> Exemplo: Seja $P(x)$ de grau $n=3$ na forma fatorada:
+> $$P(x) = k(x-r_1)(x-r_2)(x-r_3).$$
+> Expandindo fica
+> $$P(x) = k[x^3 - (r_1 + r_2 + r_3)x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)x - (r_1 r_2 r_3)].$$
+
+### Uma fatoração alternativa de $P(x)$
+
+Quando $P(x)$ é da forma
+
+$$
+P(x) = a_n (x-r_1)(x-r_2)(x-r_3) \ldots
+$$
+
+note que não existe um termo desse produto que acompanhe o coeficiente $a_n$ de forma isolada. Para contornar isso,
+pode-se colocar $P(0)$ em evidência avaliando o polinômio em $x = 0$. Considere que $P(x)$ possui
+raízes da forma $r_i \neq 0$. Então temos:
+
+$$
+P(0) = a_n (0-r_1)(0-r_2)(0-r_3) \ldots =  a_n (-r_1)(-r_2)(-r_3) \ldots
+$$
+
+Podemos pegar um fator genérico $(x-r_k)$ e colocar $-r_k$ em evidência:
+
+$$
+(x-r_k) = -r_k \Bigg(1 - \frac{x}{r_k}\Bigg).
+$$
+
+Fazendo isso para todos os fatores de $P(x)$, temos
+
+$$
+P(x) = a_n(-r_1)(-r_2)(-r_3) \ldots \Bigg(1 - \frac{x}{r_1}\Bigg) \Bigg(1 - \frac{x}{r_2}\Bigg)\Bigg(1 - \frac{x}{r_3}\Bigg) \ldots
+$$
+
+Note que $a_n(-r_1)(-r_2)(-r_3) \ldots = P(0)$. Logo,
+
+$$
+P(x) = P(0) \Bigg(1 - \frac{x}{r_1}\Bigg) \Bigg(1 - \frac{x}{r_2}\Bigg)\Bigg(1 - \frac{x}{r_3}\Bigg) \ldots
+$${#eq-polinomio-infinito-p0}
+
+Quando $P(0) = 1$, o polinômio se resume a
+
+$$
+P(x) = \Bigg(1 - \frac{x}{r_1}\Bigg) \Bigg(1 - \frac{x}{r_2}\Bigg) \Bigg(1 - \frac{x}{r_3}\Bigg) \ldots
+$${#eq-polinomio-infinito}
+
+
+### A sacada de Euler
+
+Euler buscava resolver o problema da Basileia, que era a soma
+
+$$
+\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \ldots
+$$
+
+Para resolver, ele percebeu um detalhe que só gênios conseguem ter. Ele viu que a série $\sin(x)/x$,
+quando expandida como polinômio (via série de Taylor), tem a forma
+
+$$
+g(x) = \frac{\sin(x)}{x} = 1 - \frac{x^2}{6} +  \frac{x^4}{120} - \ldots
+$$
+
+Ele percebeu que todos os zeros (raízes) de $g(x)$ são da forma $r = \pm k\pi$ para $k \in \mathbb{Z}$,
+ou seja, $r = \ldots, \pm \pi, \pm 2\pi, \pm 3\pi, \ldots$, exceto em zero. Também notou que o primeiro termo desse
+polinômio vale 1 quando $x = 0$, isto é, $P(0) = 1$. Ele provavelmente deve ter imaginado: "E se eu agrupar todos os termos
+com essas raízes positivas e negativas como um polinômio fatorado?". Essa ideia rendeu o seguinte raciocínio:
+ao agrupar os termos para $r_k = \pm k\pi$, temos:
+
+$$
+\Bigg(1 - \frac{x}{k\pi}\Bigg)\Bigg(1 - \frac{x}{-k\pi}\Bigg) = \Bigg(1 - \frac{x^2}{k^2\pi^2}\Bigg).
+$$
+
+Organizando a soma original:
+
+$$
+\begin{aligned}
+\frac{\sin(x)}{x} &= \Bigg(1 - \frac{x^2}{\pi^2}\Bigg) \Bigg(1 - \frac{x^2}{2^2\pi^2}\Bigg) \Bigg(1 - \frac{x^2}{3^2\pi^2}\Bigg) \ldots  \\
+&= \Bigg(1 - \frac{x^2}{\pi^2}\Bigg)\Bigg(1 - \frac{x^2}{4\pi^2}\Bigg) \Bigg(1 - \frac{x^2}{9\pi^2}\Bigg) \ldots
+\end{aligned}
+$$
+
+O engraçado é que se tomarmos o limite quando $x \to 0$ da expressão acima, provamos o famoso limite
+fundamental do cálculo. Mas perceba a genialidade de Euler. Ele viu que o grau e o termo que interessa
+para resolver o problema reside na potência $n=2$, pegando todos os termos que envolvem $x^2$:
+
+$$
+\frac{\sin(x)}{x} = (1 - \alpha_0 x^2)(1 - \alpha_1 x^2)(1 - \alpha_2 x^2) \ldots
+$$
+
+com $\alpha_0 = 1/\pi^2$, $\alpha_1 = 1/4\pi^2$, $\alpha_2 = 1/9\pi^2$, e assim por diante. Ao multiplicar os
+parênteses e organizar apenas os termos que envolvem $x^2$:
+
+$$
+-\alpha_0 x^2 - \alpha_1 x^2 - \alpha_2 x^2 - \ldots = -(\alpha_0 + \alpha_1 + \alpha_2 + \ldots) x^2.
+$$
+
+Os outros termos das multiplicações que geram potências maiores que 2 foram deixados de lado aqui.
+
+> Pra fixar, vai um exemplo simples com $P(x)$ sendo
+> $$
+> \begin{aligned}
+> P(x) &= (1 - A x^2)(1 - B x^2)(1 - C x^2) \\
+> &= 1 - \underbrace{(A + B + C)}_{\text{isso é o que interessa}}x^2 + (AB + AC + BC)x^4 - ABCx^6.
+> \end{aligned}
+> $$
+
+Agora vem o truque matador de Euler. Ele comparou o termo $x^2$ da expansão em série com o termo $x^2$ da fatoração:
+
+$$
+\begin{aligned}
+\frac{\sin(x)}{x} &=  1 - \frac{x^2}{6} +  \frac{x^4}{120} - \ldots  \\
+\frac{\sin(x)}{x} &= \ldots - (\alpha_0 + \alpha_1 + \alpha_2 + \ldots) x^2 + \ldots
+\end{aligned}
+$$
+
+Basta igualar $(-1/6)x^2$ com $-(\alpha_0 + \alpha_1 + \alpha_2 + \ldots)x^2$. Lembrando que
+
+$$
+\begin{aligned}
+-(\alpha_0 + \alpha_1 + \alpha_2 + \ldots) &= -\Big(\frac{1}{\pi^2} + \frac{1}{4\pi^2} + \frac{1}{9\pi^2} + \ldots\Big) \\
+&= -\frac{1}{\pi^2}\Bigg(1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \ldots \Bigg) \\
+&= -\frac{1}{\pi^2} \sum_{n=1}^{\infty} \frac{1}{n^2},
+\end{aligned}
+$$
+
+que é exatamente a soma que estamos tentando resolver desde o começo. Basta igualar isso a $-1/6$:
+
+$$
+-\frac{1}{\pi^2}\sum_{n=1}^{\infty}\frac{1}{n^2} = -\frac{1}{6}
+$$
+
+e obter o valor da soma:
+
+$$
+\sum_{n=1}^{\infty}\frac{1}{n^2} = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \ldots = \frac{\pi^2}{6}.
+$$
+
+Resultado absolutamente lindo.
+
+### Indo além: a soma dos inversos das quartas potências
+
+Utilizando a mesma ideia de comparar os termos das séries, podemos ir mais longe. Se olharmos para o coeficiente que acompanha $x^4$ na expansão de Taylor, que é $1/120$, conseguimos determinar a seguinte soma:
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^4}.
+$$
+
+Voltemos à forma fatorada de $g(x) = \sin(x)/x$:
+
+$$
+\frac{\sin(x)}{x} = (1-\alpha_0 x^2)(1 - \alpha_1 x^2)(1 - \alpha_2 x^2) \ldots
+$$
+
+O truque agora é pegar os termos $x^2$ desse produto e agrupá-los dois a dois para obter $x^4$:
+
+- Pegar $x^2$ do primeiro e segundo fator: $(-\alpha_0 x^2)(-\alpha_1 x^2) \times (1) \times (1) \times \ldots = \alpha_0 \alpha_1 x^4$.
+- Pegar $x^2$ do primeiro e terceiro fator: $(-\alpha_0 x^2) \times (1) \times (-\alpha_2 x^2) \times (1) \times \ldots = \alpha_0 \alpha_2 x^4$.
+- Pegar $x^2$ do primeiro e quarto fator: $(-\alpha_0 x^2) \times (1) \times (1) \times (-\alpha_3 x^2) \times (1) \times \ldots = \alpha_0 \alpha_3 x^4$.
+
+E assim sucessivamente, cobrindo todos os pares cruzados que geram $x^4$. Lembrando que os coeficientes de cada parêntese são $\alpha_i = 1/(i^2\pi^2)$, multiplicar o $i$-ésimo parêntese com o $j$-ésimo (com $i \neq j$) resulta em
+
+$$
+\Bigg(\frac{1}{i^2\pi^2}x^2 \Bigg)\Bigg(\frac{1}{j^2\pi^2}x^2 \Bigg) = \frac{1}{\pi^4} \Bigg(\frac{1}{i^2 j^2}\Bigg)x^4.
+$$
+
+O coeficiente total de $x^4$ é então dado pela soma sobre todos os pares com $i < j$:
+
+$$
+\sum_{1 \leq i < j < \infty} \frac{1}{\pi^4}\Bigg(\frac{1}{i^2 j^2}\Bigg).
+$$
+
+Para avançar, precisamos de uma sutileza: enxergar essa soma como a diferença de duas outras. Euler já conhecia a seguinte identidade algébrica:
+
+$$
+\sum_{i < j} \frac{1}{i^2 j^2} = \frac{1}{2} \Bigg[\Bigg(\sum_{i} \frac{1}{i^2} \Bigg)^2 - \sum_{i} \frac{1}{i^4} \Bigg].
+$$
+
+Mas de onde isso vem? Segue a justificativa.
+
+> Seja $S = a_1 + a_2 + \ldots$ uma soma. Façamos $S^2 = (a_1 + a_2 + \ldots)(a_1 + a_2 + \ldots)$. Podemos
+> separar essa multiplicação em termos com índice igual ($i = j$) e termos cruzados ($i \neq j$):
+> $$S^2 = \text{soma dos termos iguais} + \text{soma dos termos cruzados}.$$
+> Pense nisso como uma matriz: os elementos da diagonal principal são os termos com $i = j$, e os de fora
+> da diagonal são os cruzados, que aparecem duplicados (por exemplo, $a_1 a_2$ e $a_2 a_1$ dão $2a_1 a_2$).
+> Portanto:
+> $$
+> \begin{aligned}
+> S^2 &= \sum_{i} a_i^2 + 2 \sum_{i < j} a_i a_j \\
+> \sum_{i < j} a_i a_j &= \frac{1}{2}\Bigg(S^2 - \sum_{i} a_i^2\Bigg).
+> \end{aligned}
+> $$
+> Tomando $a_i = 1/i^2$, obtemos exatamente a identidade que Euler utilizou.
+
+Assim podemos reescrever a soma em termos de um único índice $n$:
+
+$$
+\sum_{i < j} \frac{1}{i^2 j^2} = \frac{1}{2} \Bigg[\Bigg(\sum_{n=1}^{\infty} \frac{1}{n^2} \Bigg)^2 - \sum_{n=1}^{\infty} \frac{1}{n^4} \Bigg].
+$$
+
+Sabemos que a primeira soma vale $(\pi^2/6)^2 = \pi^4/36$ e que o coeficiente de $x^4$ na expansão em série é $1/120$. Igualando:
+
+$$
+\frac{1}{120} = \frac{1}{\pi^4} \Bigg(\frac{1}{2} \Bigg[\frac{\pi^4}{36} - \sum_{n=1}^{\infty} \frac{1}{n^4} \Bigg]\Bigg)
+$$
+
+Cancelando os $\pi^4$ e isolando a soma desejada, obtemos:
+
+$$
+\sum_{n=1}^{\infty} \frac{1}{n^4} = \frac{1}{1^4} + \frac{1}{2^4} + \frac{1}{3^4} + \frac{1}{4^4} + \ldots = \frac{\pi^4}{90}.
+$$
+
+### Um pouco de contexto histórico
+
+O problema da Basileia foi proposto pela primeira vez em 1644 por Pietro Mengoli e circulou pela Europa por quase um século sem solução. Matemáticos como os irmãos Bernoulli (Jakob e Johann) tentaram por anos, usando ferramentas sofisticadas da época, e não conseguiram chegar a uma resposta fechada. Em 1735, Euler (com 28 anos na época) apresentou essa solução usando nada além de séries de Taylor e fatoração de polinômios. Ferramentas simples, criatividade surreal.
+
+O mais impressionante é que Euler muitas vezes calculava esses resultados de cabeça antes de formalizá-los. Ele intuía valores numéricos a partir de somas parciais e depois construía a prova. A comunidade matemática ficou inicialmente cética (afinal, tratar $\sin(x)/x$ como um "polinômio de grau infinito" não era rigoroso pelos padrões da época), mas o resultado era correto, e provas rigorosas vieram décadas depois com Weierstrass.
+
+O resultado $\pi^4/90$ para a soma das quartas potências veio logo em seguida, usando a mesma técnica. Euler foi ainda mais longe e calculou $\sum 1/n^{2k}$ para diversos valores de $k$, sempre obtendo expressões envolvendo potências de $\pi$. Até hoje, as somas $\sum 1/n^k$ para $k$ ímpar (como $\sum 1/n^3$) continuam sem fórmulas fechadas conhecidas.

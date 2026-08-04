@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2026-08-04">
+<meta name="description" content="Polinômios, fatorações, séries e muita elegância matemática">
 
-<title>L-Stats Blog</title>
+<title>Um cara genial chamado Euler – L-Stats Blog</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,29 +28,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,35 +76,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -136,8 +107,8 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="styles-dark-override.css">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles-dark-override.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -309,7 +280,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">L-Stats Blog</span>
     </a>
   </div>
@@ -320,11 +291,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">Sobre</span></a>
   </li>  
 </ul>
@@ -345,180 +316,289 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">L-Stats Blog</h1>
-            <p class="subtitle lead">O que vou descobrindo em estatística, ciência de dados e matemática</p>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Um cara genial chamado Euler</h1>
+                  <div>
+        <div class="description">
+          Polinômios, fatorações, séries e muita elegância matemática
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Matemática</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">August 4, 2026</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="TWF0ZW0lQzMlQTF0aWNh">Matemática <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bWF0ZW0lQzMlQTF0aWNh">matemática <span class="quarto-category-count">(3)</span></div><div class="category" data-category="b3RpbWl6YSVDMyVBNyVDMyVBM28=">otimização <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmVkZXMlMjBuZXVyYWlz">redes neurais <span class="quarto-category-count">(2)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
+  <li><a href="#teorema-da-divisão-para-polinômios" id="toc-teorema-da-divisão-para-polinômios" class="nav-link" data-scroll-target="#teorema-da-divisão-para-polinômios">Teorema da divisão para polinômios</a></li>
+  <li><a href="#teorema-do-resto" id="toc-teorema-do-resto" class="nav-link" data-scroll-target="#teorema-do-resto">Teorema do Resto</a></li>
+  <li><a href="#teorema-do-fator" id="toc-teorema-do-fator" class="nav-link" data-scroll-target="#teorema-do-fator">Teorema do Fator</a></li>
+  <li><a href="#uma-fatoração-alternativa-de-px" id="toc-uma-fatoração-alternativa-de-px" class="nav-link" data-scroll-target="#uma-fatoração-alternativa-de-px">Uma fatoração alternativa de <span class="math inline">\(P(x)\)</span></a></li>
+  <li><a href="#a-sacada-de-euler" id="toc-a-sacada-de-euler" class="nav-link" data-scroll-target="#a-sacada-de-euler">A sacada de Euler</a></li>
+  <li><a href="#indo-além-a-soma-dos-inversos-das-quartas-potências" id="toc-indo-além-a-soma-dos-inversos-das-quartas-potências" class="nav-link" data-scroll-target="#indo-além-a-soma-dos-inversos-das-quartas-potências">Indo além: a soma dos inversos das quartas potências</a></li>
+  <li><a href="#um-pouco-de-contexto-histórico" id="toc-um-pouco-de-contexto-histórico" class="nav-link" data-scroll-target="#um-pouco-de-contexto-histórico">Um pouco de contexto histórico</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
 
+<section id="introdução" class="level3">
+<h3 class="anchored" data-anchor-id="introdução">Introdução</h3>
+<p>Pra começar essa história, precisamos definir algumas coisas para que possamos entender as sacadas geniais desse grande e excepcional (se não o melhor de todos) matemático de todos os tempos.</p>
+<p>Vamos começar falando sobre o algoritmo da divisão de polinômios, mas de forma breve, sem muitos detalhes rigorosos. Esse algoritmo é o mesmo que utilizamos para números reais e se estende também aos polinômios. Conhecemos um resultado importantíssimo envolvendo polinômios: o Teorema Fundamental da Álgebra, que diz que todo polinômio <span class="math inline">\(P(x)\)</span> com grau <span class="math inline">\(n \geq 1\)</span> possui pelo menos uma raiz nos complexos. Dito isto, podemos prosseguir com o que vamos tratar aqui, sem nos inclinar a falar sobre como obter essas raízes. O que nos interessa aqui é saber como um polinômio pode ser fatorado em termos das suas raízes e como essa ideia de fatoração foi especialmente útil para resolver um dos problemas mais intrigantes da época: o problema da Basileia, que pede a soma exata da série infinita dos inversos dos quadrados dos números inteiros positivos:</p>
+<p><span class="math display">\[
+\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \ldots = \frac{\pi^2}{6}.
+\]</span></p>
+</section>
+<section id="teorema-da-divisão-para-polinômios" class="level3">
+<h3 class="anchored" data-anchor-id="teorema-da-divisão-para-polinômios">Teorema da divisão para polinômios</h3>
+<p>Dados dois polinômios <span class="math inline">\(P(x)\)</span> (dividendo) e <span class="math inline">\(D(x)\)</span> (divisor) com <span class="math inline">\(D(x)\)</span> não nulo, existe um único par de polinômios <span class="math inline">\(Q(x)\)</span> (quociente) e <span class="math inline">\(R(x)\)</span> (resto) que satisfazem a seguinte identidade</p>
+<p><span class="math display">\[
+P(x) = D(x) Q(x) + R(x),
+\]</span></p>
+<p>tendo as seguintes condições para o resto <span class="math inline">\(R(x)\)</span>:</p>
+<ul>
+<li>Ou <span class="math inline">\(R(x) = 0\)</span> (o polinômio é divisível, resto nulo)</li>
+<li>Ou o grau de <span class="math inline">\(R(x)\)</span> é estritamente menor que o grau de <span class="math inline">\(D(x)\)</span> (grau <span class="math inline">\(R\)</span> &lt; grau <span class="math inline">\(D\)</span>).</li>
+</ul>
+</section>
+<section id="teorema-do-resto" class="level3">
+<h3 class="anchored" data-anchor-id="teorema-do-resto">Teorema do Resto</h3>
+<p>O resto da divisão de um polinômio <span class="math inline">\(P(x)\)</span> por um binômio do primeiro grau <span class="math inline">\((x-a)\)</span> é igual ao valor numérico de <span class="math inline">\(P(x)\)</span> em <span class="math inline">\(x = a\)</span>. Ou seja, se <span class="math inline">\(P(x)\)</span> é dividido por <span class="math inline">\((x-a)\)</span>, o resto <span class="math inline">\(R\)</span> é uma constante dada por <span class="math inline">\(R = P(a)\)</span>.</p>
+</section>
+<section id="teorema-do-fator" class="level3">
+<h3 class="anchored" data-anchor-id="teorema-do-fator">Teorema do Fator</h3>
+<p>Seja o polinômio <span class="math inline">\(P(x)\)</span> e <span class="math inline">\((x-r)\)</span> um fator desse polinômio. Ao dividir <span class="math inline">\(P(x)\)</span> por <span class="math inline">\((x-r)\)</span>, o resto da divisão é <span class="math inline">\(P(r)\)</span>, com <span class="math inline">\(r\)</span> sendo uma raiz de <span class="math inline">\(P(x)\)</span>.</p>
+<p>Para provar esse teorema, vamos utilizar os teoremas da divisão e do resto como base. Sabe-se pelo Teorema da Divisão de Polinômios que se <span class="math inline">\((x-a)\)</span> é um binômio de grau 1, o resto obrigatoriamente deve ter grau &lt; 1, ou seja, <span class="math inline">\(R(x)\)</span> é uma constante, digamos <span class="math inline">\(R\)</span>, para todo <span class="math inline">\(x\)</span>. Temos então</p>
+<p><span class="math display">\[
+P(x) = (x-a)Q(x) + R.
+\]</span></p>
+<p><em>Direção 1</em> (<span class="math inline">\(\implies\)</span>): Se <span class="math inline">\(r\)</span> é uma raiz de <span class="math inline">\(P(x)\)</span>, então <span class="math inline">\((x-r)\)</span> é fator de <span class="math inline">\(P(x)\)</span>.</p>
+<ul>
+<li>Hipótese: <span class="math inline">\(r\)</span> é raiz de <span class="math inline">\(P(x)\)</span>, que por definição significa <span class="math inline">\(P(r) = 0\)</span>.</li>
+<li>Objetivo: Mostrar que <span class="math inline">\(P(x) = (x-r)Q(x)\)</span>.</li>
+</ul>
+<p>Começamos avaliando <span class="math inline">\(P(x)\)</span> em <span class="math inline">\(x = r\)</span>:</p>
+<p><span class="math display">\[
+P(r) = (r-r)Q(r) + R,
+\]</span></p>
+<p>e por hipótese, <span class="math inline">\(P(r) = 0\)</span>, portanto <span class="math inline">\(R = 0\)</span>. Se <span class="math inline">\(R = 0\)</span>, temos <span class="math inline">\(P(x) = (x-r)Q(x)\)</span> e portanto <span class="math inline">\((x-r)\)</span> é fator de <span class="math inline">\(P(x)\)</span>.</p>
+<p><em>Direção 2</em> (<span class="math inline">\(\Leftarrow\)</span>): Se <span class="math inline">\((x-r)\)</span> é fator de <span class="math inline">\(P(x)\)</span>, então <span class="math inline">\(r\)</span> é raiz de <span class="math inline">\(P(x)\)</span>.</p>
+<ul>
+<li>Hipótese: <span class="math inline">\((x-r)\)</span> é fator de <span class="math inline">\(P(x)\)</span>, ou seja, existe <span class="math inline">\(Q(x)\)</span> tal que <span class="math inline">\(P(x) = (x-r)Q(x)\)</span>.</li>
+<li>Objetivo: Mostrar que <span class="math inline">\(P(r) = 0\)</span>.</li>
+</ul>
+<p>Avaliando <span class="math inline">\(P(x)\)</span> em <span class="math inline">\(x = r\)</span>, temos <span class="math inline">\(P(r) = (r-r)Q(r) = 0\)</span>. Como <span class="math inline">\(P(r) = 0\)</span>, concluímos que <span class="math inline">\(r\)</span> é uma raiz de <span class="math inline">\(P(x)\)</span>, o que demonstra o teorema. <span class="math inline">\(\blacksquare\)</span></p>
+<section id="por-que-isso-é-útil" class="level4">
+<h4 class="anchored" data-anchor-id="por-que-isso-é-útil"><em>Por que isso é útil?</em></h4>
+<p>Veja só: se <span class="math inline">\(P(x)\)</span> divide <span class="math inline">\((x-r)\)</span> com resto zero, como já sabemos, temos <span class="math inline">\(P(x) = Q(x)(x-r)\)</span> em que <span class="math inline">\(Q(x)\)</span> tem grau <span class="math inline">\(n-1\)</span>. Pelo Teorema Fundamental da Álgebra, todo polinômio com grau <span class="math inline">\(n \geq 1\)</span> possui pelo menos uma raiz (nos complexos). Vamos chamar de <span class="math inline">\(r_1\)</span> a primeira dessas raízes. Podemos então fatorar o polinômio <span class="math inline">\(P(x)\)</span> em:</p>
+<p><span class="math display">\[
+P(x) = (x-r_1)Q_1(x).
+\]</span></p>
+<p>Como <span class="math inline">\(Q_1(x)\)</span> possui grau <span class="math inline">\(n-1\)</span>, pelo mesmo teorema, também possui pelo menos uma raiz, que denotaremos <span class="math inline">\(r_2\)</span>. Assim, pode-se fatorar <span class="math inline">\(P(x)\)</span> como:</p>
+<p><span class="math display">\[
+P(x) = (x-r_1)(x-r_2)Q_2(x).
+\]</span></p>
+<p>Aplicando sucessivamente a mesma ideia, obtemos a forma geral</p>
+<p><span class="math display">\[
+P(x) = (x-r_1)(x-r_2) \ldots (x-r_n)Q_n(x).
+\]</span></p>
+<p>Como <span class="math inline">\(Q_n(x)\)</span> tem grau <span class="math inline">\(&lt; 1\)</span> (grau 0), ele é constante, e chamaremos essa constante de <span class="math inline">\(k\)</span>. Portanto o polinômio fatorado é</p>
+<p><span id="eq-polinomio-fatorado"><span class="math display">\[
+P(x) = k(x-r_1)(x-r_2) \ldots (x-r_n).
+\tag{1}\]</span></span></p>
+<p>Precisamos descobrir quem é essa constante <span class="math inline">\(k\)</span>. Para isso, comparamos termo a termo o polinômio <span class="math inline">\(P(x)\)</span> na forma fatorada com a forma geral. A forma geral de um polinômio é</p>
+<p><span id="eq-polinomio-geral"><span class="math display">\[
+P(x) = a_n x^n + a_{n-1}x^{n-1} + \ldots + a_1 x + a_0.
+\tag{2}\]</span></span></p>
+<p>Observe que se multiplicarmos <span class="math inline">\(k\)</span> por todos os termos <span class="math inline">\(x\)</span> do polinômio fatorado em (<a href="#eq-polinomio-fatorado" class="quarto-xref">1</a>), encontramos <span class="math inline">\(k x^n\)</span> como primeiro termo que acompanha o maior grau. Por comparação, concluímos que <span class="math inline">\(k = a_n\)</span>, de modo que o polinômio fatorado fica</p>
+<p><span id="eq-polinomio-fatorado-final"><span class="math display">\[
+P(x) = a_n(x-r_1)(x-r_2) \ldots (x-r_n).
+\tag{3}\]</span></span></p>
+<blockquote class="blockquote">
+<p>A expansão completa de (<a href="#eq-polinomio-geral" class="quarto-xref">2</a>) é dada por <span class="math display">\[P(x) = x^n - \Big(\sum_{i}^{n} r_i\Big)x^{n-1} + \Big(\sum_{i,j;i&lt;j} r_i r_j\Big)x^{n-2} - \ldots + (-1)^n \Big(\prod_{i=1}^{n} r_i \Big).\]</span> Exemplo: Seja <span class="math inline">\(P(x)\)</span> de grau <span class="math inline">\(n=3\)</span> na forma fatorada: <span class="math display">\[P(x) = k(x-r_1)(x-r_2)(x-r_3).\]</span> Expandindo fica <span class="math display">\[P(x) = k[x^3 - (r_1 + r_2 + r_3)x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)x - (r_1 r_2 r_3)].\]</span></p>
+</blockquote>
+</section>
+</section>
+<section id="uma-fatoração-alternativa-de-px" class="level3">
+<h3 class="anchored" data-anchor-id="uma-fatoração-alternativa-de-px">Uma fatoração alternativa de <span class="math inline">\(P(x)\)</span></h3>
+<p>Quando <span class="math inline">\(P(x)\)</span> é da forma</p>
+<p><span class="math display">\[
+P(x) = a_n (x-r_1)(x-r_2)(x-r_3) \ldots
+\]</span></p>
+<p>note que não existe um termo desse produto que acompanhe o coeficiente <span class="math inline">\(a_n\)</span> de forma isolada. Para contornar isso, pode-se colocar <span class="math inline">\(P(0)\)</span> em evidência avaliando o polinômio em <span class="math inline">\(x = 0\)</span>. Considere que <span class="math inline">\(P(x)\)</span> possui raízes da forma <span class="math inline">\(r_i \neq 0\)</span>. Então temos:</p>
+<p><span class="math display">\[
+P(0) = a_n (0-r_1)(0-r_2)(0-r_3) \ldots =  a_n (-r_1)(-r_2)(-r_3) \ldots
+\]</span></p>
+<p>Podemos pegar um fator genérico <span class="math inline">\((x-r_k)\)</span> e colocar <span class="math inline">\(-r_k\)</span> em evidência:</p>
+<p><span class="math display">\[
+(x-r_k) = -r_k \Bigg(1 - \frac{x}{r_k}\Bigg).
+\]</span></p>
+<p>Fazendo isso para todos os fatores de <span class="math inline">\(P(x)\)</span>, temos</p>
+<p><span class="math display">\[
+P(x) = a_n(-r_1)(-r_2)(-r_3) \ldots \Bigg(1 - \frac{x}{r_1}\Bigg) \Bigg(1 - \frac{x}{r_2}\Bigg)\Bigg(1 - \frac{x}{r_3}\Bigg) \ldots
+\]</span></p>
+<p>Note que <span class="math inline">\(a_n(-r_1)(-r_2)(-r_3) \ldots = P(0)\)</span>. Logo,</p>
+<p><span id="eq-polinomio-infinito-p0"><span class="math display">\[
+P(x) = P(0) \Bigg(1 - \frac{x}{r_1}\Bigg) \Bigg(1 - \frac{x}{r_2}\Bigg)\Bigg(1 - \frac{x}{r_3}\Bigg) \ldots
+\tag{4}\]</span></span></p>
+<p>Quando <span class="math inline">\(P(0) = 1\)</span>, o polinômio se resume a</p>
+<p><span id="eq-polinomio-infinito"><span class="math display">\[
+P(x) = \Bigg(1 - \frac{x}{r_1}\Bigg) \Bigg(1 - \frac{x}{r_2}\Bigg) \Bigg(1 - \frac{x}{r_3}\Bigg) \ldots
+\tag{5}\]</span></span></p>
+</section>
+<section id="a-sacada-de-euler" class="level3">
+<h3 class="anchored" data-anchor-id="a-sacada-de-euler">A sacada de Euler</h3>
+<p>Euler buscava resolver o problema da Basileia, que era a soma</p>
+<p><span class="math display">\[
+\frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \ldots
+\]</span></p>
+<p>Para resolver, ele percebeu um detalhe que só gênios conseguem ter. Ele viu que a série <span class="math inline">\(\sin(x)/x\)</span>, quando expandida como polinômio (via série de Taylor), tem a forma</p>
+<p><span class="math display">\[
+g(x) = \frac{\sin(x)}{x} = 1 - \frac{x^2}{6} +  \frac{x^4}{120} - \ldots
+\]</span></p>
+<p>Ele percebeu que todos os zeros (raízes) de <span class="math inline">\(g(x)\)</span> são da forma <span class="math inline">\(r = \pm k\pi\)</span> para <span class="math inline">\(k \in \mathbb{Z}\)</span>, ou seja, <span class="math inline">\(r = \ldots, \pm \pi, \pm 2\pi, \pm 3\pi, \ldots\)</span>, exceto em zero. Também notou que o primeiro termo desse polinômio vale 1 quando <span class="math inline">\(x = 0\)</span>, isto é, <span class="math inline">\(P(0) = 1\)</span>. Ele provavelmente deve ter imaginado: “E se eu agrupar todos os termos com essas raízes positivas e negativas como um polinômio fatorado?”. Essa ideia rendeu o seguinte raciocínio: ao agrupar os termos para <span class="math inline">\(r_k = \pm k\pi\)</span>, temos:</p>
+<p><span class="math display">\[
+\Bigg(1 - \frac{x}{k\pi}\Bigg)\Bigg(1 - \frac{x}{-k\pi}\Bigg) = \Bigg(1 - \frac{x^2}{k^2\pi^2}\Bigg).
+\]</span></p>
+<p>Organizando a soma original:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\sin(x)}{x} &amp;= \Bigg(1 - \frac{x^2}{\pi^2}\Bigg) \Bigg(1 - \frac{x^2}{2^2\pi^2}\Bigg) \Bigg(1 - \frac{x^2}{3^2\pi^2}\Bigg) \ldots  \\
+&amp;= \Bigg(1 - \frac{x^2}{\pi^2}\Bigg)\Bigg(1 - \frac{x^2}{4\pi^2}\Bigg) \Bigg(1 - \frac{x^2}{9\pi^2}\Bigg) \ldots
+\end{aligned}
+\]</span></p>
+<p>O engraçado é que se tomarmos o limite quando <span class="math inline">\(x \to 0\)</span> da expressão acima, provamos o famoso limite fundamental do cálculo. Mas perceba a genialidade de Euler. Ele viu que o grau e o termo que interessa para resolver o problema reside na potência <span class="math inline">\(n=2\)</span>, pegando todos os termos que envolvem <span class="math inline">\(x^2\)</span>:</p>
+<p><span class="math display">\[
+\frac{\sin(x)}{x} = (1 - \alpha_0 x^2)(1 - \alpha_1 x^2)(1 - \alpha_2 x^2) \ldots
+\]</span></p>
+<p>com <span class="math inline">\(\alpha_0 = 1/\pi^2\)</span>, <span class="math inline">\(\alpha_1 = 1/4\pi^2\)</span>, <span class="math inline">\(\alpha_2 = 1/9\pi^2\)</span>, e assim por diante. Ao multiplicar os parênteses e organizar apenas os termos que envolvem <span class="math inline">\(x^2\)</span>:</p>
+<p><span class="math display">\[
+-\alpha_0 x^2 - \alpha_1 x^2 - \alpha_2 x^2 - \ldots = -(\alpha_0 + \alpha_1 + \alpha_2 + \ldots) x^2.
+\]</span></p>
+<p>Os outros termos das multiplicações que geram potências maiores que 2 foram deixados de lado aqui.</p>
+<blockquote class="blockquote">
+<p>Pra fixar, vai um exemplo simples com <span class="math inline">\(P(x)\)</span> sendo <span class="math display">\[
+\begin{aligned}
+P(x) &amp;= (1 - A x^2)(1 - B x^2)(1 - C x^2) \\
+&amp;= 1 - \underbrace{(A + B + C)}_{\text{isso é o que interessa}}x^2 + (AB + AC + BC)x^4 - ABCx^6.
+\end{aligned}
+\]</span></p>
+</blockquote>
+<p>Agora vem o truque matador de Euler. Ele comparou o termo <span class="math inline">\(x^2\)</span> da expansão em série com o termo <span class="math inline">\(x^2\)</span> da fatoração:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\sin(x)}{x} &amp;=  1 - \frac{x^2}{6} +  \frac{x^4}{120} - \ldots  \\
+\frac{\sin(x)}{x} &amp;= \ldots - (\alpha_0 + \alpha_1 + \alpha_2 + \ldots) x^2 + \ldots
+\end{aligned}
+\]</span></p>
+<p>Basta igualar <span class="math inline">\((-1/6)x^2\)</span> com <span class="math inline">\(-(\alpha_0 + \alpha_1 + \alpha_2 + \ldots)x^2\)</span>. Lembrando que</p>
+<p><span class="math display">\[
+\begin{aligned}
+-(\alpha_0 + \alpha_1 + \alpha_2 + \ldots) &amp;= -\Big(\frac{1}{\pi^2} + \frac{1}{4\pi^2} + \frac{1}{9\pi^2} + \ldots\Big) \\
+&amp;= -\frac{1}{\pi^2}\Bigg(1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \ldots \Bigg) \\
+&amp;= -\frac{1}{\pi^2} \sum_{n=1}^{\infty} \frac{1}{n^2},
+\end{aligned}
+\]</span></p>
+<p>que é exatamente a soma que estamos tentando resolver desde o começo. Basta igualar isso a <span class="math inline">\(-1/6\)</span>:</p>
+<p><span class="math display">\[
+-\frac{1}{\pi^2}\sum_{n=1}^{\infty}\frac{1}{n^2} = -\frac{1}{6}
+\]</span></p>
+<p>e obter o valor da soma:</p>
+<p><span class="math display">\[
+\sum_{n=1}^{\infty}\frac{1}{n^2} = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \ldots = \frac{\pi^2}{6}.
+\]</span></p>
+<p>Resultado absolutamente lindo.</p>
+</section>
+<section id="indo-além-a-soma-dos-inversos-das-quartas-potências" class="level3">
+<h3 class="anchored" data-anchor-id="indo-além-a-soma-dos-inversos-das-quartas-potências">Indo além: a soma dos inversos das quartas potências</h3>
+<p>Utilizando a mesma ideia de comparar os termos das séries, podemos ir mais longe. Se olharmos para o coeficiente que acompanha <span class="math inline">\(x^4\)</span> na expansão de Taylor, que é <span class="math inline">\(1/120\)</span>, conseguimos determinar a seguinte soma:</p>
+<p><span class="math display">\[
+\sum_{n=1}^{\infty} \frac{1}{n^4}.
+\]</span></p>
+<p>Voltemos à forma fatorada de <span class="math inline">\(g(x) = \sin(x)/x\)</span>:</p>
+<p><span class="math display">\[
+\frac{\sin(x)}{x} = (1-\alpha_0 x^2)(1 - \alpha_1 x^2)(1 - \alpha_2 x^2) \ldots
+\]</span></p>
+<p>O truque agora é pegar os termos <span class="math inline">\(x^2\)</span> desse produto e agrupá-los dois a dois para obter <span class="math inline">\(x^4\)</span>:</p>
+<ul>
+<li>Pegar <span class="math inline">\(x^2\)</span> do primeiro e segundo fator: <span class="math inline">\((-\alpha_0 x^2)(-\alpha_1 x^2) \times (1) \times (1) \times \ldots = \alpha_0 \alpha_1 x^4\)</span>.</li>
+<li>Pegar <span class="math inline">\(x^2\)</span> do primeiro e terceiro fator: <span class="math inline">\((-\alpha_0 x^2) \times (1) \times (-\alpha_2 x^2) \times (1) \times \ldots = \alpha_0 \alpha_2 x^4\)</span>.</li>
+<li>Pegar <span class="math inline">\(x^2\)</span> do primeiro e quarto fator: <span class="math inline">\((-\alpha_0 x^2) \times (1) \times (1) \times (-\alpha_3 x^2) \times (1) \times \ldots = \alpha_0 \alpha_3 x^4\)</span>.</li>
+</ul>
+<p>E assim sucessivamente, cobrindo todos os pares cruzados que geram <span class="math inline">\(x^4\)</span>. Lembrando que os coeficientes de cada parêntese são <span class="math inline">\(\alpha_i = 1/(i^2\pi^2)\)</span>, multiplicar o <span class="math inline">\(i\)</span>-ésimo parêntese com o <span class="math inline">\(j\)</span>-ésimo (com <span class="math inline">\(i \neq j\)</span>) resulta em</p>
+<p><span class="math display">\[
+\Bigg(\frac{1}{i^2\pi^2}x^2 \Bigg)\Bigg(\frac{1}{j^2\pi^2}x^2 \Bigg) = \frac{1}{\pi^4} \Bigg(\frac{1}{i^2 j^2}\Bigg)x^4.
+\]</span></p>
+<p>O coeficiente total de <span class="math inline">\(x^4\)</span> é então dado pela soma sobre todos os pares com <span class="math inline">\(i &lt; j\)</span>:</p>
+<p><span class="math display">\[
+\sum_{1 \leq i &lt; j &lt; \infty} \frac{1}{\pi^4}\Bigg(\frac{1}{i^2 j^2}\Bigg).
+\]</span></p>
+<p>Para avançar, precisamos de uma sutileza: enxergar essa soma como a diferença de duas outras. Euler já conhecia a seguinte identidade algébrica:</p>
+<p><span class="math display">\[
+\sum_{i &lt; j} \frac{1}{i^2 j^2} = \frac{1}{2} \Bigg[\Bigg(\sum_{i} \frac{1}{i^2} \Bigg)^2 - \sum_{i} \frac{1}{i^4} \Bigg].
+\]</span></p>
+<p>Mas de onde isso vem? Segue a justificativa.</p>
+<blockquote class="blockquote">
+<p>Seja <span class="math inline">\(S = a_1 + a_2 + \ldots\)</span> uma soma. Façamos <span class="math inline">\(S^2 = (a_1 + a_2 + \ldots)(a_1 + a_2 + \ldots)\)</span>. Podemos separar essa multiplicação em termos com índice igual (<span class="math inline">\(i = j\)</span>) e termos cruzados (<span class="math inline">\(i \neq j\)</span>): <span class="math display">\[S^2 = \text{soma dos termos iguais} + \text{soma dos termos cruzados}.\]</span> Pense nisso como uma matriz: os elementos da diagonal principal são os termos com <span class="math inline">\(i = j\)</span>, e os de fora da diagonal são os cruzados, que aparecem duplicados (por exemplo, <span class="math inline">\(a_1 a_2\)</span> e <span class="math inline">\(a_2 a_1\)</span> dão <span class="math inline">\(2a_1 a_2\)</span>). Portanto: <span class="math display">\[
+\begin{aligned}
+S^2 &amp;= \sum_{i} a_i^2 + 2 \sum_{i &lt; j} a_i a_j \\
+\sum_{i &lt; j} a_i a_j &amp;= \frac{1}{2}\Bigg(S^2 - \sum_{i} a_i^2\Bigg).
+\end{aligned}
+\]</span> Tomando <span class="math inline">\(a_i = 1/i^2\)</span>, obtemos exatamente a identidade que Euler utilizou.</p>
+</blockquote>
+<p>Assim podemos reescrever a soma em termos de um único índice <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[
+\sum_{i &lt; j} \frac{1}{i^2 j^2} = \frac{1}{2} \Bigg[\Bigg(\sum_{n=1}^{\infty} \frac{1}{n^2} \Bigg)^2 - \sum_{n=1}^{\infty} \frac{1}{n^4} \Bigg].
+\]</span></p>
+<p>Sabemos que a primeira soma vale <span class="math inline">\((\pi^2/6)^2 = \pi^4/36\)</span> e que o coeficiente de <span class="math inline">\(x^4\)</span> na expansão em série é <span class="math inline">\(1/120\)</span>. Igualando:</p>
+<p><span class="math display">\[
+\frac{1}{120} = \frac{1}{\pi^4} \Bigg(\frac{1}{2} \Bigg[\frac{\pi^4}{36} - \sum_{n=1}^{\infty} \frac{1}{n^4} \Bigg]\Bigg)
+\]</span></p>
+<p>Cancelando os <span class="math inline">\(\pi^4\)</span> e isolando a soma desejada, obtemos:</p>
+<p><span class="math display">\[
+\sum_{n=1}^{\infty} \frac{1}{n^4} = \frac{1}{1^4} + \frac{1}{2^4} + \frac{1}{3^4} + \frac{1}{4^4} + \ldots = \frac{\pi^4}{90}.
+\]</span></p>
+</section>
+<section id="um-pouco-de-contexto-histórico" class="level3">
+<h3 class="anchored" data-anchor-id="um-pouco-de-contexto-histórico">Um pouco de contexto histórico</h3>
+<p>O problema da Basileia foi proposto pela primeira vez em 1644 por Pietro Mengoli e circulou pela Europa por quase um século sem solução. Matemáticos como os irmãos Bernoulli (Jakob e Johann) tentaram por anos, usando ferramentas sofisticadas da época, e não conseguiram chegar a uma resposta fechada. Em 1735, Euler (com 28 anos na época) apresentou essa solução usando nada além de séries de Taylor e fatoração de polinômios. Ferramentas simples, criatividade surreal.</p>
+<p>O mais impressionante é que Euler muitas vezes calculava esses resultados de cabeça antes de formalizá-los. Ele intuía valores numéricos a partir de somas parciais e depois construía a prova. A comunidade matemática ficou inicialmente cética (afinal, tratar <span class="math inline">\(\sin(x)/x\)</span> como um “polinômio de grau infinito” não era rigoroso pelos padrões da época), mas o resultado era correto, e provas rigorosas vieram décadas depois com Weierstrass.</p>
+<p>O resultado <span class="math inline">\(\pi^4/90\)</span> para a soma das quartas potências veio logo em seguida, usando a mesma técnica. Euler foi ainda mais longe e calculou <span class="math inline">\(\sum 1/n^{2k}\)</span> para diversos valores de <span class="math inline">\(k\)</span>, sempre obtendo expressões envolvendo potências de <span class="math inline">\(\pi\)</span>. Até hoje, as somas <span class="math inline">\(\sum 1/n^k\)</span> para <span class="math inline">\(k\)</span> ímpar (como <span class="math inline">\(\sum 1/n^3\)</span>) continuam sem fórmulas fechadas conhecidas.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="TWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1785812400000" data-listing-file-modified-sort="1785819713341" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2002">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-08-03-um-cara-genial-chamado-euler/index.html" class="no-external">Um cara genial chamado Euler</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ZW0lQzMlQTF0aWNh'); return false;">Matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-08-03-um-cara-genial-chamado-euler/index.html" class="no-external">
-<p>Polinômios, fatorações, séries e muita elegância matemática</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-08-03-um-cara-genial-chamado-euler/index.html" class="no-external">
-<div class="listing-date">
-Aug 4, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="b3RpbWl6YSVDMyVBNyVDMyVBM28lMkNtYXRlbSVDMyVBMXRpY2E=" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1783355730126" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="530">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-07-06-gradiente-descendente/index.html" class="no-external">Otimização de funções via gradiente descendente</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('b3RpbWl6YSVDMyVBNyVDMyVBM28='); return false;">otimização</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWF0ZW0lQzMlQTF0aWNh'); return false;">matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-07-06-gradiente-descendente/index.html" class="no-external">
-<p>Explorando como minimizar funções com e sem iterações</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-07-06-gradiente-descendente/index.html" class="no-external">
-<div class="listing-date">
-Jul 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="cmVkZXMlMjBuZXVyYWlzJTJDbWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1783356125009" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="807">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-07-06-perceptron/index.html" class="no-external">Perceptron Simples: o classificador linear mais básico que existe</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cmVkZXMlMjBuZXVyYWlz'); return false;">redes neurais</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWF0ZW0lQzMlQTF0aWNh'); return false;">matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-07-06-perceptron/index.html" class="no-external">
-<p>Entendendo o neurônio artificial, sua regra de aprendizado e como ele classifica padrões</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-07-06-perceptron/index.html" class="no-external">
-<div class="listing-date">
-Jul 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="cmVkZXMlMjBuZXVyYWlz" data-listing-date-sort="1783306800000" data-listing-file-modified-sort="1785349662583" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3078">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2026-07-06-redes-neurais/index.html" class="no-external">Alguns tópicos sobre redes neurais e o que eu fui descobrindo</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('cmVkZXMlMjBuZXVyYWlz'); return false;">redes neurais</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2026-07-06-redes-neurais/index.html" class="no-external">
-<p>Alguns truques interessantes e uma forma matricial de representação</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2026-07-06-redes-neurais/index.html" class="no-external">
-<div class="listing-date">
-Jul 6, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="bWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1770692400000" data-listing-file-modified-sort="1783351074906" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1292">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-05-21-intervalos-de-confianca/index.html" class="no-external">Brincando um pouco com senos e cossenos 😁</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bWF0ZW0lQzMlQTF0aWNh'); return false;">matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2025-05-21-intervalos-de-confianca/index.html" class="no-external">
-<p>Proriedades bem legais</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-05-21-intervalos-de-confianca/index.html" class="no-external">
-<div class="listing-date">
-Feb 10, 2026
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="TWF0ZW0lQzMlQTF0aWNh" data-listing-date-sort="1747796400000" data-listing-file-modified-sort="1783351074905" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="780">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-05-21-curiosidade-matematica-euler-pi/index.html" class="no-external">Uma propriedade interessante envolvendo números transcendentais</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('TWF0ZW0lQzMlQTF0aWNh'); return false;">Matemática</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/2025-05-21-curiosidade-matematica-euler-pi/index.html" class="no-external">
-<p>Como mostrar que e^pi &gt; pi^e ?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-05-21-curiosidade-matematica-euler-pi/index.html" class="no-external">
-<div class="listing-date">
-May 21, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
