@@ -356,6 +356,9 @@ window.Quarto = {
   <ul>
   <li><a href="#motivação" id="toc-motivação" class="nav-link active" data-scroll-target="#motivação">Motivação</a></li>
   <li><a href="#provando-a-fórmula-de-euler" id="toc-provando-a-fórmula-de-euler" class="nav-link" data-scroll-target="#provando-a-fórmula-de-euler">Provando a fórmula de Euler</a></li>
+  <li><a href="#como-seria-a-soma-s_n-para-os-cossenos" id="toc-como-seria-a-soma-s_n-para-os-cossenos" class="nav-link" data-scroll-target="#como-seria-a-soma-s_n-para-os-cossenos">Como seria a soma <span class="math inline">\(S_n\)</span> para os cossenos?</a></li>
+  <li><a href="#obtendo-as-somas-sem-a-fórmula-de-euler" id="toc-obtendo-as-somas-sem-a-fórmula-de-euler" class="nav-link" data-scroll-target="#obtendo-as-somas-sem-a-fórmula-de-euler">Obtendo as somas sem a fórmula de Euler</a></li>
+  <li><a href="#e-se-fizéssemos-para-a-soma-envolvendo-tangentes" id="toc-e-se-fizéssemos-para-a-soma-envolvendo-tangentes" class="nav-link" data-scroll-target="#e-se-fizéssemos-para-a-soma-envolvendo-tangentes">E se fizéssemos para a soma envolvendo tangentes?</a></li>
   </ul>
 </nav>
     </div>
@@ -385,15 +388,15 @@ e^{ix} = \cos(x) + i \sin(x).
 </section>
 <section id="provando-a-fórmula-de-euler" class="level3">
 <h3 class="anchored" data-anchor-id="provando-a-fórmula-de-euler">Provando a fórmula de Euler</h3>
-<p>A prova é direta se você conhece a expansão em série de Taylor (MacLaurin):</p>
+<p>A prova é direta se você conhece a expansão em série de Taylor (MacLaurin) da função exponencial em torno de <span class="math inline">\(x = 0\)</span>:</p>
 <p><span class="math display">\[
 e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots
 \]</span></p>
-<p>que é a expansão em série de Taylor (McLaurin) da função <span class="math inline">\(g(x) = \exp(x)\)</span> em torno de <span class="math inline">\(x = 0\)</span>. Avaliando essa série expandida para <span class="math inline">\(g(ix)\)</span> temos:</p>
+<p>Avaliando essa série para <span class="math inline">\(ix\)</span> temos:</p>
 <p><span class="math display">\[
 e^{ix} = 1 + ix + \frac{i^2 x^2}{2!} + \frac{i^3 x^3}{3!} + \frac{i^4 x^4}{4!} + \ldots
 \]</span></p>
-<p>Note que vão aparecendo os termos <span class="math inline">\(i, i^2, i^3, i^4, i^5, \ldots\)</span> de forma circular. Sabe-se da teoria dos números complexos que <span class="math inline">\(i = \sqrt{-1}\)</span> é a unidade imaginária e que <span class="math inline">\(i^2 = -1\)</span>, <span class="math inline">\(i^3 = i \times i^2 = -i\)</span>, <span class="math inline">\(i^4 = i^2 \times i^2 = 1\)</span>, <span class="math inline">\(i^5 = i^4 \times i = i\)</span> e assim sucessivamente. Note que podemos ter duas situações possíveis:</p>
+<p>Note que vão aparecendo os termos <span class="math inline">\(i, i^2, i^3, i^4, i^5, \ldots\)</span> de forma cíclica. Sabe-se da teoria dos números complexos que <span class="math inline">\(i = \sqrt{-1}\)</span> é a unidade imaginária e que <span class="math inline">\(i^2 = -1\)</span>, <span class="math inline">\(i^3 = i \cdot i^2 = -i\)</span>, <span class="math inline">\(i^4 = i^2 \cdot i^2 = 1\)</span>, <span class="math inline">\(i^5 = i^4 \cdot i = i\)</span> e assim por diante. Podemos ter duas situações:</p>
 <ol type="1">
 <li><strong>Caso da potência ser par:</strong> temos <span class="math inline">\(i^{2m} = (i^2)^m = (-1)^m\)</span>, que resulta em <span class="math inline">\(1\)</span> se <span class="math inline">\(m\)</span> é par e <span class="math inline">\(-1\)</span> se <span class="math inline">\(m\)</span> é ímpar, com <span class="math inline">\(m \in \mathbb{Z}^+\)</span>.</li>
 <li><strong>Caso da potência ser ímpar:</strong> temos <span class="math inline">\(i^{2m+1} = i^{2m} \cdot i = i \cdot (-1)^m\)</span>, que resulta em <span class="math inline">\(i\)</span> se <span class="math inline">\(m\)</span> é par e <span class="math inline">\(-i\)</span> se <span class="math inline">\(m\)</span> é ímpar, com <span class="math inline">\(m \in \mathbb{Z}^+\)</span>.</li>
@@ -492,11 +495,11 @@ e^{ix} = \underbrace{\Bigg(1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \frac{x^6}{6!} 
 <p><span class="math display">\[
 e^{ix} = \cos(x) + i\sin(x).
 \]</span></p>
-<p>Isso é a fórmula de Euler. Ela conecta a exponencial complexa com as funções trigonométricas de uma forma elegante e compacta. Aqui podemos notar que os termos ímpares da soma são todos aqueles que se alternam entre -1 ou 1. Note que se fizermos <span class="math inline">\(\exp(inx)\)</span> temos</p>
+<p>Isso é a fórmula de Euler. Ela conecta a exponencial complexa com as funções trigonométricas de forma elegante e compacta. Aqui podemos notar que se fizermos <span class="math inline">\(\exp(inx)\)</span> temos</p>
 <p><span class="math display">\[
-(e^{ix})^n = (e^{inx})= (\cos(x) + i\sin(x))^n = \cos(nx) + i\sin(nx).   
+(e^{ix})^n = e^{inx} = (\cos(x) + i\sin(x))^n = \cos(nx) + i\sin(nx).
 \]</span></p>
-<p>Esse resultado é conhecido como fórmula de De Moivre (Abraham de Moivre, ~1707), embora ele temha formulado muito bem antes da notação exponencial de Euler. Mas o que muitos consideram de mais lindo na matemática é quando avaliamos a fórmula de Euler no ponto <span class="math inline">\(x = \pi\)</span>:</p>
+<p>Esse resultado é conhecido como fórmula de De Moivre (Abraham de Moivre, ~1707), embora ele tenha formulado antes da notação exponencial de Euler. E o que muitos consideram o mais lindo da matemática é quando avaliamos a fórmula de Euler no ponto <span class="math inline">\(x = \pi\)</span>:</p>
 <p><span class="math display">\[
 e^{i\pi} = \cos(\pi) + i\sin(\pi) = -1,
 \]</span></p>
@@ -504,25 +507,194 @@ e^{i\pi} = \cos(\pi) + i\sin(\pi) = -1,
 <p><span class="math display">\[
 e^{i\pi} + 1 = 0.
 \]</span></p>
-<p>Ela é bela porque envolve o número de Euler <span class="math inline">\(e\)</span>, o número <span class="math inline">\(\pi\)</span> e a unidade complexa <span class="math inline">\(i\)</span> todas as três juntas.</p>
-<p>Mas nem é sobre isso que queríamos discutir no começo. O que queríamos era obter expressões gerais para aquelas somas envolvendo senos e cossenos. Para isso vamos voltar à formula de Euler e perceber que</p>
+<p>Ela é bela porque envolve o número de Euler <span class="math inline">\(e\)</span>, o número <span class="math inline">\(\pi\)</span> e a unidade complexa <span class="math inline">\(i\)</span>, todas juntas numa única equação.</p>
+<p>Mas não é sobre isso que queríamos discutir. O objetivo era obter expressões gerais para aquelas somas envolvendo senos e cossenos. Para isso vamos voltar à fórmula de Euler e perceber que</p>
 <p><span class="math display">\[
 S = \sin(x) + \sin(2x) + \ldots + \sin(nx)
 \]</span></p>
-<p>é a parte imaginária (termo que envolve o seno), ou seja, se definirmos a soma</p>
+<p>é a parte imaginária (o termo que envolve o seno). Se definirmos a soma</p>
 <p><span class="math display">\[
-S_n = e^{ix} + e^{2x} + e^{3x} + \ldots + e^{nx}.   
+S_n = e^{ix} + e^{2ix} + e^{3ix} + \ldots + e^{inx},
 \]</span></p>
-<p>Da soma acima, podemos estabelecer que <span class="math inline">\(S\)</span> nada mais é que a parte imaginária de <span class="math inline">\(S_n\)</span>, ou seja, que <span class="math inline">\(S = Im(S_n)\)</span>, pois podemos aplicar a fórmula de Euler para cada termo da série <span class="math inline">\(S_n\)</span> e pegar só o que nos interessa, que é exatamente os senos. Vamos guardar essa informação por enquanto.</p>
-<p>Agora, vamos expandir a série <span class="math inline">\(S_n\)</span> e podemos ver que é claramente uma série geométrica finita com primeiro termo <span class="math inline">\(a_0 = e^{ix}\)</span>, razão <span class="math inline">\(r = e^{ix}\)</span>.</p>
+<p>podemos estabelecer que <span class="math inline">\(S = \text{Im}(S_n)\)</span>, pois ao aplicar a fórmula de Euler para cada termo da série <span class="math inline">\(S_n\)</span> e pegar apenas a parte imaginária, obtemos exatamente os senos. Vamos guardar essa informação por enquanto.</p>
+<p>Agora, vamos expandir a série <span class="math inline">\(S_n\)</span>: é claramente uma série geométrica finita com primeiro termo <span class="math inline">\(a_1 = e^{ix}\)</span> e razão <span class="math inline">\(r = e^{ix}\)</span>.</p>
 <blockquote class="blockquote">
-<p><strong>Lembre que</strong>: em uma PG finita, com <span class="math inline">\(a_0\)</span> sendo o primeiro termo e <span class="math inline">\(r\)</span> a razão, temos <span class="math display">\[S_n =a_1 \frac{r^n - 1}{r - 1}, \,\,\, \text{com} \,\,\, |r| &lt; 1.\]</span></p>
+<p><strong>Lembre que:</strong> em uma PG finita com primeiro termo <span class="math inline">\(a_1\)</span> e razão <span class="math inline">\(r\)</span>, temos <span class="math display">\[S_n = a_1 \Bigg(\frac{r^n - 1}{r - 1}\Bigg), \quad \text{com } r \neq 1.\]</span></p>
 </blockquote>
 <p>Assim, temos que a soma <span class="math inline">\(S_n\)</span> da nossa série é</p>
+<p><span id="eq-soma-exps"><span class="math display">\[
+S_n = e^{ix} \Bigg(\frac{e^{inx} - 1}{e^{ix} - 1}\Bigg).
+\tag{1}\]</span></span></p>
+<p>A condição de existência para essa soma é <span class="math inline">\(e^{ix} \neq 1\)</span>, ou seja, <span class="math inline">\(x \neq 2k\pi\)</span>. O numerador de (<a href="#eq-soma-exps" class="quarto-xref">1</a>) pode ser reescrito de outra forma. Vamos fazer o seguinte truque:</p>
+<p><span id="eq-expxi-1"><span class="math display">\[
+e^{ix} - 1 = e^{ix/2}(e^{ix/2} - e^{-ix/2}).
+\tag{2}\]</span></span></p>
+<p>Mas por que fazer isso? Veja que ao fazer isso podemos reescrever <span class="math inline">\(e^{ix} - 1\)</span> em termos da função seno:</p>
+<blockquote class="blockquote">
+<p><strong>Vamos recordar</strong>: <span class="math display">\[\sin(\theta) = \frac{e^{i\theta} - e^{-i\theta}}{2i}\]</span> Isso implica que: <span class="math inline">\(2i \sin(\theta) = e^{i\theta} - e^{-i\theta}\)</span>. Se <span class="math inline">\(\theta = x/2\)</span> temos <span class="math display">\[2i \sin(x/2) = e^{ix/2} - e^{-ix/2}.\]</span> Percebeu alguma semelhança?</p>
+</blockquote>
+<p>Assim, o denominador pode ser escrito como <span class="math inline">\(e^{ix} - 1 = e^{ix/2} \cdot 2i \sin(x/2)\)</span>. O mesmo raciocínio se aplica ao numerador:</p>
 <p><span class="math display">\[
-S_n = e^{ix} \frac{e^{inx} - 1}{e^{ix} - 1}.
+e^{inx} - 1 = e^{inx/2}(e^{inx/2} - e^{-inx/2}) = e^{inx/2} \cdot 2i \sin(nx/2).
 \]</span></p>
-<p>A condição de existência para garantir que essa soma exista é <span class="math inline">\(|e^{ix}| &lt; 1\)</span>, mas como se trata de um número complexo, sabemos que se <span class="math inline">\(z\)</span> é um número complexo, <span class="math inline">\(|z| = |a + bi| = \sqrt{a^2 + b^2}\)</span>. Portanto, <span class="math inline">\(|e^{ix}| = \sqrt{\sin^2(x) + \cos^2(x)} = 1\)</span>. Basta então que <span class="math inline">\(e^{ix} \neq 1\)</span>.</p>
+<p>Toda a expressão (<a href="#eq-soma-exps" class="quarto-xref">1</a>) é reescrita da seguinte forma:</p>
+<p><span class="math display">\[
+\begin{aligned}
+S_n &amp;= \frac{e^{ix} \cdot e^{inx/2} \cdot 2i \sin(nx/2)}{e^{ix/2} \cdot 2i \sin(x/2)} \\
+&amp;= e^{ix + inx - ix/2} \cdot \frac{\sin(nx/2)}{\sin(x/2)} \\
+&amp;= e^{i(n+1)x / 2} \cdot \frac{\sin(nx/2)}{\sin(x/2)}.
+\end{aligned}
+\]</span></p>
+<p>No entanto, perceba que</p>
+<p><span class="math display">\[
+e^{i(n+1)x / 2} = \cos((n+1)x/2) + i \underbrace{\sin((n+1)x/2)}_{\text{queremos isso}}.
+\]</span></p>
+<p>Logo,</p>
+<p><span class="math display">\[
+S_n = \sum_{k=1}^{n} \sin(kx) = \sin((n+1)x/2) \times \frac{\sin(nx/2)}{\sin(x/2)}.
+\]</span></p>
+</section>
+<section id="como-seria-a-soma-s_n-para-os-cossenos" class="level3">
+<h3 class="anchored" data-anchor-id="como-seria-a-soma-s_n-para-os-cossenos">Como seria a soma <span class="math inline">\(S_n\)</span> para os cossenos?</h3>
+<p>O procedimento é exatamente o mesmo! Aproveitamos o resultado obtido mas pegamos somente a parte que envolve os cossenos, ou seja, a parte real de <span class="math inline">\(e^{i(n+1)x/2}\)</span>:</p>
+<p><span class="math display">\[
+e^{i(n+1)x / 2} = \underbrace{\cos((n+1)x/2)}_{\text{queremos isso}} + i\sin((n+1)x/2).
+\]</span></p>
+<p>Portanto,</p>
+<p><span class="math display">\[
+S_n = \sum_{k=1}^{n} \cos(kx) = \cos((n+1)x/2) \times \frac{\sin(nx/2)}{\sin(x/2)}.
+\]</span></p>
+</section>
+<section id="obtendo-as-somas-sem-a-fórmula-de-euler" class="level3">
+<h3 class="anchored" data-anchor-id="obtendo-as-somas-sem-a-fórmula-de-euler">Obtendo as somas sem a fórmula de Euler</h3>
+<p>Vamos supor que não conhecêssemos a fórmula de Euler e quiséssemos obter essas expressões gerais tanto para a soma dos senos quanto para a dos cossenos. A ideia é utilizar as identidades trigonométricas que transformam somas e diferenças de senos e cossenos em produtos.</p>
+<blockquote class="blockquote">
+<p><strong>Vamos fixar</strong></p>
+<p>Soma e diferença de senos: <span class="math display">\[\sin(a) + \sin(b) = 2 \sin\Bigg(\frac{a+b}{2}\Bigg)\cos\Bigg(\frac{a-b}{2}\Bigg)\]</span> <span class="math display">\[\sin(a) - \sin(b) = 2 \cos\Bigg(\frac{a+b}{2}\Bigg)\sin\Bigg(\frac{a-b}{2}\Bigg)\]</span></p>
+<p>Produto para soma (senos): <span class="math display">\[\sin(a+b) + \sin(a-b) = 2\sin(a)\cos(b)\]</span> <span class="math display">\[\sin(a+b) - \sin(a-b) = 2\cos(a)\sin(b)\]</span></p>
+<p>Soma e diferença de cossenos: <span class="math display">\[\cos(a) + \cos(b) = 2\cos\Bigg(\frac{a+b}{2}\Bigg)\cos\Bigg(\frac{a-b}{2}\Bigg)\]</span> <span class="math display">\[\cos(a) - \cos(b) = -2\sin\Bigg(\frac{a+b}{2}\Bigg)\sin\Bigg(\frac{a-b}{2}\Bigg)\]</span></p>
+<p>Produto para soma (cossenos): <span class="math display">\[\cos(a-b) + \cos(a+b) = 2\cos(a)\cos(b)\]</span> <span class="math display">\[\cos(a-b) - \cos(a+b) = 2\sin(a)\sin(b)\]</span></p>
+</blockquote>
+<p>Primeiro vamos obter a expressão geral para os senos:</p>
+<p><span class="math display">\[
+S_n = \sin(x) + \sin(2x) + \ldots + \sin(nx).
+\]</span></p>
+<p>O truque (que valerá também para a série dos cossenos) é multiplicar a soma <span class="math inline">\(S_n\)</span> por <span class="math inline">\(2\sin(x/2)\)</span>. Essa será a chave para encontrar o resultado. Multiplicando, obtemos:</p>
+<p><span class="math display">\[
+2 \sin(x/2) S_n = 2 \sin(x/2) \sin(x) + 2 \sin(x/2)\sin(2x) + \ldots + 2 \sin(x/2)\sin(nx).
+\]</span></p>
+<blockquote class="blockquote">
+<p>Aqui o termo <span class="math inline">\(a = x/2\)</span> em todos os termos e <span class="math inline">\(b\)</span> são os termos <span class="math inline">\(x, 2x, 3x,\ldots, nx\)</span>.</p>
+</blockquote>
+<p>Aplicando a relação <span class="math inline">\(2 \sin(a)\sin(b) = \cos(a-b) - \cos(a+b)\)</span> vamos ver o que é cada termo da soma para <span class="math inline">\(k=1,2,\ldots,n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(k = 1\)</span>: <span class="math inline">\(2 \sin(x/2) \sin(x) = \cos\Big(x - \frac{x}{2}\Big) -  \cos\Big(x + \frac{x}{2}\Big) = \cos(x/2) - \cos(3x/2)\)</span></li>
+<li><span class="math inline">\(k = 2\)</span>: <span class="math inline">\(2 \sin(x/2) \sin(2x) = \cos\Big(2x - \frac{x}{2}\Big) -  \cos\Big(2x + \frac{x}{2}\Big) = \cos(3x/2) - \cos(5x/2)\)</span></li>
+<li><span class="math inline">\(k = 3\)</span>: <span class="math inline">\(2 \sin(x/2) \sin(3x) = \cos\Big(3x - \frac{x}{2}\Big) -  \cos\Big(3x + \frac{x}{2}\Big) = \cos(5x/2) - \cos(7x/2)\)</span></li>
+</ul>
+<p><span class="math inline">\(\vdots\)</span></p>
+<ul>
+<li><span class="math inline">\(k = n-1\)</span>: <span class="math inline">\(2 \sin(x/2) \sin((n-1)x) = \cos\Big((n-1)x - \frac{x}{2}\Big) -  \cos\Big((n-1)x + \frac{x}{2}\Big) = \cos\Big(\frac{(2n-3)x}{2}\Big) - \cos\Big(\frac{(2n-1)x}{2}\Big)\)</span></li>
+<li><span class="math inline">\(k = n\)</span>: <span class="math inline">\(2 \sin(x/2) \sin(nx) = \cos\Big(nx - \frac{x}{2}\Big) -  \cos\Big(nx + \frac{x}{2}\Big) = \cos\Big(\frac{(2n-1)x}{2}\Big) - \cos\Big(\frac{(2n+1)x}{2}\Big)\)</span></li>
+</ul>
+<p>Veja que ao somar tudo, os termos se cancelam (cancelamento telescópico) e o que resta são apenas:</p>
+<p><span class="math display">\[
+2 \sin(x/2) S_n = \cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big).
+\]</span></p>
+<p>Dividindo ambos os lados <span class="math inline">\(2 \sin(x/2)\)</span> obtemos</p>
+<p><span class="math display">\[
+S_n = \frac{\cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big)}{2 \sin(x/2)}.
+\]</span></p>
+<p>Agora, no numerador, transformamos a diferença de cossenos num produto de senos utilizando a relação <span class="math inline">\(\cos(a) - \cos(b) = -2\sin((a+b)/2)\sin((a-b)/2)\)</span>. Considere <span class="math inline">\(a = x/2\)</span> e <span class="math inline">\(b = (2n+1)x/2\)</span>. Temos:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\Big(\frac{a + b}{2}\Big)}{2} &amp;= \frac{\Big(\frac{x}{2} + \frac{(2n+1)x}{2}\Big)}{2} = \frac{(n+1)x}{2} \\
+\frac{\Big(\frac{a - b}{2}\Big)}{2} &amp;= \frac{\Big(\frac{x}{2} - \frac{(2n+1)x}{2}\Big)}{2} = \frac{nx}{2}
+\end{aligned}
+\]</span></p>
+<p>Portanto, temos no numerador de <span class="math inline">\(S_n\)</span>:</p>
+<p><span class="math display">\[
+\cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big) = 2 \sin\Big(\frac{(n+1)x}{2} \Big) \sin\Big(\frac{nx}{2}\Big),
+\]</span></p>
+<p>e deste modo a soma fica</p>
+<p><span class="math display">\[
+S_n = \sin\Big(\frac{(n+1)x}{2}\Big) \times \frac{\sin\Big(\frac{nx}{2}\Big)}{\sin\Big(\frac{x}{2}\Big)}.
+\]</span></p>
+<p>Para o cosseno, a lógica é a mesma. Pegamos a série dos cossenos e multiplicamos por <span class="math inline">\(2\sin(x/2)\)</span>:</p>
+<p><span class="math display">\[
+2 \sin(x/2) C_n = 2\sin(x/2) \cos(x) + 2\sin(x/2)\cos(2x) + \ldots + 2\sin(x/2)\cos((n-1)x) + 2\sin(x/2)\cos(nx).
+\]</span></p>
+<p>Vamos usar aqui a relação <span class="math inline">\(2\cos(a)\sin(b) = \sin(a+b) - \sin(a-b)\)</span>. Aqui o termo <span class="math inline">\(b = x/2\)</span> será o mesmo para todos os termos e o termo <span class="math inline">\(a = x, 2x, 3x, \ldots, (n-1)x, nx\)</span> é o que varia. Expandindo para <span class="math inline">\(k = 1, 2, \ldots, n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(k=1\)</span>: <span class="math inline">\(2\sin(x/2) \cos(x) = \sin(x + x/2) - \sin(x - x/2) = \sin(3x/2) - \sin(x/2)\)</span></li>
+<li><span class="math inline">\(k=2\)</span>: <span class="math inline">\(2\sin(x/2) \cos(2x) = \sin(2x + x/2) - \sin(2x - x/2) = \sin(5x/2) - \sin(3x/2)\)</span></li>
+<li><span class="math inline">\(k=3\)</span>: <span class="math inline">\(2\sin(x/2) \cos(3x) = \sin(3x + x/2) - \sin(3x - x/2) = \sin(7x/2) - \sin(5x/2)\)</span></li>
+</ul>
+<p><span class="math inline">\(\vdots\)</span></p>
+<ul>
+<li><span class="math inline">\(k=n-1\)</span>: <span class="math inline">\(2\sin(x/2) \cos((n-1)x) = \sin((n-1)x + x/2) - \sin((n-1)x - x/2) = \sin((2n-1)x/2) - \sin((2n-3)x/2)\)</span></li>
+<li><span class="math inline">\(k=n\)</span>: <span class="math inline">\(2\sin(x/2) \cos(nx) = \sin(nx + x/2) - \sin(nx - x/2) = \sin((2n+1)x/2) - \sin((2n-1)x/2)\)</span></li>
+</ul>
+<p>Somando todos os resultados, os termos se cancelam assim como vimos para a soma dos senos. Restam apenas</p>
+<p><span class="math display">\[
+\sin((2n+1)x/2) - \sin(x/2).
+\]</span></p>
+<p>Dividindo <span class="math inline">\(C_n\)</span> por <span class="math inline">\(2\sin(x/2)\)</span> e utilizando o resultado acima, temos:</p>
+<p><span class="math display">\[
+C_n = \frac{\sin((2n+1)x/2) - \sin(x/2)}{2 \sin(x/2)}.
+\]</span></p>
+<p>Vamos usar a relação <span class="math inline">\(\sin(a) - \sin(b) = 2\cos((a+b)/2)\sin((a-b)/2)\)</span> com <span class="math inline">\(a = (2n+1)x/2\)</span> e <span class="math inline">\(b = x/2\)</span> no numerador. O cálculo é praticamente o mesmo que fizemos com os senos, resultando em</p>
+<p><span class="math display">\[
+C_n = \frac{2 \cos((n+1)x/2) \sin(nx/2)}{2 \sin(x/2)} = \cos((n+1)x/2) \frac{\sin(nx/2)}{\sin(x/2)},
+\]</span></p>
+<p>que é o resultado desejado.</p>
+</section>
+<section id="e-se-fizéssemos-para-a-soma-envolvendo-tangentes" class="level3">
+<h3 class="anchored" data-anchor-id="e-se-fizéssemos-para-a-soma-envolvendo-tangentes">E se fizéssemos para a soma envolvendo tangentes?</h3>
+<p>Aqui podemos ficar tentados a dividir as duas séries, o que não funciona, pois a divisão entre elas não resulta em tangentes termo a termo, isto é,</p>
+<p><span class="math display">\[
+\sum_{k=1}^{n} \tan(kx) \neq \frac{\sum_{k=1}^{n} \sin(kx)}{\sum_{k=1}^{n} \cos(kx)}.
+\]</span></p>
+<p>Então existe alguma forma envolvendo tangentes que telescopa? A resposta é: sim! Se considerarmos algo do tipo:</p>
+<p><span class="math display">\[
+\sum_{k=1}^{n} \tan(kx)\tan((k+1)x) = \tan(x)\tan(2x) + \tan(2)\tan(3x) + \ldots + \tan(nx)\tan((n+1)x),
+\]</span></p>
+<p>podemos encontrar o resultado usando uma relação conhecida com tangentes:</p>
+<p><span class="math display">\[
+\tan(a-b) = \frac{\tan(a) - \tan(b)}{1 + \tan(a)\tan(b)}.
+\]</span></p>
+<p>Isolando <span class="math inline">\(\tan(a)\tan(b)\)</span>:</p>
+<p><span class="math display">\[
+\tan(a)\tan(b) = \frac{\tan(a) - \tan(b)}{\tan(a-b)} - 1.
+\]</span></p>
+<p>Se a diferença entre ângulos for constante, ou seja, se <span class="math inline">\(a - b = x\)</span>, essa fração se simplifica. Vamos pegar o termo genérico da soma e analisar <span class="math inline">\(\tan(kx)\tan((k+1)x)\)</span>. A diferença para qualquer <span class="math inline">\(k\)</span> é <span class="math inline">\((k+1)x - kx = x\)</span>, ou seja, é constante. Assim o produto genérico se reduz a</p>
+<p><span class="math display">\[
+\tan((k+1)x) \tan(kx) = \frac{\tan((k+1)x) - \tan(kx)}{\tan(x)} - 1,
+\]</span></p>
+<p>e multiplicando ambos os lados por <span class="math inline">\(\tan(x)\)</span>:</p>
+<p><span class="math display">\[
+\tan((k+1)x) \tan(kx) \tan(x)  = \tan((k+1)x) - \tan(kx) - \tan(x).
+\]</span></p>
+<p>É isso que vamos utilizar! Abrindo a soma para <span class="math inline">\(k = 1, 2, \ldots, n\)</span>:</p>
+<ul>
+<li><span class="math inline">\(k=1\)</span>: <span class="math inline">\(\tan(2x)\tan(x)\tan(x) = \tan(2x) - \tan(x) - \tan(x)\)</span></li>
+<li><span class="math inline">\(k=2\)</span>: <span class="math inline">\(\tan(3x)\tan(2x)\tan(x) = \tan(3x) - \tan(2x) - \tan(x)\)</span></li>
+<li><span class="math inline">\(k=3\)</span>: <span class="math inline">\(\tan(4x)\tan(3x)\tan(x) = \tan(4x) - \tan(3x) - \tan(x)\)</span></li>
+</ul>
+<p><span class="math inline">\(\vdots\)</span></p>
+<ul>
+<li><span class="math inline">\(k=n-1\)</span>: <span class="math inline">\(\tan(nx)\tan((n-1)x)\tan(x) = \tan(nx) - \tan((n-1)x) - \tan(x)\)</span></li>
+<li><span class="math inline">\(k=n\)</span>: <span class="math inline">\(\tan((n+1)x)\tan(nx)\tan(x) = \tan((n+1)x) - \tan(nx) - \tan(x)\)</span></li>
+</ul>
+<p>Somando todos os termos, ocorre o cancelamento telescópico, restando o primeiro termo <span class="math inline">\(-\tan(x)\)</span>, os <span class="math inline">\(n\)</span> termos <span class="math inline">\(-\tan(x)\)</span> somados que resultam em <span class="math inline">\(-n\tan(x)\)</span>, e o último termo <span class="math inline">\(\tan((n+1)x)\)</span>. Simplificando:</p>
+<p><span class="math display">\[
+\tan(x) S_n = \tan((n+1)x) - n\tan(x) - \tan(x),
+\]</span></p>
+<p>e dividindo tudo por <span class="math inline">\(\tan(x)\)</span>:</p>
+<p><span class="math display">\[
+S_n = \frac{\tan((n+1)x)}{\tan(x)} - (n+1).
+\]</span></p>
+<p>Resultado elegante! Essa soma envolvendo produtos de tangentes consecutivas telescopa de forma perfeita. Paramos por aqui. Talvez eu faça um outro post sobre como provar as relações das diferenças e somas de senos e cossenos, e como transformá-las em produtos. Isso é útil para provar derivadas de funções trigonométricas e o limite fundamental do cálculo. Até mais!</p>
 
 
 </section>

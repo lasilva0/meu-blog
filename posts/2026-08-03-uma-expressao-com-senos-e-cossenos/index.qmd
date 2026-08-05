@@ -33,23 +33,22 @@ A partir dela, transformamos uma soma trigonométrica "difícil" numa soma geom�
 
 ### Provando a fórmula de Euler
 
-A prova é direta se você conhece a expansão em série de Taylor (MacLaurin):
+A prova é direta se você conhece a expansão em série de Taylor (MacLaurin) da função exponencial em torno de $x = 0$:
 
 $$
-e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots 
+e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \ldots
 $$
 
-que é a expansão em série de Taylor (McLaurin) da função $g(x) = \exp(x)$ em torno de $x = 0$. 
-Avaliando essa série expandida para $g(ix)$ temos:
+Avaliando essa série para $ix$ temos:
 
 $$
 e^{ix} = 1 + ix + \frac{i^2 x^2}{2!} + \frac{i^3 x^3}{3!} + \frac{i^4 x^4}{4!} + \ldots 
 $$
 
-Note que vão aparecendo os termos $i, i^2, i^3, i^4, i^5, \ldots$ de forma circular. Sabe-se
-da teoria dos números complexos que $i = \sqrt{-1}$ é a unidade imaginária e que 
-$i^2 = -1$, $i^3 = i \times i^2 = -i$, $i^4 = i^2 \times i^2 = 1$, $i^5 = i^4 \times i = i$ e assim 
-sucessivamente. Note que podemos ter duas situações possíveis:
+Note que vão aparecendo os termos $i, i^2, i^3, i^4, i^5, \ldots$ de forma cíclica. Sabe-se
+da teoria dos números complexos que $i = \sqrt{-1}$ é a unidade imaginária e que
+$i^2 = -1$, $i^3 = i \cdot i^2 = -i$, $i^4 = i^2 \cdot i^2 = 1$, $i^5 = i^4 \cdot i = i$ e assim
+por diante. Podemos ter duas situações:
 
 1. **Caso da potência ser par:** temos $i^{2m} = (i^2)^m = (-1)^m$, que resulta em $1$ se $m$ é par e $-1$ se $m$ é ímpar, com $m \in \mathbb{Z}^+$.
 2. **Caso da potência ser ímpar:** temos $i^{2m+1} = i^{2m} \cdot i = i \cdot (-1)^m$, que resulta em $i$ se $m$ é par e $-i$ se $m$ é ímpar, com $m \in \mathbb{Z}^+$.
@@ -104,17 +103,16 @@ $$
 e^{ix} = \cos(x) + i\sin(x).
 $$
 
-Isso é a fórmula de Euler. Ela conecta a exponencial complexa com as funções trigonométricas de uma forma elegante e compacta. Aqui 
-podemos notar que os termos ímpares da soma são todos aqueles que se alternam entre -1 ou 1. Note que 
-se fizermos $\exp(inx)$ temos 
+Isso é a fórmula de Euler. Ela conecta a exponencial complexa com as funções trigonométricas de forma elegante e compacta. Aqui
+podemos notar que se fizermos $\exp(inx)$ temos
 
 $$
-(e^{ix})^n = (e^{inx})= (\cos(x) + i\sin(x))^n = \cos(nx) + i\sin(nx).   
+(e^{ix})^n = e^{inx} = (\cos(x) + i\sin(x))^n = \cos(nx) + i\sin(nx).
 $$
 
-Esse resultado é conhecido como fórmula de De Moivre (Abraham de Moivre, ~1707), embora ele 
-temha formulado muito bem antes da notação exponencial de Euler. Mas o que muitos consideram 
-de mais lindo na matemática é quando avaliamos a fórmula de Euler no ponto $x = \pi$:
+Esse resultado é conhecido como fórmula de De Moivre (Abraham de Moivre, ~1707), embora ele
+tenha formulado antes da notação exponencial de Euler. E o que muitos consideram
+o mais lindo da matemática é quando avaliamos a fórmula de Euler no ponto $x = \pi$:
 
 $$
 e^{i\pi} = \cos(\pi) + i\sin(\pi) = -1, 
@@ -127,39 +125,294 @@ $$
 e^{i\pi} + 1 = 0. 
 $$
 
-Ela é bela porque envolve o número de Euler $e$, o número $\pi$ e a unidade complexa $i$ todas as 
-três juntas. 
+Ela é bela porque envolve o número de Euler $e$, o número $\pi$ e a unidade complexa $i$, todas
+juntas numa única equação.
 
-Mas nem é sobre isso que queríamos discutir no começo. O que queríamos era obter expressões gerais 
-para aquelas somas envolvendo senos e cossenos. Para isso vamos voltar à formula de Euler e 
-perceber que 
+Mas não é sobre isso que queríamos discutir. O objetivo era obter expressões gerais
+para aquelas somas envolvendo senos e cossenos. Para isso vamos voltar à fórmula de Euler e
+perceber que
 
 $$
 S = \sin(x) + \sin(2x) + \ldots + \sin(nx)
 $$
 
-é a parte imaginária (termo que envolve o seno), ou seja, se definirmos a soma 
+é a parte imaginária (o termo que envolve o seno). Se definirmos a soma
 
 $$
-S_n = e^{ix} + e^{2x} + e^{3x} + \ldots + e^{nx}.   
+S_n = e^{ix} + e^{2ix} + e^{3ix} + \ldots + e^{inx},
 $$
 
-Da soma acima, podemos estabelecer que $S$ nada mais é que a parte imaginária de $S_n$, ou seja, que 
-$S = Im(S_n)$, pois podemos aplicar a fórmula de Euler para cada termo da série $S_n$ e pegar 
-só o que nos interessa, que é exatamente os senos. Vamos guardar essa informação por enquanto. 
+podemos estabelecer que $S = \text{Im}(S_n)$, pois ao aplicar a fórmula de Euler para cada termo da série $S_n$ e pegar
+apenas a parte imaginária, obtemos exatamente os senos. Vamos guardar essa informação por enquanto. 
 
-Agora, vamos expandir a série $S_n$ e podemos ver que é claramente uma série geométrica finita 
-com primeiro termo $a_0 = e^{ix}$, razão $r = e^{ix}$. 
+Agora, vamos expandir a série $S_n$: é claramente uma série geométrica finita
+com primeiro termo $a_1 = e^{ix}$ e razão $r = e^{ix}$.
 
-> **Lembre que**: em uma PG finita, com $a_0$ sendo o primeiro termo e $r$ a razão, temos 
-> $$S_n =a_1 \frac{r^n - 1}{r - 1}, \,\,\, \text{com} \,\,\, |r| < 1.$$ 
+> **Lembre que:** em uma PG finita com primeiro termo $a_1$ e razão $r$, temos
+> $$S_n = a_1 \Bigg(\frac{r^n - 1}{r - 1}\Bigg), \quad \text{com } r \neq 1.$$ 
 
 Assim, temos que a soma $S_n$ da nossa série é 
 
 $$
-S_n = e^{ix} \frac{e^{inx} - 1}{e^{ix} - 1}. 
+S_n = e^{ix} \Bigg(\frac{e^{inx} - 1}{e^{ix} - 1}\Bigg). 
+$${#eq-soma-exps}
+
+A condição de existência para essa soma é $e^{ix} \neq 1$, ou seja, $x \neq 2k\pi$. O numerador de ([-@eq-soma-exps]) pode
+ser reescrito de outra forma. Vamos fazer o seguinte truque: 
+
+$$
+e^{ix} - 1 = e^{ix/2}(e^{ix/2} - e^{-ix/2}).
+$${#eq-expxi-1}
+
+Mas por que fazer isso? Veja que ao fazer isso podemos reescrever $e^{ix} - 1$ em termos da função seno: 
+
+> **Vamos recordar**: $$\sin(\theta) = \frac{e^{i\theta} - e^{-i\theta}}{2i}$$
+> Isso implica que: $2i \sin(\theta) = e^{i\theta} - e^{-i\theta}$. Se $\theta = x/2$ temos 
+> $$2i \sin(x/2) = e^{ix/2} - e^{-ix/2}.$$ Percebeu alguma semelhança? 
+
+Assim, o denominador pode ser escrito como $e^{ix} - 1 = e^{ix/2} \cdot 2i \sin(x/2)$. O mesmo raciocínio se aplica ao numerador:
+
+$$
+e^{inx} - 1 = e^{inx/2}(e^{inx/2} - e^{-inx/2}) = e^{inx/2} \cdot 2i \sin(nx/2).
 $$
 
-A condição de existência para garantir que essa soma exista é $|e^{ix}| < 1$, mas como se trata de 
-um número complexo, sabemos que se $z$ é um número complexo, $|z| = |a + bi| = \sqrt{a^2 + b^2}$. Portanto,
-$|e^{ix}| = \sqrt{\sin^2(x) + \cos^2(x)} = 1$. Basta então que $e^{ix} \neq 1$.  
+Toda a expressão ([-@eq-soma-exps]) é reescrita da seguinte forma: 
+
+$$
+\begin{aligned}
+S_n &= \frac{e^{ix} \cdot e^{inx/2} \cdot 2i \sin(nx/2)}{e^{ix/2} \cdot 2i \sin(x/2)} \\ 
+&= e^{ix + inx - ix/2} \cdot \frac{\sin(nx/2)}{\sin(x/2)} \\
+&= e^{i(n+1)x / 2} \cdot \frac{\sin(nx/2)}{\sin(x/2)}. 
+\end{aligned}
+$$
+
+No entanto, perceba que 
+
+$$
+e^{i(n+1)x / 2} = \cos((n+1)x/2) + i \underbrace{\sin((n+1)x/2)}_{\text{queremos isso}}.
+$$
+
+Logo, 
+
+$$
+S_n = \sum_{k=1}^{n} \sin(kx) = \sin((n+1)x/2) \times \frac{\sin(nx/2)}{\sin(x/2)}.
+$$
+
+### Como seria a soma $S_n$ para os cossenos?
+
+O procedimento é exatamente o mesmo! Aproveitamos o resultado obtido mas pegamos somente a parte que envolve os cossenos,
+ou seja, a parte real de $e^{i(n+1)x/2}$:
+
+
+$$
+e^{i(n+1)x / 2} = \underbrace{\cos((n+1)x/2)}_{\text{queremos isso}} + i\sin((n+1)x/2).
+$$
+
+Portanto, 
+
+$$
+S_n = \sum_{k=1}^{n} \cos(kx) = \cos((n+1)x/2) \times \frac{\sin(nx/2)}{\sin(x/2)}. 
+$$
+
+### Obtendo as somas sem a fórmula de Euler
+
+Vamos supor que não conhecêssemos a fórmula de Euler e quiséssemos obter essas expressões gerais tanto para a soma dos senos
+quanto para a dos cossenos. A ideia é utilizar as identidades trigonométricas que transformam somas e diferenças de senos
+e cossenos em produtos. 
+
+> **Vamos fixar**
+>
+> Soma e diferença de senos:
+> $$\sin(a) + \sin(b) = 2 \sin\Bigg(\frac{a+b}{2}\Bigg)\cos\Bigg(\frac{a-b}{2}\Bigg)$$
+> $$\sin(a) - \sin(b) = 2 \cos\Bigg(\frac{a+b}{2}\Bigg)\sin\Bigg(\frac{a-b}{2}\Bigg)$$
+>
+> Produto para soma (senos):
+> $$\sin(a+b) + \sin(a-b) = 2\sin(a)\cos(b)$$
+> $$\sin(a+b) - \sin(a-b) = 2\cos(a)\sin(b)$$
+>
+> Soma e diferença de cossenos:
+> $$\cos(a) + \cos(b) = 2\cos\Bigg(\frac{a+b}{2}\Bigg)\cos\Bigg(\frac{a-b}{2}\Bigg)$$
+> $$\cos(a) - \cos(b) = -2\sin\Bigg(\frac{a+b}{2}\Bigg)\sin\Bigg(\frac{a-b}{2}\Bigg)$$
+>
+> Produto para soma (cossenos):
+> $$\cos(a-b) + \cos(a+b) = 2\cos(a)\cos(b)$$
+> $$\cos(a-b) - \cos(a+b) = 2\sin(a)\sin(b)$$
+
+Primeiro vamos obter a expressão geral para os senos:
+
+$$
+S_n = \sin(x) + \sin(2x) + \ldots + \sin(nx). 
+$$
+
+O truque (que valerá também para a série dos cossenos) é multiplicar a soma $S_n$ por $2\sin(x/2)$. Essa será a chave
+para encontrar o resultado. Multiplicando, obtemos:
+
+$$
+2 \sin(x/2) S_n = 2 \sin(x/2) \sin(x) + 2 \sin(x/2)\sin(2x) + \ldots + 2 \sin(x/2)\sin(nx). 
+$$
+
+> Aqui o termo $a = x/2$ em todos os termos e $b$ são os termos $x, 2x, 3x,\ldots, nx$. 
+
+Aplicando a relação $2 \sin(a)\sin(b) = \cos(a-b) - \cos(a+b)$ vamos ver o que é cada termo da soma para $k=1,2,\ldots,n$:
+
+* $k = 1$: $2 \sin(x/2) \sin(x) = \cos\Big(x - \frac{x}{2}\Big) -  \cos\Big(x + \frac{x}{2}\Big) = \cos(x/2) - \cos(3x/2)$
+* $k = 2$: $2 \sin(x/2) \sin(2x) = \cos\Big(2x - \frac{x}{2}\Big) -  \cos\Big(2x + \frac{x}{2}\Big) = \cos(3x/2) - \cos(5x/2)$
+* $k = 3$: $2 \sin(x/2) \sin(3x) = \cos\Big(3x - \frac{x}{2}\Big) -  \cos\Big(3x + \frac{x}{2}\Big) = \cos(5x/2) - \cos(7x/2)$
+
+$\vdots$
+
+* $k = n-1$: $2 \sin(x/2) \sin((n-1)x) = \cos\Big((n-1)x - \frac{x}{2}\Big) -  \cos\Big((n-1)x + \frac{x}{2}\Big) = \cos\Big(\frac{(2n-3)x}{2}\Big) - \cos\Big(\frac{(2n-1)x}{2}\Big)$
+* $k = n$: $2 \sin(x/2) \sin(nx) = \cos\Big(nx - \frac{x}{2}\Big) -  \cos\Big(nx + \frac{x}{2}\Big) = \cos\Big(\frac{(2n-1)x}{2}\Big) - \cos\Big(\frac{(2n+1)x}{2}\Big)$
+
+Veja que ao somar tudo, os termos se cancelam (cancelamento telescópico) e o que resta
+são apenas:
+
+$$
+2 \sin(x/2) S_n = \cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big). 
+$$
+
+Dividindo ambos os lados $2 \sin(x/2)$ obtemos
+
+$$
+S_n = \frac{\cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big)}{2 \sin(x/2)}.
+$$
+
+Agora, no numerador, transformamos a diferença de cossenos num produto de senos utilizando a relação $\cos(a) - \cos(b) = -2\sin((a+b)/2)\sin((a-b)/2)$.
+Considere $a = x/2$ e $b = (2n+1)x/2$. Temos:
+
+$$
+\begin{aligned}
+\frac{\Big(\frac{a + b}{2}\Big)}{2} &= \frac{\Big(\frac{x}{2} + \frac{(2n+1)x}{2}\Big)}{2} = \frac{(n+1)x}{2} \\
+\frac{\Big(\frac{a - b}{2}\Big)}{2} &= \frac{\Big(\frac{x}{2} - \frac{(2n+1)x}{2}\Big)}{2} = \frac{nx}{2}
+\end{aligned}
+$$
+
+Portanto, temos no numerador de $S_n$: 
+
+$$
+\cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big) = 2 \sin\Big(\frac{(n+1)x}{2} \Big) \sin\Big(\frac{nx}{2}\Big), 
+$$
+
+e deste modo a soma fica
+
+$$
+S_n = \sin\Big(\frac{(n+1)x}{2}\Big) \times \frac{\sin\Big(\frac{nx}{2}\Big)}{\sin\Big(\frac{x}{2}\Big)}.
+$$
+
+Para o cosseno, a lógica é a mesma. Pegamos a série dos cossenos e multiplicamos por $2\sin(x/2)$:
+
+$$
+2 \sin(x/2) C_n = 2\sin(x/2) \cos(x) + 2\sin(x/2)\cos(2x) + \ldots + 2\sin(x/2)\cos((n-1)x) + 2\sin(x/2)\cos(nx).
+$$
+
+Vamos usar aqui a relação $2\cos(a)\sin(b) = \sin(a+b) - \sin(a-b)$. Aqui o termo $b = x/2$ será o mesmo
+para todos os termos e o termo $a = x, 2x, 3x, \ldots, (n-1)x, nx$ é o que varia. Expandindo para
+$k = 1, 2, \ldots, n$:
+
+* $k=1$: $2\sin(x/2) \cos(x) = \sin(x + x/2) - \sin(x - x/2) = \sin(3x/2) - \sin(x/2)$
+* $k=2$: $2\sin(x/2) \cos(2x) = \sin(2x + x/2) - \sin(2x - x/2) = \sin(5x/2) - \sin(3x/2)$
+* $k=3$: $2\sin(x/2) \cos(3x) = \sin(3x + x/2) - \sin(3x - x/2) = \sin(7x/2) - \sin(5x/2)$
+
+$\vdots$
+
+* $k=n-1$: $2\sin(x/2) \cos((n-1)x) = \sin((n-1)x + x/2) - \sin((n-1)x - x/2) = \sin((2n-1)x/2) - \sin((2n-3)x/2)$
+* $k=n$: $2\sin(x/2) \cos(nx) = \sin(nx + x/2) - \sin(nx - x/2) = \sin((2n+1)x/2) - \sin((2n-1)x/2)$
+
+Somando todos os resultados, os termos se cancelam assim como vimos para a soma dos senos. Restam apenas
+
+$$
+\sin((2n+1)x/2) - \sin(x/2).
+$$
+
+Dividindo $C_n$ por $2\sin(x/2)$ e utilizando o resultado acima, temos:
+
+$$
+C_n = \frac{\sin((2n+1)x/2) - \sin(x/2)}{2 \sin(x/2)}.
+$$
+
+Vamos usar a relação $\sin(a) - \sin(b) = 2\cos((a+b)/2)\sin((a-b)/2)$ com $a = (2n+1)x/2$ e $b = x/2$
+no numerador. O cálculo é praticamente o mesmo que fizemos com os senos, resultando em 
+
+$$
+C_n = \frac{2 \cos((n+1)x/2) \sin(nx/2)}{2 \sin(x/2)} = \cos((n+1)x/2) \frac{\sin(nx/2)}{\sin(x/2)}, 
+$$
+
+que é o resultado desejado. 
+
+### E se fizéssemos para a soma envolvendo tangentes?
+
+Aqui podemos ficar tentados a dividir as duas séries, o que não funciona, pois a divisão entre elas
+não resulta em tangentes termo a termo, isto é,
+
+$$
+\sum_{k=1}^{n} \tan(kx) \neq \frac{\sum_{k=1}^{n} \sin(kx)}{\sum_{k=1}^{n} \cos(kx)}.
+$$
+
+Então existe alguma forma envolvendo tangentes que telescopa? A resposta é: sim! Se considerarmos algo do tipo:
+
+$$
+\sum_{k=1}^{n} \tan(kx)\tan((k+1)x) = \tan(x)\tan(2x) + \tan(2)\tan(3x) + \ldots + \tan(nx)\tan((n+1)x), 
+$$
+
+podemos encontrar o resultado usando uma relação conhecida com tangentes:
+
+$$
+\tan(a-b) = \frac{\tan(a) - \tan(b)}{1 + \tan(a)\tan(b)}.
+$$
+
+Isolando $\tan(a)\tan(b)$:
+
+$$
+\tan(a)\tan(b) = \frac{\tan(a) - \tan(b)}{\tan(a-b)} - 1.
+$$
+
+Se a diferença entre ângulos for constante, ou seja, se $a - b = x$, essa fração se simplifica.
+Vamos pegar o termo genérico da soma e analisar $\tan(kx)\tan((k+1)x)$. A diferença para qualquer $k$ é
+$(k+1)x - kx = x$, ou seja, é constante. Assim o produto genérico se reduz a
+
+$$
+\tan((k+1)x) \tan(kx) = \frac{\tan((k+1)x) - \tan(kx)}{\tan(x)} - 1, 
+$$
+
+e multiplicando ambos os lados por $\tan(x)$:
+
+$$
+\tan((k+1)x) \tan(kx) \tan(x)  = \tan((k+1)x) - \tan(kx) - \tan(x).
+$$
+
+É isso que vamos utilizar! Abrindo a soma para $k = 1, 2, \ldots, n$:
+
+* $k=1$: $\tan(2x)\tan(x)\tan(x) = \tan(2x) - \tan(x) - \tan(x)$
+* $k=2$: $\tan(3x)\tan(2x)\tan(x) = \tan(3x) - \tan(2x) - \tan(x)$
+* $k=3$: $\tan(4x)\tan(3x)\tan(x) = \tan(4x) - \tan(3x) - \tan(x)$
+
+$\vdots$
+
+* $k=n-1$: $\tan(nx)\tan((n-1)x)\tan(x) = \tan(nx) - \tan((n-1)x) - \tan(x)$
+* $k=n$: $\tan((n+1)x)\tan(nx)\tan(x) = \tan((n+1)x) - \tan(nx) - \tan(x)$
+
+Somando todos os termos, ocorre o cancelamento telescópico, restando o primeiro termo $-\tan(x)$, os $n$ termos
+$-\tan(x)$ somados que resultam em $-n\tan(x)$, e o último termo $\tan((n+1)x)$. Simplificando:
+
+$$
+\tan(x) S_n = \tan((n+1)x) - n\tan(x) - \tan(x), 
+$$
+
+e dividindo tudo por $\tan(x)$:
+
+$$
+S_n = \frac{\tan((n+1)x)}{\tan(x)} - (n+1).
+$$
+
+Resultado elegante! Essa soma envolvendo produtos de tangentes consecutivas telescopa de forma perfeita. Paramos por aqui.
+Talvez eu faça um outro post sobre como provar as relações das diferenças e somas de senos e cossenos, e como transformá-las
+em produtos. Isso é útil para provar derivadas de funções trigonométricas e o limite fundamental do cálculo. Até mais!
+
+
+
+
+
+
+
+
+
