@@ -29,13 +29,13 @@ Uma rede neural é basicamente um modelo matemático que recebe um vetor de entr
 
 ### Neurônio
 
-O neurônio é a unidade fundamental. Ele recebe $p$ entradas, multiplica cada uma por um peso $w_j$, soma tudo (incluindo um termo de bias $b$) e aplica uma função de ativação $\varphi(\cdot)$:
+O neurônio é a unidade fundamental. Ele recebe $p$ entradas, multiplica cada uma por um peso $w_j$, soma tudo (incluindo um termo de bias $b$) e aplica uma função de ativação $\phi(\cdot)$:
 
 $$
-y = \varphi\left(\sum_{j=1}^{p} w_j x_j + b\right) = \varphi(\mathbf{w}^T \mathbf{x} + b)
+y = \phi\left(\sum_{j=1}^{p} w_j x_j + b\right) = \phi(\mathbf{w}^T \mathbf{x} + b)
 $$
 
-A parte $\mathbf{w}^T \mathbf{x} + b$ é chamada de ativação (ou pré-ativação). A função $\varphi$ introduz a não-linearidade que permite à rede modelar relações que vão além de combinações lineares.
+A parte $\mathbf{w}^T \mathbf{x} + b$ é chamada de ativação (ou pré-ativação). A função $\phi$ introduz a não-linearidade que permite à rede modelar relações que vão além de combinações lineares.
 
 ### Camadas
 
@@ -48,14 +48,14 @@ Quando agrupamos vários neurônios que recebem as mesmas entradas, temos uma **
 Para uma rede com uma camada oculta de $n_h$ neurônios, as operações são:
 
 $$
-\mathbf{h} = \varphi(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)})
+\mathbf{h} = \phi(\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1)
 $$
 
 $$
-\mathbf{y} = \psi(\mathbf{W}^{(2)} \mathbf{h} + \mathbf{b}^{(2)})
+\mathbf{y} = \gamma(\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2)
 $$
 
-onde $\mathbf{W}^{(1)}$ é a matriz de pesos da primeira camada (dimensão $n_h \times p$), $\mathbf{W}^{(2)}$ é a da segunda (dimensão $q \times n_h$), e $\varphi$, $\psi$ são as funções de ativação de cada camada.
+onde $\mathbf{W}_1$ é a matriz de pesos da primeira camada (dimensão $p \times n_h$), $\mathbf{W}_2$ é a da segunda (dimensão $n_h \times q$), e $\phi$, $\gamma$ são as funções de ativação de cada camada.
 
 ### Funções de ativação
 
@@ -80,42 +80,42 @@ Vamos tornar isso concreto. Considere uma rede com 2 entradas ($x_1, x_2$), 3 ne
 
 ### Forma matricial: camada oculta
 
-O vetor de entrada é $\mathbf{x} = [x_1, x_2]^T$. A matriz de pesos da primeira camada $\mathbf{W}^{(1)}$ tem dimensão $3 \times 2$ (3 neurônios, 2 entradas) e o vetor de bias $\mathbf{b}^{(1)} \in \mathbb{R}^3$:
+O vetor de entrada (uma amostra em linha) é $\mathbf{x} = [x_1, x_2]$. A matriz de pesos da primeira camada $\mathbf{W}_1$ tem dimensão $2 \times 3$ (2 entradas, 3 neurônios) e o vetor de bias $\mathbf{b}_1 \in \mathbb{R}^{1 \times 3}$:
 
 $$
-\mathbf{W}^{(1)} = \begin{bmatrix} w_{11}^{(1)} & w_{12}^{(1)} \\ w_{21}^{(1)} & w_{22}^{(1)} \\ w_{31}^{(1)} & w_{32}^{(1)} \end{bmatrix}, \qquad \mathbf{b}^{(1)} = \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)} \end{bmatrix}
+\mathbf{W}_1 = \begin{bmatrix} w_{11}^{(1)} & w_{12}^{(1)} & w_{13}^{(1)} \\ w_{21}^{(1)} & w_{22}^{(1)} & w_{23}^{(1)} \end{bmatrix}, \qquad \mathbf{b}_1 = \begin{bmatrix} b_1^{(1)} & b_2^{(1)} & b_3^{(1)} \end{bmatrix}
 $$
 
 A pré-ativação da camada oculta é:
 
 $$
-\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)} = \begin{bmatrix} w_{11}^{(1)} & w_{12}^{(1)} \\ w_{21}^{(1)} & w_{22}^{(1)} \\ w_{31}^{(1)} & w_{32}^{(1)} \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} + \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(1)}x_1 + w_{12}^{(1)}x_2 + b_1^{(1)} \\ w_{21}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} \\ w_{31}^{(1)}x_1 + w_{32}^{(1)}x_2 + b_3^{(1)} \end{bmatrix}
+\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1 = \begin{bmatrix} x_1 & x_2 \end{bmatrix} \begin{bmatrix} w_{11}^{(1)} & w_{12}^{(1)} & w_{13}^{(1)} \\ w_{21}^{(1)} & w_{22}^{(1)} & w_{23}^{(1)} \end{bmatrix} + \begin{bmatrix} b_1^{(1)} & b_2^{(1)} & b_3^{(1)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(1)}x_1 + w_{21}^{(1)}x_2 + b_1^{(1)} & w_{12}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} & w_{13}^{(1)}x_1 + w_{23}^{(1)}x_2 + b_3^{(1)} \end{bmatrix}
 $$
 
-Aplicando a função de ativação $\varphi$ elemento a elemento:
+Aplicando a função de ativação $\phi$ elemento a elemento:
 
 $$
-\mathbf{h} = \varphi\!\left(\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}\right) = \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix}
+\mathbf{h} = \phi\!\left(\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1\right) = \begin{bmatrix} h_1 & h_2 & h_3 \end{bmatrix}
 $$
 
 ### Forma matricial: camada de saída
 
-Agora $\mathbf{h} \in \mathbb{R}^3$ é a entrada da segunda camada. A matriz de pesos $\mathbf{W}^{(2)}$ tem dimensão $2 \times 3$ e o bias $\mathbf{b}^{(2)} \in \mathbb{R}^2$:
+Agora $\mathbf{h} \in \mathbb{R}^{1 \times 3}$ é a entrada da segunda camada. A matriz de pesos $\mathbf{W}_2$ tem dimensão $3 \times 2$ e o bias $\mathbf{b}_2 \in \mathbb{R}^{1 \times 2}$:
 
 $$
-\mathbf{W}^{(2)} = \begin{bmatrix} w_{11}^{(2)} & w_{12}^{(2)} & w_{13}^{(2)} \\ w_{21}^{(2)} & w_{22}^{(2)} & w_{23}^{(2)} \end{bmatrix}, \qquad \mathbf{b}^{(2)} = \begin{bmatrix} b_1^{(2)} \\ b_2^{(2)} \end{bmatrix}
+\mathbf{W}_2 = \begin{bmatrix} w_{11}^{(2)} & w_{12}^{(2)} \\ w_{21}^{(2)} & w_{22}^{(2)} \\ w_{31}^{(2)} & w_{32}^{(2)} \end{bmatrix}, \qquad \mathbf{b}_2 = \begin{bmatrix} b_1^{(2)} & b_2^{(2)} \end{bmatrix}
 $$
 
 A pré-ativação da camada de saída é:
 
 $$
-\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)} = \begin{bmatrix} w_{11}^{(2)} & w_{12}^{(2)} & w_{13}^{(2)} \\ w_{21}^{(2)} & w_{22}^{(2)} & w_{23}^{(2)} \end{bmatrix} \begin{bmatrix} h_1 \\ h_2 \\ h_3 \end{bmatrix} + \begin{bmatrix} b_1^{(2)} \\ b_2^{(2)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(2)}h_1 + w_{12}^{(2)}h_2 + w_{13}^{(2)}h_3 + b_1^{(2)} \\ w_{21}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{23}^{(2)}h_3 + b_2^{(2)} \end{bmatrix}
+\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2 = \begin{bmatrix} h_1 & h_2 & h_3 \end{bmatrix} \begin{bmatrix} w_{11}^{(2)} & w_{12}^{(2)} \\ w_{21}^{(2)} & w_{22}^{(2)} \\ w_{31}^{(2)} & w_{32}^{(2)} \end{bmatrix} + \begin{bmatrix} b_1^{(2)} & b_2^{(2)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(2)}h_1 + w_{21}^{(2)}h_2 + w_{31}^{(2)}h_3 + b_1^{(2)} & w_{12}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{32}^{(2)}h_3 + b_2^{(2)} \end{bmatrix}
 $$
 
-Aplicando a função de ativação de saída $\psi$:
+Aplicando a função de ativação de saída $\gamma$:
 
 $$
-\mathbf{y} = \psi\!\left(\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}\right) = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix}
+\mathbf{y} = \gamma\!\left(\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2\right) = \begin{bmatrix} y_1 & y_2 \end{bmatrix}
 $$
 
 ### Resumo do forward pass
@@ -123,7 +123,7 @@ $$
 Juntando tudo, o fluxo completo de cálculo (forward pass) fica:
 
 $$
-\mathbf{x} \xrightarrow{\mathbf{W}^{(1)},\, \mathbf{b}^{(1)}} \mathbf{h} = \varphi\!\left(\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}\right) \xrightarrow{\mathbf{W}^{(2)},\, \mathbf{b}^{(2)}} \mathbf{y} = \psi\!\left(\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}\right)
+\mathbf{x} \xrightarrow{\mathbf{W}_1,\, \mathbf{b}_1} \mathbf{h} = \phi\!\left(\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1\right) \xrightarrow{\mathbf{W}_2,\, \mathbf{b}_2} \mathbf{y} = \gamma\!\left(\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2\right)
 $$
 
 O total de parâmetros ajustáveis nessa rede é: $3 \times 2 + 3 + 2 \times 3 + 2 = 6 + 3 + 6 + 2 = 17$. Em redes profundas esse número cresce rapidamente, e é exatamente por isso que o backpropagation precisa ser eficiente.
@@ -135,28 +135,28 @@ Entender as dimensões é provavelmente a parte mais prática para quem vai impl
 Para uma camada $\ell$ qualquer, a regra é:
 
 $$
-\mathbf{W}^{(\ell)} \in \mathbb{R}^{n_\ell \times n_{\ell-1}}
+\mathbf{W}_\ell \in \mathbb{R}^{n_{\ell-1} \times n_\ell}
 $$
 
-onde $n_{\ell-1}$ é o número de neurônios (ou entradas) da camada anterior e $n_\ell$ é o número de neurônios da camada atual. O bias sempre acompanha: $\mathbf{b}^{(\ell)} \in \mathbb{R}^{n_\ell}$.
+onde $n_{\ell-1}$ é o número de neurônios (ou entradas) da camada anterior e $n_\ell$ é o número de neurônios da camada atual. O bias sempre acompanha: $\mathbf{b}_\ell \in \mathbb{R}^{1 \times n_\ell}$.
 
-A intuição é direta: cada linha de $\mathbf{W}^{(\ell)}$ contém os pesos de um neurônio da camada $\ell$, e esse neurônio precisa de um peso para cada entrada que recebe. Por isso o número de colunas é $n_{\ell-1}$.
+A intuição é direta: como os dados entram em linha ($\mathbf{a}_{\ell-1}\mathbf{W}_\ell$), cada coluna de $\mathbf{W}_\ell$ contém os pesos de um neurônio da camada $\ell$, e esse neurônio precisa de um peso para cada entrada que recebe. Por isso o número de linhas é $n_{\ell-1}$ e o de colunas é $n_\ell$.
 
 ### No nosso exemplo
 
-| Camada | Operação | Dimensão de $\mathbf{W}^{(\ell)}$ | Dimensão de $\mathbf{b}^{(\ell)}$ | Dimensão da saída |
+| Camada | Operação | Dimensão de $\mathbf{W}_\ell$ | Dimensão de $\mathbf{b}_\ell$ | Dimensão da saída |
 |--------|----------|-----------------------------------|-----------------------------------|-------------------|
-| 1 (oculta) | $\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}$ | $3 \times 2$ | $3 \times 1$ | $\mathbf{h} \in \mathbb{R}^3$ |
-| 2 (saída)  | $\mathbf{W}^{(2)}\mathbf{h} + \mathbf{b}^{(2)}$ | $2 \times 3$ | $2 \times 1$ | $\mathbf{y} \in \mathbb{R}^2$ |
+| 1 (oculta) | $\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1$ | $2 \times 3$ | $1 \times 3$ | $\mathbf{h} \in \mathbb{R}^{1 \times 3}$ |
+| 2 (saída)  | $\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2$ | $3 \times 2$ | $1 \times 2$ | $\mathbf{y} \in \mathbb{R}^{1 \times 2}$ |
 
-Note que as dimensões se encaixam: o número de colunas de $\mathbf{W}^{(\ell)}$ tem que ser igual ao tamanho do vetor que entra. Se isso não bater, a multiplicação simplesmente não existe.
+Note que as dimensões se encaixam: o número de linhas de $\mathbf{W}_\ell$ tem que ser igual ao tamanho do vetor que entra. Se isso não bater, a multiplicação simplesmente não existe.
 
 ### Regra geral para $L$ camadas
 
 Numa rede com $L$ camadas e arquitetura $[n_0, n_1, n_2, \ldots, n_L]$ (onde $n_0$ é o número de entradas e $n_L$ é o número de saídas), as dimensões ficam:
 
 $$
-\mathbf{W}^{(\ell)} \in \mathbb{R}^{n_\ell \times n_{\ell-1}}, \quad \mathbf{b}^{(\ell)} \in \mathbb{R}^{n_\ell}, \quad \ell = 1, 2, \ldots, L
+\mathbf{W}_\ell \in \mathbb{R}^{n_{\ell-1} \times n_\ell}, \quad \mathbf{b}_\ell \in \mathbb{R}^{1 \times n_\ell}, \quad \ell = 1, 2, \ldots, L
 $$
 
 O total de parâmetros da rede é:
@@ -167,7 +167,7 @@ $$
 
 O $+1$ vem do bias de cada camada. No nosso exemplo: $3 \cdot (2+1) + 2 \cdot (3+1) = 9 + 8 = 17$, que bate com o que calculamos antes.
 
-Quando formos derivar o backpropagation, essas dimensões vão aparecer o tempo todo. O gradiente da função custo em relação a $\mathbf{W}^{(\ell)}$ precisa ter exatamente a mesma dimensão que $\mathbf{W}^{(\ell)}$, caso contrário a atualização dos pesos não faz sentido.
+Quando formos derivar o backpropagation, essas dimensões vão aparecer o tempo todo. O gradiente da função custo em relação a $\mathbf{W}_\ell$ precisa ter exatamente a mesma dimensão que $\mathbf{W}_\ell$, caso contrário a atualização dos pesos não faz sentido.
 
 
 ## Forward pass
@@ -179,54 +179,54 @@ Para uma rede com $L$ camadas, o cálculo em cada camada $\ell$ segue dois passo
 **Passo 1 — pré-ativação:** combina linearmente as entradas com os pesos
 
 $$
-\mathbf{z}^{(\ell)} = \mathbf{W}^{(\ell)} \mathbf{a}^{(\ell-1)} + \mathbf{b}^{(\ell)}
+\mathbf{z}_\ell = \mathbf{a}_{\ell-1}\mathbf{W}_\ell + \mathbf{b}_\ell
 $$
 
 **Passo 2 — ativação:** aplica a função não-linear
 
 $$
-\mathbf{a}^{(\ell)} = \varphi^{(\ell)}\!\left(\mathbf{z}^{(\ell)}\right)
+\mathbf{a}_\ell = \phi_\ell\!\left(\mathbf{z}_\ell\right)
 $$
 
-onde adotamos $\mathbf{a}^{(0)} = \mathbf{x}$ (a entrada da rede). A saída final é $\hat{\mathbf{y}} = \mathbf{a}^{(L)}$.
+onde adotamos $\mathbf{a}_0 = \mathbf{x}$ (a entrada da rede). A saída final é $\hat{\mathbf{y}} = \mathbf{a}_L$.
 
-Vale guardar explicitamente tanto $\mathbf{z}^{(\ell)}$ quanto $\mathbf{a}^{(\ell)}$ para cada camada durante esse passo. O motivo ficará claro no backpropagation: esses valores intermediários são necessários para calcular os gradientes.
+Vale guardar explicitamente tanto $\mathbf{z}_\ell$ quanto $\mathbf{a}_\ell$ para cada camada durante esse passo. O motivo ficará claro no backpropagation: esses valores intermediários são necessários para calcular os gradientes.
 
 ### No nosso exemplo ($L = 2$)
 
-Partindo de $\mathbf{a}^{(0)} = \mathbf{x} = [x_1,\, x_2]^T$:
+Partindo de $\mathbf{a}_0 = \mathbf{x} = [x_1,\, x_2]$:
 
 **Camada 1 (oculta):**
 
 $$
-\mathbf{z}^{(1)} = \mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)} =
+\mathbf{z}_1 = \mathbf{x}\mathbf{W}_1 + \mathbf{b}_1 =
 \begin{bmatrix}
-w_{11}^{(1)} x_1 + w_{12}^{(1)} x_2 + b_1^{(1)} \\
-w_{21}^{(1)} x_1 + w_{22}^{(1)} x_2 + b_2^{(1)} \\
-w_{31}^{(1)} x_1 + w_{32}^{(1)} x_2 + b_3^{(1)}
+w_{11}^{(1)} x_1 + w_{21}^{(1)} x_2 + b_1^{(1)} &
+w_{12}^{(1)} x_1 + w_{22}^{(1)} x_2 + b_2^{(1)} &
+w_{13}^{(1)} x_1 + w_{23}^{(1)} x_2 + b_3^{(1)}
 \end{bmatrix}
-\in \mathbb{R}^3
+\in \mathbb{R}^{1 \times 3}
 $$
 
 $$
-\mathbf{a}^{(1)} = \varphi\!\left(\mathbf{z}^{(1)}\right) =
-\begin{bmatrix} \varphi(z_1^{(1)}) \\ \varphi(z_2^{(1)}) \\ \varphi(z_3^{(1)}) \end{bmatrix} = \mathbf{h} \in \mathbb{R}^3
+\mathbf{a}_1 = \phi\!\left(\mathbf{z}_1\right) =
+\begin{bmatrix} \phi(z_1^{(1)}) & \phi(z_2^{(1)}) & \phi(z_3^{(1)}) \end{bmatrix} = \mathbf{h} \in \mathbb{R}^{1 \times 3}
 $$
 
 **Camada 2 (saída):**
 
 $$
-\mathbf{z}^{(2)} = \mathbf{W}^{(2)} \mathbf{a}^{(1)} + \mathbf{b}^{(2)} =
+\mathbf{z}_2 = \mathbf{a}_1\mathbf{W}_2 + \mathbf{b}_2 =
 \begin{bmatrix}
-w_{11}^{(2)} h_1 + w_{12}^{(2)} h_2 + w_{13}^{(2)} h_3 + b_1^{(2)} \\
-w_{21}^{(2)} h_1 + w_{22}^{(2)} h_2 + w_{23}^{(2)} h_3 + b_2^{(2)}
+w_{11}^{(2)} h_1 + w_{21}^{(2)} h_2 + w_{31}^{(2)} h_3 + b_1^{(2)} &
+w_{12}^{(2)} h_1 + w_{22}^{(2)} h_2 + w_{32}^{(2)} h_3 + b_2^{(2)}
 \end{bmatrix}
-\in \mathbb{R}^2
+\in \mathbb{R}^{1 \times 2}
 $$
 
 $$
-\hat{\mathbf{y}} = \mathbf{a}^{(2)} = \psi\!\left(\mathbf{z}^{(2)}\right) =
-\begin{bmatrix} \psi(z_1^{(2)}) \\ \psi(z_2^{(2)}) \end{bmatrix} \in \mathbb{R}^2
+\hat{\mathbf{y}} = \mathbf{a}_2 = \gamma\!\left(\mathbf{z}_2\right) =
+\begin{bmatrix} \gamma(z_1^{(2)}) & \gamma(z_2^{(2)}) \end{bmatrix} \in \mathbb{R}^{1 \times 2}
 $$
 
 ### Função custo
@@ -239,11 +239,11 @@ $$
 
 O fator $\frac{1}{2}$ é apenas conveniência: ele cancela o expoente 2 quando derivamos, deixando as expressões mais limpas. Para classificação multiclasse usa-se a entropia cruzada, mas o mecanismo do backpropagation é o mesmo.
 
-O objetivo do treinamento é encontrar os pesos $\mathbf{W}^{(\ell)}$ e biases $\mathbf{b}^{(\ell)}$ que minimizam $\mathcal{L}$. Para isso precisamos calcular os gradientes de $\mathcal{L}$ em relação a cada parâmetro da rede, o que é exatamente o papel do backpropagation.
+O objetivo do treinamento é encontrar os pesos $\mathbf{W}_\ell$ e biases $\mathbf{b}_\ell$ que minimizam $\mathcal{L}$. Para isso precisamos calcular os gradientes de $\mathcal{L}$ em relação a cada parâmetro da rede, o que é exatamente o papel do backpropagation.
 
 ## Funções de ativação e suas derivadas
 
-Antes de entrar no backpropagation, vale fixar as derivadas das principais funções de ativação. O motivo é direto: o backpropagation usa a regra da cadeia para propagar gradientes da saída para a entrada, e em cada camada essa derivação passa pela derivada de $\varphi^{(\ell)}$ em relação à pré-ativação $\mathbf{z}^{(\ell)}$. Se a derivada for zero em boa parte do domínio, o gradiente "some" e os pesos das primeiras camadas param de ser atualizados. Esse problema tem nome: *vanishing gradient*.
+Antes de entrar no backpropagation, vale fixar as derivadas das principais funções de ativação. O motivo é direto: o backpropagation usa a regra da cadeia para propagar gradientes da saída para a entrada, e em cada camada essa derivação passa pela derivada de $\phi_\ell$ em relação à pré-ativação $\mathbf{z}_\ell$. Se a derivada for zero em boa parte do domínio, o gradiente "some" e os pesos das primeiras camadas param de ser atualizados. Esse problema tem nome: *vanishing gradient*.
 
 ![Funções de ativação (linha contínua) e suas derivadas (linha tracejada)](ativacoes.png){fig-align="center" width=100%}
 
@@ -273,22 +273,22 @@ A mais usada em redes profundas hoje. A derivada é 1 para entradas positivas, o
 
 ### Por que as derivadas importam no backpropagation
 
-Quando calcularmos o gradiente de $\mathcal{L}$ em relação a $\mathbf{W}^{(\ell)}$, o resultado vai envolver o termo:
+Quando calcularmos o gradiente de $\mathcal{L}$ em relação a $\mathbf{W}_\ell$, o resultado vai envolver o termo:
 
 $$
-\varphi'^{(\ell)}\!\left(\mathbf{z}^{(\ell)}\right)
+\phi_\ell'\!\left(\mathbf{z}_\ell\right)
 $$
 
-ou seja, a derivada da função de ativação avaliada nas pré-ativações que já calculamos no forward pass. É por isso que guardamos $\mathbf{z}^{(\ell)}$ durante o forward: precisamos dele exatamente aqui. A escolha da função de ativação muda diretamente a magnitude desse termo e, portanto, a velocidade e estabilidade do treinamento.
+ou seja, a derivada da função de ativação avaliada nas pré-ativações que já calculamos no forward pass. É por isso que guardamos $\mathbf{z}_\ell$ durante o forward: precisamos dele exatamente aqui. A escolha da função de ativação muda diretamente a magnitude desse termo e, portanto, a velocidade e estabilidade do treinamento.
 
 ## Funções de saída
 
-As funções de ativação discutidas acima são usadas nas camadas ocultas. A camada de saída é diferente: a função $\psi$ aplicada em $\mathbf{z}^{(L)}$ depende do tipo de problema que a rede resolve. A escolha errada aqui compromete tudo.
+As funções de ativação discutidas acima são usadas nas camadas ocultas. A camada de saída é diferente: a função $\gamma$ aplicada em $\mathbf{z}_L$ depende do tipo de problema que a rede resolve. A escolha errada aqui compromete tudo.
 
 ### Identidade (regressão)
 
 $$
-\psi(z) = z
+\gamma(z) = z
 $$
 
 Quando a saída da rede é um valor real sem restrição de intervalo (prever temperatura, preço, etc.), a camada de saída não aplica nenhuma não-linearidade. A derivada é simplesmente 1, o que não interfere no gradiente.
@@ -296,7 +296,7 @@ Quando a saída da rede é um valor real sem restrição de intervalo (prever te
 ### Sigmoide (classificação binária)
 
 $$
-\psi(z) = \sigma(z) = \frac{1}{1+e^{-z}}
+\gamma(z) = \sigma(z) = \frac{1}{1+e^{-z}}
 $$
 
 Usada quando a saída representa uma probabilidade de pertencer a uma de duas classes. A saída fica em $(0, 1)$ e é interpretada diretamente como $P(\text{classe} = 1 \mid \mathbf{x})$. Nesse caso a função custo natural é a entropia cruzada binária:
@@ -307,7 +307,7 @@ $$
 
 ### Softmax (classificação multiclasse)
 
-Para $K$ classes, a softmax transforma o vetor de pré-ativações $\mathbf{z}^{(L)} \in \mathbb{R}^K$ num vetor de probabilidades que somam 1:
+Para $K$ classes, a softmax transforma o vetor de pré-ativações $\mathbf{z}_L \in \mathbb{R}^K$ num vetor de probabilidades que somam 1:
 
 $$
 \text{softmax}(\mathbf{z})_k = \frac{e^{z_k}}{\displaystyle\sum_{j=1}^{K} e^{z_j}}, \qquad k = 1, 2, \ldots, K
@@ -460,7 +460,6 @@ $$
 Assim, obtemos os termos $s_k(1-s_k)$ para $k=j$ e os termos $-s_k \times s_j$ para $k \neq j$, que é exatamente a mesma
 estrutura da matriz jacobiana de derivadas parciais já obtida. 
 
-
 ### Resumo: qual função usar na saída?
 
 | Problema | Função de saída | Função custo |
@@ -471,4 +470,317 @@ estrutura da matriz jacobiana de derivadas parciais já obtida.
 
 ## Backpropagation
 
+Para obter a previsão final da rede neural, costuma-se aplicar a última
+função de ativação sobre $\mathbf{z}_2$, geralmente a *softmax* para classificação 
+multiclasses e linear para regressão. Vamos recapitular as expressões envolvidas 
+numa rede neural com uma camada oculta. Temos 
+
+$$
+\mathbf{z}_1 = \mathbf{X}\mathbf{W}_1 + \mathbf{b}_1, 
+$$
+
+em que 
+
+- $\mathbf{X}$: matriz de entrada (features) de dimensão $m \times n$. 
+- $\mathbf{W}_1$: matriz de pesos da primeira camada. Se a camada oculta 
+tem $h$ neurônios, $\mathbf{W}_1$ deverá ter dimensão $n \times h$. 
+- $\mathbf{b}_1$: viés (bias) da primeira camada com dimensão ($1 \times h$). 
+Soma-se a $\mathbf{X}\mathbf{W}_1$. 
+- $\mathbf{z}_1$: combinação linear resultante (entrada da camada oculta) com
+dimensão $m \times h$: 
+
+$$
+\mathbf{a}_1 = \phi(\mathbf{z}_1)
+$$
+
+em que $\mathbf{a}_1$ é a matriz (elemento a elemento) de ativações da primeira camada e $\phi$ é a função 
+de ativação não-linear (ou linear) como vimos antes (ReLU, sigmóide logística,
+tangente hiperbólica dentre outras). Isso tudo para a primeira camada. Já na segunda camada 
+temos: 
+
+$$
+\mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2, 
+$$
+
+com 
+
+$$
+\mathbf{a}_2 = \gamma(\mathbf{z}_2), 
+$$
+
+em que 
+
+- $\mathbf{a}_1$: agora faz o papel de saída da camada anterior servindo como 
+entrada da segunda camada oculta. 
+- $\mathbf{z}_2$: pré-ativação (combinação linear) da segunda camada (camada de saída). 
+- $\mathbf{W}_2$: matriz de pesos da segunda camada oculta (camada de saída da rede). 
+Se existir $k$ neurônios de saída (por exemplo, $k$ classes de saída em probabilidade
+de classificação) as dimensões de $\mathbf{W}_2$ serão exatamente $h \times k$. 
+- $\mathbf{b}_2$: viés da segunda camada oculta (saída) com dimensão $1 \times k$.
+- $\mathbf{a}_2$: ativação da segunda camada (saída final da rede) com dimensão $m \times k$.
+
+De modo geral, temos uma grande função composta para a predição final da 
+rede $\widehat{Y}$: 
+
+$$
+\widehat{Y} = \mathbf{a}_2 = \gamma\!\big(\phi(\mathbf{X}\mathbf{W}_1 + \mathbf{b}_1)\,\mathbf{W}_2 + \mathbf{b}_2\big).
+$$
+
+### Cálculo dos gradientes de $\mathbf{W}_1$ e $\mathbf{W}_2$
+
+Vamos começar definindo uma função custo genérica (que recebe a saída linear $\mathbf{z}_2$
+e os valores/rótulos reais $\mathbf{y}$). Começamos calculando o gradiente de saída, que é a 
+derivada inicial do erro em relação à última saída linear: 
+
+$$
+\delta_2 = \frac{\partial C}{\partial z_2}. 
+$$
+
+Mas veja que $\mathbf{z}_2$ está relcionada com $\mathbf{a}_2$ através da relação $\mathbf{a}_2 = \gamma(\mathbf{z}_2)$. 
+Pela regra da cadeia, 
+
+$$
+\delta_2 = \frac{\partial C}{\partial z_2} = \frac{\partial C}{\partial \mathbf{a}_2}\frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2}.
+$${#eq-derivada-parcial-delta2}
+
+
+Essa função custo que denotamos de $C$ pode ocorrer em situações de regressão: 
+
+$$
+C = \text{MSE} = \frac{1}{2}\|\widehat{\mathbf{y}} - \mathbf{y}\|^2, 
+$$
+
+ou em situação de classificação: 
+
+$$
+C = -[\mathbf{y} \log(\widehat{\mathbf{y}}) + (1-\mathbf{y}) \log(1 - \widehat{\mathbf{y}})]. 
+$$
+
+Precisamos fixar uma ideia central: tudo, absolutamente tudo nesta etapa deve começar 
+na função custo. Mas porque estamos no sentido inverso da rede, a qual chamamos
+backpropagation ? Propaga-se o que ? Qual o objetivo disso ? 
+
+O principal objetivo é responder às perguntas: o que acontece com a função 
+custo se os pesos $\mathbf{W}_1$ e $\mathbf{W}_2$ ou os vetores de viés $\mathbf{b}_1$ e $\mathbf{b}_2$
+mudarem mesmo que de forma mínima ? Ela aumenta, diminui, se mantém do mesmo jeito ?. Note que perguntar
+isso remete à noção de variações nessas quantidades e no quanto isso impacta na função 
+custo, que geralmente queremos que tenha menor valor possível, pois implica num modelo 
+mais acurado/preciso. Isso também nos faz lembrar da noção de derivadas parciais. 
+
+Lembre que no nosso exemplo com 1 camada oculta, a previsão da rede $\widehat{\mathbf{y}}$ é a própria 
+ativação final $\mathbf{a}_2 = \widehat{\mathbf{y}}$. Calculando cada termo separadamente: 
+
+1. Derivada da função custo em relação à $\mathbf{a}_2$: 
+
+  $$
+  C = \frac{1}{2}(\mathbf{a}_2 - \mathbf{y})^2 \implies \frac{\partial C}{\partial \mathbf{a}_2} = \mathbf{a}_2 - \mathbf{y} = (\widehat{\mathbf{y}} - \mathbf{y}).  
+  $$
+
+2. Derivada da ativação em relação à $\mathbf{z}_2$:
+
+  $$\mathbf{a}_2 = \gamma(\mathbf{z}_2) \implies \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} = \gamma'(\mathbf{z}_2).$$ 
+  Substituindo os dois termos:
+
+  $$
+  \delta_2 =  (\widehat{\mathbf{y}} - \mathbf{y}) \odot \gamma'(\mathbf{z}_2), 
+  $$
+
+  em que $\odot$ denota o produto de Hadamard (produto elemento a elemento). As escolhas comuns aqui pra 
+  função de ativação são:
+
+- Ativação Linear / Identidade $\gamma(z) = z$:
+
+  Como $\gamma'(\mathbf{z}_2) = \mathbf{1}$ (vetor de uns), o gradiente se reduz simplesmente ao resíduo 
+
+  $$
+  \delta_2 = \widehat{\mathbf{y}} - \mathbf{y}. 
+  $$
+
+- ReLU:
+
+  Aqui o resutado é um vetor binário de 0's e 1's: 
+
+  $$
+  \gamma'(\mathbf{z}_2)_{j} = \begin{cases}
+  1, \,\,\, \text{se} \,\,\, z_{j} > 0 \\ 
+  0, \,\,\, \text{se} \,\,\, z_{j} \leq 0
+  \end{cases}
+  $$
+
+- Ativação sigmoide $\gamma(z) = \sigma(z)$:
+  
+  Temos $\gamma'(\mathbf{z}_2) = \sigma(\mathbf{z}_2) \odot (1 - \sigma(\mathbf{z}_2)) = \mathbf{a}_2 \odot (1 - 
+  \mathbf{a}_2).$
+
+- Ativação tangente hiperbólica: 
+
+  $$
+  \gamma'(\mathbf{z}_2) = \mathbf{1} - \tanh^{\odot 2}(\mathbf{z}_2) = \mathbf{1} - \mathbf{a}_2^{\odot 2}.
+  $$
+
+Note que o processo de obtenção do gradiente de saída também resulta ali no primeiro termo da derivada 
+parcial em ([-@eq-derivada-parcial-delta2]) exatamente como se fosse no problema de regressão. Como o modelo 
+foi definido na forma matricial (considerando um lote de $m$ exemplos), $\mathbf{y}$ e $\mathbf{a}_2$ 
+são vetores de dimensão $m \times 1$. Por isso, as operações de multiplicação e divisão abaixo devem ocorrer 
+elemento a elemento ($\odot$ denota o produto de Hadamard):
+
+$$
+\begin{align}
+\frac{\partial C}{\partial \mathbf{a}_2} \Bigg(-[\mathbf{y} \odot \log(\mathbf{a}_2) + (1-\mathbf{y}) \odot \log(1 - \mathbf{a}_2)]\Bigg) &= 
+-\Bigg[\frac{\mathbf{y}}{\mathbf{a}_2} + (1 - \mathbf{y}) \odot \frac{(-1)}{1 - \mathbf{a}_2}\Bigg] = \\
+\frac{\mathbf{a}_2 - \mathbf{y}}{\mathbf{a}_2 \odot (1 - \mathbf{a}_2)}.
+\end{align}
+$$
+
+Agora partimos pra obter a segunda parte da derivada:
+
+$$
+\frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} = \gamma'(\mathbf{z}_2) = \sigma(\mathbf{z}_2) \odot \mathbf{1} - \sigma(\mathbf{z}_2) = \mathbf{a}_2 \odot (1 - \mathbf{a}_2).
+$$
+
+> Essas propriedades das derivadas das principais derivadas das funções de ativação vão ser abordadas em outro post dedicado. 
+
+Assim temos que a derivada parcial da função custo em relação à pré-ativação da segunda camada (a saída linear) é dada por:
+
+$$
+\delta_2 = \frac{\partial C}{\partial \mathbf{z}_2} = \Bigg(\frac{\mathbf{a}_2 - \mathbf{y}}{\mathbf{a}_2 \odot (1 - \mathbf{a}_2)} \Bigg) \odot \Bigg( \mathbf{a}_2 \odot (1 - \mathbf{a}_2) \Bigg) = \mathbf{a}_2 - \mathbf{y} = \widehat{\mathbf{y}} - \mathbf{y}.
+$$
+
+Observe que utilizando a função de ativação sigmóide logística, temos que também se reduz ao resíduo (estimado - real). A lógica 
+funciona perfeitamente igual para qualquer ativação que se queira colocar aqui. Se utilizássemos a saída multiclasses (softmax) teríamos 
+aquela matriz jacobiana que obtemos anteriormente. 
+
+### Gradiente da matriz de pesos $\mathbf{W}_2$
+
+Para obter o gradiente de $W_2$ em relação a $C$, precisamos aplicar a regra da cadeia imaginando que todas essas coisas 
+estão "aninhadas" dependentes umas das outras. Aqui você pode mentalizar o seguinte: para chegar em $\mathbf{W}_2$ eu tenho que fazer
+qual sentido de volta na rede ? Lembramos então que $\mathbf{W}_2$ age sobre $\mathbf{a}_1$ para produzir $\mathbf{z}_2$, ou seja, nós temos 
+
+$$
+\mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2,
+$$
+
+e $\mathbf{z}_2$ age sobre $\gamma$ que resulta em $\mathbf{a}_2$, então temos
+
+$$
+\mathbf{a}_2 = \gamma(\mathbf{z}_2), 
+$$
+
+assim temos que aplicar a regra da cadeia da seguinte forma: 
+
+$$
+\frac{\partial C}{\partial \mathbf{W}_2} = \frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} \frac{\partial \mathbf{z}_2}{\partial \mathbf{W}_2}.
+$$
+
+Aqui você pode ter em mente que pra mexer em $\mathbf{W}_2$ você precisa imaginar um efeito dominó: 
+
+- Mexer em $\mathbf{W}_2$ implica mexer em $\mathbf{z}_2$ de forma direta.
+- Mexer em $\mathbf{z}_2$ implica em mexer em $\mathbf{a}_2$ de forma direta.
+- Mexer em $\mathbf{a}_2$ implica em mexer em $C$ de forma direta.
+
+A ordem seria exatamente: 
+
+$$
+C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{W}_2. 
+$$
+
+Porém, da etapa anterior já temos essa primeira derivada parcial que é simplesmente o resíduo $\delta_2$ e dessa maneira
+simplifica pra gente como sendo:
+
+$$
+\frac{\partial C}{\partial \mathbf{W}_2} = \delta_2 \frac{\partial \mathbf{z}_2}{\partial \mathbf{W}_2}.
+$$
+
+Pelas regras fundamentais de cálculo matricial, a derivada de uma expressão linear do tipo $\mathbf{A}\mathbf{X}$ em relação a $\mathbf{X}$ (usando a convenção de layout de denominador) 
+resulta na matriz transposta $\mathbf{A}^T$. Portanto, derivando rigorosamente $\mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2$ em relação à matriz de pesos $\mathbf{W}_2$, 
+obtemos diretamente a transposta $\mathbf{a}_1^T$. Substituindo na regra da cadeia com o produto matricial:
+
+$$
+\frac{\partial C}{\partial \mathbf{W}_2} = \mathbf{a}_1^T \delta_2 = \mathbf{a}_1^\top (\widehat{\mathbf{y}} - \mathbf{y}) \odot \gamma'(\mathbf{z}_2).
+$$
+
+### Gradiente da matriz de pesos $\mathbf{W}_1$
+
+Para obter o gradiente desta matriz o caminho será mais longo mas o raciocínio é o mesmo. Sem 
+afobação, vem comigo. Pense na seguinte ordem: 
+
+$$
+C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathbf{W}_1. 
+$$
+
+Note que dessa vez o caminho é mais longo. Vamos lembrar que $\mathbf{z}_1 = \mathbf{X}\mathbf{W}_1 + \mathbf{b}_1$ e também que 
+
+$$
+\mathbf{a}_1 = \phi'(\mathbf{z}_1), 
+$$
+
+ao mesmo tempo que $\mathbf{a}_1$ depende de $\mathbf{z}_2$ da seguinte maneira
+
+$$
+\mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2, 
+$$
+
+que depende de $\mathbf{a}_2 = \gamma(z_2)$ e por sua vez de $C$. Viu todo o caminho que precisamos percorrer ?
+
+A derivada através da regra da cadeia fica dada por:
+
+$$
+\frac{\partial C}{\partial \mathbf{W}_1} = \underbrace{\Bigg(\frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2}\Bigg)}_{\delta_2} \underbrace{\frac{\partial \mathbf{z}_2}{\partial \mathbf{a}_1}}_{\mathbf{W}_2^T} \underbrace{\frac{\partial \mathbf{a}_1}{\partial \mathbf{z}_1}}_{\phi'(\mathbf{z}_1)} \underbrace{\frac{\partial \mathbf{z}_1}{\partial \mathbf{W}_1}}_{\mathbf{X}^T}.
+$$
+
+Agora chame 
+
+$$\delta_1 = \Bigg(\frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2}\Bigg) \frac{\partial \mathbf{z}_2}{\partial \mathbf{a}_1} = \delta_2 \mathbf{W}_2^T \odot \phi'(\mathbf{z}_1) $$ 
+
+Então o nosso gradiente está finalizado: 
+
+$$
+\frac{\partial C}{\partial \mathbf{W}_1} = \mathbf{X}^T \delta_1.
+$$ 
+
+### Cálculo dos gradientes para os vetores de viés $\mathbf{b}_2$ e $\mathbf{b}_1$ 
+
+Para o gradiente de $\mathbf{b}_2$, seguimos a lógica da regra da cadeia de trás pra frente na rede neural: $C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{b}_2$. Abrindo todos os termos da derivada parcial de forma geral, temos: 
+
+$$
+\frac{\partial C}{\partial \mathbf{b}_2} = \frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} \frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}
+$$
+
+Seja $\delta_2 = \frac{\partial C}{\partial \mathbf{a}_2}$ o gradiente acumulado na saída da camada. Lembrando que $\mathbf{z}_2$ e $\mathbf{b}_2$ são vetores (ou matrizes, no caso de um *batch*), a derivada $\frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}$ não é um escalar $1$, mas sim uma Matriz Identidade $\mathbf{I}$ (ou um **vetor de uns** $\mathbf{1}$, que efetua a soma ao longo do *batch*). Assim, a expressão para qualquer função de ativação $\gamma(\mathbf{z}_2)$ fica:
+
+$$
+\frac{\partial C}{\partial \mathbf{b}_2} = \delta_2 \odot \gamma'(\mathbf{z}_2) 
+$$
+
+*(Como discutido, no caso específico em que a função de ativação é linear, $\gamma'(\mathbf{z}_2) = 1$, e a derivada resulta em apenas $\delta_2$, assumindo que as dimensões já tenham sido somadas/ajustadas pelo vetor de uns.)*
+
+Para o gradiente de $\mathbf{b}_1$, a lógica em cadeia é estendida: $C \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathbf{b}_1$. A derivada parcial é: 
+
+$$
+\frac{\partial C}{\partial \mathbf{b}_1} = \Bigg(\frac{\partial C}{\partial \mathbf{z}_2} \frac{\partial \mathbf{z}_2}{\partial \mathbf{a}_1} \frac{\partial \mathbf{a}_1}{\partial \mathbf{z}_1} \Bigg) \frac{\partial \mathbf{z}_1}{\partial \mathbf{b}_1} = \delta_1 \frac{\partial \mathbf{z}_1}{\partial \mathbf{b}_1}. 
+$$
+
+Assim temos 
+
+$$
+\frac{\partial C}{\partial \mathbf{b}_1} = \mathbf{1}^T \delta_1 = \mathbf{W}_2^T \delta_2 \odot \phi'(\mathbf{z}_1).
+$$
+
+### Atualização de pesos via Gradiente Descendente
+
+Agora que temos todas as derivadas parciais, podemos atualizar os pesos da nossa rede neural utilizando o Algoritmo de Descida do Gradiente. A fórmula geral para atualizar os pesos e os vieses é dada por:
+
+\begin{aligned}
+\mathbf{W}_2 &\leftarrow \mathbf{W}_2 - \eta \frac{\partial C}{\partial \mathbf{W}_2} \\
+\mathbf{b}_2 &\leftarrow \mathbf{b}_2 - \eta \frac{\partial C}{\partial \mathbf{b}_2} \\
+\mathbf{W}_1 &\leftarrow \mathbf{W}_1 - \eta \frac{\partial C}{\partial \mathbf{W}_1} \\
+\mathbf{b}_1 &\leftarrow \mathbf{b}_1 - \eta \frac{\partial C}{\partial \mathbf{b}_1}
+\end{aligned}
+
+em que $\eta$ é a taxa de aprendizado, um valor pequeno (tipicamente entre 0.001 e 0.1) que determina o tamanho do "passo" dado em direção ao mínimo da função de custo. Se $\eta$ for muito grande, o algoritmo pode "saltar" sobre o mínimo e não convergir. 
+Se $\eta$ for muito pequeno, o algoritmo pode demorar muito tempo para convergir. A escolha de $\eta$ é crucial para o desempenho da rede neural. 
+
+### E se a rede neural tiver mais de uma camada oculta ? Caso geral. 
+
+> Em breve. 
 
