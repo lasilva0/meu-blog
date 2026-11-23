@@ -1,8 +1,8 @@
 ---
 title: "Alguns truques combinatórios"
-subtitle: "Três questões do Prof. Maurício"
+description: "Três questões do Prof. Maurício"
 date: 2026-11-23
-categories: [combonatória, matemática]
+categories: [combinatória, matemática]
 format:
   html:
     toc: true
@@ -11,10 +11,10 @@ format:
 
 ### Os três probleminhas
 
-Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido a entrega de alguns projetos pendentes, abri o Drive onde 
+Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido à entrega de alguns projetos pendentes, abri o Drive onde 
 hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais "obscuro" que fui acumulando ao longo da minha 
-trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof. Maurício, que é o mestre de todos nós, incluindo os nosso
-corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem pra provar algumas propriedades envolvendo combinações. 
+trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof. Maurício, que é o mestre de todos nós, incluindo o nosso
+corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem para provar algumas propriedades envolvendo combinações. 
 Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens: 
 
 (a) Prove que
@@ -35,13 +35,13 @@ $$
     \sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \binom{2n - 2}{n-1}
 $$
 
-Simples, sem dicas ou maiores cerimômias. Eu achei que seriam propriedades bem triviais de provar. Tentei abrir ali o termo da combinação, 
-cancelei algumas coisas, mas não chegava nesses resultados. Ao pesquisar um pouco mais sobre e resolver, eu aprendi muita coisa no meio do 
+Simples, sem dicas ou maiores cerimônias. Eu achei que seriam propriedades bem triviais de provar. Tentei abrir ali o termo da combinação, 
+cancelei algumas coisas, mas não cheguei a esses resultados. Ao pesquisar um pouco mais sobre o assunto e resolver, eu aprendi muita coisa no meio do 
 caminho e é por isso que eu digo que o velho sabe das coisas. 
 
 ### A solução dos itens 
 
-Para resolver os itens é fundamental que a gente conheça o binômio de newton e saber derivar. Lembrando aqui o binômio de newton: 
+Para resolver os itens é fundamental que a gente conheça o binômio de Newton e saiba derivar. Lembrando aqui o binômio de Newton: 
 
 > Teorema Binomial:
 >
@@ -49,7 +49,7 @@ Para resolver os itens é fundamental que a gente conheça o binômio de newton 
 >
 > Se $a = 1$ e $b = x$ temos $(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i$.
 
-Para o item (a) a ideia é partir da expensão $(1+x)^n$ e derivar em ambos os lados em relação à $x$, tentando sempre isolar a soma desejada: 
+Para o item (a) a ideia é partir da expansão $(1+x)^n$ e derivar em ambos os lados em relação a $x$, tentando sempre isolar a soma desejada: 
 
 $$
 (1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i 
@@ -62,13 +62,13 @@ n(1+x)^{n-1} =  \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
 $$
 
 Note que o índice do somatório começa agora em $i=1$ e não em $i=0$ porque quando derivamos, surge o termo $x^{i-1}$ e a soma não pode começar em 0.
-Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em $i=0$ mais o restante da soma e depois a deriva: 
+Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em $i=0$ mais o restante da soma e depois derivá-la: 
 
 $$
 \sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i. 
 $$
 
-Derivando isso em relação a $x$ nós justificamos a soma começar no 1. O mesmo raciocínio vale pra derivadas de ordens superiores. Sempre faça esse truque !
+Derivando isso em relação a $x$ nós justificamos a soma começar em 1. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!
 
 Continuando, temos 
 
@@ -101,17 +101,17 @@ n(n-1)x^2(1+x)^{n-2} &= \sum_{i=2} \binom{n}{i} (i^2-i) x^i
 Para $x=1$ 
 
 \begin{align}
-n(n-1)2^{n-2} &= \sum_{i=2} \binom{n}{i} (i^2-i) \\ 
-n(n-1)2^{n-2} &= \sum_{i=2} \binom{n}{i}i^2 - \sum_{i=2} \binom{n}{i} i \\ 
-n(n-1)2^{n-2} &=  \sum_{i=2} \binom{n}{i}i^2 - n2^{n-1} \\ 
-\sum_{i=2} \binom{n}{i}i^2 &= n(n-1)2^{n-2} +  n2^{n-1} \\ 
-\sum_{i=2} \binom{n}{i}i^2 &= 2^{n-2}[n(n-1) - 2n] \\ 
-\sum_{i=2} \binom{n}{i}i^2 &= n(n+1) 2^{n-2}.
+n(n-1)2^{n-2} &= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) \\ 
+n(n-1)2^{n-2} &= \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i \\ 
+n(n-1)2^{n-2} &= \sum_{i=2}^{n} \binom{n}{i}i^2 - n2^{n-1} \\ 
+\sum_{i=2}^{n} \binom{n}{i}i^2 &= n(n-1)2^{n-2} +  n2^{n-1} \\ 
+\sum_{i=2}^{n} \binom{n}{i}i^2 &= 2^{n-2}[n(n-1) + 2n] \\ 
+\sum_{i=2}^{n} \binom{n}{i}i^2 &= n(n+1) 2^{n-2}.
 \end{align}
 
 --- 
 
-O item (c) é o mais complicado de deles, mas vamos passo a passo para entendermos bem. Partimos de 
+O item (c) é o mais complicado deles, mas vamos passo a passo para entendermos bem. Partimos de 
 
 $$
 \sum_{i=1}^{n} i^2 \binom{n}{i}^2 =  \Bigg(i \binom{n}{i} \Bigg)^2. 
@@ -132,7 +132,7 @@ $${#eq-principal}
 Vamos focar nesta última soma. Aqui vem algo bem interessante. Essa soma se parece bastante com uma já conhecida:
 
 $$
-\sum_{j=0}^{m} \binom{m}{j}  = \binom{2m}{m}
+\sum_{j=0}^{m} \binom{m}{j}^2  = \binom{2m}{m}
 $${#eq-combinacao1}
 
 Esse resultado emerge da seguinte ideia: 
@@ -147,13 +147,13 @@ $$
 \sum_{j=0}^{m} \binom{m}{j} x^j \times \sum_{j=0}^{m} \binom{m}{j} x^j
 $$
 
-Abrindo termo a termo dessa somas temos: 
+Abrindo termo a termo dessas somas temos: 
 
 $$
 \Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg) \times \Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg)
 $$
 
-Vamos chamar de $a_j = \binom{m}{j}$ para $j = 0,1,\ldots,m$ os termos combinatórios. Se distribuírmos o primeiro termo da primeira soma com a soma inteira; 
+Vamos chamar de $a_j = \binom{m}{j}$ para $j = 0,1,\ldots,m$ os termos combinatórios. Se distribuirmos o primeiro termo da primeira soma com a soma inteira; 
 o segundo, o terceiro e assim por diante temos algo desse tipo: 
 
 \begin{align}
@@ -175,10 +175,10 @@ respectivamente. Os termos que contribuem para $x^m$ são
 
 \begin{align}
 x^0 x^m &= x^m \\ 
-x^1 x^m-1 &= x^m \\ 
+x^1 x^{m-1} &= x^m \\ 
 x^2 x^m-2 &= x^m \\ 
 &\vdots \\ 
-x^m x^m-1 &= x^m \\ 
+x^m x^{m-1} &= x^m \\ 
 \end{align}
 
 Isso nos fornece algo bastante interessante: 
@@ -191,7 +191,7 @@ Isso nos fornece algo bastante interessante:
 (a_m x^m) (a_0 x^m) &= a_m a_0 x^m \\ 
 \end{align}
 
-Somado todos esses termos temos exatamente 
+Somando todos esses termos temos exatamente 
 
 $$
 \sum_{j=0}^{m} \binom{m}{j} \binom{m}{m-j} x^m 
@@ -209,7 +209,7 @@ $$
 \sum_{j=0}^{m} \binom{m}{j}^2 x^m.  
 $$
 
-Agora voltamos áquela expansão do produto 
+Agora voltamos àquela expansão do produto 
 
 $$
 (1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots \binom{2m}{2m}x^{2m}. 
@@ -234,9 +234,9 @@ $$
 \sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}. 
 $$
 
-Elegante hein ? 
+Elegante, hein? 
 
-Particularmente me perguntei sobre como faríamos para obter qualquer termo $x^k$ e como seria se ao invés de termos $(1+x)^{2m}$, termos algo como 
+Particularmente me perguntei como faríamos para obter qualquer termo $x^k$ e como seria se, em vez de termos $(1+x)^{2m}$, tivéssemos algo como 
 $(1+x)^a (1+x)^b = (1+x)^{a+b}$. Eu abri o produto e percebi algo semelhante 
 
 \begin{align}
@@ -248,19 +248,19 @@ $(1+x)^a (1+x)^b = (1+x)^{a+b}$. Eu abri o produto e percebi algo semelhante
 &= \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
 \end{align}
 
-Se por exemplo eu quiséssemos os termos que produzem $x^2$: 
+Se, por exemplo, quiséssemos os termos que produzem $x^2$: 
 
 $$
 \binom{a}{0}\binom{b}{2}x^2 ; \binom{a}{1} x \binom{b}{1}x ; \binom{a}{2} x^2 \binom{b}{0}x^2
 $$
 
-Note que ao somar esses termos temos, o coeficiente de $x^2$ na soma é 
+Note que, ao somar esses termos, o coeficiente de $x^2$ na soma é 
 
 $$
 \binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}
 $$
 
-Algebricamente temos a expensão da identidade polinomial: 
+Algebricamente temos a expansão da identidade polinomial: 
 
 $$
 (1+x)^a (1+x)^b = (1+x)^{a+b}
@@ -272,7 +272,7 @@ $$
 \sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{i=0}^b \binom{b}{i}x^i 
 $$
 
-os termos que produzem $x^2$ são exatamente aqueles em que $i+j = 2$, isto é a soma 
+os termos que produzem $x^2$ são exatamente aqueles em que $i+j = 2$, isto é, a soma 
 
 $$
 \binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}.
@@ -297,7 +297,7 @@ $$
 $$
 
 pois $(1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r$ e o coeficiente de $x^k$ é aquele tal que $r = k$ na soma, ou seja $\binom{a+b}{k}$. 
-Esse resultado é conhecido como a *Identidade de Vandermonde*. 
+Esse resultado é conhecido como a **Identidade de Vandermonde**. 
 
 --- 
 

@@ -44,15 +44,15 @@ document.addEventListener('DOMContentLoaded', function () {
       document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
       checkbox.checked = dark;
       knob.style.transform = dark ? 'translateX(16px)' : 'translateX(0)';
-      slider.style.background = dark ? '#2dd4bf99' : '#ffffff33';
+      slider.style.background = dark ? '#d2a67999' : '#ffffff33';
       icon.innerHTML = dark ? '&#9728;' : '&#9790;';
       try { localStorage.setItem('quarto-color-scheme', dark ? 'dark' : 'light'); } catch(e) {}
     }
 
     var saved = null;
     try { saved = localStorage.getItem('quarto-color-scheme'); } catch(e) {}
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyTheme(saved === 'dark' || (!saved && prefersDark));
+    // Tema claro é o padrão; o escuro só é usado se o leitor o escolheu
+    applyTheme(saved === 'dark');
 
     document.getElementById('theme-switch-label').addEventListener('click', function(e) {
       e.preventDefault();

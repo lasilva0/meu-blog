@@ -6,7 +6,7 @@ website:
   title: "L-Stats Blog"
   description: "O que vou descobrindo em estatística, ciência de dados e matemática"
   navbar:
-    background: "#0d9488"
+    background: "#4a3b32"
     foreground: "#ffffff"
     title: "L-Stats Blog"
     left:
@@ -19,7 +19,7 @@ website:
         href: https://github.com/lasilva0
   page-footer:
     center: "© 2025 L-Stats Blog — Feito com [Quarto](https://quarto.org)"
-    background: "#0d9488"
+    background: "#4a3b32"
     foreground: "#ffffff"
 
 format:

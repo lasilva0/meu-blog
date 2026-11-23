@@ -46,9 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2e18a8c41325edfa3a5c3b48c7de22be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2e546b2fea30064d03b08e142d98e94b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-2e18a8c41325edfa3a5c3b48c7de22be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       knob.style.transform = dark ? 'translateX(16px)' : 'translateX(0)';
 
-      slider.style.background = dark ? '#2dd4bf99' : '#ffffff33';
+      slider.style.background = dark ? '#d2a67999' : '#ffffff33';
 
       icon.innerHTML = dark ? '&#9728;' : '&#9790;';
 
@@ -578,9 +578,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try { saved = localStorage.getItem('quarto-color-scheme'); } catch(e) {}
 
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Tema claro é o padrão; o escuro só é usado se o leitor o escolheu
 
-    applyTheme(saved === 'dark' || (!saved && prefersDark));
+    applyTheme(saved === 'dark');
 
 
 

@@ -3,16 +3,16 @@
 
 /* ===== CSS Variables - Light ===== */
 :root {
-  --color-primary: #0d9488;
-  --color-primary-dark: #0f766e;
-  --color-secondary: #06b6d4;
-  --color-accent: #8b5cf6;
-  --color-accent-light: #a78bfa;
-  --color-bg: #f8fafb;
+  --color-primary: #6f4e37;
+  --color-primary-dark: #4a3728;
+  --color-secondary: #a09488;
+  --color-accent: #6b6560;
+  --color-accent-light: #a89f96;
+  --color-bg: #f4f1ed;
   --color-card: #ffffff;
-  --color-text: #1e293b;
-  --color-text-muted: #64748b;
-  --color-border: #e2e8f0;
+  --color-text: #2b2622;
+  --color-text-muted: #6e655e;
+  --color-border: #ddd6ce;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@ h2 {
 
 h3 {
   font-weight: 500;
-  color: #334155;
+  color: #4a4039;
 }
 
 /* Oculta o botão nativo de dark mode do Quarto (usamos o nosso próprio) */
@@ -86,7 +86,7 @@ h3 {
 
 /* ===== Home Page Banner ===== */
 .quarto-title-banner {
-  background: linear-gradient(135deg, #0f766e 0%, #06b6d4 100%) !important;
+  background: linear-gradient(135deg, #3e3029 0%, #7a6b5f 100%) !important;
   padding: 3rem 0 !important;
 }
 
@@ -202,7 +202,7 @@ article {
 pre {
   border-radius: 8px;
   border: 1px solid var(--color-border);
-  background: #f1f5f9;
+  background: #efeae4;
 }
 
 code {
@@ -213,7 +213,7 @@ code {
 /* ===== Blockquotes ===== */
 blockquote {
   border-left: 4px solid var(--color-accent-light);
-  background: #f5f3ff;
+  background: #f0ebe5;
   padding: 1rem 1.5rem;
   border-radius: 0 8px 8px 0;
   margin: 1.5rem 0;
@@ -221,7 +221,7 @@ blockquote {
 
 blockquote p {
   margin: 0;
-  color: #4c1d95;
+  color: #4a3728;
 }
 
 /* ===== Footer ===== */
@@ -306,21 +306,21 @@ mjx-container[jax="CHTML"] {
 
 #TOC a:hover {
   color: var(--color-primary);
-  background: rgba(13, 148, 136, 0.06);
+  background: rgba(111, 78, 55, 0.07);
   text-decoration: none;
 }
 
 #TOC a.active {
   color: var(--color-primary);
   font-weight: 500;
-  background: rgba(13, 148, 136, 0.08);
+  background: rgba(111, 78, 55, 0.1);
   border-left: 2px solid var(--color-primary);
   padding-left: 0.4rem;
 }
 
 #TOC ul ul a {
   font-size: 0.58rem;
-  color: #94a3b8;
+  color: #8c837b;
 }
 
 #TOC ul ul a:hover,

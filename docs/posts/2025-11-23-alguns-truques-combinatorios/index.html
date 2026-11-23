@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2026-11-23">
+<meta name="description" content="Três questões do Prof.&nbsp;Maurício">
 
 <title>Alguns truques combinatórios – L-Stats Blog</title>
 <style>
@@ -45,9 +46,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-2e18a8c41325edfa3a5c3b48c7de22be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2e546b2fea30064d03b08e142d98e94b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-2e18a8c41325edfa3a5c3b48c7de22be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -317,9 +318,13 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Alguns truques combinatórios</h1>
-            <p class="subtitle lead">Três questões do Prof.&nbsp;Maurício</p>
-                                <div class="quarto-categories">
-                <div class="quarto-category">combonatória</div>
+                  <div>
+        <div class="description">
+          Três questões do Prof.&nbsp;Maurício
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">combinatória</div>
                 <div class="quarto-category">matemática</div>
               </div>
                   </div>
@@ -364,7 +369,7 @@ window.Quarto = {
 
 <section id="os-três-probleminhas" class="level3">
 <h3 class="anchored" data-anchor-id="os-três-probleminhas">Os três probleminhas</h3>
-<p>Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido a entrega de alguns projetos pendentes, abri o Drive onde hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais “obscuro” que fui acumulando ao longo da minha trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof.&nbsp;Maurício, que é o mestre de todos nós, incluindo os nosso corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem pra provar algumas propriedades envolvendo combinações. Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens:</p>
+<p>Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido à entrega de alguns projetos pendentes, abri o Drive onde hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais “obscuro” que fui acumulando ao longo da minha trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof.&nbsp;Maurício, que é o mestre de todos nós, incluindo o nosso corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem para provar algumas propriedades envolvendo combinações. Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens:</p>
 <ol type="a">
 <li>Prove que</li>
 </ol>
@@ -383,17 +388,17 @@ window.Quarto = {
 <p><span class="math display">\[  
     \sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \binom{2n - 2}{n-1}
 \]</span></p>
-<p>Simples, sem dicas ou maiores cerimômias. Eu achei que seriam propriedades bem triviais de provar. Tentei abrir ali o termo da combinação, cancelei algumas coisas, mas não chegava nesses resultados. Ao pesquisar um pouco mais sobre e resolver, eu aprendi muita coisa no meio do caminho e é por isso que eu digo que o velho sabe das coisas.</p>
+<p>Simples, sem dicas ou maiores cerimônias. Eu achei que seriam propriedades bem triviais de provar. Tentei abrir ali o termo da combinação, cancelei algumas coisas, mas não cheguei a esses resultados. Ao pesquisar um pouco mais sobre o assunto e resolver, eu aprendi muita coisa no meio do caminho e é por isso que eu digo que o velho sabe das coisas.</p>
 </section>
 <section id="a-solução-dos-itens" class="level3">
 <h3 class="anchored" data-anchor-id="a-solução-dos-itens">A solução dos itens</h3>
-<p>Para resolver os itens é fundamental que a gente conheça o binômio de newton e saber derivar. Lembrando aqui o binômio de newton:</p>
+<p>Para resolver os itens é fundamental que a gente conheça o binômio de Newton e saiba derivar. Lembrando aqui o binômio de Newton:</p>
 <blockquote class="blockquote">
 <p>Teorema Binomial:</p>
 <p><span class="math inline">\((a+b)^n = \sum_{i=0}^{n} \binom{n}{i} a^{n-i} b^i\)</span>.</p>
 <p>Se <span class="math inline">\(a = 1\)</span> e <span class="math inline">\(b = x\)</span> temos <span class="math inline">\((1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i\)</span>.</p>
 </blockquote>
-<p>Para o item (a) a ideia é partir da expensão <span class="math inline">\((1+x)^n\)</span> e derivar em ambos os lados em relação à <span class="math inline">\(x\)</span>, tentando sempre isolar a soma desejada:</p>
+<p>Para o item (a) a ideia é partir da expansão <span class="math inline">\((1+x)^n\)</span> e derivar em ambos os lados em relação a <span class="math inline">\(x\)</span>, tentando sempre isolar a soma desejada:</p>
 <p><span class="math display">\[
 (1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i
 \]</span></p>
@@ -401,11 +406,11 @@ window.Quarto = {
 <p><span class="math display">\[
 n(1+x)^{n-1} =  \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
 \]</span></p>
-<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span> porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em 0. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois a deriva:</p>
+<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span> porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em 0. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois derivá-la:</p>
 <p><span class="math display">\[
 \sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i.
 \]</span></p>
-<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar no 1. O mesmo raciocínio vale pra derivadas de ordens superiores. Sempre faça esse truque !</p>
+<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar em 1. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!</p>
 <p>Continuando, temos</p>
 <p><span id="eq-derivada1"><span class="math display">\[
 n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
@@ -426,15 +431,15 @@ n(n-1)x^2(1+x)^{n-2} &amp;= \sum_{i=2} \binom{n}{i} (i^2-i) x^i
 \end{align}\]</span></p>
 <p>Para <span class="math inline">\(x=1\)</span></p>
 <p><span class="math display">\[\begin{align}
-n(n-1)2^{n-2} &amp;= \sum_{i=2} \binom{n}{i} (i^2-i) \\
-n(n-1)2^{n-2} &amp;= \sum_{i=2} \binom{n}{i}i^2 - \sum_{i=2} \binom{n}{i} i \\
-n(n-1)2^{n-2} &amp;=  \sum_{i=2} \binom{n}{i}i^2 - n2^{n-1} \\
-\sum_{i=2} \binom{n}{i}i^2 &amp;= n(n-1)2^{n-2} +  n2^{n-1} \\
-\sum_{i=2} \binom{n}{i}i^2 &amp;= 2^{n-2}[n(n-1) - 2n] \\
-\sum_{i=2} \binom{n}{i}i^2 &amp;= n(n+1) 2^{n-2}.
+n(n-1)2^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) \\
+n(n-1)2^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i \\
+n(n-1)2^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i}i^2 - n2^{n-1} \\
+\sum_{i=2}^{n} \binom{n}{i}i^2 &amp;= n(n-1)2^{n-2} +  n2^{n-1} \\
+\sum_{i=2}^{n} \binom{n}{i}i^2 &amp;= 2^{n-2}[n(n-1) + 2n] \\
+\sum_{i=2}^{n} \binom{n}{i}i^2 &amp;= n(n+1) 2^{n-2}.
 \end{align}\]</span></p>
 <hr>
-<p>O item (c) é o mais complicado de deles, mas vamos passo a passo para entendermos bem. Partimos de</p>
+<p>O item (c) é o mais complicado deles, mas vamos passo a passo para entendermos bem. Partimos de</p>
 <p><span class="math display">\[
 \sum_{i=1}^{n} i^2 \binom{n}{i}^2 =  \Bigg(i \binom{n}{i} \Bigg)^2.
 \]</span></p>
@@ -448,7 +453,7 @@ i \binom{n}{i} = i \frac{n!}{i!(n-i)!} = i \frac{n(n-1)!}{i(i-1)!(n-i)!} = n \fr
 \tag{2}\]</span></span></p>
 <p>Vamos focar nesta última soma. Aqui vem algo bem interessante. Essa soma se parece bastante com uma já conhecida:</p>
 <p><span id="eq-combinacao1"><span class="math display">\[
-\sum_{j=0}^{m} \binom{m}{j}  = \binom{2m}{m}
+\sum_{j=0}^{m} \binom{m}{j}^2  = \binom{2m}{m}
 \tag{3}\]</span></span></p>
 <p>Esse resultado emerge da seguinte ideia:</p>
 <p><span class="math display">\[
@@ -458,11 +463,11 @@ i \binom{n}{i} = i \frac{n!}{i!(n-i)!} = i \frac{n(n-1)!}{i(i-1)!(n-i)!} = n \fr
 <p><span class="math display">\[
 \sum_{j=0}^{m} \binom{m}{j} x^j \times \sum_{j=0}^{m} \binom{m}{j} x^j
 \]</span></p>
-<p>Abrindo termo a termo dessa somas temos:</p>
+<p>Abrindo termo a termo dessas somas temos:</p>
 <p><span class="math display">\[
 \Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg) \times \Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg)
 \]</span></p>
-<p>Vamos chamar de <span class="math inline">\(a_j = \binom{m}{j}\)</span> para <span class="math inline">\(j = 0,1,\ldots,m\)</span> os termos combinatórios. Se distribuírmos o primeiro termo da primeira soma com a soma inteira; o segundo, o terceiro e assim por diante temos algo desse tipo:</p>
+<p>Vamos chamar de <span class="math inline">\(a_j = \binom{m}{j}\)</span> para <span class="math inline">\(j = 0,1,\ldots,m\)</span> os termos combinatórios. Se distribuirmos o primeiro termo da primeira soma com a soma inteira; o segundo, o terceiro e assim por diante temos algo desse tipo:</p>
 <p><span class="math display">\[\begin{align}
 a_0x^0(a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m) + \\
 a_1x^1 (a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m) + \\
@@ -477,10 +482,10 @@ a_m x^m (a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m)
 <p>respectivamente. Os termos que contribuem para <span class="math inline">\(x^m\)</span> são</p>
 <p><span class="math display">\[\begin{align}
 x^0 x^m &amp;= x^m \\
-x^1 x^m-1 &amp;= x^m \\
+x^1 x^{m-1} &amp;= x^m \\
 x^2 x^m-2 &amp;= x^m \\
 &amp;\vdots \\
-x^m x^m-1 &amp;= x^m \\
+x^m x^{m-1} &amp;= x^m \\
 \end{align}\]</span></p>
 <p>Isso nos fornece algo bastante interessante:</p>
 <p><span class="math display">\[\begin{align}
@@ -490,7 +495,7 @@ x^m x^m-1 &amp;= x^m \\
 &amp;\vdots \\
 (a_m x^m) (a_0 x^m) &amp;= a_m a_0 x^m \\
 \end{align}\]</span></p>
-<p>Somado todos esses termos temos exatamente</p>
+<p>Somando todos esses termos temos exatamente</p>
 <p><span id="eq-combinacao2"><span class="math display">\[
 \sum_{j=0}^{m} \binom{m}{j} \binom{m}{m-j} x^m
 \tag{4}\]</span></span></p>
@@ -502,7 +507,7 @@ x^m x^m-1 &amp;= x^m \\
 <p><span class="math display">\[
 \sum_{j=0}^{m} \binom{m}{j}^2 x^m.  
 \]</span></p>
-<p>Agora voltamos áquela expansão do produto</p>
+<p>Agora voltamos àquela expansão do produto</p>
 <p><span class="math display">\[
 (1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots \binom{2m}{2m}x^{2m}.
 \]</span></p>
@@ -518,8 +523,8 @@ x^m x^m-1 &amp;= x^m \\
 <p><span class="math display">\[
 \sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}.
 \]</span></p>
-<p>Elegante hein ?</p>
-<p>Particularmente me perguntei sobre como faríamos para obter qualquer termo <span class="math inline">\(x^k\)</span> e como seria se ao invés de termos <span class="math inline">\((1+x)^{2m}\)</span>, termos algo como <span class="math inline">\((1+x)^a (1+x)^b = (1+x)^{a+b}\)</span>. Eu abri o produto e percebi algo semelhante</p>
+<p>Elegante, hein?</p>
+<p>Particularmente me perguntei como faríamos para obter qualquer termo <span class="math inline">\(x^k\)</span> e como seria se, em vez de termos <span class="math inline">\((1+x)^{2m}\)</span>, tivéssemos algo como <span class="math inline">\((1+x)^a (1+x)^b = (1+x)^{a+b}\)</span>. Eu abri o produto e percebi algo semelhante</p>
 <p><span class="math display">\[\begin{align}
 (1+x)^a (1+x)^b &amp;= \\
 &amp;= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
@@ -528,15 +533,15 @@ x^m x^m-1 &amp;= x^m \\
 &amp;\vdots \\
 &amp;= \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
 \end{align}\]</span></p>
-<p>Se por exemplo eu quiséssemos os termos que produzem <span class="math inline">\(x^2\)</span>:</p>
+<p>Se, por exemplo, quiséssemos os termos que produzem <span class="math inline">\(x^2\)</span>:</p>
 <p><span class="math display">\[
 \binom{a}{0}\binom{b}{2}x^2 ; \binom{a}{1} x \binom{b}{1}x ; \binom{a}{2} x^2 \binom{b}{0}x^2
 \]</span></p>
-<p>Note que ao somar esses termos temos, o coeficiente de <span class="math inline">\(x^2\)</span> na soma é</p>
+<p>Note que, ao somar esses termos, o coeficiente de <span class="math inline">\(x^2\)</span> na soma é</p>
 <p><span class="math display">\[
 \binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}
 \]</span></p>
-<p>Algebricamente temos a expensão da identidade polinomial:</p>
+<p>Algebricamente temos a expansão da identidade polinomial:</p>
 <p><span class="math display">\[
 (1+x)^a (1+x)^b = (1+x)^{a+b}
 \]</span></p>
@@ -544,7 +549,7 @@ x^m x^m-1 &amp;= x^m \\
 <p><span class="math display">\[
 \sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{i=0}^b \binom{b}{i}x^i
 \]</span></p>
-<p>os termos que produzem <span class="math inline">\(x^2\)</span> são exatamente aqueles em que <span class="math inline">\(i+j = 2\)</span>, isto é a soma</p>
+<p>os termos que produzem <span class="math inline">\(x^2\)</span> são exatamente aqueles em que <span class="math inline">\(i+j = 2\)</span>, isto é, a soma</p>
 <p><span class="math display">\[
 \binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}.
 \]</span></p>
@@ -560,7 +565,7 @@ x^0 x^k, x^1 x^{k-1}, x^2 x^{k-2}, \ldots, x^k x^0
 <p><span class="math display">\[
 \sum_{j=0}^{k} \binom{a}{j} \binom{b}{k-j} = \binom{a+b}{k}
 \]</span></p>
-<p>pois <span class="math inline">\((1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r\)</span> e o coeficiente de <span class="math inline">\(x^k\)</span> é aquele tal que <span class="math inline">\(r = k\)</span> na soma, ou seja <span class="math inline">\(\binom{a+b}{k}\)</span>. Esse resultado é conhecido como a <em>Identidade de Vandermonde</em>.</p>
+<p>pois <span class="math inline">\((1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r\)</span> e o coeficiente de <span class="math inline">\(x^k\)</span> é aquele tal que <span class="math inline">\(r = k\)</span> na soma, ou seja <span class="math inline">\(\binom{a+b}{k}\)</span>. Esse resultado é conhecido como a <strong>Identidade de Vandermonde</strong>.</p>
 <hr>
 </section>
 <section id="será-que-dá-pra-generalizar-somas-do-tipo" class="level3">
@@ -665,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       knob.style.transform = dark ? 'translateX(16px)' : 'translateX(0)';
 
-      slider.style.background = dark ? '#2dd4bf99' : '#ffffff33';
+      slider.style.background = dark ? '#d2a67999' : '#ffffff33';
 
       icon.innerHTML = dark ? '&#9728;' : '&#9790;';
 
@@ -679,9 +684,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     try { saved = localStorage.getItem('quarto-color-scheme'); } catch(e) {}
 
-    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Tema claro é o padrão; o escuro só é usado se o leitor o escolheu
 
-    applyTheme(saved === 'dark' || (!saved && prefersDark));
+    applyTheme(saved === 'dark');
 
 
 
