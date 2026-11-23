@@ -1,0 +1,310 @@
+---
+title: "Alguns truques combinatórios"
+subtitle: "Algumas questões que o Prof. Maurício me passou"
+description: ""
+date: 2026-11-23
+categories: [combonatória, matemática]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+### Os três probleminhas
+
+Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido a entrega de alguns projetos pendentes, abri o Drive onde 
+hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais "obscuro" que fui acumulando ao longo da minha 
+trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof. Maurício, que é o mestre de todos nós, incluindo os nosso
+corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem pra provar algumas propriedades envolvendo combinações. 
+Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens: 
+
+(a) Prove que
+
+$$
+    \sum_{i=1}^{n} i \binom{n}{i} = n 2^{n-1}
+$$
+
+(b) Prove que
+
+$$  
+    \sum_{i=1}^{n} i^2 \binom{n}{i} = n(n+1) 2^{n-2}
+$$
+
+(c) Prove que 
+
+$$  
+    \sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \binom{2n - 2}{n-1}
+$$
+
+Simples, sem dicas ou maiores cerimômias. Eu achei que seriam propriedades bem triviais de provar. Tentei abrir ali o termo da combinação, 
+cancelei algumas coisas, mas não chegava nesses resultados. Ao pesquisar um pouco mais sobre e resolver, eu aprendi muita coisa no meio do 
+caminho e é por isso que eu digo que o velho sabe das coisas. 
+
+### A solução dos itens 
+
+Para resolver os itens é fundamental que a gente conheça o binômio de newton e saber derivar. Lembrando aqui o binômio de newton: 
+
+> Teorema Binomial:
+>
+> $(a+b)^n = \sum_{i=0}^{n} \binom{n}{i} a^{n-i} b^i$. 
+>
+> Se $a = 1$ e $b = x$ temos $(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i$.
+
+Para o item (a) a ideia é partir da expensão $(1+x)^n$ e derivar em ambos os lados em relação à $x$, tentando sempre isolar a soma desejada: 
+
+$$
+(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i 
+$$
+
+Derivando em ambos os lados em relação a $x$ temos
+
+$$
+n(1+x)^{n-1} =  \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
+$$
+
+Note que o índice do somatório começa agora em $i=1$ e não em $i=0$ porque quando derivamos, surge o termo $x^{i-1}$ e a soma não pode começar em 0.
+Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em $i=0$ mais o restante da soma e depois a deriva: 
+
+$$
+\sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i. 
+$$
+
+Derivando isso em relação a $x$ nós justificamos a soma começar no 1. O mesmo raciocínio vale pra derivadas de ordens superiores. Sempre faça esse truque !
+
+Continuando, temos 
+
+$$
+n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1} 
+$${#eq-derivada1}
+
+e multiplicando ambos os lados por $x$ nós obtemos 
+
+$$
+nx(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^i
+$$
+
+Particularmente ao fazer $x = 1$ obtemos a soma desejada no item (a): 
+
+$$
+ \sum_{i=1}^{n} i \binom{n}{i} = n \times 2^{n-1}. 
+$$
+
+--- 
+
+Para o item (b) empregamos um raciocínio semelhante. Da primeira derivada em ([-@eq-derivada1]), derivamos uma segunda vez em relação a $x$
+obtendo
+
+\begin{align}
+n(n-1)(1+x)^{n-2} &= \sum_{i=2} \binom{n}{i} i(i-1) x^{i-2} \\
+n(n-1)x^2(1+x)^{n-2} &= \sum_{i=2} \binom{n}{i} (i^2-i) x^i
+\end{align}
+
+Para $x=1$ 
+
+\begin{align}
+n(n-1)2^{n-2} &= \sum_{i=2} \binom{n}{i} (i^2-i) \\ 
+n(n-1)2^{n-2} &= \sum_{i=2} \binom{n}{i}i^2 - \sum_{i=2} \binom{n}{i} i \\ 
+n(n-1)2^{n-2} &=  \sum_{i=2} \binom{n}{i}i^2 - n2^{n-1} \\ 
+\sum_{i=2} \binom{n}{i}i^2 &= n(n-1)2^{n-2} +  n2^{n-1} \\ 
+\sum_{i=2} \binom{n}{i}i^2 &= 2^{n-2}[n(n-1) - 2n] \\ 
+\sum_{i=2} \binom{n}{i}i^2 &= n(n+1) 2^{n-2}.
+\end{align}
+
+--- 
+
+O item (c) é o mais complicado de deles, mas vamos passo a passo para entendermos bem. Partimos de 
+
+$$
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 =  \Bigg(i \binom{n}{i} \Bigg)^2. 
+$$
+
+Precisamos desenvolver o produto $i \binom{n}{i}$: 
+
+$$
+i \binom{n}{i} = i \frac{n!}{i!(n-i)!} = i \frac{n(n-1)!}{i(i-1)!(n-i)!} = n \frac{(n-1)!}{(i-1)!(n-i)!} = n \binom{n-1}{i-1}. 
+$$
+
+Assim temos
+
+$$
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2.
+$${#eq-principal}
+
+Vamos focar nesta última soma. Aqui vem algo bem interessante. Essa soma se parece bastante com uma já conhecida:
+
+$$
+\sum_{j=0}^{m} \binom{m}{j}  = \binom{2m}{m}
+$${#eq-combinacao1}
+
+Esse resultado emerge da seguinte ideia: 
+
+$$
+(1+x)^m (1+x)^m = (1+x)^{2m}
+$$
+
+Sabemos pelo Teorema Binomial que são duas somas: 
+
+$$
+\sum_{j=0}^{m} \binom{m}{j} x^j \times \sum_{j=0}^{m} \binom{m}{j} x^j
+$$
+
+Abrindo termo a termo dessa somas temos: 
+
+$$
+\Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg) \times \Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg)
+$$
+
+Vamos chamar de $a_j = \binom{m}{j}$ para $j = 0,1,\ldots,m$ os termos combinatórios. Se distribuírmos o primeiro termo da primeira soma com a soma inteira; 
+o segundo, o terceiro e assim por diante temos algo desse tipo: 
+
+\begin{align}
+a_0x^0(a_0x^0 + a_1 x^1 &+ a_2 x^2 + \ldots + a_m x^m) + \\ 
+a_1x^1 (a_0x^0 + a_1 x^1 &+ a_2 x^2 + \ldots + a_m x^m) + \\ 
+a_2 x^2 (a_0x^0 + a_1 x^1 &+ a_2 x^2 + \ldots + a_m x^m) + \\ 
+&\vdots \\ 
+a_m x^m (a_0x^0 + a_1 x^1 &+ a_2 x^2 + \ldots + a_m x^m)
+\end{align}
+
+Vamos encontrar os coeficientes de $x^m$ que no produto que estamos estudando fica $x^j$ do primeiro polinômio com o seu simétrico $x^{m-j}$ pois sempre 
+vale que $x^j x^{m-j} = x^m$. Os coeficientes são 
+
+$$
+\binom{m}{j} \,\,\, \text{e} \,\,\, \binom{m}{m-j}
+$$
+
+respectivamente. Os termos que contribuem para $x^m$ são 
+
+\begin{align}
+x^0 x^m &= x^m \\ 
+x^1 x^m-1 &= x^m \\ 
+x^2 x^m-2 &= x^m \\ 
+&\vdots \\ 
+x^m x^m-1 &= x^m \\ 
+\end{align}
+
+Isso nos fornece algo bastante interessante: 
+
+\begin{align}
+(a_0x^0) (a_m x^m) &= a_0 a_m x^m \\ 
+(a_1x^1) (a_{m-1} x^m) &= a_1 a_{m-1} x^m \\ 
+(a_2x^2) (a_{m-2} x^m) &= a_2 a_{m-2} x^m \\ 
+&\vdots \\ 
+(a_m x^m) (a_0 x^m) &= a_m a_0 x^m \\ 
+\end{align}
+
+Somado todos esses termos temos exatamente 
+
+$$
+\sum_{j=0}^{m} \binom{m}{j} \binom{m}{m-j} x^m 
+$${#eq-combinacao2}
+
+e como 
+
+$$
+ \binom{m}{m-j} = \binom{m}{j}
+$$
+
+temos 
+
+$$
+\sum_{j=0}^{m} \binom{m}{j}^2 x^m.  
+$$
+
+Agora voltamos áquela expansão do produto 
+
+$$
+(1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots \binom{2m}{2m}x^{2m}. 
+$$
+
+Agora note que tanto essa expressão quanto a soma em ([-@eq-combinacao2]) são iguais, porém, estamos interessados apenas no termo que acompanha $x^m$. 
+Da soma aberta logo acima pegamos apenas o termo $\binom{2m}{m}x^m$ porque dessa maneira podemos afirmar que 
+
+$$
+\sum_{j=0}^{m} \binom{m}{j}^2x^m = \binom{2m}{m} x^m. 
+$$
+
+Isso implica que 
+
+$$
+\sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m} 
+$$
+
+apenas por comparação de termos das somas. Ligando esse resultado até onde paramos em ([-@eq-principal]), basta notar que $m = n-1$ assim temos
+
+$$
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}. 
+$$
+
+Elegante hein ? 
+
+Particularmente me perguntei sobre como faríamos para obter qualquer termo $x^k$ e como seria se ao invés de termos $(1+x)^{2m}$, termos algo como 
+$(1+x)^a (1+x)^b = (1+x)^{a+b}$. Eu abri o produto e percebi algo semelhante 
+
+\begin{align}
+(1+x)^a (1+x)^b &= \\
+&= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
+&= \binom{a}{1}x  \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
+&= \binom{a}{2}x^2 \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
+&\vdots \\ 
+&= \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
+\end{align}
+
+Se por exemplo eu quiséssemos os termos que produzem $x^2$: 
+
+$$
+\binom{a}{0}\binom{b}{2}x^2 ; \binom{a}{1} x \binom{b}{1}x ; \binom{a}{2} x^2 \binom{b}{0}x^2
+$$
+
+Note que ao somar esses termos temos, o coeficiente de $x^2$ na soma é 
+
+$$
+\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}
+$$
+
+Algebricamente temos a expensão da identidade polinomial: 
+
+$$
+(1+x)^a (1+x)^b = (1+x)^{a+b}
+$$
+
+O coeficiente do termo $x^2$ no lado direito é $\binom{a+b}{2}$. No lado esquerdo, ao multiplicar as expansões 
+
+$$
+\sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{i=0}^b \binom{b}{i}x^i 
+$$
+
+os termos que produzem $x^2$ são exatamente aqueles em que $i+j = 2$, isto é a soma 
+
+$$
+\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}.
+$$
+
+Igualando os coeficientes de $x^2$ nos dois lados, chega-se ao resultado desejado. Generalizando agora para qualquer termo $x^k$ nós temos 
+
+$$
+x^0 x^k, x^1 x^{k-1}, x^2 x^{k-2}, \ldots, x^k x^0 
+$$
+
+com coeficientes dados por 
+
+$$
+\binom{a}{0}\binom{b}{k}, \binom{a}{1}\binom{b}{k-1}, \binom{a}{2}\binom{b}{k-2}, \ldots, \binom{a}{k}\binom{b}{0}. 
+$$
+
+Somando todos obtemos 
+
+$$
+\sum_{j=0}^{k} \binom{a}{j} \binom{b}{k-j} = \binom{a+b}{k}
+$$
+
+pois $(1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r$ e o coeficiente de $x^k$ é aquele tal que $r = k$ na soma, ou seja $\binom{a+b}{k}$. 
+Esse resultado é conhecido como a *Identidade de Vandermonde*. 
+
+--- 
+
+### Será que dá pra generalizar somas do tipo 
+
+$$
+\sum_{i=0}^{n} i^k \binom{n}{i}, \,\, \text{com} \,\, k = 1,2,\ldots,n \,\, \text{?}
+$$
+

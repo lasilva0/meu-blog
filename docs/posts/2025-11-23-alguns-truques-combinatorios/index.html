@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-11-23">
+
+<title>Alguns truques combinatórios – L-Stats Blog</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d9800f5f02728a52a15de09bd0b95c85.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-9cf71b286753cda7688afc7c6133b21d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../styles-dark-override.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">L-Stats Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Sobre</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lasilva0"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Alguns truques combinatórios</h1>
+            <p class="subtitle lead">Algumas questões que o Prof.&nbsp;Maurício me passou</p>
+                                <div class="quarto-categories">
+                <div class="quarto-category">combonatória</div>
+                <div class="quarto-category">matemática</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">November 23, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Nesta página</h2>
+   
+  <ul>
+  <li><a href="#os-três-probleminhas" id="toc-os-três-probleminhas" class="nav-link active" data-scroll-target="#os-três-probleminhas">Os três probleminhas</a></li>
+  <li><a href="#a-solução-dos-itens" id="toc-a-solução-dos-itens" class="nav-link" data-scroll-target="#a-solução-dos-itens">A solução dos itens</a></li>
+  <li><a href="#será-que-dá-pra-generalizar-somas-do-tipo" id="toc-será-que-dá-pra-generalizar-somas-do-tipo" class="nav-link" data-scroll-target="#será-que-dá-pra-generalizar-somas-do-tipo">Será que dá pra generalizar somas do tipo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+
+<section id="os-três-probleminhas" class="level3">
+<h3 class="anchored" data-anchor-id="os-três-probleminhas">Os três probleminhas</h3>
+<p>Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido a entrega de alguns projetos pendentes, abri o Drive onde hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais “obscuro” que fui acumulando ao longo da minha trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof.&nbsp;Maurício, que é o mestre de todos nós, incluindo os nosso corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem pra provar algumas propriedades envolvendo combinações. Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens:</p>
+<ol type="a">
+<li>Prove que</li>
+</ol>
+<p><span class="math display">\[
+    \sum_{i=1}^{n} i \binom{n}{i} = n 2^{n-1}
+\]</span></p>
+<ol start="2" type="a">
+<li>Prove que</li>
+</ol>
+<p><span class="math display">\[  
+    \sum_{i=1}^{n} i^2 \binom{n}{i} = n(n+1) 2^{n-2}
+\]</span></p>
+<ol start="3" type="a">
+<li>Prove que</li>
+</ol>
+<p><span class="math display">\[  
+    \sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \binom{2n - 2}{n-1}
+\]</span></p>
+<p>Simples, sem dicas ou maiores cerimômias. Eu achei que seriam propriedades bem triviais de provar. Tentei abrir ali o termo da combinação, cancelei algumas coisas, mas não chegava nesses resultados. Ao pesquisar um pouco mais sobre e resolver, eu aprendi muita coisa no meio do caminho e é por isso que eu digo que o velho sabe das coisas.</p>
+</section>
+<section id="a-solução-dos-itens" class="level3">
+<h3 class="anchored" data-anchor-id="a-solução-dos-itens">A solução dos itens</h3>
+<p>Para resolver os itens é fundamental que a gente conheça o binômio de newton e saber derivar. Lembrando aqui o binômio de newton:</p>
+<blockquote class="blockquote">
+<p>Teorema Binomial:</p>
+<p><span class="math inline">\((a+b)^n = \sum_{i=0}^{n} \binom{n}{i} a^{n-i} b^i\)</span>.</p>
+<p>Se <span class="math inline">\(a = 1\)</span> e <span class="math inline">\(b = x\)</span> temos <span class="math inline">\((1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i\)</span>.</p>
+</blockquote>
+<p>Para o item (a) a ideia é partir da expensão <span class="math inline">\((1+x)^n\)</span> e derivar em ambos os lados em relação à <span class="math inline">\(x\)</span>, tentando sempre isolar a soma desejada:</p>
+<p><span class="math display">\[
+(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i
+\]</span></p>
+<p>Derivando em ambos os lados em relação a <span class="math inline">\(x\)</span> temos</p>
+<p><span class="math display">\[
+n(1+x)^{n-1} =  \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
+\]</span></p>
+<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span> porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em 0. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois a deriva:</p>
+<p><span class="math display">\[
+\sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i.
+\]</span></p>
+<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar no 1. O mesmo raciocínio vale pra derivadas de ordens superiores. Sempre faça esse truque !</p>
+<p>Continuando, temos</p>
+<p><span id="eq-derivada1"><span class="math display">\[
+n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
+\tag{1}\]</span></span></p>
+<p>e multiplicando ambos os lados por <span class="math inline">\(x\)</span> nós obtemos</p>
+<p><span class="math display">\[
+nx(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^i
+\]</span></p>
+<p>Particularmente ao fazer <span class="math inline">\(x = 1\)</span> obtemos a soma desejada no item (a):</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} i \binom{n}{i} = n \times 2^{n-1}.
+\]</span></p>
+<hr>
+<p>Para o item (b) empregamos um raciocínio semelhante. Da primeira derivada em (<a href="#eq-derivada1" class="quarto-xref">1</a>), derivamos uma segunda vez em relação a <span class="math inline">\(x\)</span> obtendo</p>
+<p><span class="math display">\[\begin{align}
+n(n-1)(1+x)^{n-2} &amp;= \sum_{i=2} \binom{n}{i} i(i-1) x^{i-2} \\
+n(n-1)x^2(1+x)^{n-2} &amp;= \sum_{i=2} \binom{n}{i} (i^2-i) x^i
+\end{align}\]</span></p>
+<p>Para <span class="math inline">\(x=1\)</span></p>
+<p><span class="math display">\[\begin{align}
+n(n-1)2^{n-2} &amp;= \sum_{i=2} \binom{n}{i} (i^2-i) \\
+n(n-1)2^{n-2} &amp;= \sum_{i=2} \binom{n}{i}i^2 - \sum_{i=2} \binom{n}{i} i \\
+n(n-1)2^{n-2} &amp;=  \sum_{i=2} \binom{n}{i}i^2 - n2^{n-1} \\
+\sum_{i=2} \binom{n}{i}i^2 &amp;= n(n-1)2^{n-2} +  n2^{n-1} \\
+\sum_{i=2} \binom{n}{i}i^2 &amp;= 2^{n-2}[n(n-1) - 2n] \\
+\sum_{i=2} \binom{n}{i}i^2 &amp;= n(n+1) 2^{n-2}.
+\end{align}\]</span></p>
+<hr>
+<p>O item (c) é o mais complicado de deles, mas vamos passo a passo para entendermos bem. Partimos de</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 =  \Bigg(i \binom{n}{i} \Bigg)^2.
+\]</span></p>
+<p>Precisamos desenvolver o produto <span class="math inline">\(i \binom{n}{i}\)</span>:</p>
+<p><span class="math display">\[
+i \binom{n}{i} = i \frac{n!}{i!(n-i)!} = i \frac{n(n-1)!}{i(i-1)!(n-i)!} = n \frac{(n-1)!}{(i-1)!(n-i)!} = n \binom{n-1}{i-1}.
+\]</span></p>
+<p>Assim temos</p>
+<p><span id="eq-principal"><span class="math display">\[
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2.
+\tag{2}\]</span></span></p>
+<p>Vamos focar nesta última soma. Aqui vem algo bem interessante. Essa soma se parece bastante com uma já conhecida:</p>
+<p><span id="eq-combinacao1"><span class="math display">\[
+\sum_{j=0}^{m} \binom{m}{j}  = \binom{2m}{m}
+\tag{3}\]</span></span></p>
+<p>Esse resultado emerge da seguinte ideia:</p>
+<p><span class="math display">\[
+(1+x)^m (1+x)^m = (1+x)^{2m}
+\]</span></p>
+<p>Sabemos pelo Teorema Binomial que são duas somas:</p>
+<p><span class="math display">\[
+\sum_{j=0}^{m} \binom{m}{j} x^j \times \sum_{j=0}^{m} \binom{m}{j} x^j
+\]</span></p>
+<p>Abrindo termo a termo dessa somas temos:</p>
+<p><span class="math display">\[
+\Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg) \times \Bigg( \binom{m}{0} + \binom{m}{1}x + \binom{m}{2}x^2 + \ldots + \binom{m}{m}x^m \Bigg)
+\]</span></p>
+<p>Vamos chamar de <span class="math inline">\(a_j = \binom{m}{j}\)</span> para <span class="math inline">\(j = 0,1,\ldots,m\)</span> os termos combinatórios. Se distribuírmos o primeiro termo da primeira soma com a soma inteira; o segundo, o terceiro e assim por diante temos algo desse tipo:</p>
+<p><span class="math display">\[\begin{align}
+a_0x^0(a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m) + \\
+a_1x^1 (a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m) + \\
+a_2 x^2 (a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m) + \\
+&amp;\vdots \\
+a_m x^m (a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m)
+\end{align}\]</span></p>
+<p>Vamos encontrar os coeficientes de <span class="math inline">\(x^m\)</span> que no produto que estamos estudando fica <span class="math inline">\(x^j\)</span> do primeiro polinômio com o seu simétrico <span class="math inline">\(x^{m-j}\)</span> pois sempre vale que <span class="math inline">\(x^j x^{m-j} = x^m\)</span>. Os coeficientes são</p>
+<p><span class="math display">\[
+\binom{m}{j} \,\,\, \text{e} \,\,\, \binom{m}{m-j}
+\]</span></p>
+<p>respectivamente. Os termos que contribuem para <span class="math inline">\(x^m\)</span> são</p>
+<p><span class="math display">\[\begin{align}
+x^0 x^m &amp;= x^m \\
+x^1 x^m-1 &amp;= x^m \\
+x^2 x^m-2 &amp;= x^m \\
+&amp;\vdots \\
+x^m x^m-1 &amp;= x^m \\
+\end{align}\]</span></p>
+<p>Isso nos fornece algo bastante interessante:</p>
+<p><span class="math display">\[\begin{align}
+(a_0x^0) (a_m x^m) &amp;= a_0 a_m x^m \\
+(a_1x^1) (a_{m-1} x^m) &amp;= a_1 a_{m-1} x^m \\
+(a_2x^2) (a_{m-2} x^m) &amp;= a_2 a_{m-2} x^m \\
+&amp;\vdots \\
+(a_m x^m) (a_0 x^m) &amp;= a_m a_0 x^m \\
+\end{align}\]</span></p>
+<p>Somado todos esses termos temos exatamente</p>
+<p><span id="eq-combinacao2"><span class="math display">\[
+\sum_{j=0}^{m} \binom{m}{j} \binom{m}{m-j} x^m
+\tag{4}\]</span></span></p>
+<p>e como</p>
+<p><span class="math display">\[
+\binom{m}{m-j} = \binom{m}{j}
+\]</span></p>
+<p>temos</p>
+<p><span class="math display">\[
+\sum_{j=0}^{m} \binom{m}{j}^2 x^m.  
+\]</span></p>
+<p>Agora voltamos áquela expansão do produto</p>
+<p><span class="math display">\[
+(1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots \binom{2m}{2m}x^{2m}.
+\]</span></p>
+<p>Agora note que tanto essa expressão quanto a soma em (<a href="#eq-combinacao2" class="quarto-xref">4</a>) são iguais, porém, estamos interessados apenas no termo que acompanha <span class="math inline">\(x^m\)</span>. Da soma aberta logo acima pegamos apenas o termo <span class="math inline">\(\binom{2m}{m}x^m\)</span> porque dessa maneira podemos afirmar que</p>
+<p><span class="math display">\[
+\sum_{j=0}^{m} \binom{m}{j}^2x^m = \binom{2m}{m} x^m.
+\]</span></p>
+<p>Isso implica que</p>
+<p><span class="math display">\[
+\sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m}
+\]</span></p>
+<p>apenas por comparação de termos das somas. Ligando esse resultado até onde paramos em (<a href="#eq-principal" class="quarto-xref">2</a>), basta notar que <span class="math inline">\(m = n-1\)</span> assim temos</p>
+<p><span class="math display">\[
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}.
+\]</span></p>
+<p>Elegante hein ?</p>
+<p>Particularmente me perguntei sobre como faríamos para obter qualquer termo <span class="math inline">\(x^k\)</span> e como seria se ao invés de termos <span class="math inline">\((1+x)^{2m}\)</span>, termos algo como <span class="math inline">\((1+x)^a (1+x)^b = (1+x)^{a+b}\)</span>. Eu abri o produto e percebi algo semelhante</p>
+<p><span class="math display">\[\begin{align}
+(1+x)^a (1+x)^b &amp;= \\
+&amp;= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
+&amp;= \binom{a}{1}x  \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
+&amp;= \binom{a}{2}x^2 \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
+&amp;\vdots \\
+&amp;= \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
+\end{align}\]</span></p>
+<p>Se por exemplo eu quiséssemos os termos que produzem <span class="math inline">\(x^2\)</span>:</p>
+<p><span class="math display">\[
+\binom{a}{0}\binom{b}{2}x^2 ; \binom{a}{1} x \binom{b}{1}x ; \binom{a}{2} x^2 \binom{b}{0}x^2
+\]</span></p>
+<p>Note que ao somar esses termos temos, o coeficiente de <span class="math inline">\(x^2\)</span> na soma é</p>
+<p><span class="math display">\[
+\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}
+\]</span></p>
+<p>Algebricamente temos a expensão da identidade polinomial:</p>
+<p><span class="math display">\[
+(1+x)^a (1+x)^b = (1+x)^{a+b}
+\]</span></p>
+<p>O coeficiente do termo <span class="math inline">\(x^2\)</span> no lado direito é <span class="math inline">\(\binom{a+b}{2}\)</span>. No lado esquerdo, ao multiplicar as expansões</p>
+<p><span class="math display">\[
+\sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{i=0}^b \binom{b}{i}x^i
+\]</span></p>
+<p>os termos que produzem <span class="math inline">\(x^2\)</span> são exatamente aqueles em que <span class="math inline">\(i+j = 2\)</span>, isto é a soma</p>
+<p><span class="math display">\[
+\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}.
+\]</span></p>
+<p>Igualando os coeficientes de <span class="math inline">\(x^2\)</span> nos dois lados, chega-se ao resultado desejado. Generalizando agora para qualquer termo <span class="math inline">\(x^k\)</span> nós temos</p>
+<p><span class="math display">\[
+x^0 x^k, x^1 x^{k-1}, x^2 x^{k-2}, \ldots, x^k x^0
+\]</span></p>
+<p>com coeficientes dados por</p>
+<p><span class="math display">\[
+\binom{a}{0}\binom{b}{k}, \binom{a}{1}\binom{b}{k-1}, \binom{a}{2}\binom{b}{k-2}, \ldots, \binom{a}{k}\binom{b}{0}.
+\]</span></p>
+<p>Somando todos obtemos</p>
+<p><span class="math display">\[
+\sum_{j=0}^{k} \binom{a}{j} \binom{b}{k-j} = \binom{a+b}{k}
+\]</span></p>
+<p>pois <span class="math inline">\((1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r\)</span> e o coeficiente de <span class="math inline">\(x^k\)</span> é aquele tal que <span class="math inline">\(r = k\)</span> na soma, ou seja <span class="math inline">\(\binom{a+b}{k}\)</span>. Esse resultado é conhecido como a <em>Identidade de Vandermonde</em>.</p>
+<hr>
+</section>
+<section id="será-que-dá-pra-generalizar-somas-do-tipo" class="level3">
+<h3 class="anchored" data-anchor-id="será-que-dá-pra-generalizar-somas-do-tipo">Será que dá pra generalizar somas do tipo</h3>
+<p><span class="math display">\[
+\sum_{i=0}^{n} i^k \binom{n}{i}, \,\, \text{com} \,\, k = 1,2,\ldots,n \,\, \text{?}
+\]</span></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+
+  // ===== DARK MODE TOGGLE NA NAVBAR =====
+
+  var navbar = document.querySelector('.navbar-nav.ms-auto, .navbar-nav.navbar-right, .navbar .navbar-nav:last-child');
+
+  if (!navbar) navbar = document.querySelector('.navbar-collapse .navbar-nav');
+
+
+
+  if (navbar) {
+
+    var li = document.createElement('li');
+
+    li.className = 'nav-item d-flex align-items-center';
+
+    li.style.cssText = 'padding: 0 0.4rem;';
+
+
+
+    li.innerHTML = `
+
+      <label id="theme-switch-label" title="Alternar modo escuro" style="
+
+        display:flex;align-items:center;gap:6px;cursor:pointer;margin:0;
+
+        font-size:0.75rem;color:rgba(255,255,255,0.85);user-select:none;
+
+      ">
+
+        <span id="theme-icon" style="font-size:0.9rem;line-height:1;">&#9790;</span>
+
+        <span style="position:relative;display:inline-block;width:34px;height:18px;">
+
+          <input type="checkbox" id="theme-checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+
+          <span id="theme-slider" style="
+
+            position:absolute;inset:0;border-radius:18px;
+
+            background:#ffffff33;border:1px solid rgba(255,255,255,0.4);
+
+            transition:background 0.3s;cursor:pointer;
+
+          ">
+
+            <span id="theme-knob" style="
+
+              position:absolute;top:2px;left:2px;
+
+              width:12px;height:12px;border-radius:50%;
+
+              background:#ffffff;transition:transform 0.3s;
+
+            "></span>
+
+          </span>
+
+        </span>
+
+      </label>
+
+    `;
+
+
+
+    navbar.appendChild(li);
+
+
+
+    var checkbox = document.getElementById('theme-checkbox');
+
+    var slider   = document.getElementById('theme-slider');
+
+    var knob     = document.getElementById('theme-knob');
+
+    var icon     = document.getElementById('theme-icon');
+
+
+
+    function applyTheme(dark) {
+
+      document.documentElement.setAttribute('data-bs-theme', dark ? 'dark' : 'light');
+
+      checkbox.checked = dark;
+
+      knob.style.transform = dark ? 'translateX(16px)' : 'translateX(0)';
+
+      slider.style.background = dark ? '#2dd4bf99' : '#ffffff33';
+
+      icon.innerHTML = dark ? '&#9728;' : '&#9790;';
+
+      try { localStorage.setItem('quarto-color-scheme', dark ? 'dark' : 'light'); } catch(e) {}
+
+    }
+
+
+
+    var saved = null;
+
+    try { saved = localStorage.getItem('quarto-color-scheme'); } catch(e) {}
+
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    applyTheme(saved === 'dark' || (!saved && prefersDark));
+
+
+
+    document.getElementById('theme-switch-label').addEventListener('click', function(e) {
+
+      e.preventDefault();
+
+      applyTheme(!checkbox.checked);
+
+    });
+
+  }
+
+
+
+});
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>© 2025 L-Stats Blog — Feito com <a href="https://quarto.org">Quarto</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
