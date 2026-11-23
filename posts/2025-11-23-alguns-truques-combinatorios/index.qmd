@@ -1,7 +1,6 @@
 ---
 title: "Alguns truques combinatórios"
-subtitle: "Algumas questões que o Prof. Maurício me passou"
-description: ""
+subtitle: "Três questões do Prof. Maurício"
 date: 2026-11-23
 categories: [combonatória, matemática]
 format:
