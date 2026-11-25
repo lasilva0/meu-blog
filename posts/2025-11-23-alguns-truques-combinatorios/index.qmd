@@ -1,7 +1,7 @@
 ---
 title: "Alguns truques combinatórios"
 description: "Três questões do Prof. Maurício"
-date: 2026-11-23
+date: 2026-11-25
 categories: [combinatória, matemática]
 format:
   html:
@@ -58,17 +58,17 @@ $$
 Derivando em ambos os lados em relação a $x$ temos
 
 $$
-n(1+x)^{n-1} =  \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
+n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
 $$
 
-Note que o índice do somatório começa agora em $i=1$ e não em $i=0$ porque quando derivamos, surge o termo $x^{i-1}$ e a soma não pode começar em 0.
+Note que o índice do somatório começa agora em $i=1$ e não em $i=0$ porque quando derivamos, surge o termo $x^{i-1}$ e a soma não pode começar em $0$.
 Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em $i=0$ mais o restante da soma e depois derivá-la: 
 
 $$
 \sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i. 
 $$
 
-Derivando isso em relação a $x$ nós justificamos a soma começar em 1. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!
+Derivando isso em relação a $x$ nós justificamos a soma começar em $1$. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!
 
 Continuando, temos 
 
@@ -91,30 +91,50 @@ $$
 --- 
 
 Para o item (b) empregamos um raciocínio semelhante. Da primeira derivada em ([-@eq-derivada1]), derivamos uma segunda vez em relação a $x$
-obtendo
+obtendo (para $n \ge 2$)
 
 \begin{align}
-n(n-1)(1+x)^{n-2} &= \sum_{i=2} \binom{n}{i} i(i-1) x^{i-2} \\
-n(n-1)x^2(1+x)^{n-2} &= \sum_{i=2} \binom{n}{i} (i^2-i) x^i
+n(n-1)(1+x)^{n-2} &= \sum_{i=2}^{n} \binom{n}{i} i(i-1) x^{i-2} \\
+n(n-1)x^2(1+x)^{n-2} &= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) x^i
 \end{align}
 
-Para $x=1$ 
+Para $x=1$, temos
+
+$$
+n(n-1)2^{n-2} = \sum_{i=2}^{n} \binom{n}{i} (i^2-i) = \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i.
+$$
+
+Aqui há um detalhe importante de índice: o resultado que provamos no item (a) começa em $i = 1$, enquanto estas duas somas começam em $i = 2$. Para conectar as duas coisas com rigor, abrimos o primeiro termo ($i = 1$) de cada soma original:
 
 \begin{align}
-n(n-1)2^{n-2} &= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) \\ 
-n(n-1)2^{n-2} &= \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i \\ 
-n(n-1)2^{n-2} &= \sum_{i=2}^{n} \binom{n}{i}i^2 - n2^{n-1} \\ 
-\sum_{i=2}^{n} \binom{n}{i}i^2 &= n(n-1)2^{n-2} +  n2^{n-1} \\ 
-\sum_{i=2}^{n} \binom{n}{i}i^2 &= 2^{n-2}[n(n-1) + 2n] \\ 
-\sum_{i=2}^{n} \binom{n}{i}i^2 &= n(n+1) 2^{n-2}.
+\sum_{i=1}^{n} \binom{n}{i}i^2 &= 1^2\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i^2 \implies \sum_{i=2}^{n} \binom{n}{i}i^2 = \sum_{i=1}^{n} \binom{n}{i}i^2 - n \\
+\sum_{i=1}^{n} \binom{n}{i}i &= 1\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i \implies \sum_{i=2}^{n} \binom{n}{i}i = \sum_{i=1}^{n} \binom{n}{i}i - n.
 \end{align}
+
+Substituindo essas duas relações na equação principal, vemos que os termos $-n$ e $+n$ se cancelam perfeitamente (o que faz sentido, pois $i^2 - i = 0$ quando $i = 1$):
+
+\begin{align}
+n(n-1)2^{n-2} &= \left[\sum_{i=1}^{n} \binom{n}{i}i^2 - n\right] - \left[\sum_{i=1}^{n} \binom{n}{i}i - n\right] \\
+n(n-1)2^{n-2} &= \sum_{i=1}^{n} \binom{n}{i}i^2 - \sum_{i=1}^{n} \binom{n}{i}i.
+\end{align}
+
+Agora sim podemos substituir diretamente o resultado do item (a) e isolar a soma desejada:
+
+\begin{align}
+n(n-1)2^{n-2} &= \sum_{i=1}^{n} \binom{n}{i}i^2 - n2^{n-1} \\ 
+\sum_{i=1}^{n} \binom{n}{i}i^2 &= n(n-1)2^{n-2} + n2^{n-1} \\ 
+\sum_{i=1}^{n} \binom{n}{i}i^2 &= 2^{n-2}[n(n-1) + 2n] \\ 
+\sum_{i=1}^{n} \binom{n}{i}i^2 &= n(n+1) 2^{n-2}.
+\end{align}
+
+*(Nota: para $n = 1$, a identidade também vale diretamente, pois $\sum_{i=1}^{1} i^2 \binom{1}{i} = 1$ e $1(1+1)2^{-1} = 1$.)*
 
 --- 
 
 O item (c) é o mais complicado deles, mas vamos passo a passo para entendermos bem. Partimos de 
 
 $$
-\sum_{i=1}^{n} i^2 \binom{n}{i}^2 =  \Bigg(i \binom{n}{i} \Bigg)^2. 
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = \sum_{i=1}^{n} \Bigg(i \binom{n}{i} \Bigg)^2. 
 $$
 
 Precisamos desenvolver o produto $i \binom{n}{i}$: 
@@ -132,7 +152,7 @@ $${#eq-principal}
 Vamos focar nesta última soma. Aqui vem algo bem interessante. Essa soma se parece bastante com uma já conhecida:
 
 $$
-\sum_{j=0}^{m} \binom{m}{j}^2  = \binom{2m}{m}
+\sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m}
 $${#eq-combinacao1}
 
 Esse resultado emerge da seguinte ideia: 
@@ -176,19 +196,19 @@ respectivamente. Os termos que contribuem para $x^m$ são
 \begin{align}
 x^0 x^m &= x^m \\ 
 x^1 x^{m-1} &= x^m \\ 
-x^2 x^m-2 &= x^m \\ 
+x^2 x^{m-2} &= x^m \\ 
 &\vdots \\ 
-x^m x^{m-1} &= x^m \\ 
+x^m x^{0} &= x^m 
 \end{align}
 
 Isso nos fornece algo bastante interessante: 
 
 \begin{align}
 (a_0x^0) (a_m x^m) &= a_0 a_m x^m \\ 
-(a_1x^1) (a_{m-1} x^m) &= a_1 a_{m-1} x^m \\ 
-(a_2x^2) (a_{m-2} x^m) &= a_2 a_{m-2} x^m \\ 
+(a_1x^1) (a_{m-1} x^{m-1}) &= a_1 a_{m-1} x^m \\ 
+(a_2x^2) (a_{m-2} x^{m-2}) &= a_2 a_{m-2} x^m \\ 
 &\vdots \\ 
-(a_m x^m) (a_0 x^m) &= a_m a_0 x^m \\ 
+(a_m x^m) (a_0 x^0) &= a_m a_0 x^m 
 \end{align}
 
 Somando todos esses termos temos exatamente 
@@ -212,7 +232,7 @@ $$
 Agora voltamos àquela expansão do produto 
 
 $$
-(1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots \binom{2m}{2m}x^{2m}. 
+(1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots + \binom{2m}{2m}x^{2m}. 
 $$
 
 Agora note que tanto essa expressão quanto a soma em ([-@eq-combinacao2]) são iguais, porém, estamos interessados apenas no termo que acompanha $x^m$. 
@@ -228,48 +248,47 @@ $$
 \sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m} 
 $$
 
-apenas por comparação de termos das somas. Ligando esse resultado até onde paramos em ([-@eq-principal]), basta notar que $m = n-1$ assim temos
+apenas por comparação de termos das somas. Ligando esse resultado até onde paramos em ([-@eq-principal]), basta notar que $m = n-1$ e reindexar $j = i-1$, assim temos
 
 $$
-\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}. 
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \sum_{j=0}^{n-1} \binom{n-1}{j}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}. 
 $$
 
 Elegante, hein? 
 
 Particularmente me perguntei como faríamos para obter qualquer termo $x^k$ e como seria se, em vez de termos $(1+x)^{2m}$, tivéssemos algo como 
-$(1+x)^a (1+x)^b = (1+x)^{a+b}$. Eu abri o produto e percebi algo semelhante 
+$(1+x)^a (1+x)^b = (1+x)^{a+b}$. Eu abri o produto e percebi algo semelhante:
 
 \begin{align}
-(1+x)^a (1+x)^b &= \\
-&= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
-&= \binom{a}{1}x  \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
-&= \binom{a}{2}x^2 \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
-&\vdots \\ 
-&= \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\ 
+(1+x)^a (1+x)^b &= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] + \\ 
+&\quad\; \binom{a}{1}x  \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] + \\ 
+&\quad\; \binom{a}{2}x^2 \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] + \\ 
+&\qquad\vdots \\ 
+&\quad\; \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg]. 
 \end{align}
 
 Se, por exemplo, quiséssemos os termos que produzem $x^2$: 
 
 $$
-\binom{a}{0}\binom{b}{2}x^2 ; \binom{a}{1} x \binom{b}{1}x ; \binom{a}{2} x^2 \binom{b}{0}x^2
+\binom{a}{0}\binom{b}{2}x^2, \quad \binom{a}{1} x \binom{b}{1}x, \quad \binom{a}{2} x^2 \binom{b}{0}.
 $$
 
 Note que, ao somar esses termos, o coeficiente de $x^2$ na soma é 
 
 $$
-\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}
+\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}.
 $$
 
 Algebricamente temos a expansão da identidade polinomial: 
 
 $$
-(1+x)^a (1+x)^b = (1+x)^{a+b}
+(1+x)^a (1+x)^b = (1+x)^{a+b}.
 $$
 
 O coeficiente do termo $x^2$ no lado direito é $\binom{a+b}{2}$. No lado esquerdo, ao multiplicar as expansões 
 
 $$
-\sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{i=0}^b \binom{b}{i}x^i 
+\sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{j=0}^b \binom{b}{j}x^j 
 $$
 
 os termos que produzem $x^2$ são exatamente aqueles em que $i+j = 2$, isto é, a soma 
@@ -301,9 +320,152 @@ Esse resultado é conhecido como a **Identidade de Vandermonde**.
 
 --- 
 
-### Será que dá pra generalizar somas do tipo 
+### Generalizando somas do tipo $\sum_{i=1}^{n} i^k \binom{n}{i}$
+
+Vimos como resolver para $k=1$ e $k=2$ derivando $(1+x)^n$ e ajustando o índice inicial da soma. E se quisermos para $k=3$, ou melhor ainda, para uma potência $k$ qualquer?
+
+#### O passo seguinte: o caso cúbico ($k = 3$)
+
+Derivando uma terceira vez a expansão de $(1+x)^n$ em relação a $x$ (para $n \ge 3$), multiplicando por $x^3$ e avaliando em $x=1$, o somatório passa a começar em $i=3$:
 
 $$
-\sum_{i=0}^{n} i^k \binom{n}{i}, \,\, \text{com} \,\, k = 1,2,\ldots,n \,\, \text{?}
+n(n-1)(n-2)2^{n-3} = \sum_{i=3}^{n} \binom{n}{i} i(i-1)(i-2) = \sum_{i=3}^{n} \binom{n}{i} (i^3 - 3i^2 + 2i).
 $$
 
+Separando as três somas e aplicando exatamente a mesma ideia de abrir os termos anteriores ($i=1$ e $i=2$) para que todas comecem em $i=1$:
+
+\begin{align}
+\sum_{i=3}^{n} i^3\binom{n}{i} &= \sum_{i=1}^{n} i^3\binom{n}{i} - 1^3\binom{n}{1} - 2^3\binom{n}{2} = \sum_{i=1}^{n} i^3\binom{n}{i} - n - 4n(n-1) \\
+\sum_{i=3}^{n} i^2\binom{n}{i} &= \sum_{i=1}^{n} i^2\binom{n}{i} - 1^2\binom{n}{1} - 2^2\binom{n}{2} = \sum_{i=1}^{n} i^2\binom{n}{i} - n - 2n(n-1) \\
+\sum_{i=3}^{n} i\binom{n}{i} &= \sum_{i=1}^{n} i\binom{n}{i} - 1\binom{n}{1} - 2\binom{n}{2} = \sum_{i=1}^{n} i\binom{n}{i} - n - n(n-1).
+\end{align}
+
+Ao substituir na equação principal, os termos abertos se anulam identicamente (pois $-n + 3n - 2n = 0$ e $-4n(n-1) + 6n(n-1) - 2n(n-1) = 0$, refletindo o fato de que $i(i-1)(i-2)$ tem raízes em $i=1$ e $i=2$). Sobra apenas:
+
+$$
+n(n-1)(n-2)2^{n-3} = \sum_{i=1}^{n} i^3\binom{n}{i} - 3\sum_{i=1}^{n} i^2\binom{n}{i} + 2\sum_{i=1}^{n} i\binom{n}{i}.
+$$
+
+Substituindo as fórmulas já provadas para $k=2$ e $k=1$ e isolando a soma cúbica:
+
+\begin{align}
+\sum_{i=1}^{n} i^3\binom{n}{i} &= n(n-1)(n-2)2^{n-3} + 3n(n+1)2^{n-2} - 2n2^{n-1} \\
+&= n 2^{n-3} \big[(n-1)(n-2) + 6(n+1) - 8\big] \\
+&= n^2(n+3)2^{n-3}.
+\end{align}
+
+#### Provando o caso geral para qualquer $k \ge 1$
+
+Quando avançamos para potências maiores, abrir termo a termo para verificar os cancelamentos dá bastante trabalho. Porém, usando a mesma ideia de decompor a soma original que vimos no item (a), conseguimos entender tanto por que o somatório começa em $i = j$ na $j$-ésima derivada quanto por que conseguimos trazê-lo de volta para $i = 1$ sem deixar sobras.
+
+##### 1. Por que a $j$-ésima derivada começa em $i = j$?
+
+Olhemos para a soma original $\sum_{i=0}^{n} \binom{n}{i} x^i$ separando os $j$ primeiros termos ($i = 0, 1, \dots, j-1$) do restante da soma:
+
+$$
+(1+x)^n = \underbrace{\binom{n}{0} + \binom{n}{1}x + \binom{n}{2}x^2 + \cdots + \binom{n}{j-1}x^{j-1}}_{\text{polinômio de grau } j-1} + \sum_{i=j}^{n} \binom{n}{i} x^i.
+$$
+
+Quando derivamos essa igualdade $j$ vezes em relação a $x$ (para $1 \le j \le n$):
+
+- **A parte da esquerda desaparece:** trata-se de um polinômio de grau $j - 1$. Como cada derivada reduz o grau em $1$ unidade, após $j - 1$ derivadas esse bloco vira uma constante, e na $j$-ésima derivada sua derivada é identicamente **$0$**.
+- **A parte da direita sobrevive a partir de $i = j$:** o primeiro termo que ainda possui um fator em $x$ para ser derivado na $j$-ésima etapa é justamente o de expoente $i = j$ (que vira $\binom{n}{j} j!\,x^{j-j} = \binom{n}{j}j!$). Se o somatório começasse antes de $j$, surgiriam expoentes negativos em $x^{i-j}$, o que não faz sentido na derivada de um polinômio.
+
+Assim, a $j$-ésima derivada de $(1+x)^n$ é exatamente:
+
+$$
+n(n-1)(n-2)\cdots(n-j+1)(1+x)^{n-j} = \sum_{i=j}^{n} \binom{n}{i} i(i-1)(i-2)\cdots(i-j+1) x^{i-j}.
+$$
+
+##### 2. Puxando o índice de $i = j$ de volta para $i = 1$
+
+Para simplificar a escrita, definimos o **polinômio fatorial decrescente** $m^{\underline{j}} = m(m-1)(m-2)\cdots(m-j+1)$. Multiplicando ambos os lados da equação por $x^j$ (para recompor $x^i$) e avaliando em $x = 1$, chegamos a:
+
+$$
+n^{\underline{j}} 2^{n-j} = \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i}.
+$$
+
+Agora observe o motivo pelo qual não precisamos subtrair nenhum termo residual ao puxar o índice inicial de $i = j$ de volta para $i = 1$: o produto $i^{\underline{j}} = i(i-1)(i-2)\cdots(i-j+1)$ é um polinômio em $i$ cujas raízes são exatamente os números inteiros $1, 2, \dots, j-1$.
+
+- Para $i = 1$ (com $j \ge 2$), o fator $(i-1)$ zera o produto.
+- Para $i = 2$ (com $j \ge 3$), o fator $(i-2)$ zera o produto.
+- De modo geral, para qualquer $i \in \{1, 2, \dots, j-1\}$, um dos parênteses será $(i - i) = 0$, fazendo com que $i^{\underline{j}} = 0$.
+
+Como todos os termos faltantes de $i = 1$ até $i = j-1$ são identicamente nulos, somá-los não altera o resultado da soma. Assim, provamos diretamente que:
+
+$$
+\sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \underbrace{0 + 0 + \cdots + 0}_{i = 1, \dots, j-1} + \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} = n^{\underline{j}} 2^{n-j}.
+$${#eq-fatorial-decrescente}
+
+*(Nota: se $j > n$, ambos os lados valem zero, pois $n^{\underline{j}} = 0$ e $i^{\underline{j}} = 0$ para todo $1 \le i \le n$.)*
+
+##### 3. Decompondo potências $i^k$ e o Triângulo de Stirling
+
+O problema prático agora é fazer a ponte inversa: as derivadas nos dão fórmulas prontas para os fatoriais decrescentes $i^{\underline{j}}$, mas o somatório original pede a potência comum $i^k$.
+
+Podemos montar qualquer potência $i^k$ a partir dos blocos $i^{\underline{j}}$ de forma recursiva. Sabemos que:
+
+* Para $k = 1$: $i^1 = \mathbf{1}\cdot i^{\underline{1}}$.
+* Para $k = 2$: como $i^{\underline{2}} = i(i-1) = i^2 - i$, isolando $i^2$ temos $i^2 = \mathbf{1}\cdot i^{\underline{1}} + \mathbf{1}\cdot i^{\underline{2}}$.
+* Para $k = 3$: isolando $i^3$ em $i^{\underline{3}} = i^3 - 3i^2 + 2i$ e substituindo a expressão anterior de $i^2$:
+  $$i^3 = i^{\underline{3}} + 3\big(i^{\underline{2}} + i^{\underline{1}}\big) - 2i^{\underline{1}} = \mathbf{1}\cdot i^{\underline{1}} + \mathbf{3}\cdot i^{\underline{2}} + \mathbf{1}\cdot i^{\underline{3}}.$$
+
+Para passar de qualquer potência $i^{k-1}$ para $i^k$ sem precisar expandir polinômios manualmente, multiplicamos $i^{k-1}$ por $i$ e usamos o truque algébrico de escrever $i = (i - j) + j$ dentro de cada bloco $i^{\underline{j}}$:
+
+$$
+i \cdot i^{\underline{j}} = \big[(i - j) + j\big] i^{\underline{j}} = \underbrace{i^{\underline{j}}(i - j)}_{=\, i^{\underline{j+1}}} + j \cdot i^{\underline{j}}.
+$$
+
+Veja esse truque em ação na passagem de $i^3$ para $i^4$:
+
+\begin{align}
+i^4 = i \cdot i^3 &= \mathbf{1}(i \cdot i^{\underline{1}}) + \mathbf{3}(i \cdot i^{\underline{2}}) + \mathbf{1}(i \cdot i^{\underline{3}}) \\
+&= \mathbf{1}\big(i^{\underline{2}} + 1\cdot i^{\underline{1}}\big) + \mathbf{3}\big(i^{\underline{3}} + 2\cdot i^{\underline{2}}\big) + \mathbf{1}\big(i^{\underline{4}} + 3\cdot i^{\underline{3}}\big) \\
+&= \mathbf{1}\cdot i^{\underline{1}} + (1 + 3\cdot 2)i^{\underline{2}} + (3 + 1\cdot 3)i^{\underline{3}} + \mathbf{1}\cdot i^{\underline{4}} \\
+&= \mathbf{1}\cdot i^{\underline{1}} + \mathbf{7}\cdot i^{\underline{2}} + \mathbf{6}\cdot i^{\underline{3}} + \mathbf{1}\cdot i^{\underline{4}}.
+\end{align}
+
+Os pesos que aparecem nessa decomposição — $(1)$, $(1, 1)$, $(1, 3, 1)$, $(1, 7, 6, 1)$ — são exatamente os **Números de Stirling de segunda espécie**, denotados por $\left\{\begin{matrix} k \\ j \end{matrix}\right\}$ (que, na combinatória, contam de quantas maneiras podemos particionar um conjunto de $k$ elementos em $j$ subconjuntos não vazios):
+
+$$
+i^k = \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}}.
+$$
+
+Agrupando os coeficientes da identidade $i \cdot i^{\underline{j}} = i^{\underline{j+1}} + j \cdot i^{\underline{j}}$, descobrimos que cada novo coeficiente recebe a contribuição de $i^{\underline{j-1}}$ somada a $j$ vezes o coeficiente de $i^{\underline{j}}$ da linha anterior. Isso gera a **relação de recorrência de Stirling**:
+
+$$
+\left\{\begin{matrix} k \\ j \end{matrix}\right\} = \left\{\begin{matrix} k-1 \\ j-1 \end{matrix}\right\} + j \cdot \left\{\begin{matrix} k-1 \\ j \end{matrix}\right\}
+$$
+
+com os **casos base (condições de borda)** dados por $\left\{\begin{matrix} 0 \\ 0 \end{matrix}\right\} = 1$, $\left\{\begin{matrix} k \\ 0 \end{matrix}\right\} = 0$ (para $k \ge 1$) e $\left\{\begin{matrix} k \\ j \end{matrix}\right\} = 0$ sempre que $j > k$ (o que garante que a primeira coluna $j=1$ e a diagonal principal $j=k$ sejam sempre iguais a $1$).
+
+Aplicando essa recorrência linha por linha, construímos o **Triângulo de Stirling** (análogo ao Triângulo de Pascal):
+
+| $k \setminus j$ | $j = 1$ | $j = 2$ | $j = 3$ | $j = 4$ | $j = 5$ |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **$k = 1$** ($i^1$) | **1** | | | | |
+| **$k = 2$** ($i^2$) | **1** | **1** | | | |
+| **$k = 3$** ($i^3$) | **1** | $1 + 2(1) = \mathbf{3}$ | **1** | | |
+| **$k = 4$** ($i^4$) | **1** | $1 + 2(3) = \mathbf{7}$ | $3 + 3(1) = \mathbf{6}$ | **1** | |
+| **$k = 5$** ($i^5$) | **1** | $1 + 2(7) = \mathbf{15}$ | $7 + 3(6) = \mathbf{25}$ | $6 + 4(1) = \mathbf{10}$ | **1** |
+
+*(Para um mergulho mais profundo na dualidade estrutural entre essas duas tabelas e suas interpretações combinatórias, veja a discussão completa no texto complementar **"O Triângulo de Pascal e o Triângulo de Stirling"**.)*
+
+##### 4. A fórmula fechada geral
+
+Substituindo a expansão de $i^k$ no somatório binomial original, trocando a ordem das somas por linearidade e aplicando o resultado provado em ([-@eq-fatorial-decrescente]), obtemos a fórmula fechada para qualquer $k \ge 1$:
+
+\begin{align}
+\sum_{i=1}^{n} i^k \binom{n}{i} &= \sum_{i=1}^{n} \left( \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}} \right) \binom{n}{i} \\
+&= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} \left( \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} \right) \\
+&= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} n^{\underline{j}} 2^{n-j}.
+\end{align}
+
+Com essa identidade e a linha $k = 4$ do Triângulo de Stirling em mãos, obtemos diretamente a soma para a quarta potência sem precisar derivar novamente:
+
+\begin{align}
+\sum_{i=1}^{n} i^4 \binom{n}{i} &= n 2^{n-1} + 7n(n-1)2^{n-2} + 6n(n-1)(n-2)2^{n-3} + n(n-1)(n-2)(n-3)2^{n-4} \\
+&= n(n+1)(n^2 + 5n - 2)2^{n-4}.
+\end{align}
+
+Curiosidade estatística: ao dividir ambos os lados por $2^n$, essa identidade fornece exatamente o $k$-ésimo momento não centrado $\mathbb{E}[X^k]$ de uma variável aleatória $X \sim \text{Binomial}(n, p = 1/2)$.

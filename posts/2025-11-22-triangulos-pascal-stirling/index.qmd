@@ -1,0 +1,205 @@
+---
+title: "O Triângulo de Pascal e o Triângulo de Stirling"
+description: "Da expansão polinomial à troca de bases: como somas binomiais revelam os Números de Stirling"
+date: 2026-11-22
+categories: [combinatória, matemática, álgebra]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+### De onde vêm essas estruturas?
+
+Quando estudamos análise combinatória e probabilidade, o **Triângulo de Pascal** é quase sempre a primeira estrutura que encontramos. Ele organiza os coeficientes binomiais $\binom{n}{i}$ e guarda, em suas linhas, uma infinidade de identidades algébricas e combinatórias.
+
+Porém, quando tentamos calcular momentos de distribuições discretas — como somas do tipo $\sum_{i=1}^{n} i^k \binom{n}{i}$ — percebemos que o Triângulo de Pascal sozinho não basta. Ao derivar o binômio $(1+x)^n$ sucessivas vezes, a matemática não nos entrega potências limpas $i^k$, mas sim produtos de fatores consecutivos. É exatamente na ponte entre essas duas formas de escrever polinômios que nasce um primo menos famoso, mas igualmente poderoso: o **Triângulo de Stirling**.
+
+### Parte 1: O Triângulo de Pascal e a identidade de Vandermonde
+
+O Triângulo de Pascal é governado pela **Relação de Stifel**, que diz como construir cada entrada somando os dois números imediatamente acima dela:
+
+$$
+\binom{n}{i} = \binom{n-1}{i-1} + \binom{n-1}{i}
+$$
+
+Algebricamente, a $n$-ésima linha desse triângulo contém os coeficientes da expansão do Teorema Binomial:
+
+$$
+(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i
+$$
+
+Uma das consequências mais elegantes dessa estrutura aparece quando multiplicamos duas expansões binomiais, $(1+x)^a (1+x)^b = (1+x)^{a+b}$, e comparamos o coeficiente de $x^k$ em ambos os lados:
+
+\begin{align}
+(1+x)^a (1+x)^b &= \left(\sum_{i=0}^{a} \binom{a}{i} x^i\right) \left(\sum_{j=0}^{b} \binom{b}{j} x^j\right)
+\end{align}
+
+Os termos que produzem $x^k$ no produto são aqueles em que $i + j = k$ (ou seja, $j = k - i$). Igualando a soma desses coeficientes ao coeficiente correspondente em $(1+x)^{a+b}$, obtemos a **Identidade de Vandermonde**:
+
+$$
+\sum_{j=0}^{k} \binom{a}{j} \binom{b}{k-j} = \binom{a+b}{k}
+$$
+
+No caso particular em que $a = b = m$ e $k = m$, usando a simetria $\binom{m}{m-j} = \binom{m}{j}$, chegamos à soma dos quadrados de uma linha inteira do Triângulo de Pascal:
+
+$$
+\sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m}
+$$
+
+### Parte 2: O problema das potências $i^k$ e as derivadas
+
+Agora, suponha que queiramos calcular somas ponderadas pelas linhas do Triângulo de Pascal, da forma:
+
+$$
+S_k(n) = \sum_{i=1}^{n} i^k \binom{n}{i}
+$$
+
+Para fazer o índice $i$ "descer" do expoente para multiplicar o coeficiente binomial, derivamos $(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i$ em relação a $x$.
+
+1. **Na 1ª derivada (**$j = 1$**):**
+
+   $$
+   n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1} \xrightarrow{\times x,\; x=1} \sum_{i=1}^{n} i \binom{n}{i} = n 2^{n-1}
+   $$
+2. **Na 2ª derivada (**$j = 2$**):**
+
+   $$
+   n(n-1)(1+x)^{n-2} = \sum_{i=2}^{n} i(i-1) \binom{n}{i} x^{i-2} \xrightarrow{\times x^2,\; x=1} \sum_{i=2}^{n} i(i-1) \binom{n}{i} = n(n-1) 2^{n-2}
+   $$
+3. **Na** $j$**-ésima derivada (caso geral):**
+   Separando os $j$ primeiros termos da soma original, vemos que $\sum_{i=0}^{j-1} \binom{n}{i}x^i$ é um polinômio de grau $j-1$, cuja $j$-ésima derivada é identicamente zero. O somatório sobrevive apenas a partir de $i = j$:
+
+   $$
+   n(n-1)\cdots(n-j+1)(1+x)^{n-j} = \sum_{i=j}^{n} i(i-1)\cdots(i-j+1) \binom{n}{i} x^{i-j}
+   $$
+
+Definindo a notação de **polinômio fatorial decrescente** $m^{\underline{j}} = m(m-1)(m-2)\cdots(m-j+1)$, multiplicando por $x^j$ e fazendo $x=1$, temos:
+
+$$
+\sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = n^{\underline{j}} 2^{n-j}
+$$
+
+Como o produto $i^{\underline{j}}$ possui raízes inteiras em $i = 1, 2, \dots, j-1$, todos os termos faltantes antes de $i = j$ são identicamente nulos. Podemos, portanto, puxar o início da soma de volta para $i = 1$ sem deixar sobras:
+
+$$
+\sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} = n^{\underline{j}} 2^{n-j}
+$${#eq-fatorial}
+
+Aqui surge o dilema: **as derivadas resolvem perfeitamente somas com** $i^{\underline{j}}$**, mas o nosso problema original pede somas com** $i^k$.
+
+### Parte 3: Como as potências $i^k$ geram o Triângulo de Stirling
+
+Para resolver esse impasse, precisamos responder a uma pergunta puramente algébrica: *como escrever uma potência comum* $i^k$ *como uma soma de blocos fatoriais* $i^{\underline{1}}, i^{\underline{2}}, \dots, i^{\underline{k}}$*?*
+
+Vamos construir essa conversão passo a passo, multiplicando cada resultado por $i$ para obter o próximo:
+
+#### Passo 1: $k = 1$ e $k = 2$
+
+Para $k = 1$, a relação é imediata:
+
+$$
+i^1 = \mathbf{1} \cdot i^{\underline{1}}
+$$
+
+Para chegar em $i^2$, multiplicamos ambos os lados por $i$:
+
+$$
+i^2 = i \cdot i^{\underline{1}}
+$$
+
+Para absorver o $i$ solto dentro do bloco $i^{\underline{1}}$, usamos o truque algébrico de somar e subtrair $1$, escrevendo $i = (i - 1) + 1$:
+
+$$
+i^2 = \big[(i - 1) + 1\big] i^{\underline{1}} = \underbrace{i^{\underline{1}}(i - 1)}_{=\, i^{\underline{2}}} + \mathbf{1}\cdot i^{\underline{1}} = \mathbf{1}\cdot i^{\underline{1}} + \mathbf{1}\cdot i^{\underline{2}}
+$$
+
+#### Passo 2: $k = 3$
+
+Multiplicamos a expressão de $i^2$ por $i$:
+
+$$
+i^3 = i \cdot \big[\mathbf{1}\cdot i^{\underline{1}} + \mathbf{1}\cdot i^{\underline{2}}\big] = \mathbf{1}\cdot (i \cdot i^{\underline{1}}) + \mathbf{1}\cdot (i \cdot i^{\underline{2}})
+$$
+
+Aplicamos o mesmo truque em cada bloco — escrevendo $i = (i - 1) + 1$ no primeiro e $i = (i - 2) + 2$ no segundo:
+
+\begin{align}
+i^3 &= \mathbf{1}\cdot \big[(i - 1) + 1\big] i^{\underline{1}} + \mathbf{1}\cdot \big[(i - 2) + 2\big] i^{\underline{2}} \\
+&= \mathbf{1}\cdot \big(i^{\underline{2}} + 1\cdot i^{\underline{1}}\big) + \mathbf{1}\cdot \big(i^{\underline{3}} + 2\cdot i^{\underline{2}}\big) \\
+&= \mathbf{1}\cdot i^{\underline{1}} + (1 + 2)\cdot i^{\underline{2}} + \mathbf{1}\cdot i^{\underline{3}} \\
+&= \mathbf{1}\cdot i^{\underline{1}} + \mathbf{3}\cdot i^{\underline{2}} + \mathbf{1}\cdot i^{\underline{3}}
+\end{align}
+
+#### Passo 3: $k = 4$
+
+Repetindo o processo a partir de $i^3$:
+
+\begin{align}
+i^4 &= i \cdot \big[\mathbf{1}\cdot i^{\underline{1}} + \mathbf{3}\cdot i^{\underline{2}} + \mathbf{1}\cdot i^{\underline{3}}\big] \\
+&= \mathbf{1}\cdot \big[(i-1)+1\big]i^{\underline{1}} + \mathbf{3}\cdot \big[(i-2)+2\big]i^{\underline{2}} + \mathbf{1}\cdot \big[(i-3)+3\big]i^{\underline{3}} \\
+&= \mathbf{1}\cdot \big(i^{\underline{2}} + 1\cdot i^{\underline{1}}\big) + \mathbf{3}\cdot \big(i^{\underline{3}} + 2\cdot i^{\underline{2}}\big) + \mathbf{1}\cdot \big(i^{\underline{4}} + 3\cdot i^{\underline{3}}\big) \\
+&= \mathbf{1}\cdot i^{\underline{1}} + (1 + 3\cdot 2)\cdot i^{\underline{2}} + (3 + 1\cdot 3)\cdot i^{\underline{3}} + \mathbf{1}\cdot i^{\underline{4}} \\
+&= \mathbf{1}\cdot i^{\underline{1}} + \mathbf{7}\cdot i^{\underline{2}} + \mathbf{6}\cdot i^{\underline{3}} + \mathbf{1}\cdot i^{\underline{4}}
+\end{align}
+
+#### A lei de formação do Triângulo de Stirling
+
+Olhe para os coeficientes que apareceram em cada etapa. Se chamarmos de $\left\{\begin{matrix} k \\ j \end{matrix}\right\}$ o coeficiente que multiplica $i^{\underline{j}}$ na expansão de $i^k$:
+
+$$
+i^k = \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}}
+$$
+
+O truque algébrico $i \cdot i^{\underline{j}} = \big[(i - j) + j\big] i^{\underline{j}} = i^{\underline{j+1}} + j \cdot i^{\underline{j}}$ mostra que, ao passar de $i^{k-1}$ para $i^k$, cada coeficiente da nova linha é formado somando:
+
+1. O coeficiente da coluna anterior na linha de cima ($\left\{\begin{matrix} k-1 \\ j-1 \end{matrix}\right\}$, que subiu de grau ao ser multiplicado por $i - j + 1$);
+2. $j$ **vezes** o coeficiente da mesma coluna na linha de cima ($j \cdot \left\{\begin{matrix} k-1 \\ j \end{matrix}\right\}$, que permaneceu no mesmo grau).
+
+Essa é exatamente a **relação de recorrência dos Números de Stirling de segunda espécie**:
+
+$$
+\left\{\begin{matrix} k \\ j \end{matrix}\right\} = \left\{\begin{matrix} k-1 \\ j-1 \end{matrix}\right\} + j \cdot \left\{\begin{matrix} k-1 \\ j \end{matrix}\right\}
+$$
+
+Com as condições de borda $\left\{\begin{matrix} k \\ 1 \end{matrix}\right\} = 1$ e $\left\{\begin{matrix} k \\ k \end{matrix}\right\} = 1$ para $k \ge 1$, construímos o **Triângulo de Stirling** linha por linha:
+
+| Potência ($k$)   | $j = 1$ ($i^{\underline{1}}$) | $j = 2$ ($i^{\underline{2}}$) | $j = 3$ ($i^{\underline{3}}$) | $j = 4$ ($i^{\underline{4}}$) | $j = 5$ ($i^{\underline{5}}$) |
+| ------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
+| $k = 1$ ($i^1$) | **1**                       |                                   |                                   |                                   |                                   |
+| $k = 2$ ($i^2$) | **1**                       | **1**                       |                                   |                                   |                                   |
+| $k = 3$ ($i^3$) | **1**                       | $1 + 2(1) = \mathbf{3}$         | **1**                       |                                   |                                   |
+| $k = 4$ ($i^4$) | **1**                       | $1 + 2(3) = \mathbf{7}$         | $3 + 3(1) = \mathbf{6}$         | **1**                       |                                   |
+| $k = 5$ ($i^5$) | **1**                       | $1 + 2(7) = \mathbf{15}$        | $7 + 3(6) = \mathbf{25}$        | $6 + 4(1) = \mathbf{10}$        | **1**                       |
+
+*(Curiosidade combinatória: esse mesmo número* $\left\{\begin{matrix} k \\ j \end{matrix}\right\}$ *conta de quantas maneiras podemos particionar um conjunto de* $k$ *elementos distintos em* $j$ *subconjuntos não vazios. Isso acontece porque distribuir* $k$ *bolas distintas em* $i$ *caixas pode ser contado diretamente por* $i^k$*, ou escolhendo* $j$ *caixas não vazias de* $i^{\underline{j}}$ *formas após agrupar as bolas em* $\left\{\begin{matrix} k \\ j \end{matrix}\right\}$ *blocos.)*
+
+### Parte 4: Unindo os dois triângulos
+
+Agora temos todas as peças para resolver a soma binomial para qualquer potência $k \ge 1$. Substituindo a expansão de $i^k$ via Triângulo de Stirling no somatório original e aplicando o resultado das derivadas em ([-@eq-fatorial]):
+
+\begin{align}
+\sum_{i=1}^{n} i^k \binom{n}{i} &= \sum_{i=1}^{n} \left( \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}} \right) \binom{n}{i} \\
+&= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} \left( \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} \right) \\
+&= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} n^{\underline{j}} 2^{n-j}.
+\end{align}
+
+Veja como essa única expressão sintetiza toda a teoria:
+
+* **Para** $k = 2$ (linha $1, 1$):
+
+  $$
+  \sum_{i=1}^{n} i^2 \binom{n}{i} = 1\cdot n 2^{n-1} + 1\cdot n(n-1)2^{n-2} = n(n+1)2^{n-2}
+  $$
+* **Para** $k = 3$ (linha $1, 3, 1$):
+
+  $$
+  \sum_{i=1}^{n} i^3 \binom{n}{i} = 1\cdot n 2^{n-1} + 3\cdot n(n-1)2^{n-2} + 1\cdot n(n-1)(n-2)2^{n-3} = n^2(n+3)2^{n-3}
+  $$
+* **Para** $k = 4$ (linha $1, 7, 6, 1$):
+
+  $$
+  \sum_{i=1}^{n} i^4 \binom{n}{i} = 1\cdot n 2^{n-1} + 7\cdot n(n-1)2^{n-2} + 6\cdot n(n-1)(n-2)2^{n-3} + 1\cdot n(n-1)(n-2)(n-3)2^{n-4} = n(n+1)(n^2 + 5n - 2)2^{n-4}
+  $$
+
+Enquanto o **Triângulo de Pascal** fornece os pesos combinatórios $\binom{n}{i}$ e o comportamento sob derivação, o **Triângulo de Stirling** atua como o dicionário que traduz potências ordinárias $i^k$ na linguagem natural dessas derivadas.

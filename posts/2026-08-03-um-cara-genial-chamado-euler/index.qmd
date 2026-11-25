@@ -2,7 +2,7 @@
 title: "Um cara genial chamado Euler"
 description: "Polinômios, fatorações, séries e muita elegância matemática"
 date: 2026-08-04
-categories: [Matemática]
+categories: [matemática]
 format:
   html:
     toc: true

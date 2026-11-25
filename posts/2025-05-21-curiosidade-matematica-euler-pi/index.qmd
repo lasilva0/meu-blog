@@ -2,7 +2,7 @@
 title: "Uma propriedade interessante envolvendo números transcendentais"
 description: "Como mostrar que e^pi > pi^e ?"
 date: 2025-05-21
-categories: [Matemática]
+categories: [matemática]
 format:
   html:
     toc: true

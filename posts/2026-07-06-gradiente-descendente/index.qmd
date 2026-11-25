@@ -3,7 +3,7 @@ title: "Otimização de funções via gradiente descendente"
 subtitle: "Método não iterativo e iterativo"
 description: "Explorando como minimizar funções com e sem iterações"
 date: 2026-07-06
-categories: [otimização, matemática]
+categories: [machine learning]
 format:
   html:
     toc: true

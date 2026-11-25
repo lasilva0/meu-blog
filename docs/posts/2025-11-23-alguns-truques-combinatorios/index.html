@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-11-23">
+<meta name="dcterms.date" content="2026-11-25">
 <meta name="description" content="Três questões do Prof.&nbsp;Maurício">
 
 <title>Alguns truques combinatórios – L-Stats Blog</title>
@@ -337,7 +337,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">November 23, 2026</p>
+        <p class="date">November 25, 2026</p>
       </div>
     </div>
     
@@ -355,7 +355,7 @@ window.Quarto = {
   <ul>
   <li><a href="#os-três-probleminhas" id="toc-os-três-probleminhas" class="nav-link active" data-scroll-target="#os-três-probleminhas">Os três probleminhas</a></li>
   <li><a href="#a-solução-dos-itens" id="toc-a-solução-dos-itens" class="nav-link" data-scroll-target="#a-solução-dos-itens">A solução dos itens</a></li>
-  <li><a href="#será-que-dá-pra-generalizar-somas-do-tipo" id="toc-será-que-dá-pra-generalizar-somas-do-tipo" class="nav-link" data-scroll-target="#será-que-dá-pra-generalizar-somas-do-tipo">Será que dá pra generalizar somas do tipo</a></li>
+  <li><a href="#generalizando-somas-do-tipo-sum_i1n-ik-binomni" id="toc-generalizando-somas-do-tipo-sum_i1n-ik-binomni" class="nav-link" data-scroll-target="#generalizando-somas-do-tipo-sum_i1n-ik-binomni">Generalizando somas do tipo <span class="math inline">\(\sum_{i=1}^{n} i^k \binom{n}{i}\)</span></a></li>
   </ul>
 </nav>
     </div>
@@ -404,13 +404,13 @@ window.Quarto = {
 \]</span></p>
 <p>Derivando em ambos os lados em relação a <span class="math inline">\(x\)</span> temos</p>
 <p><span class="math display">\[
-n(1+x)^{n-1} =  \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
+n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
 \]</span></p>
-<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span> porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em 0. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois derivá-la:</p>
+<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span> porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em <span class="math inline">\(0\)</span>. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois derivá-la:</p>
 <p><span class="math display">\[
 \sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i.
 \]</span></p>
-<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar em 1. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!</p>
+<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar em <span class="math inline">\(1\)</span>. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!</p>
 <p>Continuando, temos</p>
 <p><span id="eq-derivada1"><span class="math display">\[
 n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
@@ -424,24 +424,37 @@ nx(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^i
 \sum_{i=1}^{n} i \binom{n}{i} = n \times 2^{n-1}.
 \]</span></p>
 <hr>
-<p>Para o item (b) empregamos um raciocínio semelhante. Da primeira derivada em (<a href="#eq-derivada1" class="quarto-xref">1</a>), derivamos uma segunda vez em relação a <span class="math inline">\(x\)</span> obtendo</p>
+<p>Para o item (b) empregamos um raciocínio semelhante. Da primeira derivada em (<a href="#eq-derivada1" class="quarto-xref">1</a>), derivamos uma segunda vez em relação a <span class="math inline">\(x\)</span> obtendo (para <span class="math inline">\(n \ge 2\)</span>)</p>
 <p><span class="math display">\[\begin{align}
-n(n-1)(1+x)^{n-2} &amp;= \sum_{i=2} \binom{n}{i} i(i-1) x^{i-2} \\
-n(n-1)x^2(1+x)^{n-2} &amp;= \sum_{i=2} \binom{n}{i} (i^2-i) x^i
+n(n-1)(1+x)^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i} i(i-1) x^{i-2} \\
+n(n-1)x^2(1+x)^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) x^i
 \end{align}\]</span></p>
-<p>Para <span class="math inline">\(x=1\)</span></p>
+<p>Para <span class="math inline">\(x=1\)</span>, temos</p>
+<p><span class="math display">\[
+n(n-1)2^{n-2} = \sum_{i=2}^{n} \binom{n}{i} (i^2-i) = \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i.
+\]</span></p>
+<p>Aqui há um detalhe importante de índice: o resultado que provamos no item (a) começa em <span class="math inline">\(i = 1\)</span>, enquanto estas duas somas começam em <span class="math inline">\(i = 2\)</span>. Para conectar as duas coisas com rigor, abrimos o primeiro termo (<span class="math inline">\(i = 1\)</span>) de cada soma original:</p>
 <p><span class="math display">\[\begin{align}
-n(n-1)2^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) \\
-n(n-1)2^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i \\
-n(n-1)2^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i}i^2 - n2^{n-1} \\
-\sum_{i=2}^{n} \binom{n}{i}i^2 &amp;= n(n-1)2^{n-2} +  n2^{n-1} \\
-\sum_{i=2}^{n} \binom{n}{i}i^2 &amp;= 2^{n-2}[n(n-1) + 2n] \\
-\sum_{i=2}^{n} \binom{n}{i}i^2 &amp;= n(n+1) 2^{n-2}.
+\sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= 1^2\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i^2 \implies \sum_{i=2}^{n} \binom{n}{i}i^2 = \sum_{i=1}^{n} \binom{n}{i}i^2 - n \\
+\sum_{i=1}^{n} \binom{n}{i}i &amp;= 1\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i \implies \sum_{i=2}^{n} \binom{n}{i}i = \sum_{i=1}^{n} \binom{n}{i}i - n.
 \end{align}\]</span></p>
+<p>Substituindo essas duas relações na equação principal, vemos que os termos <span class="math inline">\(-n\)</span> e <span class="math inline">\(+n\)</span> se cancelam perfeitamente (o que faz sentido, pois <span class="math inline">\(i^2 - i = 0\)</span> quando <span class="math inline">\(i = 1\)</span>):</p>
+<p><span class="math display">\[\begin{align}
+n(n-1)2^{n-2} &amp;= \left[\sum_{i=1}^{n} \binom{n}{i}i^2 - n\right] - \left[\sum_{i=1}^{n} \binom{n}{i}i - n\right] \\
+n(n-1)2^{n-2} &amp;= \sum_{i=1}^{n} \binom{n}{i}i^2 - \sum_{i=1}^{n} \binom{n}{i}i.
+\end{align}\]</span></p>
+<p>Agora sim podemos substituir diretamente o resultado do item (a) e isolar a soma desejada:</p>
+<p><span class="math display">\[\begin{align}
+n(n-1)2^{n-2} &amp;= \sum_{i=1}^{n} \binom{n}{i}i^2 - n2^{n-1} \\
+\sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= n(n-1)2^{n-2} + n2^{n-1} \\
+\sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= 2^{n-2}[n(n-1) + 2n] \\
+\sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= n(n+1) 2^{n-2}.
+\end{align}\]</span></p>
+<p><em>(Nota: para <span class="math inline">\(n = 1\)</span>, a identidade também vale diretamente, pois <span class="math inline">\(\sum_{i=1}^{1} i^2 \binom{1}{i} = 1\)</span> e <span class="math inline">\(1(1+1)2^{-1} = 1\)</span>.)</em></p>
 <hr>
 <p>O item (c) é o mais complicado deles, mas vamos passo a passo para entendermos bem. Partimos de</p>
 <p><span class="math display">\[
-\sum_{i=1}^{n} i^2 \binom{n}{i}^2 =  \Bigg(i \binom{n}{i} \Bigg)^2.
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = \sum_{i=1}^{n} \Bigg(i \binom{n}{i} \Bigg)^2.
 \]</span></p>
 <p>Precisamos desenvolver o produto <span class="math inline">\(i \binom{n}{i}\)</span>:</p>
 <p><span class="math display">\[
@@ -453,7 +466,7 @@ i \binom{n}{i} = i \frac{n!}{i!(n-i)!} = i \frac{n(n-1)!}{i(i-1)!(n-i)!} = n \fr
 \tag{2}\]</span></span></p>
 <p>Vamos focar nesta última soma. Aqui vem algo bem interessante. Essa soma se parece bastante com uma já conhecida:</p>
 <p><span id="eq-combinacao1"><span class="math display">\[
-\sum_{j=0}^{m} \binom{m}{j}^2  = \binom{2m}{m}
+\sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m}
 \tag{3}\]</span></span></p>
 <p>Esse resultado emerge da seguinte ideia:</p>
 <p><span class="math display">\[
@@ -483,17 +496,17 @@ a_m x^m (a_0x^0 + a_1 x^1 &amp;+ a_2 x^2 + \ldots + a_m x^m)
 <p><span class="math display">\[\begin{align}
 x^0 x^m &amp;= x^m \\
 x^1 x^{m-1} &amp;= x^m \\
-x^2 x^m-2 &amp;= x^m \\
+x^2 x^{m-2} &amp;= x^m \\
 &amp;\vdots \\
-x^m x^{m-1} &amp;= x^m \\
+x^m x^{0} &amp;= x^m
 \end{align}\]</span></p>
 <p>Isso nos fornece algo bastante interessante:</p>
 <p><span class="math display">\[\begin{align}
 (a_0x^0) (a_m x^m) &amp;= a_0 a_m x^m \\
-(a_1x^1) (a_{m-1} x^m) &amp;= a_1 a_{m-1} x^m \\
-(a_2x^2) (a_{m-2} x^m) &amp;= a_2 a_{m-2} x^m \\
+(a_1x^1) (a_{m-1} x^{m-1}) &amp;= a_1 a_{m-1} x^m \\
+(a_2x^2) (a_{m-2} x^{m-2}) &amp;= a_2 a_{m-2} x^m \\
 &amp;\vdots \\
-(a_m x^m) (a_0 x^m) &amp;= a_m a_0 x^m \\
+(a_m x^m) (a_0 x^0) &amp;= a_m a_0 x^m
 \end{align}\]</span></p>
 <p>Somando todos esses termos temos exatamente</p>
 <p><span id="eq-combinacao2"><span class="math display">\[
@@ -509,7 +522,7 @@ x^m x^{m-1} &amp;= x^m \\
 \]</span></p>
 <p>Agora voltamos àquela expansão do produto</p>
 <p><span class="math display">\[
-(1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots \binom{2m}{2m}x^{2m}.
+(1+x)^{2m} = \sum_{j=0}^{2m} \binom{2m}{j} x^j = \binom{2m}{0} + \binom{2m}{1}x + \ldots + \binom{2m}{m}x^m + \ldots + \binom{2m}{2m}x^{2m}.
 \]</span></p>
 <p>Agora note que tanto essa expressão quanto a soma em (<a href="#eq-combinacao2" class="quarto-xref">4</a>) são iguais, porém, estamos interessados apenas no termo que acompanha <span class="math inline">\(x^m\)</span>. Da soma aberta logo acima pegamos apenas o termo <span class="math inline">\(\binom{2m}{m}x^m\)</span> porque dessa maneira podemos afirmar que</p>
 <p><span class="math display">\[
@@ -519,35 +532,34 @@ x^m x^{m-1} &amp;= x^m \\
 <p><span class="math display">\[
 \sum_{j=0}^{m} \binom{m}{j}^2 = \binom{2m}{m}
 \]</span></p>
-<p>apenas por comparação de termos das somas. Ligando esse resultado até onde paramos em (<a href="#eq-principal" class="quarto-xref">2</a>), basta notar que <span class="math inline">\(m = n-1\)</span> assim temos</p>
+<p>apenas por comparação de termos das somas. Ligando esse resultado até onde paramos em (<a href="#eq-principal" class="quarto-xref">2</a>), basta notar que <span class="math inline">\(m = n-1\)</span> e reindexar <span class="math inline">\(j = i-1\)</span>, assim temos</p>
 <p><span class="math display">\[
-\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}.
+\sum_{i=1}^{n} i^2 \binom{n}{i}^2 = n^2 \sum_{i=1}^{n} \binom{n-1}{i-1}^2 = n^2 \sum_{j=0}^{n-1} \binom{n-1}{j}^2 = n^2 \binom{2(n-1)}{n-1} = n^2 \binom{2n-2}{n-1}.
 \]</span></p>
 <p>Elegante, hein?</p>
-<p>Particularmente me perguntei como faríamos para obter qualquer termo <span class="math inline">\(x^k\)</span> e como seria se, em vez de termos <span class="math inline">\((1+x)^{2m}\)</span>, tivéssemos algo como <span class="math inline">\((1+x)^a (1+x)^b = (1+x)^{a+b}\)</span>. Eu abri o produto e percebi algo semelhante</p>
+<p>Particularmente me perguntei como faríamos para obter qualquer termo <span class="math inline">\(x^k\)</span> e como seria se, em vez de termos <span class="math inline">\((1+x)^{2m}\)</span>, tivéssemos algo como <span class="math inline">\((1+x)^a (1+x)^b = (1+x)^{a+b}\)</span>. Eu abri o produto e percebi algo semelhante:</p>
 <p><span class="math display">\[\begin{align}
-(1+x)^a (1+x)^b &amp;= \\
-&amp;= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
-&amp;= \binom{a}{1}x  \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
-&amp;= \binom{a}{2}x^2 \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
-&amp;\vdots \\
-&amp;= \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] \\
+(1+x)^a (1+x)^b &amp;= \binom{a}{0} \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] + \\
+&amp;\quad\; \binom{a}{1}x  \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] + \\
+&amp;\quad\; \binom{a}{2}x^2 \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg] + \\
+&amp;\qquad\vdots \\
+&amp;\quad\; \binom{a}{a}x^a \Bigg[\binom{b}{0} + \binom{b}{1}x + \binom{b}{2}x^2 + \ldots + \binom{b}{b}x^b \Bigg].
 \end{align}\]</span></p>
 <p>Se, por exemplo, quiséssemos os termos que produzem <span class="math inline">\(x^2\)</span>:</p>
 <p><span class="math display">\[
-\binom{a}{0}\binom{b}{2}x^2 ; \binom{a}{1} x \binom{b}{1}x ; \binom{a}{2} x^2 \binom{b}{0}x^2
+\binom{a}{0}\binom{b}{2}x^2, \quad \binom{a}{1} x \binom{b}{1}x, \quad \binom{a}{2} x^2 \binom{b}{0}.
 \]</span></p>
 <p>Note que, ao somar esses termos, o coeficiente de <span class="math inline">\(x^2\)</span> na soma é</p>
 <p><span class="math display">\[
-\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}
+\binom{a}{0}\binom{b}{2} + \binom{a}{1}\binom{b}{1} + \binom{a}{2}\binom{b}{0} = \binom{a+b}{2}.
 \]</span></p>
 <p>Algebricamente temos a expansão da identidade polinomial:</p>
 <p><span class="math display">\[
-(1+x)^a (1+x)^b = (1+x)^{a+b}
+(1+x)^a (1+x)^b = (1+x)^{a+b}.
 \]</span></p>
 <p>O coeficiente do termo <span class="math inline">\(x^2\)</span> no lado direito é <span class="math inline">\(\binom{a+b}{2}\)</span>. No lado esquerdo, ao multiplicar as expansões</p>
 <p><span class="math display">\[
-\sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{i=0}^b \binom{b}{i}x^i
+\sum_{i=0}^a \binom{a}{i}x^i \,\, \text{e} \,\, \sum_{j=0}^b \binom{b}{j}x^j
 \]</span></p>
 <p>os termos que produzem <span class="math inline">\(x^2\)</span> são exatamente aqueles em que <span class="math inline">\(i+j = 2\)</span>, isto é, a soma</p>
 <p><span class="math display">\[
@@ -568,13 +580,181 @@ x^0 x^k, x^1 x^{k-1}, x^2 x^{k-2}, \ldots, x^k x^0
 <p>pois <span class="math inline">\((1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r\)</span> e o coeficiente de <span class="math inline">\(x^k\)</span> é aquele tal que <span class="math inline">\(r = k\)</span> na soma, ou seja <span class="math inline">\(\binom{a+b}{k}\)</span>. Esse resultado é conhecido como a <strong>Identidade de Vandermonde</strong>.</p>
 <hr>
 </section>
-<section id="será-que-dá-pra-generalizar-somas-do-tipo" class="level3">
-<h3 class="anchored" data-anchor-id="será-que-dá-pra-generalizar-somas-do-tipo">Será que dá pra generalizar somas do tipo</h3>
+<section id="generalizando-somas-do-tipo-sum_i1n-ik-binomni" class="level3">
+<h3 class="anchored" data-anchor-id="generalizando-somas-do-tipo-sum_i1n-ik-binomni">Generalizando somas do tipo <span class="math inline">\(\sum_{i=1}^{n} i^k \binom{n}{i}\)</span></h3>
+<p>Vimos como resolver para <span class="math inline">\(k=1\)</span> e <span class="math inline">\(k=2\)</span> derivando <span class="math inline">\((1+x)^n\)</span> e ajustando o índice inicial da soma. E se quisermos para <span class="math inline">\(k=3\)</span>, ou melhor ainda, para uma potência <span class="math inline">\(k\)</span> qualquer?</p>
+<section id="o-passo-seguinte-o-caso-cúbico-k-3" class="level4">
+<h4 class="anchored" data-anchor-id="o-passo-seguinte-o-caso-cúbico-k-3">O passo seguinte: o caso cúbico (<span class="math inline">\(k = 3\)</span>)</h4>
+<p>Derivando uma terceira vez a expansão de <span class="math inline">\((1+x)^n\)</span> em relação a <span class="math inline">\(x\)</span> (para <span class="math inline">\(n \ge 3\)</span>), multiplicando por <span class="math inline">\(x^3\)</span> e avaliando em <span class="math inline">\(x=1\)</span>, o somatório passa a começar em <span class="math inline">\(i=3\)</span>:</p>
 <p><span class="math display">\[
-\sum_{i=0}^{n} i^k \binom{n}{i}, \,\, \text{com} \,\, k = 1,2,\ldots,n \,\, \text{?}
+n(n-1)(n-2)2^{n-3} = \sum_{i=3}^{n} \binom{n}{i} i(i-1)(i-2) = \sum_{i=3}^{n} \binom{n}{i} (i^3 - 3i^2 + 2i).
 \]</span></p>
+<p>Separando as três somas e aplicando exatamente a mesma ideia de abrir os termos anteriores (<span class="math inline">\(i=1\)</span> e <span class="math inline">\(i=2\)</span>) para que todas comecem em <span class="math inline">\(i=1\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=3}^{n} i^3\binom{n}{i} &amp;= \sum_{i=1}^{n} i^3\binom{n}{i} - 1^3\binom{n}{1} - 2^3\binom{n}{2} = \sum_{i=1}^{n} i^3\binom{n}{i} - n - 4n(n-1) \\
+\sum_{i=3}^{n} i^2\binom{n}{i} &amp;= \sum_{i=1}^{n} i^2\binom{n}{i} - 1^2\binom{n}{1} - 2^2\binom{n}{2} = \sum_{i=1}^{n} i^2\binom{n}{i} - n - 2n(n-1) \\
+\sum_{i=3}^{n} i\binom{n}{i} &amp;= \sum_{i=1}^{n} i\binom{n}{i} - 1\binom{n}{1} - 2\binom{n}{2} = \sum_{i=1}^{n} i\binom{n}{i} - n - n(n-1).
+\end{align}\]</span></p>
+<p>Ao substituir na equação principal, os termos abertos se anulam identicamente (pois <span class="math inline">\(-n + 3n - 2n = 0\)</span> e <span class="math inline">\(-4n(n-1) + 6n(n-1) - 2n(n-1) = 0\)</span>, refletindo o fato de que <span class="math inline">\(i(i-1)(i-2)\)</span> tem raízes em <span class="math inline">\(i=1\)</span> e <span class="math inline">\(i=2\)</span>). Sobra apenas:</p>
+<p><span class="math display">\[
+n(n-1)(n-2)2^{n-3} = \sum_{i=1}^{n} i^3\binom{n}{i} - 3\sum_{i=1}^{n} i^2\binom{n}{i} + 2\sum_{i=1}^{n} i\binom{n}{i}.
+\]</span></p>
+<p>Substituindo as fórmulas já provadas para <span class="math inline">\(k=2\)</span> e <span class="math inline">\(k=1\)</span> e isolando a soma cúbica:</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=1}^{n} i^3\binom{n}{i} &amp;= n(n-1)(n-2)2^{n-3} + 3n(n+1)2^{n-2} - 2n2^{n-1} \\
+&amp;= n 2^{n-3} \big[(n-1)(n-2) + 6(n+1) - 8\big] \\
+&amp;= n^2(n+3)2^{n-3}.
+\end{align}\]</span></p>
+</section>
+<section id="provando-o-caso-geral-para-qualquer-k-ge-1" class="level4">
+<h4 class="anchored" data-anchor-id="provando-o-caso-geral-para-qualquer-k-ge-1">Provando o caso geral para qualquer <span class="math inline">\(k \ge 1\)</span></h4>
+<p>Quando avançamos para potências maiores, abrir termo a termo para verificar os cancelamentos dá bastante trabalho. Porém, usando a mesma ideia de decompor a soma original que vimos no item (a), conseguimos entender tanto por que o somatório começa em <span class="math inline">\(i = j\)</span> na <span class="math inline">\(j\)</span>-ésima derivada quanto por que conseguimos trazê-lo de volta para <span class="math inline">\(i = 1\)</span> sem deixar sobras.</p>
+<section id="por-que-a-j-ésima-derivada-começa-em-i-j" class="level5">
+<h5 class="anchored" data-anchor-id="por-que-a-j-ésima-derivada-começa-em-i-j">1. Por que a <span class="math inline">\(j\)</span>-ésima derivada começa em <span class="math inline">\(i = j\)</span>?</h5>
+<p>Olhemos para a soma original <span class="math inline">\(\sum_{i=0}^{n} \binom{n}{i} x^i\)</span> separando os <span class="math inline">\(j\)</span> primeiros termos (<span class="math inline">\(i = 0, 1, \dots, j-1\)</span>) do restante da soma:</p>
+<p><span class="math display">\[
+(1+x)^n = \underbrace{\binom{n}{0} + \binom{n}{1}x + \binom{n}{2}x^2 + \cdots + \binom{n}{j-1}x^{j-1}}_{\text{polinômio de grau } j-1} + \sum_{i=j}^{n} \binom{n}{i} x^i.
+\]</span></p>
+<p>Quando derivamos essa igualdade <span class="math inline">\(j\)</span> vezes em relação a <span class="math inline">\(x\)</span> (para <span class="math inline">\(1 \le j \le n\)</span>):</p>
+<ul>
+<li><strong>A parte da esquerda desaparece:</strong> trata-se de um polinômio de grau <span class="math inline">\(j - 1\)</span>. Como cada derivada reduz o grau em <span class="math inline">\(1\)</span> unidade, após <span class="math inline">\(j - 1\)</span> derivadas esse bloco vira uma constante, e na <span class="math inline">\(j\)</span>-ésima derivada sua derivada é identicamente <strong><span class="math inline">\(0\)</span></strong>.</li>
+<li><strong>A parte da direita sobrevive a partir de <span class="math inline">\(i = j\)</span>:</strong> o primeiro termo que ainda possui um fator em <span class="math inline">\(x\)</span> para ser derivado na <span class="math inline">\(j\)</span>-ésima etapa é justamente o de expoente <span class="math inline">\(i = j\)</span> (que vira <span class="math inline">\(\binom{n}{j} j!\,x^{j-j} = \binom{n}{j}j!\)</span>). Se o somatório começasse antes de <span class="math inline">\(j\)</span>, surgiriam expoentes negativos em <span class="math inline">\(x^{i-j}\)</span>, o que não faz sentido na derivada de um polinômio.</li>
+</ul>
+<p>Assim, a <span class="math inline">\(j\)</span>-ésima derivada de <span class="math inline">\((1+x)^n\)</span> é exatamente:</p>
+<p><span class="math display">\[
+n(n-1)(n-2)\cdots(n-j+1)(1+x)^{n-j} = \sum_{i=j}^{n} \binom{n}{i} i(i-1)(i-2)\cdots(i-j+1) x^{i-j}.
+\]</span></p>
+</section>
+<section id="puxando-o-índice-de-i-j-de-volta-para-i-1" class="level5">
+<h5 class="anchored" data-anchor-id="puxando-o-índice-de-i-j-de-volta-para-i-1">2. Puxando o índice de <span class="math inline">\(i = j\)</span> de volta para <span class="math inline">\(i = 1\)</span></h5>
+<p>Para simplificar a escrita, definimos o <strong>polinômio fatorial decrescente</strong> <span class="math inline">\(m^{\underline{j}} = m(m-1)(m-2)\cdots(m-j+1)\)</span>. Multiplicando ambos os lados da equação por <span class="math inline">\(x^j\)</span> (para recompor <span class="math inline">\(x^i\)</span>) e avaliando em <span class="math inline">\(x = 1\)</span>, chegamos a:</p>
+<p><span class="math display">\[
+n^{\underline{j}} 2^{n-j} = \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i}.
+\]</span></p>
+<p>Agora observe o motivo pelo qual não precisamos subtrair nenhum termo residual ao puxar o índice inicial de <span class="math inline">\(i = j\)</span> de volta para <span class="math inline">\(i = 1\)</span>: o produto <span class="math inline">\(i^{\underline{j}} = i(i-1)(i-2)\cdots(i-j+1)\)</span> é um polinômio em <span class="math inline">\(i\)</span> cujas raízes são exatamente os números inteiros <span class="math inline">\(1, 2, \dots, j-1\)</span>.</p>
+<ul>
+<li>Para <span class="math inline">\(i = 1\)</span> (com <span class="math inline">\(j \ge 2\)</span>), o fator <span class="math inline">\((i-1)\)</span> zera o produto.</li>
+<li>Para <span class="math inline">\(i = 2\)</span> (com <span class="math inline">\(j \ge 3\)</span>), o fator <span class="math inline">\((i-2)\)</span> zera o produto.</li>
+<li>De modo geral, para qualquer <span class="math inline">\(i \in \{1, 2, \dots, j-1\}\)</span>, um dos parênteses será <span class="math inline">\((i - i) = 0\)</span>, fazendo com que <span class="math inline">\(i^{\underline{j}} = 0\)</span>.</li>
+</ul>
+<p>Como todos os termos faltantes de <span class="math inline">\(i = 1\)</span> até <span class="math inline">\(i = j-1\)</span> são identicamente nulos, somá-los não altera o resultado da soma. Assim, provamos diretamente que:</p>
+<p><span id="eq-fatorial-decrescente"><span class="math display">\[
+\sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \underbrace{0 + 0 + \cdots + 0}_{i = 1, \dots, j-1} + \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} = n^{\underline{j}} 2^{n-j}.
+\tag{5}\]</span></span></p>
+<p><em>(Nota: se <span class="math inline">\(j &gt; n\)</span>, ambos os lados valem zero, pois <span class="math inline">\(n^{\underline{j}} = 0\)</span> e <span class="math inline">\(i^{\underline{j}} = 0\)</span> para todo <span class="math inline">\(1 \le i \le n\)</span>.)</em></p>
+</section>
+<section id="decompondo-potências-ik-e-o-triângulo-de-stirling" class="level5">
+<h5 class="anchored" data-anchor-id="decompondo-potências-ik-e-o-triângulo-de-stirling">3. Decompondo potências <span class="math inline">\(i^k\)</span> e o Triângulo de Stirling</h5>
+<p>O problema prático agora é fazer a ponte inversa: as derivadas nos dão fórmulas prontas para os fatoriais decrescentes <span class="math inline">\(i^{\underline{j}}\)</span>, mas o somatório original pede a potência comum <span class="math inline">\(i^k\)</span>.</p>
+<p>Podemos montar qualquer potência <span class="math inline">\(i^k\)</span> a partir dos blocos <span class="math inline">\(i^{\underline{j}}\)</span> de forma recursiva. Sabemos que:</p>
+<ul>
+<li>Para <span class="math inline">\(k = 1\)</span>: <span class="math inline">\(i^1 = \mathbf{1}\cdot i^{\underline{1}}\)</span>.</li>
+<li>Para <span class="math inline">\(k = 2\)</span>: como <span class="math inline">\(i^{\underline{2}} = i(i-1) = i^2 - i\)</span>, isolando <span class="math inline">\(i^2\)</span> temos <span class="math inline">\(i^2 = \mathbf{1}\cdot i^{\underline{1}} + \mathbf{1}\cdot i^{\underline{2}}\)</span>.</li>
+<li>Para <span class="math inline">\(k = 3\)</span>: isolando <span class="math inline">\(i^3\)</span> em <span class="math inline">\(i^{\underline{3}} = i^3 - 3i^2 + 2i\)</span> e substituindo a expressão anterior de <span class="math inline">\(i^2\)</span>: <span class="math display">\[i^3 = i^{\underline{3}} + 3\big(i^{\underline{2}} + i^{\underline{1}}\big) - 2i^{\underline{1}} = \mathbf{1}\cdot i^{\underline{1}} + \mathbf{3}\cdot i^{\underline{2}} + \mathbf{1}\cdot i^{\underline{3}}.\]</span></li>
+</ul>
+<p>Para passar de qualquer potência <span class="math inline">\(i^{k-1}\)</span> para <span class="math inline">\(i^k\)</span> sem precisar expandir polinômios manualmente, multiplicamos <span class="math inline">\(i^{k-1}\)</span> por <span class="math inline">\(i\)</span> e usamos o truque algébrico de escrever <span class="math inline">\(i = (i - j) + j\)</span> dentro de cada bloco <span class="math inline">\(i^{\underline{j}}\)</span>:</p>
+<p><span class="math display">\[
+i \cdot i^{\underline{j}} = \big[(i - j) + j\big] i^{\underline{j}} = \underbrace{i^{\underline{j}}(i - j)}_{=\, i^{\underline{j+1}}} + j \cdot i^{\underline{j}}.
+\]</span></p>
+<p>Veja esse truque em ação na passagem de <span class="math inline">\(i^3\)</span> para <span class="math inline">\(i^4\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+i^4 = i \cdot i^3 &amp;= \mathbf{1}(i \cdot i^{\underline{1}}) + \mathbf{3}(i \cdot i^{\underline{2}}) + \mathbf{1}(i \cdot i^{\underline{3}}) \\
+&amp;= \mathbf{1}\big(i^{\underline{2}} + 1\cdot i^{\underline{1}}\big) + \mathbf{3}\big(i^{\underline{3}} + 2\cdot i^{\underline{2}}\big) + \mathbf{1}\big(i^{\underline{4}} + 3\cdot i^{\underline{3}}\big) \\
+&amp;= \mathbf{1}\cdot i^{\underline{1}} + (1 + 3\cdot 2)i^{\underline{2}} + (3 + 1\cdot 3)i^{\underline{3}} + \mathbf{1}\cdot i^{\underline{4}} \\
+&amp;= \mathbf{1}\cdot i^{\underline{1}} + \mathbf{7}\cdot i^{\underline{2}} + \mathbf{6}\cdot i^{\underline{3}} + \mathbf{1}\cdot i^{\underline{4}}.
+\end{align}\]</span></p>
+<p>Os pesos que aparecem nessa decomposição — <span class="math inline">\((1)\)</span>, <span class="math inline">\((1, 1)\)</span>, <span class="math inline">\((1, 3, 1)\)</span>, <span class="math inline">\((1, 7, 6, 1)\)</span> — são exatamente os <strong>Números de Stirling de segunda espécie</strong>, denotados por <span class="math inline">\(\left\{\begin{matrix} k \\ j \end{matrix}\right\}\)</span> (que, na combinatória, contam de quantas maneiras podemos particionar um conjunto de <span class="math inline">\(k\)</span> elementos em <span class="math inline">\(j\)</span> subconjuntos não vazios):</p>
+<p><span class="math display">\[
+i^k = \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}}.
+\]</span></p>
+<p>Agrupando os coeficientes da identidade <span class="math inline">\(i \cdot i^{\underline{j}} = i^{\underline{j+1}} + j \cdot i^{\underline{j}}\)</span>, descobrimos que cada novo coeficiente recebe a contribuição de <span class="math inline">\(i^{\underline{j-1}}\)</span> somada a <span class="math inline">\(j\)</span> vezes o coeficiente de <span class="math inline">\(i^{\underline{j}}\)</span> da linha anterior. Isso gera a <strong>relação de recorrência de Stirling</strong>:</p>
+<p><span class="math display">\[
+\left\{\begin{matrix} k \\ j \end{matrix}\right\} = \left\{\begin{matrix} k-1 \\ j-1 \end{matrix}\right\} + j \cdot \left\{\begin{matrix} k-1 \\ j \end{matrix}\right\}
+\]</span></p>
+<p>com os <strong>casos base (condições de borda)</strong> dados por <span class="math inline">\(\left\{\begin{matrix} 0 \\ 0 \end{matrix}\right\} = 1\)</span>, <span class="math inline">\(\left\{\begin{matrix} k \\ 0 \end{matrix}\right\} = 0\)</span> (para <span class="math inline">\(k \ge 1\)</span>) e <span class="math inline">\(\left\{\begin{matrix} k \\ j \end{matrix}\right\} = 0\)</span> sempre que <span class="math inline">\(j &gt; k\)</span> (o que garante que a primeira coluna <span class="math inline">\(j=1\)</span> e a diagonal principal <span class="math inline">\(j=k\)</span> sejam sempre iguais a <span class="math inline">\(1\)</span>).</p>
+<p>Aplicando essa recorrência linha por linha, construímos o <strong>Triângulo de Stirling</strong> (análogo ao Triângulo de Pascal):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(k \setminus j\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(j = 1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(j = 2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(j = 3\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(j = 4\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(j = 5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(k = 1\)</span></strong> (<span class="math inline">\(i^1\)</span>)</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><span class="math inline">\(k = 2\)</span></strong> (<span class="math inline">\(i^2\)</span>)</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(k = 3\)</span></strong> (<span class="math inline">\(i^3\)</span>)</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><span class="math inline">\(1 + 2(1) = \mathbf{3}\)</span></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><span class="math inline">\(k = 4\)</span></strong> (<span class="math inline">\(i^4\)</span>)</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><span class="math inline">\(1 + 2(3) = \mathbf{7}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(3 + 3(1) = \mathbf{6}\)</span></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong><span class="math inline">\(k = 5\)</span></strong> (<span class="math inline">\(i^5\)</span>)</td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><span class="math inline">\(1 + 2(7) = \mathbf{15}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(7 + 3(6) = \mathbf{25}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(6 + 4(1) = \mathbf{10}\)</span></td>
+<td style="text-align: center;"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Para um mergulho mais profundo na dualidade estrutural entre essas duas tabelas e suas interpretações combinatórias, veja a discussão completa no texto complementar <strong>“O Triângulo de Pascal e o Triângulo de Stirling”</strong>.)</em></p>
+</section>
+<section id="a-fórmula-fechada-geral" class="level5">
+<h5 class="anchored" data-anchor-id="a-fórmula-fechada-geral">4. A fórmula fechada geral</h5>
+<p>Substituindo a expansão de <span class="math inline">\(i^k\)</span> no somatório binomial original, trocando a ordem das somas por linearidade e aplicando o resultado provado em (<a href="#eq-fatorial-decrescente" class="quarto-xref">5</a>), obtemos a fórmula fechada para qualquer <span class="math inline">\(k \ge 1\)</span>:</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=1}^{n} i^k \binom{n}{i} &amp;= \sum_{i=1}^{n} \left( \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}} \right) \binom{n}{i} \\
+&amp;= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} \left( \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} \right) \\
+&amp;= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} n^{\underline{j}} 2^{n-j}.
+\end{align}\]</span></p>
+<p>Com essa identidade e a linha <span class="math inline">\(k = 4\)</span> do Triângulo de Stirling em mãos, obtemos diretamente a soma para a quarta potência sem precisar derivar novamente:</p>
+<p><span class="math display">\[\begin{align}
+\sum_{i=1}^{n} i^4 \binom{n}{i} &amp;= n 2^{n-1} + 7n(n-1)2^{n-2} + 6n(n-1)(n-2)2^{n-3} + n(n-1)(n-2)(n-3)2^{n-4} \\
+&amp;= n(n+1)(n^2 + 5n - 2)2^{n-4}.
+\end{align}\]</span></p>
+<p>Curiosidade estatística: ao dividir ambos os lados por <span class="math inline">\(2^n\)</span>, essa identidade fornece exatamente o <span class="math inline">\(k\)</span>-ésimo momento não centrado <span class="math inline">\(\mathbb{E}[X^k]\)</span> de uma variável aleatória <span class="math inline">\(X \sim \text{Binomial}(n, p = 1/2)\)</span>.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

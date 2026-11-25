@@ -2,7 +2,7 @@
 title: "A beleza das séries geométricas trigonométricas"
 description: "Dois exemplos bem interessantes"
 date: 2026-08-04
-categories: [Matemática, Séries Geométricas, Trigonometria]
+categories: [matemática]
 format:
   html:
     toc: true

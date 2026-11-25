@@ -2,7 +2,7 @@
 title: "Perceptron Simples: o classificador linear mais básico que existe"
 description: "Entendendo o neurônio artificial, sua regra de aprendizado e como ele classifica padrões"
 date: 2026-07-06
-categories: [redes neurais, matemática]
+categories: [redes neurais]
 format:
   html:
     toc: true
