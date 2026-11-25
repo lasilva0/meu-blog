@@ -431,7 +431,7 @@ Figure&nbsp;2: Superfície em 3D
 \]</span></p>
 <section id="exemplo" class="level3">
 <h3 class="anchored" data-anchor-id="exemplo">Exemplo</h3>
-<p>Considerando o parabolóide <span class="math inline">\(z = f(x,y) = (x-a)^2 + (y-b)^2 + c\)</span>, o vetor-gradiente é:</p>
+<p>Considerando o paraboloide <span class="math inline">\(z = f(x,y) = (x-a)^2 + (y-b)^2 + c\)</span>, o vetor-gradiente é:</p>
 <p><span class="math display">\[
 \begin{bmatrix} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{bmatrix} = \begin{bmatrix} 2(x-a) \\ 2(y-b) \end{bmatrix}
 \]</span></p>
@@ -456,14 +456,27 @@ Figure&nbsp;2: Superfície em 3D
 <li><span class="math inline">\(\alpha\)</span> é o passo de adaptação (taxa de aprendizagem), com <span class="math inline">\(0 &lt; \alpha \ll 1\)</span></li>
 <li>O sinal negativo garante que caminhamos na direção de <strong>descida</strong> da função</li>
 </ul>
-<p>A interpretação é direta: a cada passo, o vetor-solução é ajustado na direção de máxima variação da função, com sinal negativo pois queremos minimizar. À medida que iteramos, a diferença <span class="math inline">\(\|\mathbf{x}(n+1) - \mathbf{x}(n)\|\)</span> vai diminuindo até que o gradiente se aproxima de zero, que é a condição de mínimo.</p>
+<p>A interpretação é direta: a cada passo, o vetor-solução é ajustado na direção de máxima variação da função, com sinal negativo, pois queremos minimizar. À medida que iteramos, a diferença <span class="math inline">\(\|\mathbf{x}(n+1) - \mathbf{x}(n)\|\)</span> vai diminuindo até que o gradiente se aproxime de zero, que é a condição de mínimo.</p>
 <section id="exemplo-1" class="level3">
 <h3 class="anchored" data-anchor-id="exemplo-1">Exemplo</h3>
 <p>Para a mesma função <span class="math inline">\(z = (x-a)^2 + (y-b)^2 + c\)</span>, a regra de atualização fica:</p>
 <p><span class="math display">\[
 \begin{bmatrix} x(n+1) \\ y(n+1) \end{bmatrix} = \begin{bmatrix} x(n) \\ y(n) \end{bmatrix} - 2\alpha \begin{bmatrix} x(n) - a \\ y(n) - b \end{bmatrix}
 \]</span></p>
-<p>Com <span class="math inline">\(a = b = 20\)</span>, <span class="math inline">\(c = 50\)</span>, <span class="math inline">\(\alpha = 0.1\)</span>, <span class="math inline">\(x(0) = 2\)</span> e <span class="math inline">\(y(0) = 25\)</span>, as trajetórias convergem para os valores ótimos <span class="math inline">\(x_{opt} = y_{opt} = 20\)</span> após algumas iterações. Valores maiores de <span class="math inline">\(\alpha\)</span> aceleram a convergência, mas podem causar instabilidade se forem grandes demais.</p>
+<p>Com <span class="math inline">\(a = b = 20\)</span>, <span class="math inline">\(c = 50\)</span>, <span class="math inline">\(\alpha = 0.1\)</span>, <span class="math inline">\(x(0) = 2\)</span> e <span class="math inline">\(y(0) = 25\)</span>, as trajetórias convergem para os valores ótimos <span class="math inline">\(x_{opt} = y_{opt} = 20\)</span> após algumas iterações.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Escolha da taxa de aprendizagem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Escolha da taxa de aprendizagem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Valores maiores de <span class="math inline">\(\alpha\)</span> aceleram a convergência, mas podem causar instabilidade se forem grandes demais.</p>
+</div>
+</div>
 </section>
 <section id="funções-convexas-vs.-não-convexas" class="level3">
 <h3 class="anchored" data-anchor-id="funções-convexas-vs.-não-convexas">Funções convexas vs.&nbsp;não-convexas</h3>
@@ -471,9 +484,19 @@ Figure&nbsp;2: Superfície em 3D
 <li><strong>Função convexa:</strong> possui um único mínimo (global). O gradiente descendente converge para ele independente do ponto inicial.</li>
 <li><strong>Função não-convexa:</strong> possui vários mínimos locais. O algoritmo converge para o mínimo mais próximo do ponto inicial <span class="math inline">\(\mathbf{x}(0)\)</span>, que pode não ser o global.</li>
 </ul>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-tip callout-titled" title="Conexão com redes neurais">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Conexão com redes neurais
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Essa limitação é uma das razões pelas quais a inicialização dos pesos em redes neurais é tão importante: a função custo de uma rede é altamente não-convexa.</p>
-</blockquote>
+</div>
+</div>
 
 
 </section>

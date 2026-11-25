@@ -21,7 +21,9 @@ Decidi então construir o entendimento do zero, de forma incremental:
 
 Vou começar com uma rede de uma camada oculta para manter a didática simples, mas o objetivo é generalizar para um número qualquer de camadas e neurônios.
 
-> **Pré-requisito:** alguma familiaridade com derivadas na forma matricial, já que vamos trabalhar diretamente com a representação matricial da rede.
+::: {.callout-note title="Pré-requisito"}
+Alguma familiaridade com derivadas na forma matricial, já que vamos trabalhar diretamente com a representação matricial da rede.
+:::
 
 ## O que é uma rede neural: entradas, saídas, neurônios, camadas ocultas e funções de ativação
 
@@ -350,6 +352,7 @@ $$
 
 Como $y_k = 1$ apenas para a classe correta e 0 para as demais, isso se reduz a $\mathcal{L} = -\log \hat{y}_{k^*}$, onde $k^*$ é a classe verdadeira. Minimizar $\mathcal{L}$ equivale a maximizar a probabilidade atribuída à classe correta.
 
+::: {.callout-tip title="Truque numérico: softmax estável"}
 Vale notar também um truque numérico importante: na prática, subtrai-se o máximo do vetor antes de exponenciar para evitar overflow:
 
 $$
@@ -357,6 +360,7 @@ $$
 $$
 
 O resultado matemático é idêntico, mas numericamente estável.
+:::
 
 ### Derivada da softmax
 
@@ -380,8 +384,10 @@ $$
 
 Para derivar podemos utilizar a regra da derivada quociente.
 
-> **Relembre:** se $f$ e $g$ são funções contínuas e diferenciáveis, vale que
-> $$\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$$
+::: {.callout-note title="Relembre: regra do quociente"}
+Se $f$ e $g$ são funções contínuas e diferenciáveis, vale que
+$$\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}$$
+:::
 
 Queremos calcular $\dfrac{\partial s_k}{\partial z_j}$, ou seja, como a $k$-ésima saída varia quando mudamos a $j$-ésima entrada. Seja $f = e^{z_k}$ e $g = D$. Como estamos derivando em relação a $z_j$, temos dois casos:
 
@@ -397,7 +403,7 @@ $$
 
 Lembre que $s_k = e^{z_k} / D$ e portanto a derivada para o caso 1 é simplesmente $s_k(1 - s_k)$. 
 
-Para o caso 2 (j \neq k) temos:
+Para o caso 2 ($j \neq k$) temos:
 
 $$
 \frac{\partial s_k}{\partial z_j} = \frac{0 \times D - e^{z_k} e^{z_j}}{D^2} = -\frac{e^{z_k}}{D} \frac{e^{z_j}}{D} = -s_k \times s_j. 
@@ -410,14 +416,14 @@ $$
 -s_k \times s_j, \,\, &j \neq k\end{cases}
 $$
 
-que pode ser reescrita em termos da funççao delta de Kronecker 
+que pode ser reescrita em termos da função delta de Kronecker 
 ($\delta_{kj} = 1$ se $k=j$, 0 caso contrário):
 
 $$
 \frac{\partial s_k}{ \partial z_j} = s_k(\delta_{kj} - s_j). 
 $$
 
-Podemos vizualizar essa derivada como uma matriz jacobiana com derivadas parciais em que os 
+Podemos visualizar essa derivada como uma matriz jacobiana com derivadas parciais em que os 
 termos da diagonal principal são os termos $j = k$ e os elementos fora da diagonal são os termos
 $j \neq k$:
 
@@ -461,7 +467,7 @@ $$
 \frac{\partial}{\partial z_j} \log(s_k) = \frac{\partial z_k}{\partial z_j} - \frac{\partial}{\partial z_j} \log(D).
 $${#eq-derivlogzj}
 
-Note que o primeiro termo da igualdade na Eq. ([-@eq-derivlogzj]) é a derivada de uma constante, que será 1 se $k = j$ e 0 se $k \neq j$
+Note que o primeiro termo da igualdade na Eq. ([-@eq-derivlogzj]) é a derivada de uma constante, que será 1 se $k = j$ e 0 se $k \neq j$,
 essencialmente, uma função indicadora $\mathbb{I}(.)$. Já para o segundo termo da igualdade, aplicamos a derivada do logaritmo: 
 
 $$
@@ -496,7 +502,7 @@ estrutura da matriz jacobiana de derivadas parciais já obtida.
 
 Para obter a previsão final da rede neural, costuma-se aplicar a última
 função de ativação sobre $\mathbf{z}_2$, geralmente a *softmax* para classificação 
-multiclasses e linear para regressão. Vamos recapitular as expressões envolvidas 
+multiclasse e linear para regressão. Vamos recapitular as expressões envolvidas 
 numa rede neural com uma camada oculta. Temos 
 
 $$
@@ -518,7 +524,7 @@ $$
 $$
 
 em que $\mathbf{a}_1$ é a matriz (elemento a elemento) de ativações da primeira camada e $\phi$ é a função 
-de ativação não-linear (ou linear) como vimos antes (ReLU, sigmóide logística,
+de ativação não-linear (ou linear) como vimos antes (ReLU, sigmoide logística,
 tangente hiperbólica dentre outras). Isso tudo para a primeira camada. Já na segunda camada 
 temos: 
 
@@ -581,14 +587,13 @@ C = -[\mathbf{y} \log(\widehat{\mathbf{y}}) + (1-\mathbf{y}) \log(1 - \widehat{\
 $$
 
 Precisamos fixar uma ideia central: tudo, absolutamente tudo nesta etapa deve começar 
-na função custo. Mas porque estamos no sentido inverso da rede, a qual chamamos
-backpropagation ? Propaga-se o que ? Qual o objetivo disso ? 
+na função custo. Mas por que estamos no sentido inverso da rede, que chamamos de backpropagation? Propaga-se o quê? Qual o objetivo disso? 
 
 O principal objetivo é responder às perguntas: o que acontece com a função 
 custo se os pesos $\mathbf{W}_1$ e $\mathbf{W}_2$ ou os vetores de viés $\mathbf{b}_1$ e $\mathbf{b}_2$
-mudarem mesmo que de forma mínima ? Ela aumenta, diminui, se mantém do mesmo jeito ?. Note que perguntar
+mudarem mesmo que de forma mínima? Ela aumenta, diminui ou se mantém do mesmo jeito? Note que perguntar
 isso remete à noção de variações nessas quantidades e no quanto isso impacta na função 
-custo, que geralmente queremos que tenha menor valor possível, pois implica num modelo 
+custo, que geralmente queremos que tenha o menor valor possível, pois implica um modelo 
 mais acurado/preciso. Isso também nos faz lembrar da noção de derivadas parciais. 
 
 Lembre que no nosso exemplo com 1 camada oculta, a previsão da rede $\widehat{\mathbf{y}}$ é a própria 
@@ -622,7 +627,7 @@ ativação final $\mathbf{a}_2 = \widehat{\mathbf{y}}$. Calculando cada termo se
 
 - ReLU:
 
-  Aqui o resutado é um vetor binário de 0's e 1's: 
+  Aqui o resultado é um vetor binário de 0's e 1's: 
 
   $$
   \gamma'(\mathbf{z}_2)_{j} = \begin{cases}
@@ -662,7 +667,9 @@ $$
 \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} = \gamma'(\mathbf{z}_2) = \sigma(\mathbf{z}_2) \odot \big(\mathbf{1} - \sigma(\mathbf{z}_2)\big) = \mathbf{a}_2 \odot (1 - \mathbf{a}_2).
 $$
 
-> Essas propriedades das derivadas das principais derivadas das funções de ativação vão ser abordadas em outro post dedicado. 
+::: {.callout-note title="Assunto para outro post"}
+Essas propriedades das derivadas das principais funções de ativação serão abordadas em outro post dedicado.
+:::
 
 Assim temos que a derivada parcial da função custo em relação à pré-ativação da segunda camada (a saída linear) é dada por:
 
@@ -670,21 +677,20 @@ $$
 \delta_2 = \frac{\partial C}{\partial \mathbf{z}_2} = \Bigg(\frac{\mathbf{a}_2 - \mathbf{y}}{\mathbf{a}_2 \odot (1 - \mathbf{a}_2)} \Bigg) \odot \Bigg( \mathbf{a}_2 \odot (1 - \mathbf{a}_2) \Bigg) = \mathbf{a}_2 - \mathbf{y} = \widehat{\mathbf{y}} - \mathbf{y}.
 $$
 
-Observe que utilizando a função de ativação sigmóide logística, temos que também se reduz ao resíduo (estimado - real). A lógica 
-funciona perfeitamente igual para qualquer ativação que se queira colocar aqui. Se utilizássemos a saída multiclasses (softmax) teríamos 
-aquela matriz jacobiana que obtemos anteriormente. 
+Observe que, utilizando a função de ativação sigmoide logística, o gradiente também se reduz ao resíduo (estimado - real). A lógica 
+funciona perfeitamente igual para qualquer ativação que se queira colocar aqui. Se utilizássemos a saída multiclasse (softmax) teríamos 
+aquela matriz jacobiana que obtivemos anteriormente. 
 
 ### Gradiente da matriz de pesos $\mathbf{W}_2$
 
 Para obter o gradiente de $W_2$ em relação a $C$, precisamos aplicar a regra da cadeia imaginando que todas essas coisas 
-estão "aninhadas" dependentes umas das outras. Aqui você pode mentalizar o seguinte: para chegar em $\mathbf{W}_2$ eu tenho que fazer
-qual sentido de volta na rede ? Lembramos então que $\mathbf{W}_2$ age sobre $\mathbf{a}_1$ para produzir $\mathbf{z}_2$, ou seja, nós temos 
+estão "aninhadas" dependentes umas das outras. Aqui você pode mentalizar o seguinte: para chegar em $\mathbf{W}_2$, por qual caminho eu preciso voltar na rede? Lembramos então que $\mathbf{W}_2$ age sobre $\mathbf{a}_1$ para produzir $\mathbf{z}_2$, ou seja, nós temos 
 
 $$
 \mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2,
 $$
 
-e $\mathbf{z}_2$ age sobre $\gamma$ que resulta em $\mathbf{a}_2$, então temos
+e $\mathbf{z}_2$ age sobre $\gamma$, que resulta em $\mathbf{a}_2$, então temos
 
 $$
 \mathbf{a}_2 = \gamma(\mathbf{z}_2), 
@@ -699,8 +705,8 @@ $$
 Aqui você pode ter em mente que pra mexer em $\mathbf{W}_2$ você precisa imaginar um efeito dominó: 
 
 - Mexer em $\mathbf{W}_2$ implica mexer em $\mathbf{z}_2$ de forma direta.
-- Mexer em $\mathbf{z}_2$ implica em mexer em $\mathbf{a}_2$ de forma direta.
-- Mexer em $\mathbf{a}_2$ implica em mexer em $C$ de forma direta.
+- Mexer em $\mathbf{z}_2$ implica mexer em $\mathbf{a}_2$ de forma direta.
+- Mexer em $\mathbf{a}_2$ implica mexer em $C$ de forma direta.
 
 A ordem seria exatamente: 
 
@@ -708,8 +714,7 @@ $$
 C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{W}_2. 
 $$
 
-Porém, da etapa anterior já temos essa primeira derivada parcial que é simplesmente o resíduo $\delta_2$ e dessa maneira
-simplifica pra gente como sendo:
+Porém, da etapa anterior já temos essa primeira derivada parcial, que é simplesmente o resíduo $\delta_2$, e dessa maneira a expressão se simplifica para:
 
 $$
 \frac{\partial C}{\partial \mathbf{W}_2} = \delta_2 \frac{\partial \mathbf{z}_2}{\partial \mathbf{W}_2}.
@@ -725,7 +730,7 @@ $$
 
 ### Gradiente da matriz de pesos $\mathbf{W}_1$
 
-Para obter o gradiente desta matriz o caminho será mais longo mas o raciocínio é o mesmo. Sem 
+Para obter o gradiente desta matriz o caminho será mais longo, mas o raciocínio é o mesmo. Sem 
 afobação, vem comigo. Pense na seguinte ordem: 
 
 $$
@@ -744,7 +749,7 @@ $$
 \mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2, 
 $$
 
-que depende de $\mathbf{a}_2 = \gamma(z_2)$ e por sua vez de $C$. Viu todo o caminho que precisamos percorrer ?
+que depende de $\mathbf{a}_2 = \gamma(z_2)$ e por sua vez de $C$. Viu todo o caminho que precisamos percorrer?
 
 A derivada através da regra da cadeia fica dada por:
 
@@ -770,7 +775,7 @@ $$
 \frac{\partial C}{\partial \mathbf{b}_2} = \frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} \frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}
 $$
 
-Seja $\delta_2 = \frac{\partial C}{\partial \mathbf{a}_2}$ o gradiente acumulado na saída da camada. Lembrando que $\mathbf{z}_2$ e $\mathbf{b}_2$ são vetores (ou matrizes, no caso de um *batch*), a derivada $\frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}$ não é um escalar $1$, mas sim uma Matriz Identidade $\mathbf{I}$ (ou um **vetor de uns** $\mathbf{1}$, que efetua a soma ao longo do *batch*). Assim, a expressão para qualquer função de ativação $\gamma(\mathbf{z}_2)$ fica:
+Seja $\delta_2 = \frac{\partial C}{\partial \mathbf{a}_2}$ o gradiente acumulado na saída da camada. Lembrando que $\mathbf{z}_2$ e $\mathbf{b}_2$ são vetores (ou matrizes, no caso de um *batch*), a derivada $\frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}$ não é um escalar $1$, mas sim uma matriz identidade $\mathbf{I}$ (ou um **vetor de uns** $\mathbf{1}$, que efetua a soma ao longo do *batch*). Assim, a expressão para qualquer função de ativação $\gamma(\mathbf{z}_2)$ fica:
 
 $$
 \frac{\partial C}{\partial \mathbf{b}_2} = \delta_2 \odot \gamma'(\mathbf{z}_2) 
@@ -804,9 +809,9 @@ Agora que temos todas as derivadas parciais, podemos atualizar os pesos da nossa
 em que $\eta$ é a taxa de aprendizado, um valor pequeno (tipicamente entre 0.001 e 0.1) que determina o tamanho do "passo" dado em direção ao mínimo da função de custo. Se $\eta$ for muito grande, o algoritmo pode "saltar" sobre o mínimo e não convergir. 
 Se $\eta$ for muito pequeno, o algoritmo pode demorar muito tempo para convergir. A escolha de $\eta$ é crucial para o desempenho da rede neural. 
 
-### E se a rede neural tiver mais de uma camada oculta ? Caso geral. 
+### E se a rede neural tiver mais de uma camada oculta? Caso geral. 
 
-Para qualquer camada $l = 1,2,\ldots,L$ as equações no método foward serão dadas por; 
+Para qualquer camada $l = 1,2,\ldots,L$ as equações no método forward serão dadas por: 
 
 $$
 \mathbf{z}^{(l)} = \mathbf{a}^{(l-1)}\mathbf{W}^{(l)} + \mathbf{b}^{(l)}, 
@@ -857,15 +862,17 @@ Assim podemos atualizar os pesos e vieses da seguinte maneira:
   \mathbf{b}^{(l)} &\leftarrow \mathbf{b}^{(l)} - \eta \frac{\partial C}{\partial \mathbf{b}^{(l)}}, 
 \end{aligned}
 
-que, conforme o que já obtemos, é reescrita como 
+que, conforme o que já obtivemos, é reescrita como 
 
 \begin{aligned}
   \mathbf{W}^{(l)} &\leftarrow \mathbf{W}^{(l)} - \eta (\mathbf{a}^{(l-1)})^\top \delta^{(l)} \\ 
   \mathbf{b}^{(l)} &\leftarrow \mathbf{b}^{(l)} - \eta \delta^{(l)}. 
 \end{aligned}
 
-> Importante: se estivermos utilizando um lote de $m$ exemplos, o termo $\delta^{(l)}$ na atualização do viés será a *soma* ou 
-> a *média* das linhas da matriz de erros daquela camada, garantindo que o ajuste médio para todo o lote. 
+::: {.callout-important title="Atenção ao viés em lotes"}
+Se estivermos utilizando um lote de $m$ exemplos, o termo $\delta^{(l)}$ na atualização do viés será a *soma* ou
+a *média* das linhas da matriz de erros daquela camada, garantindo o ajuste médio para todo o lote.
+:::
 
 Imagine uma certa camada oculta $l$ qualquer possuindo 4 neurônios ocultos. O vetor de viés será $\mathbf{b}^{(l)}$ com dimensão
 $1 \times 4$. Ao enviar um lote com $m = 32$ exemplos de uma vez teríamos:
@@ -952,7 +959,7 @@ Na prática, costuma-se combinar critérios: um número máximo de épocas (teto
 
 O *vanishing gradient* (gradiente que desaparece) é um dos problemas mais importantes no treinamento de redes profundas, e ele cai como uma luva depois de tudo o que construímos sobre backpropagation. Vamos entender por que ele acontece olhando diretamente para a recursão dos deltas.
 
-Lembre da forma geral do backpropagation:
+Lembre-se da forma geral do backpropagation:
 
 $$
 \delta^{(l)} = \Big(\delta^{(l+1)} (\mathbf{W}^{(l+1)})^\top\Big) \odot \phi'_l(\mathbf{z}^{(l)}).
@@ -987,6 +994,8 @@ Algumas estratégias que surgiram justamente para atacar esse problema:
 - **Batch normalization:** normaliza as pré-ativações de cada camada, mantendo-as numa faixa onde as derivadas não saturam.
 - **Conexões residuais (*skip connections*):** criam "atalhos" para o gradiente fluir diretamente para camadas mais rasas, sem passar por toda a cadeia de multiplicações. É a ideia por trás das ResNets.
 
-> **O outro lado:** existe também o problema oposto, o *exploding gradient*, quando os fatores multiplicados são maiores que 1 e o produto cresce sem controle. A solução mais comum aqui é o *gradient clipping*, que limita a norma do gradiente a um teto máximo.
+::: {.callout-note title="O problema oposto: exploding gradient"}
+Existe também o problema oposto, o *exploding gradient*, quando os fatores multiplicados são maiores que 1 e o produto cresce sem controle. A solução mais comum aqui é o *gradient clipping*, que limita a norma do gradiente a um teto máximo.
+:::
 
 O importante é perceber que o *vanishing gradient* não é um detalhe de implementação: ele é uma consequência direta da estrutura multiplicativa do backpropagation que derivamos passo a passo. Entender a recursão dos deltas é entender por que o problema existe e por que as soluções funcionam.

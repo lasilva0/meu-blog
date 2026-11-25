@@ -83,7 +83,7 @@ concluímos que $r$ é uma raiz de $P(x)$, o que demonstra o teorema. $\blacksqu
 
 #### *Por que isso é útil?*
 
-Veja só: se $P(x)$ divide $(x-r)$ com resto zero, como já sabemos, temos $P(x) = Q(x)(x-r)$ em que
+Veja só: se $P(x)$ é dividido por $(x-r)$ com resto zero, como já sabemos, temos $P(x) = Q(x)(x-r)$ em que
 $Q(x)$ tem grau $n-1$. Pelo Teorema Fundamental da Álgebra, todo polinômio com grau $n \geq 1$ possui
 pelo menos uma raiz (nos complexos). Vamos chamar de $r_1$ a primeira dessas raízes. Podemos então fatorar
 o polinômio $P(x)$ em:
@@ -127,12 +127,14 @@ $$
 P(x) = a_n(x-r_1)(x-r_2) \ldots (x-r_n).
 $${#eq-polinomio-fatorado-final}
 
-> A expansão completa de ([-@eq-polinomio-geral]) é dada por
-> $$P(x) = x^n - \Big(\sum_{i}^{n} r_i\Big)x^{n-1} + \Big(\sum_{i,j;i<j} r_i r_j\Big)x^{n-2} - \ldots + (-1)^n \Big(\prod_{i=1}^{n} r_i \Big).$$
-> Exemplo: Seja $P(x)$ de grau $n=3$ na forma fatorada:
-> $$P(x) = k(x-r_1)(x-r_2)(x-r_3).$$
-> Expandindo fica
-> $$P(x) = k[x^3 - (r_1 + r_2 + r_3)x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)x - (r_1 r_2 r_3)].$$
+::: {.callout-note title="Expansão do polinômio fatorado"}
+A expansão completa de ([-@eq-polinomio-geral]) é dada por
+$$P(x) = x^n - \Big(\sum_{i}^{n} r_i\Big)x^{n-1} + \Big(\sum_{i,j;i<j} r_i r_j\Big)x^{n-2} - \ldots + (-1)^n \Big(\prod_{i=1}^{n} r_i \Big).$$
+Exemplo: Seja $P(x)$ de grau $n=3$ na forma fatorada:
+$$P(x) = k(x-r_1)(x-r_2)(x-r_3).$$
+Expandindo fica
+$$P(x) = k[x^3 - (r_1 + r_2 + r_3)x^2 + (r_1 r_2 + r_1 r_3 + r_2 r_3)x - (r_1 r_2 r_3)].$$
+:::
 
 ### Uma fatoração alternativa de $P(x)$
 
@@ -192,7 +194,7 @@ $$
 
 Ele percebeu que todos os zeros (raízes) de $g(x)$ são da forma $r = \pm k\pi$ para $k \in \mathbb{Z}$,
 ou seja, $r = \ldots, \pm \pi, \pm 2\pi, \pm 3\pi, \ldots$, exceto em zero. Também notou que o primeiro termo desse
-polinômio vale 1 quando $x = 0$, isto é, $P(0) = 1$. Ele provavelmente deve ter imaginado: "E se eu agrupar todos os termos
+polinômio vale 1 quando $x = 0$, isto é, $P(0) = 1$. Ele deve ter imaginado: "E se eu agrupar todos os termos
 com essas raízes positivas e negativas como um polinômio fatorado?". Essa ideia rendeu o seguinte raciocínio:
 ao agrupar os termos para $r_k = \pm k\pi$, temos:
 
@@ -210,8 +212,8 @@ $$
 $$
 
 O engraçado é que se tomarmos o limite quando $x \to 0$ da expressão acima, provamos o famoso limite
-fundamental do cálculo. Mas perceba a genialidade de Euler. Ele viu que o grau e o termo que interessa
-para resolver o problema reside na potência $n=2$, pegando todos os termos que envolvem $x^2$:
+fundamental do cálculo. Mas perceba a genialidade de Euler. Ele viu que o grau e o termo que interessam
+para resolver o problema residem na potência $n=2$, pegando todos os termos que envolvem $x^2$:
 
 $$
 \frac{\sin(x)}{x} = (1 - \alpha_0 x^2)(1 - \alpha_1 x^2)(1 - \alpha_2 x^2) \ldots
@@ -226,13 +228,15 @@ $$
 
 Os outros termos das multiplicações que geram potências maiores que 2 foram deixados de lado aqui.
 
-> Pra fixar, vai um exemplo simples com $P(x)$ sendo
-> $$
-> \begin{aligned}
-> P(x) &= (1 - A x^2)(1 - B x^2)(1 - C x^2) \\
-> &= 1 - \underbrace{(A + B + C)}_{\text{isso é o que interessa}}x^2 + (AB + AC + BC)x^4 - ABCx^6.
-> \end{aligned}
-> $$
+::: {.callout-tip title="Exemplo simples"}
+Pra fixar, vai um exemplo simples com $P(x)$ sendo
+$$
+\begin{aligned}
+P(x) &= (1 - A x^2)(1 - B x^2)(1 - C x^2) \\
+&= 1 - \underbrace{(A + B + C)}_{\text{isso é o que interessa}}x^2 + (AB + AC + BC)x^4 - ABCx^6.
+\end{aligned}
+$$
+:::
 
 Agora vem o truque matador de Euler. Ele comparou o termo $x^2$ da expansão em série com o termo $x^2$ da fatoração:
 
@@ -261,9 +265,11 @@ $$
 
 e obter o valor da soma:
 
+::: {.callout-important title="A solução do problema da Basileia"}
 $$
 \sum_{n=1}^{\infty}\frac{1}{n^2} = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \ldots = \frac{\pi^2}{6}.
 $$
+:::
 
 Resultado absolutamente lindo.
 
@@ -307,19 +313,21 @@ $$
 
 Mas de onde isso vem? Segue a justificativa.
 
-> Seja $S = a_1 + a_2 + \ldots$ uma soma. Façamos $S^2 = (a_1 + a_2 + \ldots)(a_1 + a_2 + \ldots)$. Podemos
-> separar essa multiplicação em termos com índice igual ($i = j$) e termos cruzados ($i \neq j$):
-> $$S^2 = \text{soma dos termos iguais} + \text{soma dos termos cruzados}.$$
-> Pense nisso como uma matriz: os elementos da diagonal principal são os termos com $i = j$, e os de fora
-> da diagonal são os cruzados, que aparecem duplicados (por exemplo, $a_1 a_2$ e $a_2 a_1$ dão $2a_1 a_2$).
-> Portanto:
-> $$
-> \begin{aligned}
-> S^2 &= \sum_{i} a_i^2 + 2 \sum_{i < j} a_i a_j \\
-> \sum_{i < j} a_i a_j &= \frac{1}{2}\Bigg(S^2 - \sum_{i} a_i^2\Bigg).
-> \end{aligned}
-> $$
-> Tomando $a_i = 1/i^2$, obtemos exatamente a identidade que Euler utilizou.
+::: {.callout-note title="De onde vem essa identidade?"}
+Seja $S = a_1 + a_2 + \ldots$ uma soma. Façamos $S^2 = (a_1 + a_2 + \ldots)(a_1 + a_2 + \ldots)$. Podemos
+separar essa multiplicação em termos com índice igual ($i = j$) e termos cruzados ($i \neq j$):
+$$S^2 = \text{soma dos termos iguais} + \text{soma dos termos cruzados}.$$
+Pense nisso como uma matriz: os elementos da diagonal principal são os termos com $i = j$, e os de fora
+da diagonal são os cruzados, que aparecem duplicados (por exemplo, $a_1 a_2$ e $a_2 a_1$ dão $2a_1 a_2$).
+Portanto:
+$$
+\begin{aligned}
+S^2 &= \sum_{i} a_i^2 + 2 \sum_{i < j} a_i a_j \\
+\sum_{i < j} a_i a_j &= \frac{1}{2}\Bigg(S^2 - \sum_{i} a_i^2\Bigg).
+\end{aligned}
+$$
+Tomando $a_i = 1/i^2$, obtemos exatamente a identidade que Euler utilizou.
+:::
 
 Assim podemos reescrever a soma em termos de um único índice $n$:
 
@@ -343,6 +351,10 @@ $$
 
 O problema da Basileia foi proposto pela primeira vez em 1644 por Pietro Mengoli e circulou pela Europa por quase um século sem solução. Matemáticos como os irmãos Bernoulli (Jakob e Johann) tentaram por anos, usando ferramentas sofisticadas da época, e não conseguiram chegar a uma resposta fechada. Em 1735, Euler (com 28 anos na época) apresentou essa solução usando nada além de séries de Taylor e fatoração de polinômios. Ferramentas simples, criatividade surreal.
 
-O mais impressionante é que Euler muitas vezes calculava esses resultados de cabeça antes de formalizá-los. Ele intuía valores numéricos a partir de somas parciais e depois construía a prova. A comunidade matemática ficou inicialmente cética (afinal, tratar $\sin(x)/x$ como um "polinômio de grau infinito" não era rigoroso pelos padrões da época), mas o resultado era correto, e provas rigorosas vieram décadas depois com Weierstrass.
+O mais impressionante é que Euler muitas vezes calculava esses resultados de cabeça antes de formalizá-los. Ele intuía valores numéricos a partir de somas parciais e depois construía a prova.
+
+::: {.callout-caution title="Sobre o rigor"}
+A comunidade matemática ficou inicialmente cética (afinal, tratar $\sin(x)/x$ como um "polinômio de grau infinito" não era rigoroso pelos padrões da época), mas o resultado era correto, e provas rigorosas vieram décadas depois com Weierstrass.
+:::
 
 O resultado $\pi^4/90$ para a soma das quartas potências veio logo em seguida, usando a mesma técnica. Euler foi ainda mais longe e calculou $\sum 1/n^{2k}$ para diversos valores de $k$, sempre obtendo expressões envolvendo potências de $\pi$. Até hoje, as somas $\sum 1/n^k$ para $k$ ímpar (como $\sum 1/n^3$) continuam sem fórmulas fechadas conhecidas.

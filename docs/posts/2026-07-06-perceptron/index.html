@@ -399,9 +399,19 @@ u_i(t) = \sum_{j=0}^{p} w_{ij}(t) x_j(t) = \mathbf{w}_i^T(t) \mathbf{x}(t)
 y_i(t) = \text{sinal}(u_i(t)) = \begin{cases} +1, &amp; u_i(t) \geq 0 \\ -1, &amp; u_i(t) &lt; 0 \end{cases}
 \]</span></p>
 <p>A saída é binária. Isso significa que o Perceptron é um classificador: ele decide se o vetor de entrada pertence a uma classe ou outra. Geometricamente, o que acontece é uma verificação de similaridade entre <span class="math inline">\(\mathbf{x}(t)\)</span> e <span class="math inline">\(\mathbf{w}_i(t)\)</span> via produto escalar. Se o ângulo entre eles for menor que 90°, a ativação é positiva e o neurônio “dispara” (<span class="math inline">\(y_i = +1\)</span>).</p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-warning callout-titled" title="Limitação do Perceptron">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Limitação do Perceptron
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>O Perceptron só funciona para dados linearmente separáveis. Se as classes não puderem ser divididas por um hiperplano, ele não converge. Um exemplo clássico é a função XOR.</p>
-</blockquote>
+</div>
+</div>
 </section>
 <section id="função-objetivo" class="level2">
 <h2 class="anchored" data-anchor-id="função-objetivo">Função-objetivo</h2>
@@ -413,7 +423,7 @@ y_i(t) = \text{sinal}(u_i(t)) = \begin{cases} +1, &amp; u_i(t) \geq 0 \\ -1, &am
 <p><span class="math display">\[
 J[\mathbf{w}] = \sum_{\mathbf{z}_k \in \mathcal{Z}} (-\mathbf{w}^T \mathbf{z}_k)
 \]</span></p>
-<p>onde <span class="math inline">\(\mathcal{Z}\)</span> é o conjunto dos vetores mal-classificados. Queremos minimizar isso.</p>
+<p>onde <span class="math inline">\(\mathcal{Z}\)</span> é o conjunto dos vetores mal classificados. Queremos minimizar isso.</p>
 </section>
 <section id="regra-de-aprendizado" class="level2">
 <h2 class="anchored" data-anchor-id="regra-de-aprendizado">Regra de aprendizado</h2>

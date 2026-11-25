@@ -57,7 +57,7 @@ $$
 
 ### Exemplo
 
-Considerando o parabolóide $z = f(x,y) = (x-a)^2 + (y-b)^2 + c$, o vetor-gradiente é:
+Considerando o paraboloide $z = f(x,y) = (x-a)^2 + (y-b)^2 + c$, o vetor-gradiente é:
 
 $$
 \begin{bmatrix} \frac{\partial f}{\partial x} \\ \frac{\partial f}{\partial y} \end{bmatrix} = \begin{bmatrix} 2(x-a) \\ 2(y-b) \end{bmatrix}
@@ -89,7 +89,7 @@ onde:
 - $\alpha$ é o passo de adaptação (taxa de aprendizagem), com $0 < \alpha \ll 1$
 - O sinal negativo garante que caminhamos na direção de **descida** da função
 
-A interpretação é direta: a cada passo, o vetor-solução é ajustado na direção de máxima variação da função, com sinal negativo pois queremos minimizar. À medida que iteramos, a diferença $\|\mathbf{x}(n+1) - \mathbf{x}(n)\|$ vai diminuindo até que o gradiente se aproxima de zero, que é a condição de mínimo.
+A interpretação é direta: a cada passo, o vetor-solução é ajustado na direção de máxima variação da função, com sinal negativo, pois queremos minimizar. À medida que iteramos, a diferença $\|\mathbf{x}(n+1) - \mathbf{x}(n)\|$ vai diminuindo até que o gradiente se aproxime de zero, que é a condição de mínimo.
 
 ### Exemplo
 
@@ -99,11 +99,17 @@ $$
 \begin{bmatrix} x(n+1) \\ y(n+1) \end{bmatrix} = \begin{bmatrix} x(n) \\ y(n) \end{bmatrix} - 2\alpha \begin{bmatrix} x(n) - a \\ y(n) - b \end{bmatrix}
 $$
 
-Com $a = b = 20$, $c = 50$, $\alpha = 0.1$, $x(0) = 2$ e $y(0) = 25$, as trajetórias convergem para os valores ótimos $x_{opt} = y_{opt} = 20$ após algumas iterações. Valores maiores de $\alpha$ aceleram a convergência, mas podem causar instabilidade se forem grandes demais.
+Com $a = b = 20$, $c = 50$, $\alpha = 0.1$, $x(0) = 2$ e $y(0) = 25$, as trajetórias convergem para os valores ótimos $x_{opt} = y_{opt} = 20$ após algumas iterações.
+
+::: {.callout-warning title="Escolha da taxa de aprendizagem"}
+Valores maiores de $\alpha$ aceleram a convergência, mas podem causar instabilidade se forem grandes demais.
+:::
 
 ### Funções convexas vs. não-convexas
 
 - **Função convexa:** possui um único mínimo (global). O gradiente descendente converge para ele independente do ponto inicial.
 - **Função não-convexa:** possui vários mínimos locais. O algoritmo converge para o mínimo mais próximo do ponto inicial $\mathbf{x}(0)$, que pode não ser o global.
 
-> Essa limitação é uma das razões pelas quais a inicialização dos pesos em redes neurais é tão importante: a função custo de uma rede é altamente não-convexa.
+::: {.callout-tip title="Conexão com redes neurais"}
+Essa limitação é uma das razões pelas quais a inicialização dos pesos em redes neurais é tão importante: a função custo de uma rede é altamente não-convexa.
+:::

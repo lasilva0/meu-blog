@@ -369,7 +369,7 @@ window.Quarto = {
 
 <section id="os-três-probleminhas" class="level3">
 <h3 class="anchored" data-anchor-id="os-três-probleminhas">Os três probleminhas</h3>
-<p>Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido à entrega de alguns projetos pendentes, abri o Drive onde hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais “obscuro” que fui acumulando ao longo da minha trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof.&nbsp;Maurício, que é o mestre de todos nós, incluindo o nosso corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem para provar algumas propriedades envolvendo combinações. Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens:</p>
+<p>Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo devido à entrega de alguns projetos pendentes, abri o Drive onde hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais “obscuro” que fui acumulando ao longo da minha trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof.&nbsp;Maurício, que é o mestre de todos nós, incluindo o nosso corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem para provar algumas propriedades envolvendo combinações. Aparentemente nada demais. Mas o velho sabe das coisas, na verdade, ele sabe muito. Abaixo os itens:</p>
 <ol type="a">
 <li>Prove que</li>
 </ol>
@@ -393,11 +393,20 @@ window.Quarto = {
 <section id="a-solução-dos-itens" class="level3">
 <h3 class="anchored" data-anchor-id="a-solução-dos-itens">A solução dos itens</h3>
 <p>Para resolver os itens é fundamental que a gente conheça o binômio de Newton e saiba derivar. Lembrando aqui o binômio de Newton:</p>
-<blockquote class="blockquote">
-<p>Teorema Binomial:</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Teorema Binomial">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Teorema Binomial
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><span class="math inline">\((a+b)^n = \sum_{i=0}^{n} \binom{n}{i} a^{n-i} b^i\)</span>.</p>
 <p>Se <span class="math inline">\(a = 1\)</span> e <span class="math inline">\(b = x\)</span> temos <span class="math inline">\((1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i\)</span>.</p>
-</blockquote>
+</div>
+</div>
 <p>Para o item (a) a ideia é partir da expansão <span class="math inline">\((1+x)^n\)</span> e derivar em ambos os lados em relação a <span class="math inline">\(x\)</span>, tentando sempre isolar a soma desejada:</p>
 <p><span class="math display">\[
 (1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i
@@ -406,11 +415,24 @@ window.Quarto = {
 <p><span class="math display">\[
 n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
 \]</span></p>
-<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span> porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em <span class="math inline">\(0\)</span>. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois derivá-la:</p>
+<p>Note que o índice do somatório começa agora em <span class="math inline">\(i=1\)</span> e não em <span class="math inline">\(i=0\)</span>, porque quando derivamos, surge o termo <span class="math inline">\(x^{i-1}\)</span> e a soma não pode começar em <span class="math inline">\(0\)</span>. Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em <span class="math inline">\(i=0\)</span> mais o restante da soma e depois derivá-la:</p>
 <p><span class="math display">\[
 \sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i.
 \]</span></p>
-<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar em <span class="math inline">\(1\)</span>. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!</p>
+<p>Derivando isso em relação a <span class="math inline">\(x\)</span> nós justificamos a soma começar em <span class="math inline">\(1\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Dica: separe o primeiro termo">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Dica: separe o primeiro termo
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!</p>
+</div>
+</div>
 <p>Continuando, temos</p>
 <p><span id="eq-derivada1"><span class="math display">\[
 n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
@@ -433,7 +455,20 @@ n(n-1)x^2(1+x)^{n-2} &amp;= \sum_{i=2}^{n} \binom{n}{i} (i^2-i) x^i
 <p><span class="math display">\[
 n(n-1)2^{n-2} = \sum_{i=2}^{n} \binom{n}{i} (i^2-i) = \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i.
 \]</span></p>
-<p>Aqui há um detalhe importante de índice: o resultado que provamos no item (a) começa em <span class="math inline">\(i = 1\)</span>, enquanto estas duas somas começam em <span class="math inline">\(i = 2\)</span>. Para conectar as duas coisas com rigor, abrimos o primeiro termo (<span class="math inline">\(i = 1\)</span>) de cada soma original:</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Cuidado com o índice inicial">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Cuidado com o índice inicial
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O resultado que provamos no item (a) começa em <span class="math inline">\(i = 1\)</span>, enquanto estas duas somas começam em <span class="math inline">\(i = 2\)</span>.</p>
+</div>
+</div>
+<p>Para conectar as duas coisas com rigor, abrimos o primeiro termo (<span class="math inline">\(i = 1\)</span>) de cada soma original:</p>
 <p><span class="math display">\[\begin{align}
 \sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= 1^2\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i^2 \implies \sum_{i=2}^{n} \binom{n}{i}i^2 = \sum_{i=1}^{n} \binom{n}{i}i^2 - n \\
 \sum_{i=1}^{n} \binom{n}{i}i &amp;= 1\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i \implies \sum_{i=2}^{n} \binom{n}{i}i = \sum_{i=1}^{n} \binom{n}{i}i - n.
@@ -450,7 +485,19 @@ n(n-1)2^{n-2} &amp;= \sum_{i=1}^{n} \binom{n}{i}i^2 - n2^{n-1} \\
 \sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= 2^{n-2}[n(n-1) + 2n] \\
 \sum_{i=1}^{n} \binom{n}{i}i^2 &amp;= n(n+1) 2^{n-2}.
 \end{align}\]</span></p>
-<p><em>(Nota: para <span class="math inline">\(n = 1\)</span>, a identidade também vale diretamente, pois <span class="math inline">\(\sum_{i=1}^{1} i^2 \binom{1}{i} = 1\)</span> e <span class="math inline">\(1(1+1)2^{-1} = 1\)</span>.)</em></p>
+<div class="callout callout-style-default callout-caution callout-titled" title="Caso-limite: $n = 1$">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caso-limite: <span class="math inline">\(n = 1\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para <span class="math inline">\(n = 1\)</span>, a identidade também vale diretamente, pois <span class="math inline">\(\sum_{i=1}^{1} i^2 \binom{1}{i} = 1\)</span> e <span class="math inline">\(1(1+1)2^{-1} = 1\)</span>.</p>
+</div>
+</div>
 <hr>
 <p>O item (c) é o mais complicado deles, mas vamos passo a passo para entendermos bem. Partimos de</p>
 <p><span class="math display">\[
@@ -573,11 +620,23 @@ x^0 x^k, x^1 x^{k-1}, x^2 x^{k-2}, \ldots, x^k x^0
 <p><span class="math display">\[
 \binom{a}{0}\binom{b}{k}, \binom{a}{1}\binom{b}{k-1}, \binom{a}{2}\binom{b}{k-2}, \ldots, \binom{a}{k}\binom{b}{0}.
 \]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Identidade de Vandermonde">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Identidade de Vandermonde
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Somando todos obtemos</p>
 <p><span class="math display">\[
 \sum_{j=0}^{k} \binom{a}{j} \binom{b}{k-j} = \binom{a+b}{k}
 \]</span></p>
 <p>pois <span class="math inline">\((1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r\)</span> e o coeficiente de <span class="math inline">\(x^k\)</span> é aquele tal que <span class="math inline">\(r = k\)</span> na soma, ou seja <span class="math inline">\(\binom{a+b}{k}\)</span>. Esse resultado é conhecido como a <strong>Identidade de Vandermonde</strong>.</p>
+</div>
+</div>
 <hr>
 </section>
 <section id="generalizando-somas-do-tipo-sum_i1n-ik-binomni" class="level3">
@@ -641,7 +700,19 @@ n^{\underline{j}} 2^{n-j} = \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i}.
 <p><span id="eq-fatorial-decrescente"><span class="math display">\[
 \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \underbrace{0 + 0 + \cdots + 0}_{i = 1, \dots, j-1} + \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} = n^{\underline{j}} 2^{n-j}.
 \tag{5}\]</span></span></p>
-<p><em>(Nota: se <span class="math inline">\(j &gt; n\)</span>, ambos os lados valem zero, pois <span class="math inline">\(n^{\underline{j}} = 0\)</span> e <span class="math inline">\(i^{\underline{j}} = 0\)</span> para todo <span class="math inline">\(1 \le i \le n\)</span>.)</em></p>
+<div class="callout callout-style-default callout-caution callout-titled" title="Caso-limite: $j > n$">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Caso-limite: <span class="math inline">\(j &gt; n\)</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se <span class="math inline">\(j &gt; n\)</span>, ambos os lados valem zero, pois <span class="math inline">\(n^{\underline{j}} = 0\)</span> e <span class="math inline">\(i^{\underline{j}} = 0\)</span> para todo <span class="math inline">\(1 \le i \le n\)</span>.</p>
+</div>
+</div>
 </section>
 <section id="decompondo-potências-ik-e-o-triângulo-de-stirling" class="level5">
 <h5 class="anchored" data-anchor-id="decompondo-potências-ik-e-o-triângulo-de-stirling">3. Decompondo potências <span class="math inline">\(i^k\)</span> e o Triângulo de Stirling</h5>
@@ -735,22 +806,58 @@ i^k = \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\under
 </tr>
 </tbody>
 </table>
-<p><em>(Para um mergulho mais profundo na dualidade estrutural entre essas duas tabelas e suas interpretações combinatórias, veja a discussão completa no texto complementar <strong>“O Triângulo de Pascal e o Triângulo de Stirling”</strong>.)</em></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Para ir além">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Para ir além
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Para um mergulho mais profundo na dualidade estrutural entre essas duas tabelas e suas interpretações combinatórias, veja a discussão completa no texto complementar <strong>“O Triângulo de Pascal e o Triângulo de Stirling”</strong>.</p>
+</div>
+</div>
 </section>
 <section id="a-fórmula-fechada-geral" class="level5">
 <h5 class="anchored" data-anchor-id="a-fórmula-fechada-geral">4. A fórmula fechada geral</h5>
 <p>Substituindo a expansão de <span class="math inline">\(i^k\)</span> no somatório binomial original, trocando a ordem das somas por linearidade e aplicando o resultado provado em (<a href="#eq-fatorial-decrescente" class="quarto-xref">5</a>), obtemos a fórmula fechada para qualquer <span class="math inline">\(k \ge 1\)</span>:</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Fórmula fechada geral">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Fórmula fechada geral
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><span class="math display">\[\begin{align}
 \sum_{i=1}^{n} i^k \binom{n}{i} &amp;= \sum_{i=1}^{n} \left( \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}} \right) \binom{n}{i} \\
 &amp;= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} \left( \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} \right) \\
 &amp;= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} n^{\underline{j}} 2^{n-j}.
 \end{align}\]</span></p>
+</div>
+</div>
 <p>Com essa identidade e a linha <span class="math inline">\(k = 4\)</span> do Triângulo de Stirling em mãos, obtemos diretamente a soma para a quarta potência sem precisar derivar novamente:</p>
 <p><span class="math display">\[\begin{align}
 \sum_{i=1}^{n} i^4 \binom{n}{i} &amp;= n 2^{n-1} + 7n(n-1)2^{n-2} + 6n(n-1)(n-2)2^{n-3} + n(n-1)(n-2)(n-3)2^{n-4} \\
 &amp;= n(n+1)(n^2 + 5n - 2)2^{n-4}.
 \end{align}\]</span></p>
-<p>Curiosidade estatística: ao dividir ambos os lados por <span class="math inline">\(2^n\)</span>, essa identidade fornece exatamente o <span class="math inline">\(k\)</span>-ésimo momento não centrado <span class="math inline">\(\mathbb{E}[X^k]\)</span> de uma variável aleatória <span class="math inline">\(X \sim \text{Binomial}(n, p = 1/2)\)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Curiosidade estatística">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Curiosidade estatística
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao dividir ambos os lados por <span class="math inline">\(2^n\)</span>, essa identidade fornece exatamente o <span class="math inline">\(k\)</span>-ésimo momento não centrado <span class="math inline">\(\mathbb{E}[X^k]\)</span> de uma variável aleatória <span class="math inline">\(X \sim \text{Binomial}(n, p = 1/2)\)</span>.</p>
+</div>
+</div>
 
 
 </section>

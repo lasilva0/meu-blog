@@ -1,0 +1,239 @@
+---
+title: "A Relação de Stifel e a Identidade de Vandermonde"
+description: "Demonstrações algébricas, polinomiais e por argumento combinatório de duas identidades fundamentais da análise combinatória"
+date: 2026-11-21
+categories: [combinatória, matemática]
+format:
+  html:
+    toc: true
+    code-fold: true
+---
+
+## Introdução
+
+No estudo da análise combinatória e do Triângulo de Pascal, duas identidades formam a base para praticamente todas as manipulações envolvendo coeficientes binomiais: a **Relação de Stifel** e a **Identidade de Vandermonde**. 
+
+Neste texto, exploramos ambas sob três óticas complementares: a **manipulação algébrica direta** (tanto na ida quanto na volta), a **abordagem via polinômios (funções geradoras)** e o **argumento combinatório (contagem dupla)** — construindo a intuição passo a passo de como particionar conjuntos para contar subconjuntos sem repetição nem omissão.
+
+---
+
+## 1. A Relação de Stifel
+
+A **Relação de Stifel** (ou regra de recorrência do Triângulo de Pascal) afirma que, para quaisquer inteiros $n \ge 1$ e $1 \le k \le n$:
+
+$$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$
+
+Abaixo, veremos quatro caminhos distintos para demonstrar essa igualdade.
+
+### 1.1. Demonstração Algébrica (Ida: do lado direito para o esquerdo)
+
+Partimos do lado direito da igualdade aplicando a definição de combinação simples, $\binom{m}{p} = \frac{m!}{p!(m-p)!}$:
+
+$$\binom{n-1}{k-1} + \binom{n-1}{k} = \frac{(n-1)!}{(k-1)!\,(n-k)!} + \frac{(n-1)!}{k!\,(n-1-k)!}$$
+
+Para igualar os denominadores ao valor comum $k!\,(n-k)!$:
+1. Multiplicamos a primeira fração por $\frac{k}{k}$, utilizando a propriedade $k \cdot (k-1)! = k!$.
+2. Multiplicamos a segunda fração por $\frac{n-k}{n-k}$, utilizando $(n-k) \cdot (n-1-k)! = (n-k)!$.
+
+Assim, obtemos:
+
+$$= \frac{k \cdot (n-1)!}{k!\,(n-k)!} + \frac{(n-k) \cdot (n-1)!}{k!\,(n-k)!}$$
+
+Colocando $\frac{(n-1)!}{k!\,(n-k)!}$ em evidência:
+
+$$= \frac{(n-1)! \cdot \big[k + (n - k)\big]}{k!\,(n-k)!} = \frac{n \cdot (n-1)!}{k!\,(n-k)!}$$
+
+Como $n \cdot (n-1)! = n!$, chegamos ao lado esquerdo:
+
+$$= \frac{n!}{k!\,(n-k)!} = \binom{n}{k}$$
+
+---
+
+### 1.2. Demonstração Algébrica (Volta: partindo de $\binom{n}{k}$)
+
+Também é possível realizar o caminho inverso, partindo de $\binom{n}{k}$ e chegando à soma das duas combinações. O artifício central consiste em **desmembrar o fator $n$** no numerador como $n = k + (n - k)$.
+
+Partimos da definição para $1 \le k \le n-1$:
+
+$$\binom{n}{k} = \frac{n!}{k!\,(n-k)!}$$
+
+**Passo 1:** Fatoramos $n!$ no numerador usando $n! = n \cdot (n-1)!$:
+
+$$= \frac{n \cdot (n-1)!}{k!\,(n-k)!}$$
+
+**Passo 2:** Aplicamos o artifício de somar e subtrair $k$ no fator $n$:
+
+$$= \frac{\big[k + (n - k)\big] \cdot (n-1)!}{k!\,(n-k)!}$$
+
+**Passo 3:** Separamos em duas frações pela distributividade:
+
+$$= \frac{k \cdot (n-1)!}{k!\,(n-k)!} + \frac{(n-k) \cdot (n-1)!}{k!\,(n-k)!}$$
+
+**Passo 4:** Simplificamos os fatoriais nos denominadores usando $k! = k \cdot (k-1)!$ na primeira fração e $(n-k)! = (n-k) \cdot (n-k-1)!$ na segunda:
+
+$$= \frac{\cancel{k} \cdot (n-1)!}{\cancel{k} \cdot (k-1)!\,(n-k)!} + \frac{\cancel{(n-k)} \cdot (n-1)!}{k!\,\cancel{(n-k)} \cdot (n-k-1)!}$$
+
+$$= \frac{(n-1)!}{(k-1)!\,(n-k)!} + \frac{(n-1)!}{k!\,(n-k-1)!}$$
+
+**Passo 5:** Observando que $(n-1) - (k-1) = n - k$, reconhecemos exatamente a definição das duas combinações:
+
+$$= \binom{n-1}{k-1} + \binom{n-1}{k}$$
+
+::: {.callout-note collapse="true"}
+## Nota: Decomposição Telescópica (Teorema das Colunas)
+Se continuarmos aplicando essa mesma abertura sucessivamente no último termo:
+$$\begin{aligned}
+\binom{n}{k} &= \binom{n-1}{k-1} + \binom{n-1}{k} \\
+&= \binom{n-1}{k-1} + \binom{n-2}{k-1} + \binom{n-2}{k} \\
+&= \binom{n-1}{k-1} + \binom{n-2}{k-1} + \dots + \binom{k}{k-1} + \binom{k-1}{k-1} = \sum_{j=k-1}^{n-1} \binom{j}{k-1}
+\end{aligned}$$
+obtemos diretamente a **Identidade de Fermat (Teorema das Colunas)** do Triângulo de Pascal.
+:::
+
+---
+
+### 1.3. Demonstração via Polinômios (Funções Geradoras)
+
+Esta abordagem utiliza o **Teorema Binomial** aplicado à identidade elementar de potências:
+
+$$(1+x)^n = (1+x)\,(1+x)^{n-1}$$
+
+**1. Expansão do lado esquerdo:**
+Pelo Binômio de Newton, o polinômio $(1+x)^n$ se escreve como:
+
+$$(1+x)^n = \sum_{k=0}^{n} \binom{n}{k} x^k$$
+
+O coeficiente do termo $x^k$ (para $1 \le k \le n-1$) é $\binom{n}{k}$.
+
+**2. Expansão do lado direito:**
+Expandindo apenas $(1+x)^{n-1}$ pelo Binômio de Newton e aplicando a distributividade:
+
+$$\begin{aligned}
+(1+x)(1+x)^{n-1} &= (1+x) \sum_{j=0}^{n-1} \binom{n-1}{j} x^j \\
+&= \sum_{j=0}^{n-1} \binom{n-1}{j} x^j + \sum_{j=0}^{n-1} \binom{n-1}{j} x^{j+1}
+\end{aligned}$$
+
+**3. Isolando o coeficiente de $x^k$ no lado direito:**
+* Na **primeira soma**, o termo em $x^k$ ocorre quando $j = k$, fornecendo o coeficiente $\binom{n-1}{k}$.
+* Na **segunda soma**, o termo em $x^k$ ocorre quando $j + 1 = k$, isto é, $j = k - 1$, fornecendo o coeficiente $\binom{n-1}{k-1}$.
+
+Somando as contribuições, o coeficiente total de $x^k$ no lado direito é:
+
+$$\binom{n-1}{k} + \binom{n-1}{k-1}$$
+
+**4. Igualdade de polinômios:**
+Como dois polinômios são idênticos se, e somente se, os coeficientes de cada potência $x^k$ coincidem, igualamos os coeficientes dos dois lados:
+
+$$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$
+
+*(Para o caso extremo $k=n$, na primeira soma não existe o termo $j=n$; adota-se a convenção $\binom{n-1}{n} = 0$, preservando $\binom{n}{n} = \binom{n-1}{n-1} + 0 = 1$.)*
+
+---
+
+### 1.4. Demonstração por Argumento Combinatório (Contagem Dupla)
+
+A prova por **contagem dupla** consiste em formular uma pergunta de contagem bem definida e respondê-la de **duas maneiras distintas**, porém igualmente válidas. Como ambas contam exatamente os mesmos objetos, os resultados precisam ser iguais.
+
+#### A Pergunta de Contagem
+Considere um conjunto $A$ com $n$ elementos distintos:
+$$A = \{x_1, x_2, \dots, x_{n-1}, x_n\}$$
+
+**Problema:** De quantas maneiras diferentes podemos escolher um subconjunto (uma comissão ou grupo) com exatamente $k$ elementos a partir de $A$ (com $1 \le k \le n-1$)?
+
+#### Contagem 1: Escolha direta (Lado Esquerdo)
+Ignorando qualquer distinção entre os elementos, queremos selecionar $k$ objetos dentre os $n$ disponíveis, sem importar a ordem. Por definição direta, o total de subconjuntos é:
+$$\binom{n}{k}$$
+
+#### Contagem 2: Particionando em casos disjuntos (Lado Direito)
+Agora, destacamos um elemento específico e fixo de $A$ — digamos, o elemento **$x_n$**.
+
+::: {.callout-tip}
+## Entendendo o papel do elemento fixo $x_n$
+Destacar $x_n$ **não** significa obrigá-lo a entrar em todos os grupos. Ele serve apenas como **critério de classificação** (uma etiqueta) para dividir a lista de todos os subconjuntos possíveis em duas pilhas disjuntas: os que o contêm e os que não o contêm.
+
+Com isso, reduzimos um problema de tamanho $n$ para dois subproblemas menores de tamanho $n - 1$, olhando apenas para o **"banco de opções" restante** $A \setminus \{x_n\}$ (o que sobra no saco após separarmos $x_n$).
+:::
+
+Qualquer subconjunto de $k$ elementos formado a partir de $A$ cai obrigatoriamente em **uma, e apenas uma**, de duas situações:
+
+1. **Caso 1 — O elemento $x_n$ ESTÁ no subconjunto escolhido:**
+   * Como $x_n$ já ocupa uma das $k$ vagas do grupo, o grupo tem a estrutura:
+     $$\{\underbrace{\text{ \_\_ }, \text{ \_\_ }, \dots, \text{ \_\_ }}_{k - 1 \text{ vagas livres}}, \mathbf{x_n}\}$$
+   * Falta preencher apenas **$k - 1$ vagas livres**, escolhendo entre os **$n - 1$ elementos restantes** em $A \setminus \{x_n\}$.
+   * Número de maneiras de fazer isso: $\binom{n-1}{k-1}$.
+
+2. **Caso 2 — O elemento $x_n$ NÃO ESTÁ no subconjunto escolhido:**
+   * Como $x_n$ foi excluído, todas as **$k$ vagas** ainda precisam ser preenchidas.
+   * Todos os $k$ elementos devem ser escolhidos dentre os **$n - 1$ elementos restantes** em $A \setminus \{x_n\}$.
+   * Número de maneiras de fazer isso: $\binom{n-1}{k}$.
+
+Como os dois casos são **mutuamente exclusivos** e **exaustivos**, aplicamos o **Princípio Aditivo**:
+
+$$\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$$
+
+#### Exemplo Numérico Concreto
+Seja $A = \{1, 2, 3, 4\}$ ($n = 4$) e desejamos subconjuntos de tamanho $k = 2$. O total de pares possíveis é $\binom{4}{2} = 6$:
+
+$$\{1,2\}, \quad \{1,3\}, \quad \{1,4\}, \quad \{2,3\}, \quad \{2,4\}, \quad \{3,4\}$$
+
+Separando o elemento **$4$** como critério, o "banco de opções" restante no saco é $\{1, 2, 3\}$ ($n - 1 = 3$ elementos):
+
+* **Pilha A (grupos que contêm o $4$):** $\{1, \mathbf{4}\}, \{2, \mathbf{4}\}, \{3, \mathbf{4}\}$.
+  Como o $4$ já ocupa $1$ vaga do par $\{\text{ \_\_ }, \mathbf{4}\}$, basta puxar $k - 1 = 1$ elemento do saco restante $\{1, 2, 3\}$:
+  $$\binom{3}{1} = 3 \text{ grupos}$$
+
+* **Pilha B (grupos que NÃO contêm o $4$):** $\{1, 2\}, \{1, 3\}, \{2, 3\}$.
+  Precisamos puxar todas as $k = 2$ bolas do saco restante $\{1, 2, 3\}$:
+  $$\binom{3}{2} = 3 \text{ grupos}$$
+
+Somando as duas pilhas: $3 + 3 = 6 = \binom{4}{2}$.
+
+---
+
+## 2. Generalizando a Ideia: A Identidade de Vandermonde
+
+A **Identidade de Vandermonde** afirma que, para quaisquer inteiros não negativos $m, n$ e $k$ (com $k \le m+n$):
+
+$$\binom{m + n}{k} = \sum_{j=0}^{k} \binom{m}{j}\binom{n}{k - j}$$
+
+O raciocínio combinatório é exatamente o mesmo da Relação de Stifel, mas em vez de separar **apenas $1$ elemento** do saco, dividimos o conjunto total em **dois blocos disjuntos** (por exemplo, bolas azuis e bolas vermelhas).
+
+### 2.1. Argumento Combinatório
+
+Imagine uma caixa contendo $m + n$ bolas distintas ao todo, separadas por cor:
+
+* $m$ bolas azuis
+* $n$ bolas vermelhas
+
+**Problema:** De quantas maneiras podemos escolher um grupo com exatamente **$k$ bolas** dessa caixa?
+
+* **Contagem 1 (Lado Esquerdo):** Ignorando as cores, queremos simplesmente selecionar $k$ bolas dentre o total de $m + n$ bolas disponíveis:
+  $$\binom{m + n}{k}$$
+
+* **Contagem 2 (Lado Direito):** Particionamos os grupos possíveis pela quantidade exata $j$ de bolas azuis escolhidas (onde $j$ varia de $0$ até $k$), completando as $k - j$ vagas restantes com bolas vermelhas:
+
+| Quantidade de Azuis ($j$) | Quantidade de Vermelhas ($k-j$) | Número de maneiras (Princípio Multiplicativo) |
+| :---: | :---: | :---: |
+| $0$ | $k$ | $\binom{m}{0}\binom{n}{k}$ |
+| $1$ | $k-1$ | $\binom{m}{1}\binom{n}{k-1}$ |
+| $2$ | $k-2$ | $\binom{m}{2}\binom{n}{k-2}$ |
+| $\vdots$ | $\vdots$ | $\vdots$ |
+| $j$ | $k-j$ | $\binom{m}{j}\binom{n}{k-j}$ |
+| $\vdots$ | $\vdots$ | $\vdots$ |
+| $k$ | $0$ | $\binom{m}{k}\binom{n}{0}$ |
+
+Somando todos os casos mutuamente exclusivos pelo **Princípio Aditivo**, concluímos:
+
+$$\binom{m + n}{k} = \sum_{j=0}^{k} \binom{m}{j}\binom{n}{k - j}$$
+
+*(Nota: Caso em algum termo tenhamos $j > m$ ou $k-j > n$, adota-se a convenção $\binom{a}{b} = 0$ para $b > a$.)*
+
+### 2.2. A Conexão Direta: Stifel como Caso Particular de Vandermonde
+
+A Relação de Stifel emerge imediatamente da Identidade de Vandermonde quando o primeiro grupo possui apenas **$m = 1$ bola azul** e o segundo grupo possui **$n - 1$ bolas vermelhas** (totalizando $1 + (n-1) = n$ bolas):
+
+$$\binom{1 + (n-1)}{k} = \sum_{j=0}^{1} \binom{1}{j}\binom{n-1}{k-j} = \underbrace{\binom{1}{0}}_{1}\binom{n-1}{k} + \underbrace{\binom{1}{1}}_{1}\binom{n-1}{k-1}$$
+
+$$\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}$$
+
+Isso evidencia que separar um único elemento (Stifel) e separar um bloco de $m$ elementos (Vandermonde) são manifestações da mesma técnica de partição combinatória em escalas diferentes.

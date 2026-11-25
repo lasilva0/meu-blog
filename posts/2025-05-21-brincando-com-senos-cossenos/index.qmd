@@ -1,6 +1,6 @@
 ---
 title: "Brincando um pouco com senos e cossenos 😁"
-description: "Proriedades bem legais"
+description: "Propriedades bem legais"
 date: 2026-02-10
 categories: [matemática]
 format:
@@ -12,7 +12,7 @@ format:
 ## Introdução
 
 Ultimamente vi em um grupo de matemática uma questão que pedia para calcular a integral sobre as curvas do $\cos(x^2)$ e $\sin(x^2)$, 
-que no caso é a diferença entre esses caras (essencialmente um problema de áreas sob sob curvas). 
+que no caso é a diferença entre esses caras (essencialmente um problema de áreas sob curvas). 
 Precisávamos então achar ali os pontos em que as funções se intersectam. 
 Pra isso partimos do seguinte fato: 
 
@@ -42,12 +42,12 @@ $$
 \tan(y + \pi) = \frac{-\sin(y)}{-\cos(y)} = \frac{\sin(y)}{\cos(y)} = \tan(y). 
 $$
 
-A função tangente também se repete ao somar $\pi$. Agora o que acontece para que $\tan(y) = 1$ ? Isso ocorre quando $\sin(y) / \cos(y) = 1$ o que é exatamente 
+A função tangente também se repete ao somar $\pi$. Agora o que acontece para que $\tan(y) = 1$? Isso ocorre quando $\sin(y) / \cos(y) = 1$ o que é exatamente 
 se $y= \pi / 4 + \pi$. Assim, $\sin(\pi/4) = \cos(\pi / 4) = 1$ pois $\sin(\pi/4) = \cos(\pi/4) = \sqrt{2}/2$. Deste modo temos 
 
 $$\tan(y+ k\pi) = \tan(y)$$ 
 
-para $k \in \mathbb{R}$. Particulamente, para $y = x^2$ tem-se: 
+para $k \in \mathbb{Z}$. Particularmente, para $y = x^2$ tem-se: 
 
 $$
 x^2 = \frac{\pi}{4} + k\pi, \,\, k \in \mathbb{Z}. 
@@ -60,16 +60,16 @@ x &= \sqrt{\frac{\pi}{4}} \\
 x &= \pm \frac{\sqrt{\pi}}{2}
 \end{align}
 
-Esses pontos seriam os que as funções $\sin(x^2)$ e $\cos(x^2)$ se intersectam. Bastaria agora calcular a integral nesse intervalo. 
-Neste ponto pensei que seriam fácil calcular essa integral:
+Esses pontos seriam aqueles em que as funções $\sin(x^2)$ e $\cos(x^2)$ se intersectam. Bastaria agora calcular a integral nesse intervalo. 
+Neste ponto pensei que seria fácil calcular essa integral:
 
 $$
 \int_{-\sqrt{\pi}/2}^{\sqrt{\pi}/2} \cos(x^2) - \sin(x^2) dx, 
 $$
 
-porém essa integral não possui resolução analítica pois não há nenhuma substituição que se possa fazer aí. 
-Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis ?
-Surgiu então a ideia usar a expansão dessas funções em série de Taylor, que são bastante conhecidas. As expansões são: 
+porém essa integral não possui resolução analítica, pois não há nenhuma substituição que se possa fazer aí. 
+Nesse ponto eu pensei: como eu poderia então aproximar essas funções por outras mais fáceis?
+Surgiu então a ideia de usar a expansão dessas funções em série de Taylor, que são bastante conhecidas. As expansões são: 
 
 \begin{align}
 \sin(x) &= x - \frac{x^3}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} + \frac{x^{9}}{9!} - \ldots \\ 
@@ -83,7 +83,7 @@ Com essas mesmas séries basta agora obter para $x^2$:
 \cos(x^2) &= 1 - \frac{x^{4}}{2!} + \frac{x^{8}}{4!} - \frac{x^{12}}{6!} + \frac{x^{16}}{8!} - \ldots
 \end{align}
 
-Agora obter a diferença $\cos(x^2) - \sin(x^2)$ (aqui vamos expandir até o quarto termo para obter uma boa aproximação): 
+Agora vamos obter a diferença $\cos(x^2) - \sin(x^2)$ (aqui vamos expandir até o quarto termo para obter uma boa aproximação): 
 
 $$
 \cos(x^2) - \sin(x^2) = \Big(1 - \frac{x^4}{2!} + \frac{x^8}{4!} - \frac{x^{12}}{6!}\Big) - \Big(x^2 - \frac{x^6}{3!} + \frac{x^{10}}{5!} - \frac{x^{14}}{7!}\Big) 
@@ -130,16 +130,16 @@ x
 $$
 
 Você pode fazer as continhas aplicando no ponto $x = \sqrt{\pi}/2$ e verá que a integral é aproximadamente o valor que foi calculado acima. Isso é uma forma de fazer. 
-Me perguntei se existia uma expressão mais simples pra essa diferença. Encontrei o seguinte partindo das somas do coesseno. Sabe-se que
+Me perguntei se existia uma expressão mais simples pra essa diferença. Encontrei o seguinte partindo das somas do cosseno. Sabe-se que
 
 $$
 \cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha)\sin(\beta). 
 $$
 
-Considere $\beta = \pi / 4$ e disso temos que $\sin(\pi /4) = \cos(\pi / 4) = \sqrt{\pi}/2$. substituindo na expressão acima temos: 
+Considere $\beta = \pi / 4$ e disso temos que $\sin(\pi /4) = \cos(\pi / 4) = \sqrt{2}/2$. Substituindo na expressão acima, temos: 
 
 $$
-\cos(\alpha + \pi/4) = \frac{\sqrt{\pi}}{2}(\cos(\alpha) - \sin(\alpha)) 
+\cos(\alpha + \pi/4) = \frac{\sqrt{2}}{2}(\cos(\alpha) - \sin(\alpha)) 
 $$
 
 Multiplicando por $\sqrt{2}$ em ambos os lados da equação obtemos a seguinte relação: 
@@ -164,7 +164,7 @@ $$
 a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)). 
 $$
 
-Como que prova isso ? Bem, podemos partir da diferença entre ângulos do cosseno:
+Como se prova isso? Bem, podemos partir da diferença entre ângulos do cosseno:
 
 $$\cos(x - \alpha) = \cos(x) \cos(\alpha) + \sin(x)\sin(\alpha).$$
 
@@ -205,11 +205,11 @@ $$
 a \cos(x) + b\sin(x) = \sqrt{a^2 + b^2} \cos(x - \arctan(b/a)).
 $$
 
-### Como obter expressões fechadas para $\cos(nx)$ e $\sin(nx)$ ? 
+### Como obter expressões fechadas para $\cos(nx)$ e $\sin(nx)$? 
 
 Aqui entra a parte mais interessante do que aprendi. Sabemos calcular a soma e diferença de senos, cossenos e tangentes de 2 ângulos. 
-Também podemos manipular expressões para obter coisas do tipo $\cos(3x) = \cos(x + 2x)$ e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram e etc.
-Mas como obter uma expressão geral para qualquer $n$ inteiro maior que zero ? 
+Também podemos manipular expressões para obter coisas do tipo $\cos(3x) = \cos(x + 2x)$ e aplicar a soma dos cossenos e depois reaplicar nos termos que sobram etc.
+Mas como obter uma expressão geral para qualquer $n$ inteiro maior que zero? 
 
 A resposta entra no mundo dos números complexos, especificamente através da seguinte relação: 
 
@@ -217,21 +217,21 @@ $$
 e^{ix} = \cos(x) + i \sin(x)
 $$
 
-Essa equação pode ser obtida via série de Taylor para a função exponencial no ponto $ix$ em que $i$ é a unidade imaginária $i = \sqrt{-1}$. Você pode expandir e vai perceber
-que ela se decompõe em uma parte real (a que envolve todos os termos dos cossenos) e uma parte imaginária (que elvolve todos os termos dos senos). Sabendo disso, podemos
+Essa equação pode ser obtida via série de Taylor para a função exponencial no ponto $ix$, em que $i$ é a unidade imaginária $i = \sqrt{-1}$. Você pode expandir e vai perceber
+que ela se decompõe em uma parte real (a que envolve todos os termos dos cossenos) e uma parte imaginária (que envolve todos os termos dos senos). Sabendo disso, podemos
 ter a seguinte relação: 
 
 $$
 (\cos(x) + i \sin(x))^n = e^{inx} = \cos(nx) + i \sin(nx). 
 $$
 
-A ideia chave é expandir $(\cos(x) + i \sin(x))^n$ como um binômio de Newton ! Veja: 
+A ideia chave é expandir $(\cos(x) + i \sin(x))^n$ como um binômio de Newton! Veja: 
 
 $$
 (\cos(x) + i \sin(x))^n = \sum_{k=0}^{n} \binom{n}{k} (i\sin(x))^k (\cos(x))^{n-k}. 
 $$
 
-Veja que temos uma parte real que contribui com os termos do cosseno e uma parte imaginária que carrega os temos do seno. Sabe-se que qualquer número complexo 
+Veja que temos uma parte real que contribui com os termos do cosseno e uma parte imaginária que carrega os termos do seno. Sabe-se que qualquer número complexo 
 pode ser escrito na forma 
 
 $$

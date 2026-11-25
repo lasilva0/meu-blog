@@ -51,7 +51,9 @@ $$
 
 A saída é binária. Isso significa que o Perceptron é um classificador: ele decide se o vetor de entrada pertence a uma classe ou outra. Geometricamente, o que acontece é uma verificação de similaridade entre $\mathbf{x}(t)$ e $\mathbf{w}_i(t)$ via produto escalar. Se o ângulo entre eles for menor que 90°, a ativação é positiva e o neurônio "dispara" ($y_i = +1$).
 
-> O Perceptron só funciona para dados linearmente separáveis. Se as classes não puderem ser divididas por um hiperplano, ele não converge. Um exemplo clássico é a função XOR.
+::: {.callout-warning title="Limitação do Perceptron"}
+O Perceptron só funciona para dados linearmente separáveis. Se as classes não puderem ser divididas por um hiperplano, ele não converge. Um exemplo clássico é a função XOR.
+:::
 
 ## Função-objetivo
 
@@ -67,7 +69,7 @@ $$
 J[\mathbf{w}] = \sum_{\mathbf{z}_k \in \mathcal{Z}} (-\mathbf{w}^T \mathbf{z}_k)
 $$
 
-onde $\mathcal{Z}$ é o conjunto dos vetores mal-classificados. Queremos minimizar isso.
+onde $\mathcal{Z}$ é o conjunto dos vetores mal classificados. Queremos minimizar isso.
 
 ## Regra de aprendizado
 

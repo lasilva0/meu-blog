@@ -15,7 +15,7 @@ Um dia desses eu estava no meu trabalho, um pouco desocupado e com mais tempo de
 hoje existe um arsenal de livros, listas, referências e tudo o que você pode encontrar de mais "obscuro" que fui acumulando ao longo da minha 
 trajetória na estatística. Tenho pastas separadas para as listas e materiais do Prof. Maurício, que é o mestre de todos nós, incluindo o nosso
 corpo docente. Abri uma lista e vi três itens, apenas três mesmo. Esses itens pedem para provar algumas propriedades envolvendo combinações. 
-Aparentemente nada demais. Mas o velho sabia das coisas, na verdade, ele sabe muito. Abaixo os itens: 
+Aparentemente nada demais. Mas o velho sabe das coisas, na verdade, ele sabe muito. Abaixo os itens: 
 
 (a) Prove que
 
@@ -43,12 +43,11 @@ caminho e é por isso que eu digo que o velho sabe das coisas.
 
 Para resolver os itens é fundamental que a gente conheça o binômio de Newton e saiba derivar. Lembrando aqui o binômio de Newton: 
 
-> Teorema Binomial:
->
-> $(a+b)^n = \sum_{i=0}^{n} \binom{n}{i} a^{n-i} b^i$. 
->
-> Se $a = 1$ e $b = x$ temos $(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i$.
+::: {.callout-note title="Teorema Binomial"}
+$(a+b)^n = \sum_{i=0}^{n} \binom{n}{i} a^{n-i} b^i$.
 
+Se $a = 1$ e $b = x$ temos $(1+x)^n = \sum_{i=0}^{n} \binom{n}{i} x^i$.
+:::
 Para o item (a) a ideia é partir da expansão $(1+x)^n$ e derivar em ambos os lados em relação a $x$, tentando sempre isolar a soma desejada: 
 
 $$
@@ -61,14 +60,19 @@ $$
 n(1+x)^{n-1} = \sum_{i=1}^{n} i \binom{n}{i} x^{i-1}
 $$
 
-Note que o índice do somatório começa agora em $i=1$ e não em $i=0$ porque quando derivamos, surge o termo $x^{i-1}$ e a soma não pode começar em $0$.
+Note que o índice do somatório começa agora em $i=1$ e não em $i=0$, porque quando derivamos, surge o termo $x^{i-1}$ e a soma não pode começar em $0$.
 Mais detalhadamente, podemos descrever a soma original como sendo o termo da soma que começa em $i=0$ mais o restante da soma e depois derivá-la: 
 
 $$
 \sum_{i=0}^{n} \binom{n}{i} x^i = \binom{n}{0} x^0 + \sum_{i=1}^{n} \binom{n}{i} x^i = 1 + \sum_{i=1}^{n} \binom{n}{i} x^i. 
 $$
 
-Derivando isso em relação a $x$ nós justificamos a soma começar em $1$. O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!
+Derivando isso em relação a $x$ nós justificamos a soma começar em $1$.
+
+::: {.callout-tip title="Dica: separe o primeiro termo"}
+O mesmo raciocínio vale para derivadas de ordens superiores. Sempre faça esse truque!
+:::
+
 
 Continuando, temos 
 
@@ -104,7 +108,11 @@ $$
 n(n-1)2^{n-2} = \sum_{i=2}^{n} \binom{n}{i} (i^2-i) = \sum_{i=2}^{n} \binom{n}{i}i^2 - \sum_{i=2}^n \binom{n}{i} i.
 $$
 
-Aqui há um detalhe importante de índice: o resultado que provamos no item (a) começa em $i = 1$, enquanto estas duas somas começam em $i = 2$. Para conectar as duas coisas com rigor, abrimos o primeiro termo ($i = 1$) de cada soma original:
+::: {.callout-warning title="Cuidado com o índice inicial"}
+O resultado que provamos no item (a) começa em $i = 1$, enquanto estas duas somas começam em $i = 2$.
+:::
+
+Para conectar as duas coisas com rigor, abrimos o primeiro termo ($i = 1$) de cada soma original:
 
 \begin{align}
 \sum_{i=1}^{n} \binom{n}{i}i^2 &= 1^2\binom{n}{1} + \sum_{i=2}^{n} \binom{n}{i}i^2 \implies \sum_{i=2}^{n} \binom{n}{i}i^2 = \sum_{i=1}^{n} \binom{n}{i}i^2 - n \\
@@ -127,7 +135,9 @@ n(n-1)2^{n-2} &= \sum_{i=1}^{n} \binom{n}{i}i^2 - n2^{n-1} \\
 \sum_{i=1}^{n} \binom{n}{i}i^2 &= n(n+1) 2^{n-2}.
 \end{align}
 
-*(Nota: para $n = 1$, a identidade também vale diretamente, pois $\sum_{i=1}^{1} i^2 \binom{1}{i} = 1$ e $1(1+1)2^{-1} = 1$.)*
+::: {.callout-caution title="Caso-limite: $n = 1$"}
+Para $n = 1$, a identidade também vale diretamente, pois $\sum_{i=1}^{1} i^2 \binom{1}{i} = 1$ e $1(1+1)2^{-1} = 1$.
+:::
 
 --- 
 
@@ -309,6 +319,7 @@ $$
 \binom{a}{0}\binom{b}{k}, \binom{a}{1}\binom{b}{k-1}, \binom{a}{2}\binom{b}{k-2}, \ldots, \binom{a}{k}\binom{b}{0}. 
 $$
 
+::: {.callout-important title="Identidade de Vandermonde"}
 Somando todos obtemos 
 
 $$
@@ -316,7 +327,8 @@ $$
 $$
 
 pois $(1+x)^{a+b} = \sum_{r=0}^{a+b} \binom{a+b}{r} x^r$ e o coeficiente de $x^k$ é aquele tal que $r = k$ na soma, ou seja $\binom{a+b}{k}$. 
-Esse resultado é conhecido como a **Identidade de Vandermonde**. 
+Esse resultado é conhecido como a **Identidade de Vandermonde**.
+::: 
 
 --- 
 
@@ -397,7 +409,9 @@ $$
 \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \underbrace{0 + 0 + \cdots + 0}_{i = 1, \dots, j-1} + \sum_{i=j}^{n} i^{\underline{j}} \binom{n}{i} = \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} = n^{\underline{j}} 2^{n-j}.
 $${#eq-fatorial-decrescente}
 
-*(Nota: se $j > n$, ambos os lados valem zero, pois $n^{\underline{j}} = 0$ e $i^{\underline{j}} = 0$ para todo $1 \le i \le n$.)*
+::: {.callout-caution title="Caso-limite: $j > n$"}
+Se $j > n$, ambos os lados valem zero, pois $n^{\underline{j}} = 0$ e $i^{\underline{j}} = 0$ para todo $1 \le i \le n$.
+:::
 
 ##### 3. Decompondo potências $i^k$ e o Triângulo de Stirling
 
@@ -449,17 +463,21 @@ Aplicando essa recorrência linha por linha, construímos o **Triângulo de Stir
 | **$k = 4$** ($i^4$) | **1** | $1 + 2(3) = \mathbf{7}$ | $3 + 3(1) = \mathbf{6}$ | **1** | |
 | **$k = 5$** ($i^5$) | **1** | $1 + 2(7) = \mathbf{15}$ | $7 + 3(6) = \mathbf{25}$ | $6 + 4(1) = \mathbf{10}$ | **1** |
 
-*(Para um mergulho mais profundo na dualidade estrutural entre essas duas tabelas e suas interpretações combinatórias, veja a discussão completa no texto complementar **"O Triângulo de Pascal e o Triângulo de Stirling"**.)*
+::: {.callout-note title="Para ir além"}
+Para um mergulho mais profundo na dualidade estrutural entre essas duas tabelas e suas interpretações combinatórias, veja a discussão completa no texto complementar **"O Triângulo de Pascal e o Triângulo de Stirling"**.
+:::
 
 ##### 4. A fórmula fechada geral
 
 Substituindo a expansão de $i^k$ no somatório binomial original, trocando a ordem das somas por linearidade e aplicando o resultado provado em ([-@eq-fatorial-decrescente]), obtemos a fórmula fechada para qualquer $k \ge 1$:
 
+::: {.callout-important title="Fórmula fechada geral"}
 \begin{align}
 \sum_{i=1}^{n} i^k \binom{n}{i} &= \sum_{i=1}^{n} \left( \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} i^{\underline{j}} \right) \binom{n}{i} \\
 &= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} \left( \sum_{i=1}^{n} i^{\underline{j}} \binom{n}{i} \right) \\
 &= \sum_{j=1}^{k} \left\{\begin{matrix} k \\ j \end{matrix}\right\} n^{\underline{j}} 2^{n-j}.
 \end{align}
+:::
 
 Com essa identidade e a linha $k = 4$ do Triângulo de Stirling em mãos, obtemos diretamente a soma para a quarta potência sem precisar derivar novamente:
 
@@ -468,4 +486,6 @@ Com essa identidade e a linha $k = 4$ do Triângulo de Stirling em mãos, obtemo
 &= n(n+1)(n^2 + 5n - 2)2^{n-4}.
 \end{align}
 
-Curiosidade estatística: ao dividir ambos os lados por $2^n$, essa identidade fornece exatamente o $k$-ésimo momento não centrado $\mathbb{E}[X^k]$ de uma variável aleatória $X \sim \text{Binomial}(n, p = 1/2)$.
+::: {.callout-tip title="Curiosidade estatística"}
+Ao dividir ambos os lados por $2^n$, essa identidade fornece exatamente o $k$-ésimo momento não centrado $\mathbb{E}[X^k]$ de uma variável aleatória $X \sim \text{Binomial}(n, p = 1/2)$.
+:::

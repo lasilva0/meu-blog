@@ -501,7 +501,7 @@ e^{ix} = \cos(x) + i\sin(x).
 <p><span class="math display">\[
 e^{i\pi} = \cos(\pi) + i\sin(\pi) = -1,
 \]</span></p>
-<p>pois <span class="math inline">\(\cos(\pi) = -1\)</span> e <span class="math inline">\(\sin(\pi) = 0\)</span>. Daí surge uma das mais belíssimas identidades de toda a matemática:</p>
+<p>pois <span class="math inline">\(\cos(\pi) = -1\)</span> e <span class="math inline">\(\sin(\pi) = 0\)</span>. Daí surge uma das identidades mais belas de toda a matemática:</p>
 <p><span class="math display">\[
 e^{i\pi} + 1 = 0.
 \]</span></p>
@@ -516,9 +516,19 @@ S_n = e^{ix} + e^{2ix} + e^{3ix} + \ldots + e^{inx},
 \]</span></p>
 <p>podemos estabelecer que <span class="math inline">\(S = \text{Im}(S_n)\)</span>, pois ao aplicar a fórmula de Euler para cada termo da série <span class="math inline">\(S_n\)</span> e pegar apenas a parte imaginária, obtemos exatamente os senos. Vamos guardar essa informação por enquanto.</p>
 <p>Agora, vamos expandir a série <span class="math inline">\(S_n\)</span>: é claramente uma série geométrica finita com primeiro termo <span class="math inline">\(a_1 = e^{ix}\)</span> e razão <span class="math inline">\(r = e^{ix}\)</span>.</p>
-<blockquote class="blockquote">
-<p><strong>Lembre que:</strong> em uma PG finita com primeiro termo <span class="math inline">\(a_1\)</span> e razão <span class="math inline">\(r\)</span>, temos <span class="math display">\[S_n = a_1 \Bigg(\frac{r^n - 1}{r - 1}\Bigg), \quad \text{com } r \neq 1.\]</span></p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Lembrete: soma de uma PG finita">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lembrete: soma de uma PG finita
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Em uma PG finita com primeiro termo <span class="math inline">\(a_1\)</span> e razão <span class="math inline">\(r\)</span>, temos <span class="math display">\[S_n = a_1 \Bigg(\frac{r^n - 1}{r - 1}\Bigg), \quad \text{com } r \neq 1.\]</span></p>
+</div>
+</div>
 <p>Assim, temos que a soma <span class="math inline">\(S_n\)</span> da nossa série é</p>
 <p><span id="eq-soma-exps"><span class="math display">\[
 S_n = e^{ix} \Bigg(\frac{e^{inx} - 1}{e^{ix} - 1}\Bigg).
@@ -528,9 +538,19 @@ S_n = e^{ix} \Bigg(\frac{e^{inx} - 1}{e^{ix} - 1}\Bigg).
 e^{ix} - 1 = e^{ix/2}(e^{ix/2} - e^{-ix/2}).
 \tag{2}\]</span></span></p>
 <p>Mas por que fazer isso? Veja que ao fazer isso podemos reescrever <span class="math inline">\(e^{ix} - 1\)</span> em termos da função seno:</p>
-<blockquote class="blockquote">
-<p><strong>Vamos recordar</strong>: <span class="math display">\[\sin(\theta) = \frac{e^{i\theta} - e^{-i\theta}}{2i}\]</span> Isso implica que: <span class="math inline">\(2i \sin(\theta) = e^{i\theta} - e^{-i\theta}\)</span>. Se <span class="math inline">\(\theta = x/2\)</span> temos <span class="math display">\[2i \sin(x/2) = e^{ix/2} - e^{-ix/2}.\]</span> Percebeu alguma semelhança?</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Lembrete: seno em termos de exponenciais">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lembrete: seno em termos de exponenciais
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[\sin(\theta) = \frac{e^{i\theta} - e^{-i\theta}}{2i}\]</span> Isso implica que: <span class="math inline">\(2i \sin(\theta) = e^{i\theta} - e^{-i\theta}\)</span>. Se <span class="math inline">\(\theta = x/2\)</span> temos <span class="math display">\[2i \sin(x/2) = e^{ix/2} - e^{-ix/2}.\]</span> Percebeu alguma semelhança?</p>
+</div>
+</div>
 <p>Assim, o denominador pode ser escrito como <span class="math inline">\(e^{ix} - 1 = e^{ix/2} \cdot 2i \sin(x/2)\)</span>. O mesmo raciocínio se aplica ao numerador:</p>
 <p><span class="math display">\[
 e^{inx} - 1 = e^{inx/2}(e^{inx/2} - e^{-inx/2}) = e^{inx/2} \cdot 2i \sin(nx/2).
@@ -566,13 +586,22 @@ S_n = \sum_{k=1}^{n} \cos(kx) = \cos((n+1)x/2) \times \frac{\sin(nx/2)}{\sin(x/2
 <section id="obtendo-as-somas-sem-a-fórmula-de-euler" class="level3">
 <h3 class="anchored" data-anchor-id="obtendo-as-somas-sem-a-fórmula-de-euler">Obtendo as somas sem a fórmula de Euler</h3>
 <p>Vamos supor que não conhecêssemos a fórmula de Euler e quiséssemos obter essas expressões gerais tanto para a soma dos senos quanto para a dos cossenos. A ideia é utilizar as identidades trigonométricas que transformam somas e diferenças de senos e cossenos em produtos.</p>
-<blockquote class="blockquote">
-<p><strong>Vamos fixar</strong></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Identidades de soma e produto">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Identidades de soma e produto
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Soma e diferença de senos: <span class="math display">\[\sin(a) + \sin(b) = 2 \sin\Bigg(\frac{a+b}{2}\Bigg)\cos\Bigg(\frac{a-b}{2}\Bigg)\]</span> <span class="math display">\[\sin(a) - \sin(b) = 2 \cos\Bigg(\frac{a+b}{2}\Bigg)\sin\Bigg(\frac{a-b}{2}\Bigg)\]</span></p>
 <p>Produto para soma (senos): <span class="math display">\[\sin(a+b) + \sin(a-b) = 2\sin(a)\cos(b)\]</span> <span class="math display">\[\sin(a+b) - \sin(a-b) = 2\cos(a)\sin(b)\]</span></p>
 <p>Soma e diferença de cossenos: <span class="math display">\[\cos(a) + \cos(b) = 2\cos\Bigg(\frac{a+b}{2}\Bigg)\cos\Bigg(\frac{a-b}{2}\Bigg)\]</span> <span class="math display">\[\cos(a) - \cos(b) = -2\sin\Bigg(\frac{a+b}{2}\Bigg)\sin\Bigg(\frac{a-b}{2}\Bigg)\]</span></p>
 <p>Produto para soma (cossenos): <span class="math display">\[\cos(a-b) + \cos(a+b) = 2\cos(a)\cos(b)\]</span> <span class="math display">\[\cos(a-b) - \cos(a+b) = 2\sin(a)\sin(b)\]</span></p>
-</blockquote>
+</div>
+</div>
 <p>Primeiro vamos obter a expressão geral para os senos:</p>
 <p><span class="math display">\[
 S_n = \sin(x) + \sin(2x) + \ldots + \sin(nx).
@@ -582,7 +611,7 @@ S_n = \sin(x) + \sin(2x) + \ldots + \sin(nx).
 2 \sin(x/2) S_n = 2 \sin(x/2) \sin(x) + 2 \sin(x/2)\sin(2x) + \ldots + 2 \sin(x/2)\sin(nx).
 \]</span></p>
 <blockquote class="blockquote">
-<p>Aqui o termo <span class="math inline">\(a = x/2\)</span> em todos os termos e <span class="math inline">\(b\)</span> são os termos <span class="math inline">\(x, 2x, 3x,\ldots, nx\)</span>.</p>
+<p>Aqui o termo <span class="math inline">\(a = x/2\)</span> é o mesmo em todos os termos e <span class="math inline">\(b\)</span> assume os valores <span class="math inline">\(x, 2x, 3x,\ldots, nx\)</span>.</p>
 </blockquote>
 <p>Aplicando a relação <span class="math inline">\(2 \sin(a)\sin(b) = \cos(a-b) - \cos(a+b)\)</span> vamos ver o que é cada termo da soma para <span class="math inline">\(k=1,2,\ldots,n\)</span>:</p>
 <ul>
@@ -599,7 +628,7 @@ S_n = \sin(x) + \sin(2x) + \ldots + \sin(nx).
 <p><span class="math display">\[
 2 \sin(x/2) S_n = \cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big).
 \]</span></p>
-<p>Dividindo ambos os lados <span class="math inline">\(2 \sin(x/2)\)</span> obtemos</p>
+<p>Dividindo ambos os lados por <span class="math inline">\(2 \sin(x/2)\)</span>, obtemos</p>
 <p><span class="math display">\[
 S_n = \frac{\cos(x/2) - \cos\Big(\frac{(2n+1)x}{2}\Big)}{2 \sin(x/2)}.
 \]</span></p>
@@ -649,13 +678,25 @@ C_n = \frac{2 \cos((n+1)x/2) \sin(nx/2)}{2 \sin(x/2)} = \cos((n+1)x/2) \frac{\si
 </section>
 <section id="e-se-fizéssemos-para-a-soma-envolvendo-tangentes" class="level3">
 <h3 class="anchored" data-anchor-id="e-se-fizéssemos-para-a-soma-envolvendo-tangentes">E se fizéssemos para a soma envolvendo tangentes?</h3>
+<div class="callout callout-style-default callout-warning callout-titled" title="Não vale dividir as séries">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Não vale dividir as séries
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Aqui podemos ficar tentados a dividir as duas séries, o que não funciona, pois a divisão entre elas não resulta em tangentes termo a termo, isto é,</p>
 <p><span class="math display">\[
 \sum_{k=1}^{n} \tan(kx) \neq \frac{\sum_{k=1}^{n} \sin(kx)}{\sum_{k=1}^{n} \cos(kx)}.
 \]</span></p>
+</div>
+</div>
 <p>Então existe alguma forma envolvendo tangentes que telescopa? A resposta é: sim! Se considerarmos algo do tipo:</p>
 <p><span class="math display">\[
-\sum_{k=1}^{n} \tan(kx)\tan((k+1)x) = \tan(x)\tan(2x) + \tan(2)\tan(3x) + \ldots + \tan(nx)\tan((n+1)x),
+\sum_{k=1}^{n} \tan(kx)\tan((k+1)x) = \tan(x)\tan(2x) + \tan(2x)\tan(3x) + \ldots + \tan(nx)\tan((n+1)x),
 \]</span></p>
 <p>podemos encontrar o resultado usando uma relação conhecida com tangentes:</p>
 <p><span class="math display">\[

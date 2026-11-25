@@ -399,7 +399,7 @@ window.Quarto = {
   <li><a href="#gradiente-da-matriz-de-pesos-mathbfw_1" id="toc-gradiente-da-matriz-de-pesos-mathbfw_1" class="nav-link" data-scroll-target="#gradiente-da-matriz-de-pesos-mathbfw_1">Gradiente da matriz de pesos <span class="math inline">\(\mathbf{W}_1\)</span></a></li>
   <li><a href="#cálculo-dos-gradientes-para-os-vetores-de-viés-mathbfb_2-e-mathbfb_1" id="toc-cálculo-dos-gradientes-para-os-vetores-de-viés-mathbfb_2-e-mathbfb_1" class="nav-link" data-scroll-target="#cálculo-dos-gradientes-para-os-vetores-de-viés-mathbfb_2-e-mathbfb_1">Cálculo dos gradientes para os vetores de viés <span class="math inline">\(\mathbf{b}_2\)</span> e <span class="math inline">\(\mathbf{b}_1\)</span></a></li>
   <li><a href="#atualização-de-pesos-via-gradiente-descendente" id="toc-atualização-de-pesos-via-gradiente-descendente" class="nav-link" data-scroll-target="#atualização-de-pesos-via-gradiente-descendente">Atualização de pesos via Gradiente Descendente</a></li>
-  <li><a href="#e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral." id="toc-e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral." class="nav-link" data-scroll-target="#e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral.">E se a rede neural tiver mais de uma camada oculta ? Caso geral.</a></li>
+  <li><a href="#e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral." id="toc-e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral." class="nav-link" data-scroll-target="#e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral.">E se a rede neural tiver mais de uma camada oculta? Caso geral.</a></li>
   </ul></li>
   <li><a href="#número-de-épocas" id="toc-número-de-épocas" class="nav-link" data-scroll-target="#número-de-épocas">Número de épocas</a></li>
   <li><a href="#critério-de-parada" id="toc-critério-de-parada" class="nav-link" data-scroll-target="#critério-de-parada">Critério de parada</a>
@@ -434,9 +434,19 @@ window.Quarto = {
 <li>Por fim, a forma matricial completa: forward pass, backpropagation e atualização de pesos.</li>
 </ol>
 <p>Vou começar com uma rede de uma camada oculta para manter a didática simples, mas o objetivo é generalizar para um número qualquer de camadas e neurônios.</p>
-<blockquote class="blockquote">
-<p><strong>Pré-requisito:</strong> alguma familiaridade com derivadas na forma matricial, já que vamos trabalhar diretamente com a representação matricial da rede.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Pré-requisito">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Pré-requisito
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Alguma familiaridade com derivadas na forma matricial, já que vamos trabalhar diretamente com a representação matricial da rede.</p>
+</div>
+</div>
 </section>
 <section id="o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-é-uma-rede-neural-entradas-saídas-neurônios-camadas-ocultas-e-funções-de-ativação">O que é uma rede neural: entradas, saídas, neurônios, camadas ocultas e funções de ativação</h2>
@@ -745,11 +755,23 @@ w_{12}^{(2)} h_1 + w_{22}^{(2)} h_2 + w_{32}^{(2)} h_3 + b_2^{(2)}
 \mathcal{L} = -\sum_{k=1}^{K} y_k \log \hat{y}_k
 \]</span></p>
 <p>Como <span class="math inline">\(y_k = 1\)</span> apenas para a classe correta e 0 para as demais, isso se reduz a <span class="math inline">\(\mathcal{L} = -\log \hat{y}_{k^*}\)</span>, onde <span class="math inline">\(k^*\)</span> é a classe verdadeira. Minimizar <span class="math inline">\(\mathcal{L}\)</span> equivale a maximizar a probabilidade atribuída à classe correta.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Truque numérico: softmax estável">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Truque numérico: softmax estável
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Vale notar também um truque numérico importante: na prática, subtrai-se o máximo do vetor antes de exponenciar para evitar overflow:</p>
 <p><span class="math display">\[
 \text{softmax}(\mathbf{z})_k = \frac{e^{z_k - \max_j z_j}}{\displaystyle\sum_{j=1}^{K} e^{z_j - \max_j z_j}}
 \]</span></p>
 <p>O resultado matemático é idêntico, mas numericamente estável.</p>
+</div>
+</div>
 </section>
 <section id="derivada-da-softmax" class="level3">
 <h3 class="anchored" data-anchor-id="derivada-da-softmax">Derivada da softmax</h3>
@@ -766,9 +788,19 @@ D = \sum_{j=1}^{n} e^{z_j} = e^{z_1} + e^{z_2} + \ldots + e^{z_j} + \ldots + e^{
 s_k = \frac{e^{z_k}}{D}.
 \]</span></p>
 <p>Para derivar podemos utilizar a regra da derivada quociente.</p>
-<blockquote class="blockquote">
-<p><strong>Relembre:</strong> se <span class="math inline">\(f\)</span> e <span class="math inline">\(g\)</span> são funções contínuas e diferenciáveis, vale que <span class="math display">\[\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}\]</span></p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Relembre: regra do quociente">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Relembre: regra do quociente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se <span class="math inline">\(f\)</span> e <span class="math inline">\(g\)</span> são funções contínuas e diferenciáveis, vale que <span class="math display">\[\left(\frac{f}{g}\right)' = \frac{f'g - fg'}{g^2}\]</span></p>
+</div>
+</div>
 <p>Queremos calcular <span class="math inline">\(\dfrac{\partial s_k}{\partial z_j}\)</span>, ou seja, como a <span class="math inline">\(k\)</span>-ésima saída varia quando mudamos a <span class="math inline">\(j\)</span>-ésima entrada. Seja <span class="math inline">\(f = e^{z_k}\)</span> e <span class="math inline">\(g = D\)</span>. Como estamos derivando em relação a <span class="math inline">\(z_j\)</span>, temos dois casos:</p>
 <p><strong>Caso 1: <span class="math inline">\(j = k\)</span></strong> — o numerador depende de <span class="math inline">\(z_j\)</span>, então <span class="math inline">\(f' = e^{z_k}\)</span>. O denominador também depende, com <span class="math inline">\(g' = e^{z_j} = e^{z_k}\)</span>.</p>
 <p><strong>Caso 2: <span class="math inline">\(j \neq k\)</span></strong> — o numerador não depende de <span class="math inline">\(z_j\)</span>, então <span class="math inline">\(f' = 0\)</span>. Apenas o denominador contribui, com <span class="math inline">\(g' = e^{z_j}\)</span>.</p>
@@ -777,7 +809,7 @@ s_k = \frac{e^{z_k}}{D}.
 \frac{\partial s_k}{\partial z_k} = \frac{e^{z_k} D - (e^{z_k})^2}{D^2} = \frac{e^{z_k}}{D} - \Bigg(\frac{e^{z_k}}{D}\Bigg)^2
 \]</span></p>
 <p>Lembre que <span class="math inline">\(s_k = e^{z_k} / D\)</span> e portanto a derivada para o caso 1 é simplesmente <span class="math inline">\(s_k(1 - s_k)\)</span>.</p>
-<p>Para o caso 2 (j k) temos:</p>
+<p>Para o caso 2 (<span class="math inline">\(j \neq k\)</span>) temos:</p>
 <p><span class="math display">\[
 \frac{\partial s_k}{\partial z_j} = \frac{0 \times D - e^{z_k} e^{z_j}}{D^2} = -\frac{e^{z_k}}{D} \frac{e^{z_j}}{D} = -s_k \times s_j.
 \]</span></p>
@@ -786,11 +818,11 @@ s_k = \frac{e^{z_k}}{D}.
 \frac{\partial s_k}{\partial z_j} = \begin{cases} s_k(1 - s_k), \,\, &amp;j = k  \\
 -s_k \times s_j, \,\, &amp;j \neq k\end{cases}
 \]</span></p>
-<p>que pode ser reescrita em termos da funççao delta de Kronecker (<span class="math inline">\(\delta_{kj} = 1\)</span> se <span class="math inline">\(k=j\)</span>, 0 caso contrário):</p>
+<p>que pode ser reescrita em termos da função delta de Kronecker (<span class="math inline">\(\delta_{kj} = 1\)</span> se <span class="math inline">\(k=j\)</span>, 0 caso contrário):</p>
 <p><span class="math display">\[
 \frac{\partial s_k}{ \partial z_j} = s_k(\delta_{kj} - s_j).
 \]</span></p>
-<p>Podemos vizualizar essa derivada como uma matriz jacobiana com derivadas parciais em que os termos da diagonal principal são os termos <span class="math inline">\(j = k\)</span> e os elementos fora da diagonal são os termos <span class="math inline">\(j \neq k\)</span>:</p>
+<p>Podemos visualizar essa derivada como uma matriz jacobiana com derivadas parciais em que os termos da diagonal principal são os termos <span class="math inline">\(j = k\)</span> e os elementos fora da diagonal são os termos <span class="math inline">\(j \neq k\)</span>:</p>
 <p><span class="math display">\[
 \frac{\partial \mathbf{s}}{\partial \mathbf{z}} =
 \begin{pmatrix}
@@ -821,7 +853,7 @@ s_1(1-s_1) &amp; -s_1 s_2   &amp; \cdots &amp; -s_1 s_n   \\
 <p><span id="eq-derivlogzj"><span class="math display">\[
 \frac{\partial}{\partial z_j} \log(s_k) = \frac{\partial z_k}{\partial z_j} - \frac{\partial}{\partial z_j} \log(D).
 \tag{2}\]</span></span></p>
-<p>Note que o primeiro termo da igualdade na Eq. (<a href="#eq-derivlogzj" class="quarto-xref">2</a>) é a derivada de uma constante, que será 1 se <span class="math inline">\(k = j\)</span> e 0 se <span class="math inline">\(k \neq j\)</span> essencialmente, uma função indicadora <span class="math inline">\(\mathbb{I}(.)\)</span>. Já para o segundo termo da igualdade, aplicamos a derivada do logaritmo:</p>
+<p>Note que o primeiro termo da igualdade na Eq. (<a href="#eq-derivlogzj" class="quarto-xref">2</a>) é a derivada de uma constante, que será 1 se <span class="math inline">\(k = j\)</span> e 0 se <span class="math inline">\(k \neq j\)</span>, essencialmente, uma função indicadora <span class="math inline">\(\mathbb{I}(.)\)</span>. Já para o segundo termo da igualdade, aplicamos a derivada do logaritmo:</p>
 <p><span class="math display">\[
 \frac{\partial}{\partial z_j} \log(D) = \frac{1}{D} \frac{\partial}{\partial z_j} D.  
 \]</span></p>
@@ -867,7 +899,7 @@ s_1(1-s_1) &amp; -s_1 s_2   &amp; \cdots &amp; -s_1 s_n   \\
 </section>
 <section id="backpropagation" class="level2">
 <h2 class="anchored" data-anchor-id="backpropagation">Backpropagation</h2>
-<p>Para obter a previsão final da rede neural, costuma-se aplicar a última função de ativação sobre <span class="math inline">\(\mathbf{z}_2\)</span>, geralmente a <em>softmax</em> para classificação multiclasses e linear para regressão. Vamos recapitular as expressões envolvidas numa rede neural com uma camada oculta. Temos</p>
+<p>Para obter a previsão final da rede neural, costuma-se aplicar a última função de ativação sobre <span class="math inline">\(\mathbf{z}_2\)</span>, geralmente a <em>softmax</em> para classificação multiclasse e linear para regressão. Vamos recapitular as expressões envolvidas numa rede neural com uma camada oculta. Temos</p>
 <p><span class="math display">\[
 \mathbf{z}_1 = \mathbf{X}\mathbf{W}_1 + \mathbf{b}_1,
 \]</span></p>
@@ -881,7 +913,7 @@ s_1(1-s_1) &amp; -s_1 s_2   &amp; \cdots &amp; -s_1 s_n   \\
 <p><span class="math display">\[
 \mathbf{a}_1 = \phi(\mathbf{z}_1)
 \]</span></p>
-<p>em que <span class="math inline">\(\mathbf{a}_1\)</span> é a matriz (elemento a elemento) de ativações da primeira camada e <span class="math inline">\(\phi\)</span> é a função de ativação não-linear (ou linear) como vimos antes (ReLU, sigmóide logística, tangente hiperbólica dentre outras). Isso tudo para a primeira camada. Já na segunda camada temos:</p>
+<p>em que <span class="math inline">\(\mathbf{a}_1\)</span> é a matriz (elemento a elemento) de ativações da primeira camada e <span class="math inline">\(\phi\)</span> é a função de ativação não-linear (ou linear) como vimos antes (ReLU, sigmoide logística, tangente hiperbólica dentre outras). Isso tudo para a primeira camada. Já na segunda camada temos:</p>
 <p><span class="math display">\[
 \mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2,
 \]</span></p>
@@ -919,8 +951,8 @@ C = \text{MSE} = \frac{1}{2}\|\widehat{\mathbf{y}} - \mathbf{y}\|^2,
 <p><span class="math display">\[
 C = -[\mathbf{y} \log(\widehat{\mathbf{y}}) + (1-\mathbf{y}) \log(1 - \widehat{\mathbf{y}})].
 \]</span></p>
-<p>Precisamos fixar uma ideia central: tudo, absolutamente tudo nesta etapa deve começar na função custo. Mas porque estamos no sentido inverso da rede, a qual chamamos backpropagation ? Propaga-se o que ? Qual o objetivo disso ?</p>
-<p>O principal objetivo é responder às perguntas: o que acontece com a função custo se os pesos <span class="math inline">\(\mathbf{W}_1\)</span> e <span class="math inline">\(\mathbf{W}_2\)</span> ou os vetores de viés <span class="math inline">\(\mathbf{b}_1\)</span> e <span class="math inline">\(\mathbf{b}_2\)</span> mudarem mesmo que de forma mínima ? Ela aumenta, diminui, se mantém do mesmo jeito ?. Note que perguntar isso remete à noção de variações nessas quantidades e no quanto isso impacta na função custo, que geralmente queremos que tenha menor valor possível, pois implica num modelo mais acurado/preciso. Isso também nos faz lembrar da noção de derivadas parciais.</p>
+<p>Precisamos fixar uma ideia central: tudo, absolutamente tudo nesta etapa deve começar na função custo. Mas por que estamos no sentido inverso da rede, que chamamos de backpropagation? Propaga-se o quê? Qual o objetivo disso?</p>
+<p>O principal objetivo é responder às perguntas: o que acontece com a função custo se os pesos <span class="math inline">\(\mathbf{W}_1\)</span> e <span class="math inline">\(\mathbf{W}_2\)</span> ou os vetores de viés <span class="math inline">\(\mathbf{b}_1\)</span> e <span class="math inline">\(\mathbf{b}_2\)</span> mudarem mesmo que de forma mínima? Ela aumenta, diminui ou se mantém do mesmo jeito? Note que perguntar isso remete à noção de variações nessas quantidades e no quanto isso impacta na função custo, que geralmente queremos que tenha o menor valor possível, pois implica um modelo mais acurado/preciso. Isso também nos faz lembrar da noção de derivadas parciais.</p>
 <p>Lembre que no nosso exemplo com 1 camada oculta, a previsão da rede <span class="math inline">\(\widehat{\mathbf{y}}\)</span> é a própria ativação final <span class="math inline">\(\mathbf{a}_2 = \widehat{\mathbf{y}}\)</span>. Calculando cada termo separadamente:</p>
 <ol type="1">
 <li>Derivada da função custo em relação à <span class="math inline">\(\mathbf{a}_2\)</span>:</li>
@@ -943,7 +975,7 @@ C = -[\mathbf{y} \log(\widehat{\mathbf{y}}) + (1-\mathbf{y}) \log(1 - \widehat{\
 \delta_2 = \widehat{\mathbf{y}} - \mathbf{y}.
 \]</span></p></li>
 <li><p>ReLU:</p>
-<p>Aqui o resutado é um vetor binário de 0’s e 1’s:</p>
+<p>Aqui o resultado é um vetor binário de 0’s e 1’s:</p>
 <p><span class="math display">\[
 \gamma'(\mathbf{z}_2)_{j} = \begin{cases}
 1, \,\,\, \text{se} \,\,\, z_{j} &gt; 0 \\
@@ -970,22 +1002,32 @@ C = -[\mathbf{y} \log(\widehat{\mathbf{y}}) + (1-\mathbf{y}) \log(1 - \widehat{\
 <p><span class="math display">\[
 \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} = \gamma'(\mathbf{z}_2) = \sigma(\mathbf{z}_2) \odot \big(\mathbf{1} - \sigma(\mathbf{z}_2)\big) = \mathbf{a}_2 \odot (1 - \mathbf{a}_2).
 \]</span></p>
-<blockquote class="blockquote">
-<p>Essas propriedades das derivadas das principais derivadas das funções de ativação vão ser abordadas em outro post dedicado.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="Assunto para outro post">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Assunto para outro post
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Essas propriedades das derivadas das principais funções de ativação serão abordadas em outro post dedicado.</p>
+</div>
+</div>
 <p>Assim temos que a derivada parcial da função custo em relação à pré-ativação da segunda camada (a saída linear) é dada por:</p>
 <p><span class="math display">\[
 \delta_2 = \frac{\partial C}{\partial \mathbf{z}_2} = \Bigg(\frac{\mathbf{a}_2 - \mathbf{y}}{\mathbf{a}_2 \odot (1 - \mathbf{a}_2)} \Bigg) \odot \Bigg( \mathbf{a}_2 \odot (1 - \mathbf{a}_2) \Bigg) = \mathbf{a}_2 - \mathbf{y} = \widehat{\mathbf{y}} - \mathbf{y}.
 \]</span></p>
-<p>Observe que utilizando a função de ativação sigmóide logística, temos que também se reduz ao resíduo (estimado - real). A lógica funciona perfeitamente igual para qualquer ativação que se queira colocar aqui. Se utilizássemos a saída multiclasses (softmax) teríamos aquela matriz jacobiana que obtemos anteriormente.</p>
+<p>Observe que, utilizando a função de ativação sigmoide logística, o gradiente também se reduz ao resíduo (estimado - real). A lógica funciona perfeitamente igual para qualquer ativação que se queira colocar aqui. Se utilizássemos a saída multiclasse (softmax) teríamos aquela matriz jacobiana que obtivemos anteriormente.</p>
 </section>
 <section id="gradiente-da-matriz-de-pesos-mathbfw_2" class="level3">
 <h3 class="anchored" data-anchor-id="gradiente-da-matriz-de-pesos-mathbfw_2">Gradiente da matriz de pesos <span class="math inline">\(\mathbf{W}_2\)</span></h3>
-<p>Para obter o gradiente de <span class="math inline">\(W_2\)</span> em relação a <span class="math inline">\(C\)</span>, precisamos aplicar a regra da cadeia imaginando que todas essas coisas estão “aninhadas” dependentes umas das outras. Aqui você pode mentalizar o seguinte: para chegar em <span class="math inline">\(\mathbf{W}_2\)</span> eu tenho que fazer qual sentido de volta na rede ? Lembramos então que <span class="math inline">\(\mathbf{W}_2\)</span> age sobre <span class="math inline">\(\mathbf{a}_1\)</span> para produzir <span class="math inline">\(\mathbf{z}_2\)</span>, ou seja, nós temos</p>
+<p>Para obter o gradiente de <span class="math inline">\(W_2\)</span> em relação a <span class="math inline">\(C\)</span>, precisamos aplicar a regra da cadeia imaginando que todas essas coisas estão “aninhadas” dependentes umas das outras. Aqui você pode mentalizar o seguinte: para chegar em <span class="math inline">\(\mathbf{W}_2\)</span>, por qual caminho eu preciso voltar na rede? Lembramos então que <span class="math inline">\(\mathbf{W}_2\)</span> age sobre <span class="math inline">\(\mathbf{a}_1\)</span> para produzir <span class="math inline">\(\mathbf{z}_2\)</span>, ou seja, nós temos</p>
 <p><span class="math display">\[
 \mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2,
 \]</span></p>
-<p>e <span class="math inline">\(\mathbf{z}_2\)</span> age sobre <span class="math inline">\(\gamma\)</span> que resulta em <span class="math inline">\(\mathbf{a}_2\)</span>, então temos</p>
+<p>e <span class="math inline">\(\mathbf{z}_2\)</span> age sobre <span class="math inline">\(\gamma\)</span>, que resulta em <span class="math inline">\(\mathbf{a}_2\)</span>, então temos</p>
 <p><span class="math display">\[
 \mathbf{a}_2 = \gamma(\mathbf{z}_2),
 \]</span></p>
@@ -996,14 +1038,14 @@ C = -[\mathbf{y} \log(\widehat{\mathbf{y}}) + (1-\mathbf{y}) \log(1 - \widehat{\
 <p>Aqui você pode ter em mente que pra mexer em <span class="math inline">\(\mathbf{W}_2\)</span> você precisa imaginar um efeito dominó:</p>
 <ul>
 <li>Mexer em <span class="math inline">\(\mathbf{W}_2\)</span> implica mexer em <span class="math inline">\(\mathbf{z}_2\)</span> de forma direta.</li>
-<li>Mexer em <span class="math inline">\(\mathbf{z}_2\)</span> implica em mexer em <span class="math inline">\(\mathbf{a}_2\)</span> de forma direta.</li>
-<li>Mexer em <span class="math inline">\(\mathbf{a}_2\)</span> implica em mexer em <span class="math inline">\(C\)</span> de forma direta.</li>
+<li>Mexer em <span class="math inline">\(\mathbf{z}_2\)</span> implica mexer em <span class="math inline">\(\mathbf{a}_2\)</span> de forma direta.</li>
+<li>Mexer em <span class="math inline">\(\mathbf{a}_2\)</span> implica mexer em <span class="math inline">\(C\)</span> de forma direta.</li>
 </ul>
 <p>A ordem seria exatamente:</p>
 <p><span class="math display">\[
 C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{W}_2.
 \]</span></p>
-<p>Porém, da etapa anterior já temos essa primeira derivada parcial que é simplesmente o resíduo <span class="math inline">\(\delta_2\)</span> e dessa maneira simplifica pra gente como sendo:</p>
+<p>Porém, da etapa anterior já temos essa primeira derivada parcial, que é simplesmente o resíduo <span class="math inline">\(\delta_2\)</span>, e dessa maneira a expressão se simplifica para:</p>
 <p><span class="math display">\[
 \frac{\partial C}{\partial \mathbf{W}_2} = \delta_2 \frac{\partial \mathbf{z}_2}{\partial \mathbf{W}_2}.
 \]</span></p>
@@ -1014,7 +1056,7 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{W}_2.
 </section>
 <section id="gradiente-da-matriz-de-pesos-mathbfw_1" class="level3">
 <h3 class="anchored" data-anchor-id="gradiente-da-matriz-de-pesos-mathbfw_1">Gradiente da matriz de pesos <span class="math inline">\(\mathbf{W}_1\)</span></h3>
-<p>Para obter o gradiente desta matriz o caminho será mais longo mas o raciocínio é o mesmo. Sem afobação, vem comigo. Pense na seguinte ordem:</p>
+<p>Para obter o gradiente desta matriz o caminho será mais longo, mas o raciocínio é o mesmo. Sem afobação, vem comigo. Pense na seguinte ordem:</p>
 <p><span class="math display">\[
 C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathbf{W}_1.
 \]</span></p>
@@ -1026,7 +1068,7 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathb
 <p><span class="math display">\[
 \mathbf{z}_2 = \mathbf{a}_1 \mathbf{W}_2 + \mathbf{b}_2,
 \]</span></p>
-<p>que depende de <span class="math inline">\(\mathbf{a}_2 = \gamma(z_2)\)</span> e por sua vez de <span class="math inline">\(C\)</span>. Viu todo o caminho que precisamos percorrer ?</p>
+<p>que depende de <span class="math inline">\(\mathbf{a}_2 = \gamma(z_2)\)</span> e por sua vez de <span class="math inline">\(C\)</span>. Viu todo o caminho que precisamos percorrer?</p>
 <p>A derivada através da regra da cadeia fica dada por:</p>
 <p><span class="math display">\[
 \frac{\partial C}{\partial \mathbf{W}_1} = \underbrace{\Bigg(\frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2}\Bigg)}_{\delta_2} \underbrace{\frac{\partial \mathbf{z}_2}{\partial \mathbf{a}_1}}_{\mathbf{W}_2^T} \underbrace{\frac{\partial \mathbf{a}_1}{\partial \mathbf{z}_1}}_{\phi'(\mathbf{z}_1)} \underbrace{\frac{\partial \mathbf{z}_1}{\partial \mathbf{W}_1}}_{\mathbf{X}^T}.
@@ -1044,7 +1086,7 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathb
 <p><span class="math display">\[
 \frac{\partial C}{\partial \mathbf{b}_2} = \frac{\partial C}{\partial \mathbf{a}_2} \frac{\partial \mathbf{a}_2}{\partial \mathbf{z}_2} \frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}
 \]</span></p>
-<p>Seja <span class="math inline">\(\delta_2 = \frac{\partial C}{\partial \mathbf{a}_2}\)</span> o gradiente acumulado na saída da camada. Lembrando que <span class="math inline">\(\mathbf{z}_2\)</span> e <span class="math inline">\(\mathbf{b}_2\)</span> são vetores (ou matrizes, no caso de um <em>batch</em>), a derivada <span class="math inline">\(\frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}\)</span> não é um escalar <span class="math inline">\(1\)</span>, mas sim uma Matriz Identidade <span class="math inline">\(\mathbf{I}\)</span> (ou um <strong>vetor de uns</strong> <span class="math inline">\(\mathbf{1}\)</span>, que efetua a soma ao longo do <em>batch</em>). Assim, a expressão para qualquer função de ativação <span class="math inline">\(\gamma(\mathbf{z}_2)\)</span> fica:</p>
+<p>Seja <span class="math inline">\(\delta_2 = \frac{\partial C}{\partial \mathbf{a}_2}\)</span> o gradiente acumulado na saída da camada. Lembrando que <span class="math inline">\(\mathbf{z}_2\)</span> e <span class="math inline">\(\mathbf{b}_2\)</span> são vetores (ou matrizes, no caso de um <em>batch</em>), a derivada <span class="math inline">\(\frac{\partial \mathbf{z}_2}{\partial \mathbf{b}_2}\)</span> não é um escalar <span class="math inline">\(1\)</span>, mas sim uma matriz identidade <span class="math inline">\(\mathbf{I}\)</span> (ou um <strong>vetor de uns</strong> <span class="math inline">\(\mathbf{1}\)</span>, que efetua a soma ao longo do <em>batch</em>). Assim, a expressão para qualquer função de ativação <span class="math inline">\(\gamma(\mathbf{z}_2)\)</span> fica:</p>
 <p><span class="math display">\[
 \frac{\partial C}{\partial \mathbf{b}_2} = \delta_2 \odot \gamma'(\mathbf{z}_2)
 \]</span></p>
@@ -1070,8 +1112,8 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathb
 <p>em que <span class="math inline">\(\eta\)</span> é a taxa de aprendizado, um valor pequeno (tipicamente entre 0.001 e 0.1) que determina o tamanho do “passo” dado em direção ao mínimo da função de custo. Se <span class="math inline">\(\eta\)</span> for muito grande, o algoritmo pode “saltar” sobre o mínimo e não convergir. Se <span class="math inline">\(\eta\)</span> for muito pequeno, o algoritmo pode demorar muito tempo para convergir. A escolha de <span class="math inline">\(\eta\)</span> é crucial para o desempenho da rede neural.</p>
 </section>
 <section id="e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral." class="level3">
-<h3 class="anchored" data-anchor-id="e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral.">E se a rede neural tiver mais de uma camada oculta ? Caso geral.</h3>
-<p>Para qualquer camada <span class="math inline">\(l = 1,2,\ldots,L\)</span> as equações no método foward serão dadas por;</p>
+<h3 class="anchored" data-anchor-id="e-se-a-rede-neural-tiver-mais-de-uma-camada-oculta-caso-geral.">E se a rede neural tiver mais de uma camada oculta? Caso geral.</h3>
+<p>Para qualquer camada <span class="math inline">\(l = 1,2,\ldots,L\)</span> as equações no método forward serão dadas por:</p>
 <p><span class="math display">\[
 \mathbf{z}^{(l)} = \mathbf{a}^{(l-1)}\mathbf{W}^{(l)} + \mathbf{b}^{(l)},
 \]</span></p>
@@ -1109,14 +1151,24 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathb
   \mathbf{W}^{(l)} &amp;\leftarrow \mathbf{W}^{(l)} - \eta \frac{\partial C}{\partial \mathbf{W}^{(l)}} \\
   \mathbf{b}^{(l)} &amp;\leftarrow \mathbf{b}^{(l)} - \eta \frac{\partial C}{\partial \mathbf{b}^{(l)}},
 \end{aligned}\]</span>
-<p>que, conforme o que já obtemos, é reescrita como</p>
+<p>que, conforme o que já obtivemos, é reescrita como</p>
 <span class="math display">\[\begin{aligned}
   \mathbf{W}^{(l)} &amp;\leftarrow \mathbf{W}^{(l)} - \eta (\mathbf{a}^{(l-1)})^\top \delta^{(l)} \\
   \mathbf{b}^{(l)} &amp;\leftarrow \mathbf{b}^{(l)} - \eta \delta^{(l)}.
 \end{aligned}\]</span>
-<blockquote class="blockquote">
-<p>Importante: se estivermos utilizando um lote de <span class="math inline">\(m\)</span> exemplos, o termo <span class="math inline">\(\delta^{(l)}\)</span> na atualização do viés será a <em>soma</em> ou a <em>média</em> das linhas da matriz de erros daquela camada, garantindo que o ajuste médio para todo o lote.</p>
-</blockquote>
+<div class="callout callout-style-default callout-important callout-titled" title="Atenção ao viés em lotes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Atenção ao viés em lotes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se estivermos utilizando um lote de <span class="math inline">\(m\)</span> exemplos, o termo <span class="math inline">\(\delta^{(l)}\)</span> na atualização do viés será a <em>soma</em> ou a <em>média</em> das linhas da matriz de erros daquela camada, garantindo o ajuste médio para todo o lote.</p>
+</div>
+</div>
 <p>Imagine uma certa camada oculta <span class="math inline">\(l\)</span> qualquer possuindo 4 neurônios ocultos. O vetor de viés será <span class="math inline">\(\mathbf{b}^{(l)}\)</span> com dimensão <span class="math inline">\(1 \times 4\)</span>. Ao enviar um lote com <span class="math inline">\(m = 32\)</span> exemplos de uma vez teríamos:</p>
 <ul>
 <li>A matriz de entradas <span class="math inline">\(\mathbf{z}^{(l)}\)</span> com dimensão <span class="math inline">\(32 \times 4\)</span></li>
@@ -1186,7 +1238,7 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathb
 <section id="vanishing-gradient" class="level2">
 <h2 class="anchored" data-anchor-id="vanishing-gradient">Vanishing gradient</h2>
 <p>O <em>vanishing gradient</em> (gradiente que desaparece) é um dos problemas mais importantes no treinamento de redes profundas, e ele cai como uma luva depois de tudo o que construímos sobre backpropagation. Vamos entender por que ele acontece olhando diretamente para a recursão dos deltas.</p>
-<p>Lembre da forma geral do backpropagation:</p>
+<p>Lembre-se da forma geral do backpropagation:</p>
 <p><span class="math display">\[
 \delta^{(l)} = \Big(\delta^{(l+1)} (\mathbf{W}^{(l+1)})^\top\Big) \odot \phi'_l(\mathbf{z}^{(l)}).
 \]</span></p>
@@ -1213,9 +1265,19 @@ C \to \mathbf{a}_2 \to \mathbf{z}_2 \to \mathbf{a}_1 \to \mathbf{z}_1 \to \mathb
 <li><strong>Batch normalization:</strong> normaliza as pré-ativações de cada camada, mantendo-as numa faixa onde as derivadas não saturam.</li>
 <li><strong>Conexões residuais (<em>skip connections</em>):</strong> criam “atalhos” para o gradiente fluir diretamente para camadas mais rasas, sem passar por toda a cadeia de multiplicações. É a ideia por trás das ResNets.</li>
 </ul>
-<blockquote class="blockquote">
-<p><strong>O outro lado:</strong> existe também o problema oposto, o <em>exploding gradient</em>, quando os fatores multiplicados são maiores que 1 e o produto cresce sem controle. A solução mais comum aqui é o <em>gradient clipping</em>, que limita a norma do gradiente a um teto máximo.</p>
-</blockquote>
+<div class="callout callout-style-default callout-note callout-titled" title="O problema oposto: exploding gradient">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>O problema oposto: exploding gradient
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Existe também o problema oposto, o <em>exploding gradient</em>, quando os fatores multiplicados são maiores que 1 e o produto cresce sem controle. A solução mais comum aqui é o <em>gradient clipping</em>, que limita a norma do gradiente a um teto máximo.</p>
+</div>
+</div>
 <p>O importante é perceber que o <em>vanishing gradient</em> não é um detalhe de implementação: ele é uma consequência direta da estrutura multiplicativa do backpropagation que derivamos passo a passo. Entender a recursão dos deltas é entender por que o problema existe e por que as soluções funcionam.</p>
 
 
