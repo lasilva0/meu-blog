@@ -88,9 +88,21 @@ $$
 
 A pré-ativação da camada oculta é:
 
-$$
-\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1 = \begin{bmatrix} x_1 & x_2 \end{bmatrix} \begin{bmatrix} w_{11}^{(1)} & w_{12}^{(1)} & w_{13}^{(1)} \\ w_{21}^{(1)} & w_{22}^{(1)} & w_{23}^{(1)} \end{bmatrix} + \begin{bmatrix} b_1^{(1)} & b_2^{(1)} & b_3^{(1)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(1)}x_1 + w_{21}^{(1)}x_2 + b_1^{(1)} & w_{12}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} & w_{13}^{(1)}x_1 + w_{23}^{(1)}x_2 + b_3^{(1)} \end{bmatrix}
-$$
+\begin{align*}
+\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1 &= \begin{bmatrix} 
+  x_1 & x_2 
+\end{bmatrix} \begin{bmatrix} 
+  w_{11}^{(1)} & w_{12}^{(1)} & w_{13}^{(1)} \\ 
+  w_{21}^{(1)} & w_{22}^{(1)} & w_{23}^{(1)} 
+\end{bmatrix} + \begin{bmatrix} 
+  b_1^{(1)} & b_2^{(1)} & b_3^{(1)} 
+\end{bmatrix} \\ 
+&= \begin{bmatrix}
+  w_{11}^{(1)}x_1 + w_{21}^{(1)}x_2 + b_1^{(1)} &
+  w_{12}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} &
+  w_{13}^{(1)}x_1 + w_{23}^{(1)}x_2 + b_3^{(1)}
+\end{bmatrix}
+\end{align*}
 
 Aplicando a função de ativação $\phi$ elemento a elemento:
 
@@ -109,7 +121,19 @@ $$
 A pré-ativação da camada de saída é:
 
 $$
-\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2 = \begin{bmatrix} h_1 & h_2 & h_3 \end{bmatrix} \begin{bmatrix} w_{11}^{(2)} & w_{12}^{(2)} \\ w_{21}^{(2)} & w_{22}^{(2)} \\ w_{31}^{(2)} & w_{32}^{(2)} \end{bmatrix} + \begin{bmatrix} b_1^{(2)} & b_2^{(2)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(2)}h_1 + w_{21}^{(2)}h_2 + w_{31}^{(2)}h_3 + b_1^{(2)} & w_{12}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{32}^{(2)}h_3 + b_2^{(2)} \end{bmatrix}
+\begin{aligned}
+\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2 &= \begin{bmatrix} h_1 & h_2 & h_3 \end{bmatrix}
+\begin{bmatrix}
+  w_{11}^{(2)} & w_{12}^{(2)} \\
+  w_{21}^{(2)} & w_{22}^{(2)} \\
+  w_{31}^{(2)} & w_{32}^{(2)}
+\end{bmatrix}
++ \begin{bmatrix} b_1^{(2)} & b_2^{(2)} \end{bmatrix} \\[1em]
+&= \begin{bmatrix}
+  w_{11}^{(2)}h_1 + w_{21}^{(2)}h_2 + w_{31}^{(2)}h_3 + b_1^{(2)} &
+  w_{12}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{32}^{(2)}h_3 + b_2^{(2)}
+\end{bmatrix}
+\end{aligned}
 $$
 
 Aplicando a função de ativação de saída $\gamma$:

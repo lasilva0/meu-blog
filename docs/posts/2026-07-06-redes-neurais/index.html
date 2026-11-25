@@ -498,9 +498,21 @@ y = \phi\left(\sum_{j=1}^{p} w_j x_j + b\right) = \phi(\mathbf{w}^T \mathbf{x} +
 \mathbf{W}_1 = \begin{bmatrix} w_{11}^{(1)} &amp; w_{12}^{(1)} &amp; w_{13}^{(1)} \\ w_{21}^{(1)} &amp; w_{22}^{(1)} &amp; w_{23}^{(1)} \end{bmatrix}, \qquad \mathbf{b}_1 = \begin{bmatrix} b_1^{(1)} &amp; b_2^{(1)} &amp; b_3^{(1)} \end{bmatrix}
 \]</span></p>
 <p>A pré-ativação da camada oculta é:</p>
-<p><span class="math display">\[
-\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1 = \begin{bmatrix} x_1 &amp; x_2 \end{bmatrix} \begin{bmatrix} w_{11}^{(1)} &amp; w_{12}^{(1)} &amp; w_{13}^{(1)} \\ w_{21}^{(1)} &amp; w_{22}^{(1)} &amp; w_{23}^{(1)} \end{bmatrix} + \begin{bmatrix} b_1^{(1)} &amp; b_2^{(1)} &amp; b_3^{(1)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(1)}x_1 + w_{21}^{(1)}x_2 + b_1^{(1)} &amp; w_{12}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} &amp; w_{13}^{(1)}x_1 + w_{23}^{(1)}x_2 + b_3^{(1)} \end{bmatrix}
-\]</span></p>
+<p><span class="math display">\[\begin{align*}
+\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1 &amp;= \begin{bmatrix}
+  x_1 &amp; x_2
+\end{bmatrix} \begin{bmatrix}
+  w_{11}^{(1)} &amp; w_{12}^{(1)} &amp; w_{13}^{(1)} \\
+  w_{21}^{(1)} &amp; w_{22}^{(1)} &amp; w_{23}^{(1)}
+\end{bmatrix} + \begin{bmatrix}
+  b_1^{(1)} &amp; b_2^{(1)} &amp; b_3^{(1)}
+\end{bmatrix} \\
+&amp;= \begin{bmatrix}
+  w_{11}^{(1)}x_1 + w_{21}^{(1)}x_2 + b_1^{(1)} &amp;
+  w_{12}^{(1)}x_1 + w_{22}^{(1)}x_2 + b_2^{(1)} &amp;
+  w_{13}^{(1)}x_1 + w_{23}^{(1)}x_2 + b_3^{(1)}
+\end{bmatrix}
+\end{align*}\]</span></p>
 <p>Aplicando a função de ativação <span class="math inline">\(\phi\)</span> elemento a elemento:</p>
 <p><span class="math display">\[
 \mathbf{h} = \phi\!\left(\mathbf{x}\mathbf{W}_1 + \mathbf{b}_1\right) = \begin{bmatrix} h_1 &amp; h_2 &amp; h_3 \end{bmatrix}
@@ -514,7 +526,19 @@ y = \phi\left(\sum_{j=1}^{p} w_j x_j + b\right) = \phi(\mathbf{w}^T \mathbf{x} +
 \]</span></p>
 <p>A pré-ativação da camada de saída é:</p>
 <p><span class="math display">\[
-\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2 = \begin{bmatrix} h_1 &amp; h_2 &amp; h_3 \end{bmatrix} \begin{bmatrix} w_{11}^{(2)} &amp; w_{12}^{(2)} \\ w_{21}^{(2)} &amp; w_{22}^{(2)} \\ w_{31}^{(2)} &amp; w_{32}^{(2)} \end{bmatrix} + \begin{bmatrix} b_1^{(2)} &amp; b_2^{(2)} \end{bmatrix} = \begin{bmatrix} w_{11}^{(2)}h_1 + w_{21}^{(2)}h_2 + w_{31}^{(2)}h_3 + b_1^{(2)} &amp; w_{12}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{32}^{(2)}h_3 + b_2^{(2)} \end{bmatrix}
+\begin{aligned}
+\mathbf{h}\mathbf{W}_2 + \mathbf{b}_2 &amp;= \begin{bmatrix} h_1 &amp; h_2 &amp; h_3 \end{bmatrix}
+\begin{bmatrix}
+  w_{11}^{(2)} &amp; w_{12}^{(2)} \\
+  w_{21}^{(2)} &amp; w_{22}^{(2)} \\
+  w_{31}^{(2)} &amp; w_{32}^{(2)}
+\end{bmatrix}
++ \begin{bmatrix} b_1^{(2)} &amp; b_2^{(2)} \end{bmatrix} \\[1em]
+&amp;= \begin{bmatrix}
+  w_{11}^{(2)}h_1 + w_{21}^{(2)}h_2 + w_{31}^{(2)}h_3 + b_1^{(2)} &amp;
+  w_{12}^{(2)}h_1 + w_{22}^{(2)}h_2 + w_{32}^{(2)}h_3 + b_2^{(2)}
+\end{bmatrix}
+\end{aligned}
 \]</span></p>
 <p>Aplicando a função de ativação de saída <span class="math inline">\(\gamma\)</span>:</p>
 <p><span class="math display">\[
